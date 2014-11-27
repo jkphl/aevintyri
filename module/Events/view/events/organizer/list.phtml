@@ -1,0 +1,43 @@
+<?php
+
+	echo $this->partial('partials/common/header.phtml', array('header' => $this->translate('events.section.label.organizer.list'), 'buttons' => array($this->url('organizer', array('action' => 'add')) => $this->translate('button.add'))));
+
+	if (count($organizers)):
+
+	?><table class="entity-list">
+		  <thead>
+		    <tr>
+		      <th width="50"><?php echo $this->translate('entity.common.id') ?></th>
+		      <th><?php echo $this->translate('entity.common.name') ?></th>
+		      <th><?php echo $this->translate('entity.contact.web') ?></th>
+		      <th class="actions"><?php echo $this->translate('entity.actions') ?></th>
+		    </tr>
+		  </thead>
+		<tbody><?php
+		
+			foreach ($organizers as $organizer):
+			
+			?><tr data-onclick="<?php echo $this->url('organizer', array('action' => 'show', 'id' => $organizer->getId())); ?>">
+				<td><?php echo $organizer->getId(); ?></td>
+				<td><?php echo $organizer->getName(); ?></td>
+				<td><?php echo $organizer->getWeb(); ?></td>
+				<td>
+					<ul class="button-group">
+						<li><a href="<?php echo $this->url('organizer', array('action' => 'edit', 'id' => $organizer->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.edit')); ?></a></li>
+						<li><a href="<?php echo $this->url('organizer', array('action' => 'delete', 'id' => $organizer->getId())); ?>" class="tiny button radius" data-confirm="<?php echo htmlspecialchars($this->translate('entity.actions.delete.confirm')); ?>"><?php echo htmlspecialchars($this->translate('button.delete')); ?></a></li>
+					</ul>
+				</td>
+			</tr><?php
+			
+			endforeach;
+		
+		?></tbody>
+	</table><?php
+	
+	else:
+
+?><p class="empty-list"><?php echo $this->translate('events.list.none'); ?></p><?php
+	
+	endif;
+	
+?>

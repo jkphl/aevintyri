@@ -1,0 +1,65 @@
+<?php
+
+	// Header
+	echo $this->partial('partials/common/header.phtml', array('header' => sprintf($this->translate('events.section.label.organizer.edit'), $this->organizer->getName()), 'buttons' => array($this->url('organizer', array('action' => 'list')) => $this->translate('button.back'))));
+	
+	// Messages
+// 	echo $this->flashMessagesHelper($flashMessages);
+	
+	$form 			= $this->form;
+	$organizer		= $form->get('organizer');
+	$form->setAttribute('action', $this->url('organizer', array('action' => 'edit', 'id' => $this->organizer->getId())));
+	$form->prepare();
+	
+	echo $this->form()->openTag($form);
+	
+?>
+
+<fieldset id="general">
+	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
+	<div class="row">
+		<div class="large-6 columns">
+			<?php echo $this->formRow($organizer->get('name')); ?>
+		</div>
+		<div class="large-6 columns">
+			<?php echo $this->formRow($organizer->get('company')); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns"><?php 
+			echo $this->formRow($organizer->get('upload_image'));
+		?></div>
+		<div class="large-6 columns"><?php
+			echo $this->formHidden($organizer->get('image'));
+			echo $this->partial('partials/common/preview.phtml', array('image' => $organizer->get('image')->getValue()));
+			if (strlen($organizer->get('image')->getValue())) {
+				echo $this->formRow($organizer->get('delete_image'));
+			}
+		?></div>
+	</div>
+</fieldset>
+
+<?php 
+
+	echo $this->partial('partials/common/address.phtml', array('subject' => $organizer));
+	echo $this->partial('partials/common/contact.phtml', array('subject' => $organizer));
+	
+?>
+
+<div class="row">
+	<div class="large-12 columns">
+		<ul class="button-group">
+		  <li><?php echo $this->formSubmit($form->get('save')); ?></li>
+		  <li><?php echo $this->formSubmit($form->get('saveclose')); ?></li>
+		</ul>
+	</div>
+</div>
+	
+<?php
+	
+	/** Hidden fields **/
+	echo $this->formHidden($organizer->get('id'));
+	/** END - Hidden fields **/
+	
+	echo $this->form()->closeTag($form);
+?>

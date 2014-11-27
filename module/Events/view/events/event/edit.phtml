@@ -1,0 +1,142 @@
+<?php
+	$series			= ($this->type == 'series');
+
+	// Header
+	echo $this->partial('partials/common/header.phtml', array('header' => sprintf($series ? $this->translate('events.section.label.event.edit.series') : $this->translate('events.section.label.event.edit.single'), $this->event->getName()), 'buttons' => array($this->url('event', array('action' => 'show', 'type' => $this->type, 'id' => $this->event->getId())) => $this->translate('button.back'))));
+	
+	// Messages
+// 	echo $this->flashMessagesHelper($flashMessages);
+	
+	$form 			= $this->form;
+	$event		= $form->get('event');
+	$form->setAttribute('action', $this->url('event', array('action' => 'edit', 'id' => $this->event->getId(), 'type' => $this->type)));
+	$form->prepare();
+	
+	echo $this->form()->openTag($form);
+	
+?>
+
+<fieldset id="general">
+	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
+	<div class="row">
+		<div class="large-6 columns">
+			<?php echo $this->formRow($event->get('name')); ?>
+		</div>
+		<div class="large-6 columns">
+			<?php echo $this->formRow($event->get('organizer')); ?>
+		</div>
+	</div>
+	<?php 
+	
+	if (!$series):
+	
+	?><div class="row">
+		<div class="large-12 columns">
+			<?php echo $this->formRow($event->get('series')); ?>
+		</div>
+	</div><?php 
+	
+	endif;
+	
+	?>
+	<div class="row">
+		<div class="large-6 columns"><?php 
+			echo $this->formRow($event->get('upload_image'));
+		?></div>
+		<div class="large-6 columns"><?php
+			echo $this->formHidden($event->get('image'));
+			echo $this->partial('partials/common/preview.phtml', array('image' => $event->get('image')->getValue()));
+			if (strlen($event->get('image')->getValue())) {
+				echo $this->formRow($event->get('delete_image'));
+			}
+		?></div>
+	</div>
+</fieldset>
+
+<?php
+	
+	if (!$series):
+
+?><fieldset id="days">
+	<legend><?php echo $this->translate('entity.event.days'); ?></legend>
+	<div class="row"><?php
+	
+		$days			= $this->event->getDays();
+		if (count($days)):
+			?><table class="entity-list"><?php
+		
+			foreach ($days as $day):
+		
+				?><tr id="sessions-<?php echo $day->getId(); ?>">
+				<td colspan="3"><?php echo $this->emptyvalue($day->getDate()->format($this->translate('entity.day.date.format'))); ?></td>
+				<td class="actions">
+					<ul class="button-group">
+						<li><a href="<?php echo $this->url('session', array('action' => 'add', 'day' => $day->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.add.session')); ?></a></li>
+						<li><a href="<?php echo $this->url('day', array('action' => 'edit', 'id' => $day->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.edit')); ?></a></li>
+						<li><a href="<?php echo $this->url('day', array('action' => 'delete', 'id' => $day->getId())); ?>" class="tiny button radius" data-confirm="<?php echo htmlspecialchars($this->translate('entity.actions.delete.confirm')); ?>"><?php echo htmlspecialchars($this->translate('button.delete')); ?></a></li>
+					</ul>
+				</td>
+			</tr><?php
+			
+				$sessions		= $day->getSessions();
+				if (count($sessions)):
+					foreach ($sessions as $session):
+				
+					?><tr class="indent">
+						<td><?php echo $session->getTimes(); ?></td>
+						<td><?php echo $session->getName(); ?></td>	
+						<td><?php echo $session->getRoom()->getFullName(); ?></td>	
+						<td class="actions">
+							<ul class="button-group">
+								<li><a href="<?php echo $this->url('session', array('action' => 'edit', 'id' => $session->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.edit')); ?></a></li>
+								<li><a href="<?php echo $this->url('session', array('action' => 'delete', 'id' => $session->getId())); ?>" class="tiny button radius" data-confirm="<?php echo htmlspecialchars($this->translate('entity.actions.delete.confirm')); ?>"><?php echo htmlspecialchars($this->translate('button.delete')); ?></a></li>
+							</ul>
+						</td>	
+					</tr><?php
+					endforeach;
+				
+				else:
+
+					?><tr class="indent"><td colspan="4"><p class="empty-list"><?php echo $this->translate('events.list.sessions.none'); ?></p></td></tr><?php
+				
+				endif;
+			
+			endforeach;
+			
+			?></table><?php
+		else:
+			?><p class="empty-list"><?php echo $this->translate('events.list.none'); ?></p><?php
+		
+		endif;
+		
+		?><a href="<?php echo $this->url('day', array('action' => 'add', 'event' => $this->event->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.add.day')); ?></a><?php
+	
+	?></div>
+</fieldset><?php
+	endif; 
+
+	echo $this->partial('partials/common/texts.phtml', array('subject' => $event));
+	echo $this->partial('partials/common/contact.phtml', array('subject' => $event));
+	if (!$series) {
+		echo $this->partial('partials/common/event.phtml', array('subject' => $event));
+	}
+	
+?>
+
+<div class="row">
+	<div class="large-12 columns">
+		<ul class="button-group">
+		  <li><?php echo $this->formSubmit($form->get('save')); ?></li>
+		  <li><?php echo $this->formSubmit($form->get('saveclose')); ?></li>
+		</ul>
+	</div>
+</div>
+	
+<?php
+	
+	/** Hidden fields **/
+	echo $this->formHidden($event->get('id'));
+	/** END - Hidden fields **/
+	
+	echo $this->form()->closeTag($form);
+?>

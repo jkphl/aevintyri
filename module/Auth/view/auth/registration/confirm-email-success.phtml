@@ -1,0 +1,11 @@
+<?php
+
+echo $this->partial('auth/layout/nav-menu', array('navMenu' => $this->navMenu, 'user' => $this->identity()));
+
+?>
+
+<div class="jumbotron">
+  <h2>
+    <?php echo $this->translate('auth.register.confirm.success') ?>
+  </h2>
+</div>

@@ -1,0 +1,554 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ZendSkeletonApplication\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-13 15:31+0100\n"
+"PO-Revision-Date: 2014-07-13 15:31+0100\n"
+"Last-Translator: Evan Coury <me@evancoury.com>\n"
+"Language-Team: ZF Contributors <zf-devteam@zend.com>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.6.6\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../src/Auth/Controller/AdminController.php:99
+msgid "auth.admin.create.success"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:104
+msgid "auth.admin.create.failure"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:130
+msgid "auth.admin.update.id.invalid"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:153
+msgid "auth.admin.update.success"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:158
+msgid "auth.admin.update.failure"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:163
+#: ../view/auth/admin/edit-user-form.phtml:64
+msgid "auth.label.edit.user"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:184
+msgid "auth.admin.delete.id.invalid"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:193
+msgid "auth.admin.delete.success"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:195
+msgid "auth.admin.delete.failure"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:218
+msgid "auth.admin.enable.id.invalid"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:228
+msgid "auth.admin.enable.success"
+msgstr ""
+
+#: ../src/Auth/Controller/AdminController.php:230
+msgid "auth.admin.enable.failure"
+msgstr ""
+
+#: ../src/Auth/Controller/IndexController.php:97
+#: ../src/Auth/Controller/IndexController.php:131
+msgid "auth.login.credentials.invalid"
+msgstr ""
+
+#: ../src/Auth/Controller/IndexController.php:125
+msgid "auth.login.problem"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:87
+msgid "auth.register.confirm.email.subject"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:87
+msgid "auth.register.confirm.email.body"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:100
+msgid "auth.register.confirm.email.failure"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:140
+msgid "auth.register.profile.success"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:188
+msgid "auth.register.answer.invalid"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:233
+msgid "auth.register.password.change.confirm.email.subject"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:233
+msgid "auth.register.password.change.confirm.email.body"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:245
+msgid "auth.register.password.change.confirm.email.failure"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:248
+msgid "auth.register.password.change.id.invalid"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:296
+msgid "auth.register.email.change.password.invalid"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:341
+msgid "auth.register.question.change.password.invalid"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:386
+msgid "auth.register.activate.failure"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:411
+msgid "auth.register.email.change.email.subject"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:411
+msgid "auth.register.email.change.email.body"
+msgstr ""
+
+#: ../src/Auth/Controller/RegistrationController.php:425
+msgid "auth.register.email.change.failure"
+msgstr ""
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:287
+msgid "auth.label.rememberme"
+msgstr ""
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:308
+#: ../view/auth/index/login.phtml:48 ../view/auth/layout/nav-menu.phtml:22
+#: ../view/auth/registration/registration.phtml:78
+msgid "auth.button.signin"
+msgstr ""
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:448
+msgid "auth.error.username.taken"
+msgstr ""
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:458
+#: ../src/Auth/Service/Factory/UserFormFactory.php:541
+msgid "auth.error.email.taken"
+msgstr ""
+
+#: ../view/auth/admin/edit-user-form.phtml:27
+#: ../view/auth/admin/new-user-form.phtml:27
+#: ../view/auth/registration/edit-profile.phtml:49
+#: ../view/auth/registration/registration.phtml:28
+msgid "auth.label.username"
+msgstr ""
+
+#: ../view/auth/admin/edit-user-form.phtml:33
+#: ../view/auth/admin/index.phtml:40 ../view/auth/admin/new-user-form.phtml:33
+#: ../view/auth/registration/edit-profile.phtml:30
+#: ../view/auth/registration/edit-profile.phtml:53
+#: ../view/auth/registration/registration.phtml:34
+msgid "auth.label.name"
+msgstr ""
+
+#: ../view/auth/admin/edit-user-form.phtml:39
+#: ../view/auth/admin/index.phtml:41 ../view/auth/admin/new-user-form.phtml:39
+#: ../view/auth/registration/edit-profile.phtml:51
+#: ../view/auth/registration/registration.phtml:39
+msgid "auth.label.email"
+msgstr ""
+
+#: ../view/auth/admin/edit-user-form.phtml:55
+#: ../view/auth/admin/new-user-form.phtml:60
+#: ../view/auth/registration/change-password.phtml:54
+#: ../view/auth/registration/change-security-question.phtml:60
+#: ../view/auth/registration/registration.phtml:62
+msgid "auth.label.answer"
+msgstr ""
+
+#: ../view/auth/admin/edit-user-form.phtml:71
+msgid "auth.header.user.edit"
+msgstr ""
+
+#: ../view/auth/admin/edit-user-form.phtml:91
+#: ../view/auth/admin/edit-user-form.phtml:94
+#: ../view/auth/registration/edit-profile.phtml:50
+msgid "auth.label.password.change"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:27
+msgid "auth.header.user.admin"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:31 ../view/auth/admin/new-user-form.phtml:69
+msgid "auth.button.user.create"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:42
+msgid "auth.label.active"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:43
+msgid "auth.label.actions"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:63
+msgid "auth.label.activity."
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:66 ../view/auth/admin/index.phtml:76
+msgid "auth.button.user.disable"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:67
+msgid "auth.button.user.edit"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:68
+msgid "auth.button.user.delete.confirm"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:68
+msgid "auth.button.user.delete"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:74
+msgid "auth.label.activity.1"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:75
+msgid "auth.label.activity.0"
+msgstr ""
+
+#: ../view/auth/admin/index.phtml:77
+msgid "auth.button.user.enable"
+msgstr ""
+
+#: ../view/auth/admin/new-user-form.phtml:44 ../view/auth/index/login.phtml:33
+#: ../view/auth/registration/change-security-question.phtml:49
+#: ../view/auth/registration/edit-profile.phtml:50
+#: ../view/auth/registration/registration.phtml:44
+msgid "auth.label.password"
+msgstr ""
+
+#: ../view/auth/admin/new-user-form.phtml:49
+#: ../view/auth/registration/registration.phtml:49
+msgid "auth.label.password.confirm"
+msgstr ""
+
+#: ../view/auth/admin/new-user-form.phtml:76
+msgid "auth.header.user.create"
+msgstr ""
+
+#: ../view/auth/index/index.phtml:19 ../view/auth/index/index.phtml:32
+msgid "auth.header.welcome"
+msgstr ""
+
+#: ../view/auth/index/index.phtml:25 ../view/auth/layout/nav-menu.phtml:18
+msgid "auth.button.logout"
+msgstr ""
+
+#: ../view/auth/index/index.phtml:29
+msgid "auth.login.success"
+msgstr ""
+
+#: ../view/auth/index/index.phtml:32
+msgid "auth.login.guest"
+msgstr ""
+
+#: ../view/auth/index/index.phtml:34
+msgid "auth.login.message"
+msgstr ""
+
+#: ../view/auth/index/login.phtml:28
+#: ../view/auth/registration/reset-password.phtml:28
+msgid "auth.label.usernameoremail"
+msgstr ""
+
+#: ../view/auth/index/login.phtml:43
+#: ../view/auth/registration/registration.phtml:68
+#: ../view/auth/registration/reset-password.phtml:34
+msgid "auth.label.captcha"
+msgstr ""
+
+#: ../view/auth/index/login.phtml:54
+msgid "auth.header.signin"
+msgstr ""
+
+#: ../view/auth/index/login.phtml:98 ../view/auth/layout/nav-menu.phtml:23
+#: ../view/auth/registration/registration.phtml:73
+msgid "auth.button.signup"
+msgstr ""
+
+#: ../view/auth/index/login.phtml:101
+msgid "auth.button.password.forgot"
+msgstr ""
+
+#: ../view/auth/layout/nav-menu.phtml:16
+msgid "auth.button.home"
+msgstr ""
+
+#: ../view/auth/layout/nav-menu.phtml:17
+msgid "auth.button.profile.edit"
+msgstr ""
+
+#: ../view/auth/layout/nav-menu.phtml:24
+#: ../view/auth/registration/reset-password.phtml:39
+msgid "auth.button.password.reset"
+msgstr ""
+
+#: ../view/auth/registration/change-email-success.phtml:21
+msgid "auth.register.email.change.success"
+msgstr ""
+
+#: ../view/auth/registration/change-email.phtml:28
+msgid "auth.label.email.new"
+msgstr ""
+
+#: ../view/auth/registration/change-email.phtml:33
+msgid "auth.label.email.new.confirm"
+msgstr ""
+
+#: ../view/auth/registration/change-email.phtml:38
+msgid "auth.button.email.change"
+msgstr ""
+
+#: ../view/auth/registration/change-email.phtml:44
+msgid "auth.header.email.change"
+msgstr ""
+
+#: ../view/auth/registration/change-email.phtml:54
+msgid "auth.label.password.current"
+msgstr ""
+
+#: ../view/auth/registration/change-password-success.phtml:18
+msgid "auth.register.password.change.success"
+msgstr ""
+
+#: ../view/auth/registration/change-password.phtml:28
+msgid "auth.label.password.new.confirm"
+msgstr ""
+
+#: ../view/auth/registration/change-password.phtml:33
+msgid "auth.button.password.change"
+msgstr ""
+
+#: ../view/auth/registration/change-password.phtml:39
+msgid "auth.header.password.change"
+msgstr ""
+
+#: ../view/auth/registration/change-password.phtml:50
+#: ../view/auth/registration/edit-profile.phtml:52
+msgid "auth.label.question"
+msgstr ""
+
+#: ../view/auth/registration/change-password.phtml:59
+msgid "auth.label.password.new"
+msgstr ""
+
+#: ../view/auth/registration/change-security-question-success.phtml:18
+msgid "auth.register.question.success"
+msgstr ""
+
+#: ../view/auth/registration/change-security-question.phtml:33
+msgid "auth.button.question.change"
+msgstr ""
+
+#: ../view/auth/registration/change-security-question.phtml:39
+msgid "auth.header.question.change"
+msgstr ""
+
+#: ../view/auth/registration/confirm-email-change-password.phtml:18
+msgid "auth.register.email.change.email.sent"
+msgstr ""
+
+#: ../view/auth/registration/confirm-email-success.phtml:18
+msgid "auth.register.confirm.success"
+msgstr ""
+
+#: ../view/auth/registration/edit-profile.phtml:35
+msgid "auth.button.profile.update"
+msgstr ""
+
+#: ../view/auth/registration/edit-profile.phtml:41
+msgid "auth.header.profile.edit"
+msgstr ""
+
+#: ../view/auth/registration/edit-profile.phtml:51
+msgid "auth.label.email.change"
+msgstr ""
+
+#: ../view/auth/registration/edit-profile.phtml:52
+msgid "auth.label.question.change"
+msgstr ""
+
+#: ../view/auth/registration/password-change-success.phtml:18
+msgid "auth.register.password.change.email.sent"
+msgstr ""
+
+#: ../view/auth/registration/registration-success.phtml:18
+msgid "auth.register.confirm.email.sent"
+msgstr ""
+
+#: ../view/auth/registration/registration.phtml:84
+msgid "auth.header.signup"
+msgstr ""
+
+#: ../view/auth/registration/reset-password.phtml:45
+msgid "auth.header.password.reset"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Actions"
+#~ msgstr "Ausnahme"
+
+#, fuzzy
+#~ msgid "User Home"
+#~ msgstr "Startseite"
+
+#~ msgid "All rights reserved."
+#~ msgstr "Alle Rechte vorbehalten."
+
+#~ msgid "Welcome to %sZend Framework 2%s"
+#~ msgstr "Willkommen zu dem %sZend Framework 2%s"
+
+#~ msgid ""
+#~ "Congratulations! You have successfully installed the %sZF2 Skeleton "
+#~ "Application%s. You are currently running Zend Framework version %s. This "
+#~ "skeleton can serve as a simple starting point for you to begin building "
+#~ "your application on ZF2."
+#~ msgstr ""
+#~ "Herzlichen Glückwunsch! Sie haben die %sZF2 Skeleton Application%s "
+#~ "erfolgreich installiert und benutzen gerade die Version %s des Zend "
+#~ "Frameworks. Dieses Gerüst kann Ihnen als Einstiegspunkt, für Ihre weitere "
+#~ "Entwicklung, basierend auf dem Zend Framework 2, dienen."
+
+#~ msgid "Fork Zend Framework 2 on GitHub"
+#~ msgstr "Fork Zend Framework 2 auf GitHub"
+
+#~ msgid "Follow Development"
+#~ msgstr "Folge der Entwicklung"
+
+#~ msgid ""
+#~ "Zend Framework 2 is under active development. If you are interested in "
+#~ "following the development of ZF2, there is a special ZF2 portal on the "
+#~ "official Zend Framework website which provides links to the ZF2 %swiki%s, "
+#~ "%sdev blog%s, %sissue tracker%s, and much more. This is a great resource "
+#~ "for staying up to date with the latest developments!"
+#~ msgstr ""
+#~ "Das Zend Framework 2 wird z.Z. aktiv weiterentwickelt.  Sollten Sie daran "
+#~ "interessiert sein, die Entwicklung von ZF2 zu verfolgen, so bietet Ihnen "
+#~ "die offizielle Webseite einen eigens für das Zend Framework 2 "
+#~ "eingerichteten Bereich, auf der Sie Verlinkungen zum ZF2 %sWiki%s, "
+#~ "%sEntwickler Blog%s, einem %sFehlerverfolgungssystem%s und noch vielem "
+#~ "mehr finden. Dieser Bereich ist eine hervorragende Quelle um stets "
+#~ "aktuell zu bleiben."
+
+#~ msgid "ZF2 Development Portal"
+#~ msgstr "ZF2 Entwickler Portal"
+
+#~ msgid "Discover Modules"
+#~ msgstr "Entdecken Sie Module"
+
+#~ msgid ""
+#~ "The community is working on developing a community site to serve as a "
+#~ "repository and gallery for ZF2 modules. The project is available %son "
+#~ "GitHub%s. The site is currently live and currently contains a list of "
+#~ "some of the modules already available for ZF2."
+#~ msgstr ""
+#~ "Die Community arbeitet momentan an einer Community Seite, welche als "
+#~ "Galerie für ZF2 Module dient. Dieses Projekt ist %sauf GitHub%s "
+#~ "verfügbar. Die Webseite ist bereits Online und enthält eine Liste mit "
+#~ "schon veröffentlichten Modulen für das Zend Framework 2."
+
+#~ msgid "Explore ZF2 Modules"
+#~ msgstr "Erkunden Sie ZF2 Module"
+
+#~ msgid "Help &amp; Support"
+#~ msgstr "Hilfe &amp; Support"
+
+#~ msgid ""
+#~ "If you need any help or support while developing with ZF2, you may reach "
+#~ "us via IRC: %s#zftalk on Freenode%s. We'd love to hear any questions or "
+#~ "feedback you may have regarding the beta releases. Alternatively, you may "
+#~ "subscribe and post questions to the %smailing lists%s."
+#~ msgstr ""
+#~ "Sollten Sie Hilfe jeglicher Art bei der Entwicklung mit dem Zend "
+#~ "Framework 2 benötigen, kontaktieren Sie uns doch einfach über das IRC: "
+#~ "%s#zftalk on Freenode%s. Wir freuen uns darauf, Ihnen bei Ihren Fragen zu "
+#~ "helfen oder aber auch Ihre Meinung bezüglich der Beta Versionen zu hören. "
+#~ "Alternativ können Sie auch die %smailing lists%s abonnieren und Ihre "
+#~ "Fragen dort stellen."
+
+#~ msgid "Ping us on IRC"
+#~ msgstr "Schreiben Sie uns im IRC an"
+
+#~ msgid "An error occurred"
+#~ msgstr "Ein Fehler ist aufgetreten"
+
+#~ msgid "Additional information"
+#~ msgstr "Zusätzliche Information"
+
+#~ msgid "File"
+#~ msgstr "Datei"
+
+#~ msgid "Message"
+#~ msgstr "Meldung"
+
+#~ msgid "Stack trace"
+#~ msgstr "Stapelüberwachung"
+
+#~ msgid "Previous exceptions"
+#~ msgstr "Vorherige Ausnahme"
+
+#~ msgid "No Exception available"
+#~ msgstr "Es ist keine Ausnahme verfügbar"
+
+#~ msgid "A 404 error occurred"
+#~ msgstr "Es trat ein 404 Fehler auf"
+
+#~ msgid "The requested controller was unable to dispatch the request."
+#~ msgstr ""
+#~ "Der angeforderte Controller war nicht in der Lage die Anfrage zu "
+#~ "verarbeiten."
+
+#~ msgid ""
+#~ "The requested controller could not be mapped to an existing controller "
+#~ "class."
+#~ msgstr ""
+#~ "Der angeforderte Controller konnte keiner Controller Klasse zugeordnet "
+#~ "werden."
+
+#~ msgid "The requested controller was not dispatchable."
+#~ msgstr "Der angeforderte Controller ist nicht aufrufbar."
+
+#~ msgid "The requested URL could not be matched by routing."
+#~ msgstr ""
+#~ "Für die angeforderte URL konnte keine Übereinstimmung gefunden werden."
+
+#~ msgid "We cannot determine at this time why a 404 was generated."
+#~ msgstr ""
+#~ "Zu diesem Zeitpunkt ist es uns nicht möglich zu bestimmen, warum ein 404 "
+#~ "Fehler aufgetreten ist."
+
+#~ msgid "Controller"
+#~ msgstr "Controller"
+
+#~ msgid "resolves to %s"
+#~ msgstr "wird aufgelöst in %s"

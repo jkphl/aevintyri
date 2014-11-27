@@ -1,0 +1,102 @@
+<?php
+
+	// Header
+	echo $this->partial('partials/common/header.phtml', array('header' => $presenter->getName(), 'buttons' => array(
+		$this->url('presenter', array('action' => 'list')) => $this->translate('button.back'),
+		$this->url('presenter', array('action' => 'edit', 'id' => $presenter->getId())) => $this->translate('button.edit'),
+		$this->url('presenter', array('action' => 'delete', 'id' => $presenter->getId())) => array($this->translate('button.delete'), array('data-confirm' => $this->translate('entity.actions.delete.confirm'))),
+
+		
+	)));
+	
+	/* data-confirm="<?php echo htmlspecialchars(); ?>" */
+	
+	// Messages
+// 	echo $this->flashMessagesHelper($flashMessages);
+	
+?><table class="entity-show">
+	<tr>
+		<th><?php echo $this->translate('entity.common.name'); ?></th>
+		<td><?php echo $this->presenter->getName(); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.common.image'); ?></th>
+		<td><?php echo $this->partial('partials/common/preview.phtml', array('image' => $this->presenter->getImage())); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.description.abstract'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getAbstract()); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.description.description'); ?></th>
+		<td class="markdown"><?php echo $this->emptyvalue($this->markdown($this->presenter->getDescription())); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.description.hashtag'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getHashtag(), array('#', '')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.phone'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getPhone(), array('<a href="tel:'.preg_replace(array('%^[^\+\d]+%', '%[^\+\d]+%'), '', $this->presenter->getPhone()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.cell'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getCell(), array('<a href="tel:'.preg_replace(array('%^[^\+\d]+%', '%[^\+\d]+%'), '', $this->presenter->getCell()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.fax'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getFax()); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.email'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getEmail(), array('<a href="mailto:'.htmlspecialchars($this->presenter->getEmail()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.web'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getWeb(), array('<a href="'.htmlspecialchars($this->presenter->getWeb()).'" target="_blank">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.twitter'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getTwitter(), array('<a href="https://twitter.com/'.htmlspecialchars($this->presenter->getTwitter()).'" target="_blank">@', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.facebook'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getFacebook(), array('<a href="https://'.htmlspecialchars($this->presenter->getFacebook()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.gplus'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getGplus(), array('<a href="https://'.htmlspecialchars($this->presenter->getGplus()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.xing'); ?></th>
+		<td><?php echo $this->emptyvalue($this->presenter->getXing(), array('<a href="https://'.htmlspecialchars($this->presenter->getXing()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.presenter.tags'); ?></th>
+		<td><?php
+			$tags		= $this->presenter->getTags();
+			if (count($tags)):
+				?><ul class="multiple">
+					<?php foreach ($tags as $tag): ?><li><?php echo htmlspecialchars($tag->getName()); ?></li><?php endforeach; ?>
+				</ul><?php
+			else:
+				?>---<?php
+			endif;
+		?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.common.links'); ?></th>
+		<td><?php
+		
+			$links		= $this->presenter->getLinks();
+			if (count($links)):
+				?><ul class="multiple">
+					<?php foreach ($links as $link): ?><li><a href="<?php echo htmlspecialchars($link->getUrl()); ?>" target="_blank"><?php echo htmlspecialchars($link->getName()); ?> (<?php echo htmlspecialchars($link->getUrl()); ?>)</a></li><?php endforeach; ?>
+				</ul><?php
+			else:
+				?>---<?php
+			endif;
+			
+		?></td>
+	</tr>
+</table>

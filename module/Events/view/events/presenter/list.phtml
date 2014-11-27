@@ -1,0 +1,43 @@
+<?php
+
+	echo $this->partial('partials/common/header.phtml', array('header' => $this->translate('events.section.label.presenter.list'), 'buttons' => array($this->url('presenter', array('action' => 'add')) => $this->translate('button.add'))));
+
+	if (count($presenters)):
+
+	?><table class="entity-list">
+		  <thead>
+		    <tr>
+		      <th width="50"><?php echo $this->translate('entity.common.id') ?></th>
+		      <th><?php echo $this->translate('entity.common.name') ?></th>
+		      <th><?php echo $this->translate('entity.description.abstract') ?></th>
+		      <th class="actions"><?php echo $this->translate('entity.actions') ?></th>
+		    </tr>
+		  </thead>
+		<tbody><?php
+		
+			foreach ($presenters as $presenter):
+			
+			?><tr data-onclick="<?php echo $this->url('presenter', array('action' => 'show', 'id' => $presenter->getId())); ?>">
+				<td><?php echo $presenter->getId(); ?></td>
+				<td><?php echo $presenter->getName(); ?></td>
+				<td><?php $abstract = $presenter->getAbstract(); echo substr($abstract, 0, 50).((strlen($abstract) > 50) ? '…' : ''); ?></td>
+				<td>
+					<ul class="button-group">
+						<li><a href="<?php echo $this->url('presenter', array('action' => 'edit', 'id' => $presenter->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.edit')); ?></a></li>
+						<li><a href="<?php echo $this->url('presenter', array('action' => 'delete', 'id' => $presenter->getId())); ?>" class="tiny button radius" data-confirm="<?php echo htmlspecialchars($this->translate('entity.actions.delete.confirm')); ?>"><?php echo htmlspecialchars($this->translate('button.delete')); ?></a></li>
+					</ul>
+				</td>
+			</tr><?php
+			
+			endforeach;
+		
+		?></tbody>
+	</table><?php
+	
+	else:
+
+?><p class="empty-list"><?php echo $this->translate('events.list.none'); ?></p><?php
+	
+	endif;
+	
+?>

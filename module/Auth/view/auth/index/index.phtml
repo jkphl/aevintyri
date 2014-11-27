@@ -1,0 +1,28 @@
+<?php
+
+echo $this->partial('auth/layout/nav-menu', array('navMenu' => $this->navMenu, 'user' => $this->identity()));
+
+?>
+
+<div class="jumbotron">
+<?php if($user = $this->identity()) { ?>
+  <h1 style="float:left;">
+    <?php echo $this->translate('auth.header.welcome') ?>
+    <a href="<?php echo $this->url('user-register', array('action' => 'edit-profile'));?>">
+      <span class="zf-green"><?php echo $this->escapeHtml($user->getUsername()); ?></span>
+    </a>
+  </h1>
+  <a href="<?php echo $this->url('user-index', array('action' => 'logout'));?>" class="btn btn-success btn-lg" style="float:right; margin-top: 25px">
+    <?php echo $this->translate('auth.button.logout'); ?>
+  </a>
+  <div style="clear: both"></div>
+  <div class="row">
+    <?php echo $this->translate('auth.login.success') ?>
+  </div>
+<?php } else { ?>
+  <h1><?php echo $this->translate('auth.header.welcome') ?><span  style="color: #FF8C00"> <?php echo $this->translate('auth.login.guest') ?></span>!</h1>
+  <div>
+    <?php echo $this->translate('auth.login.message') ?>
+  </div>
+<?php } ?>
+</div>

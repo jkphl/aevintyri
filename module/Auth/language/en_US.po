@@ -1,0 +1,507 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ZendSkeletonApplication\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-22 12:15+0100\n"
+"PO-Revision-Date: 2014-08-22 12:15+0100\n"
+"Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
+"Language-Team: ZF Contibutors <zf-devteam@zend.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.6.7\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../src/Auth/Controller/AdminController.php:99
+msgid "auth.admin.create.success"
+msgstr "User created Successfully"
+
+#: ../src/Auth/Controller/AdminController.php:104
+msgid "auth.admin.create.failure"
+msgstr "Something went wrong during user creation! Please, try again later."
+
+#: ../src/Auth/Controller/AdminController.php:130
+msgid "auth.admin.update.id.invalid"
+msgstr "User ID invalid"
+
+#: ../src/Auth/Controller/AdminController.php:153
+msgid "auth.admin.update.success"
+msgstr "User Updated Successfully"
+
+#: ../src/Auth/Controller/AdminController.php:158
+msgid "auth.admin.update.failure"
+msgstr ""
+"Something went wrong during update user process! Please, try again later."
+
+#: ../src/Auth/Controller/AdminController.php:163
+#: ../view/auth/admin/edit-user-form.phtml:64
+msgid "auth.label.edit.user"
+msgstr "Edit User"
+
+#: ../src/Auth/Controller/AdminController.php:184
+msgid "auth.admin.delete.id.invalid"
+msgstr "User ID invalid"
+
+#: ../src/Auth/Controller/AdminController.php:193
+msgid "auth.admin.delete.success"
+msgstr "User Deleted Successfully"
+
+#: ../src/Auth/Controller/AdminController.php:195
+msgid "auth.admin.delete.failure"
+msgstr ""
+"Something went wrong during user delete process! Please, try again later."
+
+#: ../src/Auth/Controller/AdminController.php:218
+msgid "auth.admin.enable.id.invalid"
+msgstr "User ID or state invalid"
+
+#: ../src/Auth/Controller/AdminController.php:228
+msgid "auth.admin.enable.success"
+msgstr "Successfully enabled / disabled user"
+
+#: ../src/Auth/Controller/AdminController.php:230
+msgid "auth.admin.enable.failure"
+msgstr ""
+"Something went wrong during user update process! Please, try again later."
+
+#: ../src/Auth/Controller/IndexController.php:97
+#: ../src/Auth/Controller/IndexController.php:131
+msgid "auth.login.credentials.invalid"
+msgstr "Your authentication credentials are not valid"
+
+#: ../src/Auth/Controller/IndexController.php:125
+msgid "auth.login.problem"
+msgstr "Something went wrong during login! Please, try again later."
+
+#: ../src/Auth/Controller/RegistrationController.php:87
+msgid "auth.register.confirm.email.subject"
+msgstr "Please confirm your registration"
+
+#: ../src/Auth/Controller/RegistrationController.php:87
+msgid "auth.register.confirm.email.body"
+msgstr "Please click the link to confirm your registration => %s"
+
+#: ../src/Auth/Controller/RegistrationController.php:100
+msgid "auth.register.confirm.email.failure"
+msgstr ""
+"Something went wrong when trying to send activation email! Please, try again "
+"later."
+
+#: ../src/Auth/Controller/RegistrationController.php:140
+msgid "auth.register.profile.success"
+msgstr "Your profile has been edited"
+
+#: ../src/Auth/Controller/RegistrationController.php:188
+msgid "auth.register.answer.invalid"
+msgstr "Your answer is wrong. Please provide the correct answer."
+
+#: ../src/Auth/Controller/RegistrationController.php:233
+msgid "auth.register.password.change.confirm.email.subject"
+msgstr "Please confirm your request to change your password"
+
+#: ../src/Auth/Controller/RegistrationController.php:233
+msgid "auth.register.password.change.confirm.email.body"
+msgstr ""
+"Hi, %s. Please, follow this link %s to confirm your request to change "
+"password."
+
+#: ../src/Auth/Controller/RegistrationController.php:245
+msgid "auth.register.password.change.confirm.email.failure"
+msgstr ""
+"Something went wrong when trying to send activation email! Please, try again "
+"later."
+
+#: ../src/Auth/Controller/RegistrationController.php:248
+msgid "auth.register.password.change.id.invalid"
+msgstr "The username or email is not valid!"
+
+#: ../src/Auth/Controller/RegistrationController.php:296
+msgid "auth.register.email.change.password.invalid"
+msgstr "Your current password is not correct."
+
+#: ../src/Auth/Controller/RegistrationController.php:341
+msgid "auth.register.question.change.password.invalid"
+msgstr "Your password is wrong. Please provide the correct password."
+
+#: ../src/Auth/Controller/RegistrationController.php:386
+msgid "auth.register.activate.failure"
+msgstr ""
+"Something went wrong during the activation of your account! Please, try "
+"again later."
+
+#: ../src/Auth/Controller/RegistrationController.php:411
+msgid "auth.register.email.change.email.subject"
+msgstr "Your password has been changed!"
+
+#: ../src/Auth/Controller/RegistrationController.php:411
+msgid "auth.register.email.change.email.body"
+msgstr ""
+"Hello again %s. Your new password is: %s. Please follow this link %s to log "
+"in with your new password."
+
+#: ../src/Auth/Controller/RegistrationController.php:425
+msgid "auth.register.email.change.failure"
+msgstr ""
+"An error occured during the confirmation of your password change! Please, "
+"try again later."
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:247
+msgid "auth.label.role.0"
+msgstr "User"
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:248
+msgid "auth.label.role.1"
+msgstr "Administrator"
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:299
+msgid "auth.label.rememberme"
+msgstr "Remember me?"
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:320
+#: ../view/auth/index/login.phtml:30 ../view/auth/layout/nav-menu.phtml:24
+#: ../view/auth/registration/registration.phtml:78
+msgid "auth.button.signin"
+msgstr "Sign in"
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:460
+msgid "auth.error.username.taken"
+msgstr "This username is already taken"
+
+#: ../src/Auth/Service/Factory/UserFormFactory.php:470
+#: ../src/Auth/Service/Factory/UserFormFactory.php:553
+msgid "auth.error.email.taken"
+msgstr "An user with this email already exists"
+
+#: ../view/auth/admin/edit-user-form.phtml:27
+#: ../view/auth/admin/new-user-form.phtml:27 ../view/auth/index/login.phtml:54
+#: ../view/auth/registration/edit-profile.phtml:40
+#: ../view/auth/registration/registration.phtml:28
+#: ../view/auth/registration/reset-password.phtml:46
+msgid "auth.label.username"
+msgstr "User name"
+
+#: ../view/auth/admin/edit-user-form.phtml:33
+#: ../view/auth/admin/index.phtml:36 ../view/auth/admin/new-user-form.phtml:33
+#: ../view/auth/registration/edit-profile.phtml:21
+#: ../view/auth/registration/edit-profile.phtml:44
+#: ../view/auth/registration/registration.phtml:34
+msgid "auth.label.name"
+msgstr "Full name"
+
+#: ../view/auth/admin/edit-user-form.phtml:39
+#: ../view/auth/admin/index.phtml:37 ../view/auth/admin/new-user-form.phtml:39
+#: ../view/auth/registration/edit-profile.phtml:42
+#: ../view/auth/registration/registration.phtml:39
+msgid "auth.label.email"
+msgstr "Email address"
+
+#: ../view/auth/admin/edit-user-form.phtml:55
+#: ../view/auth/admin/new-user-form.phtml:60
+#: ../view/auth/registration/change-password.phtml:45
+#: ../view/auth/registration/change-security-question.phtml:51
+#: ../view/auth/registration/registration.phtml:62
+msgid "auth.label.answer"
+msgstr "Security question answer"
+
+#: ../view/auth/admin/edit-user-form.phtml:71
+msgid "auth.header.user.edit"
+msgstr "Edit user"
+
+#: ../view/auth/admin/edit-user-form.phtml:91
+#: ../view/auth/admin/edit-user-form.phtml:94
+#: ../view/auth/registration/edit-profile.phtml:41
+msgid "auth.label.password.change"
+msgstr "Change password"
+
+#: ../view/auth/admin/index.phtml:27
+msgid "auth.header.user.admin"
+msgstr "Users admin table"
+
+#: ../view/auth/admin/index.phtml:29 ../view/auth/admin/new-user-form.phtml:69
+msgid "auth.button.user.create"
+msgstr "Create user"
+
+#: ../view/auth/admin/index.phtml:38
+msgid "auth.label.role"
+msgstr "Role"
+
+#: ../view/auth/admin/index.phtml:39
+msgid "auth.label.active"
+msgstr "Enabled"
+
+#: ../view/auth/admin/index.phtml:40
+msgid "auth.label.actions"
+msgstr "Actions"
+
+#: ../view/auth/admin/index.phtml:60
+msgid "auth.label.role."
+msgstr "User"
+
+#: ../view/auth/admin/index.phtml:63
+msgid "auth.label.activity."
+msgstr "Enabled"
+
+#: ../view/auth/admin/index.phtml:66 ../view/auth/admin/index.phtml:76
+msgid "auth.button.user.disable"
+msgstr "Disable"
+
+#: ../view/auth/admin/index.phtml:67
+msgid "auth.button.user.edit"
+msgstr "Edit"
+
+#: ../view/auth/admin/index.phtml:68
+msgid "auth.button.user.delete.confirm"
+msgstr "Do you really want to delete this user?"
+
+#: ../view/auth/admin/index.phtml:68
+msgid "auth.button.user.delete"
+msgstr "Delete"
+
+#: ../view/auth/admin/index.phtml:74
+msgid "auth.label.activity.1"
+msgstr "Yes"
+
+#: ../view/auth/admin/index.phtml:75
+msgid "auth.label.activity.0"
+msgstr "No"
+
+#: ../view/auth/admin/index.phtml:77
+msgid "auth.button.user.enable"
+msgstr "Enable"
+
+#: ../view/auth/admin/new-user-form.phtml:44 ../view/auth/index/login.phtml:16
+#: ../view/auth/index/login.phtml:64
+#: ../view/auth/registration/change-security-question.phtml:40
+#: ../view/auth/registration/edit-profile.phtml:41
+#: ../view/auth/registration/registration.phtml:44
+msgid "auth.label.password"
+msgstr "Password"
+
+#: ../view/auth/admin/new-user-form.phtml:49
+#: ../view/auth/registration/registration.phtml:49
+msgid "auth.label.password.confirm"
+msgstr "Retype password"
+
+#: ../view/auth/admin/new-user-form.phtml:76
+msgid "auth.header.user.create"
+msgstr "New user"
+
+#: ../view/auth/error/error.phtml:3
+msgid "auth.header.error"
+msgstr "Oops ..."
+
+#: ../view/auth/index/index.phtml:10 ../view/auth/index/index.phtml:23
+msgid "auth.header.welcome"
+msgstr "Welcome"
+
+#: ../view/auth/index/index.phtml:16 ../view/auth/layout/nav-menu.phtml:20
+#: ../view/partials/common/headernav.phtml:7
+msgid "auth.button.logout"
+msgstr "Log out"
+
+#: ../view/auth/index/index.phtml:20
+msgid "auth.login.success"
+msgstr "Congratulations! You have successfully logged in."
+
+#: ../view/auth/index/index.phtml:23
+msgid "auth.login.guest"
+msgstr "Guest"
+
+#: ../view/auth/index/index.phtml:25
+msgid "auth.login.message"
+msgstr "Please follow the buttons at the top to navigate through the system."
+
+#: ../view/auth/index/login.phtml:3
+msgid "auth.header.signin"
+msgstr "Sign in"
+
+#: ../view/auth/index/login.phtml:12
+#: ../view/auth/registration/reset-password.phtml:12
+msgid "auth.label.usernameoremail"
+msgstr "User name or email address"
+
+#: ../view/auth/index/login.phtml:25 ../view/auth/index/login.phtml:73
+#: ../view/auth/registration/registration.phtml:68
+#: ../view/auth/registration/reset-password.phtml:17
+#: ../view/auth/registration/reset-password.phtml:54
+msgid "auth.label.captcha"
+msgstr "Please enter the visible letters"
+
+#: ../view/auth/index/login.phtml:38 ../view/auth/index/login.phtml:104
+#: ../view/auth/registration/reset-password.phtml:30
+#: ../view/auth/registration/reset-password.phtml:76
+msgid "form.legend.credentials"
+msgstr "Credentials"
+
+#: ../view/auth/index/login.phtml:105
+#: ../view/auth/registration/reset-password.phtml:77
+msgid "auth.section.label.signin"
+msgstr "Sign in"
+
+#: ../view/auth/index/login.phtml:106
+#: ../view/auth/registration/reset-password.phtml:78
+msgid "auth.section.label.logout"
+msgstr "Log out"
+
+#: ../view/auth/index/login.phtml:107
+msgid "auth.section.label.reset"
+msgstr "Reset password"
+
+#: ../view/auth/layout/nav-menu.phtml:19
+msgid "auth.button.home"
+msgstr "Home"
+
+#: ../view/auth/layout/nav-menu.phtml:25
+#: ../view/auth/registration/reset-password.phtml:22
+#: ../view/partials/common/headernav.phtml:13
+msgid "auth.button.password.reset"
+msgstr "Reset password"
+
+#: ../view/auth/registration/change-email-success.phtml:12
+msgid "auth.register.email.change.success"
+msgstr ""
+"Thank you! Your email has been changed to <span class=\"zf-green\">%s</span>."
+
+#: ../view/auth/registration/change-email.phtml:19
+msgid "auth.label.email.new"
+msgstr "New email address"
+
+#: ../view/auth/registration/change-email.phtml:24
+msgid "auth.label.email.new.confirm"
+msgstr "Retype new email address"
+
+#: ../view/auth/registration/change-email.phtml:29
+msgid "auth.button.email.change"
+msgstr "Change email address"
+
+#: ../view/auth/registration/change-email.phtml:35
+msgid "auth.header.email.change"
+msgstr "Change email address"
+
+#: ../view/auth/registration/change-email.phtml:45
+msgid "auth.label.password.current"
+msgstr "Current password"
+
+#: ../view/auth/registration/change-password-success.phtml:9
+msgid "auth.register.password.change.success"
+msgstr "Thank you! Your password has been changed successfully."
+
+#: ../view/auth/registration/change-password.phtml:19
+msgid "auth.label.password.new.confirm"
+msgstr "Retype new password"
+
+#: ../view/auth/registration/change-password.phtml:24
+msgid "auth.button.password.change"
+msgstr "Change password"
+
+#: ../view/auth/registration/change-password.phtml:30
+msgid "auth.header.password.change"
+msgstr "Change password"
+
+#: ../view/auth/registration/change-password.phtml:41
+#: ../view/auth/registration/edit-profile.phtml:43
+msgid "auth.label.question"
+msgstr "Security question"
+
+#: ../view/auth/registration/change-password.phtml:50
+msgid "auth.label.password.new"
+msgstr "New password"
+
+#: ../view/auth/registration/change-security-question-success.phtml:9
+msgid "auth.register.question.success"
+msgstr "Thank you! Your security question has been changed"
+
+#: ../view/auth/registration/change-security-question.phtml:24
+msgid "auth.button.question.change"
+msgstr "Change security question"
+
+#: ../view/auth/registration/change-security-question.phtml:30
+msgid "auth.header.question.change"
+msgstr "Change security question"
+
+#: ../view/auth/registration/confirm-email-change-password.phtml:3
+#: ../view/auth/registration/password-change-success.phtml:3
+#: ../view/auth/registration/reset-password.phtml:3
+msgid "auth.header.password.reset"
+msgstr "Reset password"
+
+#: ../view/auth/registration/confirm-email-change-password.phtml:5
+msgid "auth.register.email.change.email.sent"
+msgstr ""
+"Confirmation successful! You have a new password. An email has been sent to "
+"<span class=\"zf-green\">%s</span> with your new password."
+
+#: ../view/auth/registration/confirm-email-success.phtml:9
+msgid "auth.register.confirm.success"
+msgstr "Thank you! Your registration has been confirmed."
+
+#: ../view/auth/registration/edit-profile.phtml:26
+msgid "auth.button.profile.update"
+msgstr "Update profile"
+
+#: ../view/auth/registration/edit-profile.phtml:32
+msgid "auth.header.profile.edit"
+msgstr "Edit profile"
+
+#: ../view/auth/registration/edit-profile.phtml:42
+msgid "auth.label.email.change"
+msgstr "Change email"
+
+#: ../view/auth/registration/edit-profile.phtml:43
+msgid "auth.label.question.change"
+msgstr "Change security question"
+
+#: ../view/auth/registration/password-change-success.phtml:5
+msgid "auth.register.password.change.email.sent"
+msgstr ""
+"An email has been sent to <span class=\"zf-green\">%s</span>. Please, check "
+"your inbox and confirm your request to change password!"
+
+#: ../view/auth/registration/registration-success.phtml:9
+msgid "auth.register.confirm.email.sent"
+msgstr ""
+"An email has been sent to <span class=\"zf-green\">%s</span>. Please, check "
+"your inbox and confirm your registration!"
+
+#: ../view/auth/registration/registration.phtml:73
+msgid "auth.button.signup"
+msgstr "Sign up"
+
+#: ../view/auth/registration/registration.phtml:84
+msgid "auth.header.signup"
+msgstr "Sign up"
+
+#~ msgid "auth.button.password.forgot"
+#~ msgstr "Forgot your password?"
+
+#~ msgid "auth.button.profile.edit"
+#~ msgstr "Edit profile"
+
+#~ msgid "auth.label.role.user"
+#~ msgstr "User"
+
+#~ msgid "auth.label.role.admin"
+#~ msgstr "Administrator"
+
+#~ msgid "Guest"
+#~ msgstr ""
+#~ "Please follow the buttons at the top to navigate through the system."
+
+#, fuzzy
+#~ msgid "auth.label.usernameorpassword"
+#~ msgstr "User name or email address"
+
+#, fuzzy
+#~ msgid "auth.label.emailorusername"
+#~ msgstr "User name"
+
+#, fuzzy
+#~ msgid "auth.label.user.edit"
+#~ msgstr "User name"
+
+#~ msgid "User ID invalid"
+#~ msgstr ""
+#~ "Something went wrong during update user process! Please, try again later."

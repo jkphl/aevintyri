@@ -1,5 +1,6 @@
 # Composer files
 composer.phar
+composer.lock
 vendor/
 
 # Local configs
@@ -13,8 +14,10 @@ data/logs/
 data/cache/
 data/sessions/
 data/tmp/
+data/DoctrineORMModule/
 temp/
 
-# Legacy ZF1
-demos/
-extras/documentation
+.buildpath
+.project
+.settings
+node_modules

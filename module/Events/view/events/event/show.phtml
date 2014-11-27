@@ -1,0 +1,158 @@
+<?php
+
+	// Header
+	echo $this->partial('partials/common/header.phtml', array('header' => $event->getName(), 'buttons' => array(
+		$this->url('event', array('action' => 'list', 'type' => $this->type)) => $this->translate('button.back'),
+		$this->url('event', array('action' => 'edit', 'id' => $event->getId(), 'type' => $this->type)) => $this->translate('button.edit'),
+		$this->url('event', array('action' => 'delete', 'id' => $event->getId(), 'type' => $this->type)) => array($this->translate('button.delete'), array('data-confirm' => $this->translate('entity.actions.delete.confirm'))),
+	)));
+	
+	/* data-confirm="<?php echo htmlspecialchars(); ?>" */
+	
+	// Messages
+// 	echo $this->flashMessagesHelper($flashMessages);
+	
+?><table class="entity-show">
+	<tr>
+		<th><?php echo $this->translate('entity.common.name'); ?></th>
+		<td><?php echo $this->event->getName(); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.event.organizer'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getOrganizer()->getName()); ?></td>
+	</tr><?php
+	
+		if ($this->type == 'single'):
+	
+	?><tr>
+		<th><?php echo $this->translate('entity.event.series'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getSeries() ? $this->event->getSeries()->getName() : ''); ?></td>
+	</tr><?php 
+		
+		endif;
+		
+	?><tr>
+		<th><?php echo $this->translate('entity.common.image'); ?></th>
+		<td><?php echo $this->partial('partials/common/preview.phtml', array('image' => $this->event->getImage())); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.description.abstract'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getAbstract()); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.description.description'); ?></th>
+		<td><?php echo $this->emptyvalue($this->markdown($this->event->getDescription())); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.description.hashtag'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getHashtag(), array('#', '')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.phone'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getPhone(), array('<a href="tel:'.preg_replace(array('%^[^\+\d]+%', '%[^\+\d]+%'), '', $this->event->getPhone()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.cell'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getCell(), array('<a href="tel:'.preg_replace(array('%^[^\+\d]+%', '%[^\+\d]+%'), '', $this->event->getCell()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.fax'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getFax()); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.email'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getEmail(), array('<a href="mailto:'.htmlspecialchars($this->event->getEmail()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.web'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getWeb(), array('<a href="'.htmlspecialchars($this->event->getWeb()).'" target="_blank">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.twitter'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getTwitter(), array('<a href="https://twitter.com/'.htmlspecialchars($this->event->getTwitter()).'" target="_blank">@', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.facebook'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getFacebook(), array('<a href="https://'.htmlspecialchars($this->event->getFacebook()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.gplus'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getGplus(), array('<a href="https://'.htmlspecialchars($this->event->getGplus()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.xing'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getXing(), array('<a href="https://'.htmlspecialchars($this->event->getXing()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.event.facebook'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getFacebook_event(), array('<a href="https://'.htmlspecialchars($this->event->getFacebook_event()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.event.gplus'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getGplus_event(), array('<a href="https://'.htmlspecialchars($this->event->getGplus_event()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.event.xing'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getXing_event(), array('<a href="https://'.htmlspecialchars($this->event->getXing_event()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.event.lanyrd'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getLanyrd(), array('<a href="'.htmlspecialchars($this->event->getLanyrd()).'" target="_blank">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.event.tickets'); ?></th>
+		<td><?php echo $this->emptyvalue($this->event->getTickets(), array('<a href="'.htmlspecialchars($this->event->getTickets()).'" target="_blank">', '</a>')); ?></td>
+	</tr>
+</table>
+
+<?php
+	
+	if ($this->type == 'single'):
+	
+?><h2><?php echo $this->translate('entity.event.days'); ?></h2>
+<ol class="schedule">
+	<?php 
+	
+	/* @var $day \Events\Entity\Day */
+	foreach ($this->event->getDays() as $day):
+	
+	?><li>
+		<h3><?php echo $day->getDate()->format($this->translate('entity.day.date.format')); ?></h3>
+		<?php 
+		
+			$sessions		= $day->getSessions();
+			if (count($sessions)):
+		
+		?><table class="entity-show">
+			<tr>
+				<th><?php echo $this->translate('entity.session.time'); ?></th>
+				<th><?php echo $this->translate('entity.common.name'); ?></th>
+				<th><?php echo $this->translate('entity.session.venue'); ?></th>
+			</tr>
+			<?php
+				foreach ($sessions as $session):
+			?><tr>
+				<td><?php echo $session->getTimes(); ?></td>
+				<td><?php echo $session->getName(); ?></td>	
+				<td><?php echo $session->getRoom()->getFullName(); ?></td>
+			</tr><?php
+				endforeach;
+			?>
+		</table><?php 
+
+			else:
+			
+		?><p class="empty-list"><?php echo $this->translate('events.list.sessions.none'); ?></p><?php
+			
+			endif;
+			
+	?></li><?php 
+	
+	endforeach;
+	
+	?>
+</ol><?php 
+
+	endif;
+
+?>

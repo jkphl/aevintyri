@@ -1,0 +1,111 @@
+main {
+	padding: 2em;
+}
+
+footer p {
+	@include font-size($font-size-x-small, x-small);
+	color: $color-grey--light;
+}
+
+fieldset {
+	margin-top: 4em;
+}
+
+input.input-error {
+	@extend input.error;
+}
+
+select.input-error {
+	margin-bottom: 0;
+}
+
+ul.error {
+	@extend span.error;
+	margin: 0;
+	list-style-type: none;
+}
+
+table {
+	width: 100%;
+}
+
+td.color {
+	color: #fff;
+	text-shadow: 0 0 3px #000;	
+}
+
+td, th {
+	&.actions {
+		width: 250px;
+	}
+}
+
+.entity-list {
+	tr[data-onclick] {
+		cursor: pointer;
+	}
+	
+	tr:hover td {
+		background-color: #fff203;
+	}
+}
+
+.entity-show th {
+	width: 150px;
+	text-align: left;
+}
+
+address {
+	white-space: pre-wrap;
+	font-style: normal;
+}
+
+input[type=color] {
+	display: block;
+}
+
+select[multiple] {
+	height: 10em;
+}
+
+ul.multiple {
+	margin: 0;
+	padding: 0 0 0 1em;
+}
+
+p.empty-list {
+	margin: 0;
+	color: #aaa;
+	font-size: .875rem;
+}
+
+tr.indent td:first-child {
+	padding-left: 3em;
+}
+
+span.display {
+	@extend span.prefix;
+	border-right: 1px solid #ccc;
+}
+
+.markdown {
+	&, & p {
+		font-size: .875rem;
+	}
+	
+	p:last-child {
+		margin-bottom: 0;
+	}
+}
+
+label[for="rememberme"] {
+	vertical-align: middle;
+	
+	input[type="checkbox"] {
+		margin: 0 .5em 0 0;
+	}
+}
+
+.controls {
+	margin-top: 1em;
+}

@@ -1,0 +1,14 @@
+<?php
+
+echo $this->partial('auth/layout/nav-menu', array(
+	'navMenu' => $this->navMenu,
+	'user' => $this->identity()
+));
+
+?>
+
+<div class="jumbotron">
+	<h2>
+    <?php echo sprintf($this->translate('auth.register.email.change.success'), $this->email); ?>
+  </h2>
+</div>
