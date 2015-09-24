@@ -491,7 +491,7 @@ class UserFormFactory implements FactoryInterface {
 					'name' => 'StringLength',
 					'options' => array(
 						'encoding' => 'UTF-8',
-						'min' => 6,
+						'min' => 3,
 						'max' => 20
 					)
 				),
@@ -601,7 +601,7 @@ class UserFormFactory implements FactoryInterface {
 					'name' => 'StringLength',
 					'options' => array(
 						'encoding' => 'UTF-8',
-						'min' => 6,
+						'min' => 3,
 						'max' => 20
 					)
 				),
