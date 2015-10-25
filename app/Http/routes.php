@@ -60,9 +60,6 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
     $app->put('presenter/{id}', 'PresenterController@updatePresenter');
     $app->delete('presenter/{id}', 'PresenterController@deletePresenter');
     
-    // presenter_tag
-    // question
-    
     // Room
     $app->get('room', 'RoomController@listRooms');
     $app->get('room/{id}', 'RoomController@getRoom');
@@ -84,18 +81,12 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
     $app->put('series/{id}', 'SeriesController@updateSeries');
     $app->delete('series/{id}', 'SeriesController@deleteSeries');
     
-    // session_presenter
-    // session_tag
-    
     // Tag
     $app->get('tag', 'TagController@listTags');
     $app->get('tag/{id}', 'TagController@getTag');
     $app->post('tag', 'TagController@createTag');
     $app->put('tag/{id}', 'TagController@updateTag');
     $app->delete('tag/{id}', 'TagController@deleteTag');
-    
-    // user
-    // usergroup
     
     // Venue
     $app->get('venue', 'VenueController@listVenues');

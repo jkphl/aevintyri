@@ -35,15 +35,28 @@
 
 namespace App\Models;
 
-use app\Traits\Describable;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\Describable;
 
-final class Room extends Model
+final class Room extends AbstractModel
 {
     /**
      * Use the describable features
      */
     use Describable;
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('venue_id');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('venue');
 
     /**
      * Return this room's venue
@@ -52,6 +65,16 @@ final class Room extends Model
      */
     public function venue() {
         return $this->belongsTo('App\Models\Venue');
+    }
+
+    /**
+     * Return this room's venue
+     *
+     * @return int|\App\Models\Venue     Venue
+     */
+    public function getVenueAttribute()
+    {
+        return $this->expand('venue') ? $this->venue()->first() : $this->venue_id;
     }
 
     /**

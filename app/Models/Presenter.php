@@ -38,9 +38,8 @@ namespace App\Models;
 use App\Traits\Contact;
 use app\Traits\Describable;
 use App\Traits\Image;
-use Illuminate\Database\Eloquent\Model;
 
-final class Presenter extends Model
+final class Presenter extends AbstractModel
 {
     /**
      * Use the describable, contact and image features
@@ -63,5 +62,15 @@ final class Presenter extends Model
      */
     public function sessions() {
         return $this->belongsToMany('App\Models\Session');
+    }
+
+    /**
+     * Return all links of this venue
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
+     */
+    public function links()
+    {
+        return $this->hasMany('App\Models\Link');
     }
 }

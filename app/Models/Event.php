@@ -35,8 +35,22 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+final class Event extends AbstractEventSeries
 {
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('series_id', 'organizer_id');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('series', 'organizer');
+
     /**
      * Return this event's series
      *
@@ -44,6 +58,16 @@ final class Event extends EventSeriesAbstract
      */
     public function series()
     {
-        return $this->belongsTo('Series');
+        return $this->belongsTo('App\Models\Series');
+    }
+
+    /**
+     * Return this event's series
+     *
+     * @return int|\App\Models\Series     Series
+     */
+    public function getSeriesAttribute()
+    {
+        return $this->expand('series') ? $this->series()->first() : $this->series_id;
     }
 }

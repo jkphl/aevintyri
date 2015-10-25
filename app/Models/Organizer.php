@@ -38,14 +38,27 @@ namespace App\Models;
 use App\Traits\Address;
 use App\Traits\Contact;
 use App\Traits\Image;
-use Illuminate\Database\Eloquent\Model;
 
-final class Organizer extends Model
+final class Organizer extends AbstractModel
 {
     /**
      * Use the address, contact and image features
      */
     use Address, Contact, Image;
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('country_id');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('country');
 
     /**
      * Return all events of this organizer
@@ -54,7 +67,7 @@ final class Organizer extends Model
      */
     public function events()
     {
-        return $this->hasMany('Event');
+        return $this->hasMany('App\Models\Event');
     }
 
     /**
@@ -64,7 +77,6 @@ final class Organizer extends Model
      */
     public function series()
     {
-        return $this->hasMany('Series');
+        return $this->hasMany('App\Models\Series');
     }
-
 }

@@ -35,25 +35,48 @@
 
 namespace App\Models;
 
-use App\Traits\Contact;
-use App\Traits\Describable;
-use App\Traits\Image;
 use Illuminate\Database\Eloquent\Model;
 
-abstract class EventSeriesAbstract extends Model
+/**
+ * Abstract base model
+ *
+ * @package App\Models
+ */
+abstract class AbstractModel extends Model
 {
     /**
-     * Use the describable, contact and image features
-     */
-    use Describable, Contact, Image;
-
-    /**
-     * Return this event's organizer
+     * Determine if a particular attribute should be expanded during conversion to an array (depending on the request parameters)
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Organizer
+     * @param string $attribute         Attribute
+     * @return bool                     Attribute should be expanded
      */
-    public function organizer()
+    protected function expand($attribute)
     {
-        return $this->belongsTo('App\Models\Organizer');
+        $expand = app('request')->get('expand', '');
+        if ($expand === '*') {
+            return true;
+        } else {
+            $expand = array_filter(array_map('trim', explode(',', $expand)));
+        }
+        if (count($expand)) {
+
+
+            $mutators = [$attribute];
+            $lastModel = null;
+
+            // Run through the stack trace
+            foreach (debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT | DEBUG_BACKTRACE_IGNORE_ARGS) as $frame) {
+                if (isset($frame['object']) && ($frame['object'] instanceof self) && (spl_object_hash($frame['object']) != $lastModel)) {
+                    $lastModel = spl_object_hash($frame['object']);
+                    $mutators[] = strtolower((new \ReflectionClass($frame['object']))->getShortName());
+                }
+            }
+
+            array_pop($mutators);
+            $expandKey = implode('.', array_reverse($mutators));
+            return in_array($expandKey, $expand);
+        }
+
+        return false;
     }
 }

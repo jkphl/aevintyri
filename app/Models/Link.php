@@ -35,9 +35,58 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-final class Link extends Model
+final class Link extends AbstractModel
 {
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('session_id', 'presenter_id');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('session', 'presenter');
+
+    /**
+     * Return this link's session
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Session
+     */
+    public function session() {
+        return $this->belongsTo('App\Models\Session');
+    }
+
+    /**
+     * Return this link's session
+     *
+     * @return int|\App\Models\Session     Session
+     */
+    public function getSessionAttribute()
+    {
+        return $this->expand('session') ? $this->session()->first() : $this->session_id;
+    }
+
+    /**
+     * Return this link's presenter
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Presenter
+     */
+    public function presenter() {
+        return $this->belongsTo('App\Models\Presenter');
+    }
+
+    /**
+     * Return this link's presenter
+     *
+     * @return int|\App\Models\Presenter     Presenter
+     */
+    public function getPresenterAttribute()
+    {
+        return $this->expand('presenter') ? $this->presenter()->first() : $this->presenter_id;
+    }
 }

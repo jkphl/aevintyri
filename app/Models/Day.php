@@ -35,10 +35,42 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-final class Day extends Model
+final class Day extends AbstractModel
 {
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('event_id');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('event');
+
+    /**
+     * Return this room's event
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Event
+     */
+    public function event() {
+        return $this->belongsTo('App\Models\Event');
+    }
+
+    /**
+     * Return this room's event
+     *
+     * @return int|\App\Models\Event     Event
+     */
+    public function getEventAttribute()
+    {
+        return $this->expand('event') ? $this->event()->first() : $this->event_id;
+    }
+
     /**
      * Return this day's sessions
      *

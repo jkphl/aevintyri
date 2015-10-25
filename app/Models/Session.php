@@ -35,16 +35,29 @@
 
 namespace App\Models;
 
-use app\Traits\Describable;
+use App\Traits\Describable;
 use App\Traits\Image;
-use Illuminate\Database\Eloquent\Model;
 
-final class Session extends Model
+final class Session extends AbstractModel
 {
     /**
      * Use describable and image features
      */
     use Describable, Image;
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('day_id', 'room_id');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('day', 'room');
 
     /**
      * Return this session's day
@@ -54,6 +67,16 @@ final class Session extends Model
     public function day() {
         return $this->belongsTo('App\Models\Day');
     }
+    
+    /**
+     * Return this sessions's day
+     *
+     * @return int|\App\Models\Day      Day
+     */
+    public function getDayAttribute()
+    {
+        return $this->expand('day') ? $this->day()->first() : $this->day_id;
+    }
 
     /**
      * Return this session's room
@@ -62,5 +85,25 @@ final class Session extends Model
      */
     public function room() {
         return $this->belongsTo('App\Models\Room');
+    }
+
+    /**
+     * Return this sessions's room
+     *
+     * @return int|\App\Models\Room      Room
+     */
+    public function getRoomAttribute()
+    {
+        return $this->expand('room') ? $this->room()->first() : $this->room_id;
+    }
+
+    /**
+     * Return all links of this venue
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
+     */
+    public function links()
+    {
+        return $this->hasMany('App\Models\Link');
     }
 }

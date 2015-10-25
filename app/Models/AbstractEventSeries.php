@@ -33,83 +33,50 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use App\Models\Event;
+use App\Traits\Contact;
+use App\Traits\Describable;
+use App\Traits\Image;
 
-class EventController extends Controller
+abstract class AbstractEventSeries extends AbstractModel
 {
     /**
-     * List all events
-     *
-     * @return \Symfony\Component\HttpFoundation\Response Event list
+     * Use the describable, contact and image features
      */
-    public function listEvents()
-    {
-        echo $this->_request()->get('expand');
+    use Describable, Contact, Image;
 
-        return response()->json(Event::all());
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('organizer_id');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('organizer');
+
+    /**
+     * Return this event's organizer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Organizer
+     */
+    public function organizer()
+    {
+        return $this->belongsTo('App\Models\Organizer');
     }
 
     /**
-     * Get a single event
+     * Return this event's organizer
      *
-     * @param int $id Event ID
-     * @return \Symfony\Component\HttpFoundation\Response Event
+     * @return int|\App\Models\Organizer     Organizer
      */
-    public function getEvent($id)
+    public function getOrganizerAttribute()
     {
-
-        $Event = Event::find($id);
-
-        return response()->json($Event);
-    }
-
-    /**
-     * Create a new event
-     *
-     * @param Request $request Request
-     * @return \Symfony\Component\HttpFoundation\Response Event
-     */
-    public function createEvent(Request $request)
-    {
-
-        $Event = Event::create($request->all());
-
-        return response()->json($Event);
-
-    }
-
-    /**
-     * Update an event
-     *
-     * @param Request $request Request
-     * @param int $id Event ID
-     * @return \Symfony\Component\HttpFoundation\Response Event
-     */
-    public function updateEvent(Request $request, $id)
-    {
-        $Event = Event::find($id);
-        $Event->title = $request->input('title');
-        $Event->author = $request->input('author');
-        $Event->isbn = $request->input('isbn');
-        $Event->save();
-
-        return response()->json($Event);
-    }
-
-    /**
-     * Delete an event
-     *
-     * @param int $id Event ID
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @todo Set the deleted property to 1 instead of really deleting the event
-     */
-    public function deleteEvent($id)
-    {
-        $Event = Event::find($id);
-        $Event->delete();
-
-        return response()->json('deleted');
+        return $this->expand('organizer') ? $this->organizer()->first() : $this->organizer_id;
     }
 }

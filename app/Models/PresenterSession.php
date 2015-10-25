@@ -37,7 +37,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-final class PresenterSession extends Model
+final class PresenterSession extends AbstractModel
 {
     /**
      * The table associated with the model.

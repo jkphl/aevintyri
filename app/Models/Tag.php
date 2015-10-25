@@ -35,9 +35,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-final class Tag extends Model
+final class Tag extends AbstractModel
 {
     /**
      * Return this tag's presenters

@@ -35,7 +35,7 @@
 
 namespace App\Models;
 
-final class Series extends EventSeriesAbstract
+final class Series extends AbstractEventSeries
 {
 
     /**

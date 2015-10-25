@@ -38,14 +38,27 @@ namespace App\Models;
 use App\Traits\Address;
 use app\Traits\Describable;
 use App\Traits\Image;
-use Illuminate\Database\Eloquent\Model;
 
-final class Venue extends Model
+final class Venue extends AbstractModel
 {
     /**
      * Use the describable, address and image features
      */
     use Address, Describable, Image;
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('country_id');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('country');
 
     /**
      * Return all rooms of this venue

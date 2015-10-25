@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 class CreateLinksTable extends Migration
 {
@@ -19,8 +20,8 @@ class CreateLinksTable extends Migration
             $table->integer('created_by');
             $table->integer('updated_by');
 
-            $table->integer('session')->nullable();
-            $table->integer('presenter')->nullable();
+            $table->integer('session_id')->nullable();
+            $table->integer('presenter_id')->nullable();
             $table->string('name', 255);
             $table->string('url', 255);
         });

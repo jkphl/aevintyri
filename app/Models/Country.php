@@ -35,9 +35,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-final class Country extends Model
+final class Country extends AbstractModel
 {
     /**
      * The table associated with the model.
@@ -51,7 +49,8 @@ final class Country extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany      Organizer
      */
-    public function organizers() {
+    public function organizers()
+    {
         return $this->hasMany('Organizer');
     }
 }
