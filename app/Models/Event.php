@@ -70,4 +70,14 @@ final class Event extends AbstractEventSeries
     {
         return $this->expand('series') ? $this->series()->first() : $this->series_id;
     }
+
+    /**
+     * Return this events's days
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Days
+     */
+    public function days()
+    {
+        return $this->hasMany('App\Models\Day');
+    }
 }

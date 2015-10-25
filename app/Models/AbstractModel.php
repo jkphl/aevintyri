@@ -36,6 +36,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Abstract base model
@@ -44,6 +45,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 abstract class AbstractModel extends Model
 {
+    /**
+     * Use soft deletion
+     */
+    use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
     /**
      * Determine if a particular attribute should be expanded during conversion to an array (depending on the request parameters)
      *
@@ -78,5 +91,14 @@ abstract class AbstractModel extends Model
         }
 
         return false;
+    }
+
+    /**
+     * Return all append columns
+     *
+     * @return array            Append columns
+     */
+    public function getAppends() {
+        return $this->appends;
     }
 }

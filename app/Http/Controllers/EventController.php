@@ -46,9 +46,53 @@ class EventController extends Controller
      */
     public function listEvents()
     {
-        echo $this->_request()->get('expand');
+        $event = new Event();
 
-        return response()->json(Event::all());
+        // Determine the columns to expand
+        $expand = trim($this->_request()->get('expand', ''));
+        $expand = ($expand === '*') ? $event->getAppends() : array_filter(array_map('trim', explode(',', $expand)));
+        $expand = array_intersect($expand, $event->getAppends());
+
+        $from = trim($this->_request()->get('from', ''));
+        try {
+            $from = strlen($from) ? new \DateTimeImmutable($from) : null;
+        } catch (\Exception $e) {
+            return $this->error(400, 'Bad request (from constraint)');
+        }
+        $to = trim($this->_request()->get('to', ''));
+        try {
+            $to = strlen($to) ? new \DateTimeImmutable($to) : null;
+        } catch (\Exception $e) {
+            return $this->error(400, 'Bad request (from constraint)');
+        }
+
+        // Build the event query
+        $eventQuery = $event->newQuery();
+
+        // Add relations if requested
+        if (count($expand)) {
+            $eventQuery->with($expand);
+        }
+
+        if ($from || $to) {
+            $eventQuery->whereHas('days', function ($query) use ($from, $to) {
+                if ($from) {
+                    $query->where('date', '>=', $from);
+                }
+                if ($to) {
+                    $query->where('date', '<=', $to);
+                }
+            })->whereHas('days.sessions', function ($query) use ($from, $to) {
+                if ($from) {
+                    $query->where('start_time', '>=', $from->format('H:i:s'));
+                }
+                if ($to) {
+                    $query->where('end_time', '<=', $to->format('H:i:s'));
+                }
+            });
+        }
+
+        return response()->json($eventQuery->get());
     }
 
     /**

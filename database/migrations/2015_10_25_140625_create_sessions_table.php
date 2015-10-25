@@ -16,7 +16,7 @@ class CreateSessionsTable extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->boolean('deleted');
+            $table->softDeletes();
             $table->integer('created_by');
             $table->integer('updated_by');
 
