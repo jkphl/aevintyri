@@ -33,17 +33,81 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-final class Event extends EventSeriesAbstract
+use App\Models\Tag;
+
+class TagController extends Controller
 {
     /**
-     * Return this event's series
+     * List all tags
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @return \Symfony\Component\HttpFoundation\Response Tag list
      */
-    public function series()
+    public function listTags()
     {
-        return $this->belongsTo('Series');
+        return response()->json(Tag::all());
+    }
+
+    /**
+     * Get a single tag
+     *
+     * @param int $id Tag ID
+     * @return \Symfony\Component\HttpFoundation\Response Tag
+     */
+    public function getTag($id)
+    {
+
+        $Tag = Tag::find($id);
+
+        return response()->json($Tag);
+    }
+
+    /**
+     * Create a new tag
+     *
+     * @param Request $request Request
+     * @return \Symfony\Component\HttpFoundation\Response Tag
+     */
+    public function createTag(Request $request)
+    {
+
+        $Tag = Tag::create($request->all());
+
+        return response()->json($Tag);
+
+    }
+
+    /**
+     * Update an tag
+     *
+     * @param Request $request Request
+     * @param int $id Tag ID
+     * @return \Symfony\Component\HttpFoundation\Response Tag
+     */
+    public function updateTag(Request $request, $id)
+    {
+        $Tag = Tag::find($id);
+        $Tag->title = $request->input('title');
+        $Tag->author = $request->input('author');
+        $Tag->isbn = $request->input('isbn');
+        $Tag->save();
+
+        return response()->json($Tag);
+    }
+
+    /**
+     * Delete an tag
+     *
+     * @param int $id Tag ID
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo Set the deleted property to 1 instead of really deleting the tag
+     */
+    public function deleteTag($id)
+    {
+        $Tag = Tag::find($id);
+        $Tag->delete();
+
+        return response()->json('deleted');
     }
 }

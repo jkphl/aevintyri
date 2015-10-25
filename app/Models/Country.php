@@ -35,15 +35,23 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use Illuminate\Database\Eloquent\Model;
+
+final class Country extends Model
 {
     /**
-     * Return this event's series
+     * The table associated with the model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @var string
      */
-    public function series()
-    {
-        return $this->belongsTo('Series');
+    protected $table = 'countries';
+
+    /**
+     * Return all organizers in this country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Organizer
+     */
+    public function organizers() {
+        return $this->hasMany('Organizer');
     }
 }

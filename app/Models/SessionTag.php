@@ -35,15 +35,32 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use Illuminate\Database\Eloquent\Model;
+
+final class SessionTag extends Model
 {
     /**
-     * Return this event's series
+     * The table associated with the model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @var string
      */
-    public function series()
-    {
-        return $this->belongsTo('Series');
+    protected $table = 'session_tags';
+
+    /**
+     * Return this session's presenters
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Presenters
+     */
+    public function presenters() {
+        return $this->belongsToMany('App\Models\Presenter');
+    }
+
+    /**
+     * Return this session's tags
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Tags
+     */
+    public function tags() {
+        return $this->belongsToMany('App\Models\Tag');
     }
 }

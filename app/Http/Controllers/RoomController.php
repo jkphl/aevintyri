@@ -33,17 +33,81 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-final class Event extends EventSeriesAbstract
+use App\Models\Room;
+
+class RoomController extends Controller
 {
     /**
-     * Return this event's series
+     * List all rooms
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @return \Symfony\Component\HttpFoundation\Response Room list
      */
-    public function series()
+    public function listRooms()
     {
-        return $this->belongsTo('Series');
+        return response()->json(Room::all());
+    }
+
+    /**
+     * Get a single room
+     *
+     * @param int $id Room ID
+     * @return \Symfony\Component\HttpFoundation\Response Room
+     */
+    public function getRoom($id)
+    {
+
+        $Room = Room::find($id);
+
+        return response()->json($Room);
+    }
+
+    /**
+     * Create a new room
+     *
+     * @param Request $request Request
+     * @return \Symfony\Component\HttpFoundation\Response Room
+     */
+    public function createRoom(Request $request)
+    {
+
+        $Room = Room::create($request->all());
+
+        return response()->json($Room);
+
+    }
+
+    /**
+     * Update an room
+     *
+     * @param Request $request Request
+     * @param int $id Room ID
+     * @return \Symfony\Component\HttpFoundation\Response Room
+     */
+    public function updateRoom(Request $request, $id)
+    {
+        $Room = Room::find($id);
+        $Room->title = $request->input('title');
+        $Room->author = $request->input('author');
+        $Room->isbn = $request->input('isbn');
+        $Room->save();
+
+        return response()->json($Room);
+    }
+
+    /**
+     * Delete an room
+     *
+     * @param int $id Room ID
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo Set the deleted property to 1 instead of really deleting the room
+     */
+    public function deleteRoom($id)
+    {
+        $Room = Room::find($id);
+        $Room->delete();
+
+        return response()->json('deleted');
     }
 }

@@ -14,7 +14,20 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $this->call('CountryTableSeeder');
+        $this->call('DayTableSeeder');
         $this->call('EventTableSeeder');
+        $this->call('LinkTableSeeder');
+        $this->call('OrganizerTableSeeder');
+        $this->call('PresenterSessionTableSeeder');
+        $this->call('PresenterTableSeeder');
+        $this->call('PresenterTagTableSeeder');
+        $this->call('RoomTableSeeder');
+        $this->call('SeriesTableSeeder');
+        $this->call('SessionTableSeeder');
+        $this->call('SessionTagTableSeeder');
+        $this->call('TagTableSeeder');
+        $this->call('VenueTableSeeder');
 
         Model::reguard();
     }

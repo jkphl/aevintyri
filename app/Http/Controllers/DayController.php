@@ -33,17 +33,81 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-final class Event extends EventSeriesAbstract
+use App\Models\Day;
+
+class DayController extends Controller
 {
     /**
-     * Return this event's series
+     * List all days
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @return \Symfony\Component\HttpFoundation\Response Day list
      */
-    public function series()
+    public function listDays()
     {
-        return $this->belongsTo('Series');
+        return response()->json(Day::all());
+    }
+
+    /**
+     * Get a single day
+     *
+     * @param int $id Day ID
+     * @return \Symfony\Component\HttpFoundation\Response Day
+     */
+    public function getDay($id)
+    {
+
+        $Day = Day::find($id);
+
+        return response()->json($Day);
+    }
+
+    /**
+     * Create a new event
+     *
+     * @param Request $request Request
+     * @return \Symfony\Component\HttpFoundation\Response Day
+     */
+    public function createDay(Request $request)
+    {
+
+        $Day = Day::create($request->all());
+
+        return response()->json($Day);
+
+    }
+
+    /**
+     * Update an event
+     *
+     * @param Request $request Request
+     * @param int $id Day ID
+     * @return \Symfony\Component\HttpFoundation\Response Day
+     */
+    public function updateDay(Request $request, $id)
+    {
+        $Day = Day::find($id);
+        $Day->title = $request->input('title');
+        $Day->author = $request->input('author');
+        $Day->isbn = $request->input('isbn');
+        $Day->save();
+
+        return response()->json($Day);
+    }
+
+    /**
+     * Delete an event
+     *
+     * @param int $id Day ID
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo Set the deleted property to 1 instead of really deleting the event
+     */
+    public function deleteDay($id)
+    {
+        $Day = Day::find($id);
+        $Day->delete();
+
+        return response()->json('deleted');
     }
 }

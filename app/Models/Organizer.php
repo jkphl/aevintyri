@@ -35,15 +35,36 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use App\Traits\Address;
+use App\Traits\Contact;
+use App\Traits\Image;
+use Illuminate\Database\Eloquent\Model;
+
+final class Organizer extends Model
 {
     /**
-     * Return this event's series
+     * Use the address, contact and image features
+     */
+    use Address, Contact, Image;
+
+    /**
+     * Return all events of this organizer
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Events
+     */
+    public function events()
+    {
+        return $this->hasMany('Event');
+    }
+
+    /**
+     * Return all series of this organizer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Series
      */
     public function series()
     {
-        return $this->belongsTo('Series');
+        return $this->hasMany('Series');
     }
+
 }

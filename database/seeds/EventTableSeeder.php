@@ -41,44 +41,10 @@ class EventTableSeeder extends Seeder
     public function run()
     {
         Event::create([
-            'organizer' => '1',
-            'series' => null,
-            'name' => 'border:none',
-            'image' => '/img/series/series-1.png',
-            'deleted' => '0',
-            'updated_by' => '1',
-            'updated_at' => '2014-10-03 16:31:29',
-            'created_by' => '1',
-            'created_at' => '2014-08-22 00:18:52',
-            'email' => 'info@border-none.net',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => 'https://border-none.net',
-            'facebook' => '',
-            'twitter' => 'border_none',
-            'xing' => '',
-            'gplus' => '',
-            'hashtag' => '',
-            'description' => '',
-            'abstract' => '',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '1',
-            'series' => '1',
+            'organizer_id' => '1',
+            'series_id' => '1',
             'name' => 'border:none 2014',
             'image' => '/img/event/event-2.png',
-            'deleted' => '0',
-            'updated_by' => '1',
-            'updated_at' => '2014-10-03 16:34:50',
-            'created_by' => '1',
-            'created_at' => '2014-08-22 00:21:05',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -95,7 +61,6 @@ Am **ersten Konferenztag** werben die Sprecher mit einem inspirierenden Vortrag 
 
 Wie bereits 2013 werden sämtliche Vorträge in **englischer Sprache** gehalten, und auch das **Orpheum-Lichtspielhaus** bleibt als Veranstaltungsort für den ersten Konferenztag derselbe. Die »Creator Units« verteilen sich auf insgesamt **fünf außergewöhnliche Orte** innerhalb der Nürnberger Stadtmauern. Mit ihrem neuartigen Format begibt sich die border:none auf unbekanntes Terrain uns versucht gerade eben nicht, nur die typischen Konferenzgänger anzusprechen.',
             'abstract' => 'Creator Conference for The Rising Web',
-            'type' => 'single',
             'facebook_event' => 'www.facebook.com/events/267565300117964/',
             'xing_event' => 'www.xing.com/events/border-none-2014-1436023',
             'gplus_event' => 'plus.google.com/b/103389319737184133956/events/chekl9vf564ebora0d4jaul5r5s',
@@ -103,44 +68,10 @@ Wie bereits 2013 werden sämtliche Vorträge in **englischer Sprache** gehalten,
             'lanyrd' => ''
         ]);
         Event::create([
-            'organizer' => '1',
-            'series' => null,
-            'name' => 'Accessibility Club',
-            'image' => '/img/series/series-3.png ',
-            'deleted' => '0',
-            'updated_by' => '1',
-            'updated_at' => '2014-08-22 01:18:02',
-            'created_by' => '1',
-            'created_at' => '2014-08-22 01:15:26',
-            'email' => 'hello@a11y-club.org',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => 'http://accessibility-club.org',
-            'facebook' => '',
-            'twitter' => '',
-            'xing' => '',
-            'gplus' => '',
-            'hashtag' => 'a11yclub',
-            'description' => '',
-            'abstract' => 'Treffen für Webentwickler & -designer zur Förderung von Barrierefreiheit im Internet und zum Austausch über assistive Technologien',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '1',
-            'series' => '3',
+            'organizer_id' => '1',
+            'series_id' => '3',
             'name' => 'Accessibility Club #2',
             'image' => '/img/event/event-4.png',
-            'deleted' => '0',
-            'updated_by' => '1',
-            'updated_at' => '2014-09-18 21:25:46',
-            'created_by' => '1',
-            'created_at' => '2014-08-22 01:19:06',
             'email' => 'hello@a11y-club.org',
             'phone' => '',
             'fax' => '',
@@ -157,7 +88,6 @@ Beginnen wird [Marco Zehe](http://www.zehe-edv.de) mit einem Vortrag über **Zug
 
 Im Anschluss besteht die Möglichkeit, einzelne Themenaspekte in kleineren Gesprächsgruppen zu erörtern, die von den beiden Referenten sowie weiteren Spezialisten für assistive Technologien geführt werden. Ziel dieses zweiten Teils ist es insbesondere, Webdesigner und -entwickler in persönlichen Kontakt mit assistiven Technologien zu bringen und ihnen einen grundlegenden Einstieg in den Umgang zu bieten.',
             'abstract' => 'Treffen für Webentwickler & -designer zur Förderung von Barrierefreiheit im Internet und zum Austausch über assistive Technologien',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -165,15 +95,10 @@ Im Anschluss besteht die Möglichkeit, einzelne Themenaspekte in kleineren Gespr
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '2',
-            'series' => null,
+            'organizer_id' => '2',
+            'series_id' => null,
             'name' => 'Webmontag',
             'image' => '/img/event/event-5.jpeg',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-26 16:05:28',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 16:05:28',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -192,7 +117,6 @@ Seitdem hat sich der Web Montag schnell weiterverbreitet: Treffen finden mittler
 
 Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert daran sind, ihr Wissen zu teilen und sich miteinander auszutauschen, sind herzlich willkommen. Ob Erfinder, Ingenieur, Designer, Gründer oder Finanzier – Web Montag ist die Gelegenheit, sein neues Produkt, Service, Startup, oder die nächste große Idee einem stetig wachsenden Publikum von Webbegeisterten vorzustellen.',
             'abstract' => 'Der Webmontag bringt Anwender, Entwickler, Gründer, Unternehmer, Venture Capitalists, Forscher, Web-Pioniere, Blogger, Podcaster, Designer und sonstige Interessenten zum Thema Web 2.0 (im weitesten Sinne) zusammen.',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -200,15 +124,10 @@ Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert dara
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '3',
-            'series' => null,
+            'organizer_id' => '3',
+            'series_id' => null,
             'name' => 'Produktmanagement und Open Innovation Stammtisch',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-26 16:41:06',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 16:41:06',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -221,7 +140,6 @@ Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert dara
             'hashtag' => '',
             'description' => 'Produktmanagement meets Open Innovation. Auch dieses Mal wieder im Rahmen der Nürnberg Web Week. Ziel und Anlass des Stammtisches ist der Austausch von Best Practices und Erfolgsfaktoren beim Einsatz von Open Innovation Methoden sowie der Abbau von Barrieren und Vorbehalten. Dazu gibt es spannende Impulsvorträge. Mehr Infos gibt es in der Xing Gruppe des Open Innovation Forums und des Produktmanagement Stammtisches.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -229,50 +147,10 @@ Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert dara
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '4',
-            'series' => null,
+            'organizer_id' => '4',
+            'series_id' => '7',
             'name' => 'Open Coffee Club',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-26 16:55:27',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 16:50:34',
-            'email' => '',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => 'http://occnue.de/',
-            'facebook' => '',
-            'twitter' => '',
-            'xing' => 'www.xing.com/communities/groups/open-coffee-club-nuernberg-0fcd-1005558',
-            'gplus' => '',
-            'hashtag' => 'occnue',
-            'description' => 'Super leckerer Cappucino und Jung-Unternehmer aus der Metropolregion Nürnberg, Fürth und Erlangen an einem Tisch!
-Der Open Coffee Club Nürnberg ist ein fester Termin in der Nürnberger Webszene. Längst ist er nicht mehr nur der Vorab-Termin für das nächste Startup Weekend Nürnberg, sondern hat sich als eigenständiger Treff für Unternehmer und Freelancer aus der Metropolregion Nürnberg entwickelt.
-
-Was ist Open Coffee Club?
-
-In mittlerweile über 80 Städten weltweit treffen sich junge Unternehmer, Interessierte, Entwickler und Kapitalgeber regelmässig in OpenCoffee Clubs um miteinander zu diskutieren, sich auszutauschen und sich zu vernetzen.
-Zentraler Aspekt sind dabei der feste Termin und der feste Ort. Es spielt keine Rolle wer an einem bestimmten Termin teilnimmt oder wieviele Teilnehmer kommen. Wichtig ist einzig, dass es einen zuverlässigen Anlaufpunkt gibt, an dem sich die Gründerszene austauscht und an dem man Gleichgesinnte treffen kann.',
-            'abstract' => 'Der Open Coffee Club ist ein eigentsändiger Treff bei leckerem Frühstück für Unternehmer, Startups und Freelancer aus der Metropolregion Nürnberg.',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '4',
-            'series' => '7',
-            'name' => 'Open Coffee Club',
-            'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-26 16:55:04',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 16:54:11',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -285,7 +163,6 @@ Zentraler Aspekt sind dabei der feste Termin und der feste Ort. Es spielt keine 
             'hashtag' => 'occnue',
             'description' => '',
             'abstract' => 'Der Open Coffee Club ist ein eigentsändiger Treff bei leckerem Frühstück für Unternehmer, Startups und Freelancer aus der Metropolregion Nürnberg.',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -293,46 +170,10 @@ Zentraler Aspekt sind dabei der feste Termin und der feste Ort. Es spielt keine 
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '4',
-            'series' => null,
-            'name' => 'CMS Night',
-            'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-26 17:01:18',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 17:01:18',
-            'email' => '',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => 'http://cmsnue.de/',
-            'facebook' => '',
-            'twitter' => '',
-            'xing' => 'www.xing.com/events/6-cms-night-nurnberg-1442297?sc_o=as_e',
-            'gplus' => '',
-            'hashtag' => 'cmsnue',
-            'description' => 'An diesem Abend möchten wir gerne die beliebten Systeme Joomla!, TYPO3, Drupal und Wordpress miteinander vergleichen, unterschiedliche Einsatzmöglichkeiten aufzeigen, zusammen darüber diskutieren und in Kurz-Vorträgen vorstellen.
-
-Willkommen ist jeder Interessierte, Designer, Entwickler, Nutzer, Administrator oder Entscheider.',
-            'abstract' => 'Es gibt inzwischen unzählige Open Source Content Management Systeme auf dem Markt. Die CMS Night ist eine gemeinsame Veranstaltung der Nutzer verschiedener CMS Systeme aus der Metropolregion Nürnberg.',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '4',
-            'series' => '9',
+            'organizer_id' => '4',
+            'series_id' => '9',
             'name' => '6. CMS Night Nürnberg',
             'image' => '/img/event/event-10.jpg',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-26 17:02:52',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 17:02:52',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -349,7 +190,6 @@ Im Rahmen der Nürnberg WebWeek fand am 23.10.2012 die erste Content Management 
 
 Zielgruppe für die 6. CMS Night sind ALLE CMS Interessierten vom Anfänger bis Fortgeschrittenen und auch Profis kommen auf Ihre Kosten.',
             'abstract' => 'Es gibt inzwischen unzählige Open Source Content Management Systeme auf dem Markt. Die CMS Night ist eine gemeinsame Veranstaltung der Nutzer verschiedener CMS Systeme aus der Metropolregion Nürnberg.',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -357,44 +197,10 @@ Zielgruppe für die 6. CMS Night sind ALLE CMS Interessierten vom Anfänger bis 
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '5',
-            'series' => null,
+            'organizer_id' => '5',
+            'series_id' => '11',
             'name' => 'Social Media Night',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-26 17:29:22',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 17:29:22',
-            'email' => '',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => '',
-            'facebook' => '',
-            'twitter' => '',
-            'xing' => 'www.xing.com/communities/groups/social-media-breakfast-nuernberg-0fcd-1065111',
-            'gplus' => '',
-            'hashtag' => '',
-            'description' => '',
-            'abstract' => 'Bei der Social Media Night treffen sich Social Media Worker aller Richtung zu Austausch und Networking in gemütlicher Runde. Ergänzt wird das Programm durch Vorträge, Panels und Interviews.',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '5',
-            'series' => '11',
-            'name' => 'Social Media Night',
-            'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-09 18:26:35',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 17:30:00',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -411,7 +217,7 @@ Bei der Social Media Night treffen sich am Abend des 16.10.2014 lokale Player de
 
 Es gibt Vorträge, Panels und Interviews - immer mit der Möglichkeit, sich als Gast in die Diskussion einzubringen. In diesem Jahr legt die Social Media Night einen Schwerpunkt auf das Thema „Gemeinnützigkeit“: Wir gehen der Frage nach, ob und wie Behörden und öffentliche Einrichtungen (wie Bibliotheken oder Tierheime) bislang eigentlich Facebook & Co. nutzen - und was der moderne, digitalaffine Bürger diesbezüglich heute von ihnen erwartet. Hierzu haben wir spannende Gäste eingeladen, die mit ganz verschiedenen Ideen und Ansätzen soziale Medien erfolgreich nutzen. Demgegenüber stehen erfolgreiche Unternehmen aus der Metropolregion, die an diesem Abend ebenfalls ihre Social Media-Konzepte und -Erfolge vorstellen und Praxistipps geben.
 
-Präsentiert und moderiert wird die Social Media Night 2015 vom Team der Social Media-Sprechstunde (SMS) Nürnberg - einer ehrenamtlichen Initiative dreier lokaler Web 2.0-Experten, die alle paar Wochen einen Abend lang kostenlos Vereine, Privatpersonen und Unternehmen in allen Fragen rund um Social Media beraten. Auch hierüber könnt Ihr bei	 der Social Media Night mehr erfahren.
+Präsentiert und moderiert wird die Social Media Night 2015 vom Team der Social Media-Sprechstunde (SMS) Nürnberg - einer ehrenamtlichen Initiative dreier lokaler Web 2.0-Experten, die alle paar Wochen einen Abend lang kostenlos Vereine, Privatpersonen und Unternehmen in allen Fragen rund um Social Media beraten. Auch hierüber könnt Ihr bei    der Social Media Night mehr erfahren.
 
 Wir freuen uns auf Euch!
 
@@ -420,19 +226,18 @@ Für das leibliche Wohl in Form von Catering ist gesorgt (Getränke: Selbstzahle
 
 (Bisheriges) Line-Up:
 
-„Amt 2.0	- Sind Behörden und das Social Web noch Fremde oder schon Freunde?“
-Johannes	Barthel, Stadt Nürnberg
+„Amt 2.0    - Sind Behörden und das Social Web noch Fremde oder schon Freunde?“
+Johannes    Barthel, Stadt Nürnberg
 Christiane Germann, Bundesamt für Migration und Flüchtlinge (BAMF)
 N.N., Stadtbibliothek Erlangen
 
-„Ein Heim	 für Tiere - und für 30.000 Facebook Fans! Erfolgsrezepte einer sozialen Einrichtung“
+„Ein Heim    für Tiere - und für 30.000 Facebook Fans! Erfolgsrezepte einer sozialen Einrichtung“
 Marcus König, Tierheim Nürnberg
 
 Moderation: Christiane Germann, Danir Bouchekir, Johannes Barthel (SMS Nürnberg)
 
 Die weiteren Referenten und Speaker/innen werden in den kommenden Wochen an dieser Stelle bekannt gegeben. Stay tuned!',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -440,44 +245,10 @@ Die weiteren Referenten und Speaker/innen werden in den kommenden Wochen an dies
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '6',
-            'series' => null,
-            'name' => 'MobileFirst! Night',
-            'image' => '',
-            'deleted' => '1',
-            'updated_by' => '1',
-            'updated_at' => '2014-08-26 19:00:51',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 17:41:41',
-            'email' => '',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => '',
-            'facebook' => '',
-            'twitter' => '',
-            'xing' => '',
-            'gplus' => '',
-            'hashtag' => '',
-            'description' => '',
-            'abstract' => '',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '6',
-            'series' => null,
+            'organizer_id' => '6',
+            'series_id' => null,
             'name' => 'MobileFirst! Night',
             'image' => '/img/event/event-14.jpg',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-26 17:50:58',
-            'created_by' => '2',
-            'created_at' => '2014-08-26 17:49:32',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -496,7 +267,6 @@ Die dritte MobileFirst! Night wird ein entspannter Abend mit spannenden Vorträg
 
 Die MobileFirst! Night wird von insertEFFECT veranstaltet.',
             'abstract' => 'MobileFirst! Night – Future Buzzwords',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -504,15 +274,10 @@ Die MobileFirst! Night wird von insertEFFECT veranstaltet.',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '7',
-            'series' => null,
+            'organizer_id' => '7',
+            'series_id' => null,
             'name' => 'Machbar machen!',
             'image' => '/img/event/event-15.jpg',
-            'deleted' => '0',
-            'updated_by' => '4',
-            'updated_at' => '2014-08-28 10:47:10',
-            'created_by' => '4',
-            'created_at' => '2014-08-28 10:47:09',
             'email' => 'kontakt@machen.de',
             'phone' => '',
             'fax' => '',
@@ -528,7 +293,6 @@ Der Austausch findet nach einem Sektempfang durch die Wirtschaftsjunioren an der
 
 Anmeldung erforderlich. Bitte bis 10.10.2014 eine kurze E-Mail an kontakt@machen.de oder bei der Veranstaltung auf XING zusagen.',
             'abstract' => 'Du hast eine Idee für ein Unternehmen und bist nicht sicher, ob du wirklich durchstarten sollst? Erfahrene Firmenchefs, junge Existenzgründer, unternehmerisch denkende Führungskräfte und andere Kreative helfen dir bei der Entscheidung.',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -536,44 +300,10 @@ Anmeldung erforderlich. Bitte bis 10.10.2014 eine kurze E-Mail an kontakt@machen
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '8',
-            'series' => null,
-            'name' => 'Wordpress Meetup',
-            'image' => '/img/series/series-16.jpg',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-28 12:40:37',
-            'created_by' => '2',
-            'created_at' => '2014-08-28 12:40:37',
-            'email' => '',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => 'http://wpmeetup-franken.de/',
-            'facebook' => '',
-            'twitter' => 'WPMeetupFranken',
-            'xing' => '',
-            'gplus' => '',
-            'hashtag' => '',
-            'description' => 'Das Wordpress Meetup Franken ist eine Usergroup, die sich mit dem Content Management System "Wordpress" beschäftigt. Einsteiger und Fortgeschrittene sind herzlich eingeladen, sich mit Gleichgesinnten über die aktuellsten Neuigkeiten auszutauschen und ihre Erfahrungen miteinander zu teilen.',
-            'abstract' => '',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '8',
-            'series' => '16',
+            'organizer_id' => '8',
+            'series_id' => '16',
             'name' => 'Wordpress Meetup',
             'image' => '/img/event/event-17.jpg',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-02 12:25:13',
-            'created_by' => '2',
-            'created_at' => '2014-08-28 12:42:00',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -586,7 +316,6 @@ Anmeldung erforderlich. Bitte bis 10.10.2014 eine kurze E-Mail an kontakt@machen
             'hashtag' => '',
             'description' => 'Das Wordpress Meetup Franken ist eine Usergroup, die sich mit dem Content Management System "Wordpress" beschäftigt. Einsteiger und Fortgeschrittene sind herzlich eingeladen, sich mit Gleichgesinnten über die aktuellsten Neuigkeiten auszutauschen und ihre Erfahrungen miteinander zu teilen.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -594,44 +323,10 @@ Anmeldung erforderlich. Bitte bis 10.10.2014 eine kurze E-Mail an kontakt@machen
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '2',
-            'series' => null,
-            'name' => 'Pecha Kucha',
-            'image' => '/img/series/series-18.jpg',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-28 12:51:24',
-            'created_by' => '2',
-            'created_at' => '2014-08-28 12:51:24',
-            'email' => '',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => 'http://pecha-kucha-nuernberg.de/',
-            'facebook' => '',
-            'twitter' => '',
-            'xing' => '',
-            'gplus' => '',
-            'hashtag' => '',
-            'description' => 'Pecha Kucha (sprich: petscha-kutscha, jap. ペチャクチャ “wirres Geplauder, Stimmengewirr”) ist eine Vortragstechnik, bei der zu einem mündlichen Vortrag passende Bilder (Folien) an eine Wand projiziert werden. Die Anzahl der Bilder ist dabei mit 20 Stück ebenso vorgegeben wie die 20-sekündige Dauer der Projektionszeit je Bild. Die Gesamtdauer des Vortrags beträgt damit 6 Minuten 40 Sekunden. In Pecha Kucha Nights (PKN) folgen mehrere dieser Vorträge hintereinander. Die Themen liegen meist im Bereich Design, Kunst, Mode und Architektur. - See more at: http://www.nuernberg-startups.de/uebersicht-ueber-die-it-internetszene-in-der-metropolregion-nuernberg/#.U_8JWbx_tZw',
-            'abstract' => '',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '2',
-            'series' => '18',
+            'organizer_id' => '2',
+            'series_id' => '18',
             'name' => 'Pecha Kucha',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-28 15:26:49',
-            'created_by' => '2',
-            'created_at' => '2014-08-28 12:52:59',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -656,7 +351,6 @@ Sham Jaff - Titel kommt noch
 Michael Sabah - Titel kommt noch
 wir suchen noch Presenter, bitte bei uns melden',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -664,15 +358,10 @@ wir suchen noch Presenter, bitte bei uns melden',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '9',
-            'series' => null,
+            'organizer_id' => '9',
+            'series_id' => null,
             'name' => 'Iron Blogger Franken Treffen',
             'image' => '/img/event/event-20.png',
-            'deleted' => '0',
-            'updated_by' => '3',
-            'updated_at' => '2014-09-01 14:59:13',
-            'created_by' => '2',
-            'created_at' => '2014-08-28 13:00:38',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -685,7 +374,6 @@ wir suchen noch Presenter, bitte bei uns melden',
             'hashtag' => 'ironblogger',
             'description' => 'Während andere jeden Halbgedanken per Facebook, Twitter oder Google+ verbreiten, entdecken die “IronBlogger” das Publizieren auf der eigenen Plattform neu. Dabei haben sie einen guten Grund: Sie tun es für Bier. Aber nur vordergründig. IronBlogger schreiben mindestens einen Blogbeitrag pro Woche in ihr Blog – oder zahlen 5€ in die gemeinsame Bierkasse. Weist die Bierkasse einen gewissen Betrag auf, treffen sich die Blogger, nehmen die Kasse und lassen es sich schmecken.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -693,44 +381,10 @@ wir suchen noch Presenter, bitte bei uns melden',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '10',
-            'series' => null,
+            'organizer_id' => '10',
+            'series_id' => '21',
             'name' => 'Agile Monday',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-28 13:40:15',
-            'created_by' => '2',
-            'created_at' => '2014-08-28 13:40:15',
-            'email' => '',
-            'phone' => '',
-            'fax' => '',
-            'cell' => '',
-            'web' => '',
-            'facebook' => '',
-            'twitter' => '',
-            'xing' => 'www.xing.com/communities/groups/agile-monday-nuernberg-62c0-1026729',
-            'gplus' => '',
-            'hashtag' => '',
-            'description' => 'Hier liegt der Schwerpunkt besonders auf der agilen Software-Entwicklung. Das Ziel ist, nicht an einem steifen Plan festzuhalten, sondern seine Vorgehensweisen der vorangeschrittenen Entwicklung anzupassen, um am Ende zu bekommen, was man auch braucht. Dies soll möglichst dynamisch und ohne oder nur mit wenig bürokratischem Aufwand vorangehen. Die Ideen hinter agiler Entwicklung sind klar umrissen: Menschen und gemeinsames Arbeiten kommen vor theoretischen Abläufen und Prozessen, funktionierende Software hat Vorrang vor umfassender Dokumentation, konstruktive Zusammenarbeit mit Kunden hat mehr Gewicht als Vertragsverhandlungen und flexibler Umgang mit veränderten Anforderungen ist wichtiger als Festhalten an einem Plan. Diese Gruppe soll dem Informationsaustausch rund um den Stammtisch über alle agilen Themen (Scrum, Extreme Programming, Crystal etc.) in der Region Nürnberg dienen.',
-            'abstract' => '',
-            'type' => 'series',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
-        ]);
-        Event::create([
-            'organizer' => '10',
-            'series' => '21',
-            'name' => 'Agile Monday',
-            'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-28 13:41:59',
-            'created_by' => '2',
-            'created_at' => '2014-08-28 13:41:01',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -745,7 +399,6 @@ wir suchen noch Presenter, bitte bei uns melden',
 
 Am Anfang jedes Meetings wird Teilnehmern die Chance geboten, einen fachspezifischen Vortrag über ein aktuelles agiles Thema zu halten. Erfahrungsberichte, Praktiken, Neuigkeiten und Meetings - der Agile Monday hat die Szene im Blick.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -753,15 +406,10 @@ Am Anfang jedes Meetings wird Teilnehmern die Chance geboten, einen fachspezifis
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '11',
-            'series' => null,
+            'organizer_id' => '11',
+            'series_id' => null,
             'name' => 'E://Commerce Night',
             'image' => '/img/event/event-23.jpg',
-            'deleted' => '0',
-            'updated_by' => '1',
-            'updated_at' => '2014-09-10 21:06:35',
-            'created_by' => '2',
-            'created_at' => '2014-08-28 16:19:19',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -782,7 +430,6 @@ Weitere Infos zur E://Commerce Night und Anmeldung auf www.ecommerce-night.de.
 14.10.2014 ab 18 Uhr im Parks, Nürnberg
 http://www.ecommerce-night.de',
             'abstract' => 'Die Zukunft des Online-Handels',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -790,15 +437,10 @@ http://www.ecommerce-night.de',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '12',
-            'series' => null,
+            'organizer_id' => '12',
+            'series_id' => null,
             'name' => 'OpenUp Meetup',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-09 12:15:27',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 18:51:30',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -811,7 +453,6 @@ http://www.ecommerce-night.de',
             'hashtag' => '',
             'description' => 'Die OSBF lädt alle Mitglieder und Interessierte herzlich zum offenen Austausch in Form einer Session ein. Im Fokus steht der digitale Wandel und die Konsequenzen für Unternehmen und ihre bisherigen Geschäftsmodelle. Anhand von Erfahrungen und Herausforderungen in Bereichen wie Open Education, Open Hardware oder Open Innovation wollen wir einen Anlaufpunkt bieten, um sich mit anderen Entscheidern oder Verantwortlichen auszutauschen, um sein Netzwerk zu erweitern und um Impulse für neue Herangehensweisen zu digitalen Strategien zu finden.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -819,15 +460,10 @@ http://www.ecommerce-night.de',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '13',
-            'series' => null,
+            'organizer_id' => '13',
+            'series_id' => null,
             'name' => 'Barcamp Night',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-29 19:18:22',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 18:54:29',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -840,7 +476,6 @@ http://www.ecommerce-night.de',
             'hashtag' => '',
             'description' => 'Bei dieser Veranstaltung kannst Du erleben, was an einer Unkonferenz so besonders ist. Hier gibt es keine Teilnehmer, sondern nur Teilgeber. Das Programm des Abends, wird von den anwesenden Personen spontan gestaltet. Eine “Session” oder ein “Vortrag”, würde man üblicherweise sagen, dauert jeweils 45 Minuten. Inhalt und Format werden vom jeweiligen Initiator vorgeschlagen. Natürlich kannst Du auch eine Session vorbereiten und sie dann halten. Komm vorbei und lass Dich von dieser neuen Form des Lernens inspirieren. Du wirst begeistert sein!',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -848,15 +483,10 @@ http://www.ecommerce-night.de',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '14',
-            'series' => null,
+            'organizer_id' => '14',
+            'series_id' => null,
             'name' => 'Express Code Retreat',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-29 19:26:24',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 19:01:06',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -871,7 +501,6 @@ http://www.ecommerce-night.de',
 
 Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework mit.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -879,15 +508,10 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '15',
-            'series' => null,
+            'organizer_id' => '15',
+            'series_id' => null,
             'name' => 'WERBEBOTSCHAFT bewegt!',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-29 19:16:50',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 19:15:45',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -900,7 +524,6 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
             'hashtag' => '',
             'description' => 'Stell dir vor, du hast eine geniale Idee, das passende Konzept und eine intelligente Marketingstrategie entwickelt. Alle sind von deinem Vorhaben begeistert und du sprühst vor Inspiration. Du hast deine persönliche Werbebotschaft gefunden, die die Menschen wirklich bewegt. Dann zeig es allen mit Video, Interaktion, Web, mit neuen Möglichkeiten und auf anderen Wegen. Zeig einfach alles, worauf es ankommt.  Wenn du Menschen zum kreativen Austausch über Technologien, Konzept und Design suchst, dann laden wir dich herzlich ein zu: WERBEBOTSCHAFT bewegt! Im JOSEPHS der Service-Manufaktur in Nürnberg. Anmeldungen in Kürze möglich.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -908,15 +531,10 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '16',
-            'series' => null,
+            'organizer_id' => '16',
+            'series_id' => null,
             'name' => 'WebInsights Conference',
             'image' => '/img/event/event-28.png',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-29 19:34:35',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 19:32:49',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -929,7 +547,6 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
             'hashtag' => '',
             'description' => 'Am Di, 14. Oktober 2014 findet in der Eventlocation „PARKS“ die Nürnberger „WebInsights Conference“ statt. Dieses Jahr steht die Online-Marketing und Web-Entwickler Konferenz unter dem Motto „Hands on Web“. Es gibt zahlreiche anschauliche Vorträge renommierter Sprecher, praxisnah und mit vielen Beispielen.Ein weiteres Highlight ist der „Secret Circle“. Eine exklusiv auserwählte Runde von Experten die ihre Insider Tricks austauschen. Egal ob Start-Up Unternehmer/in, E-Commerce Experte/in, Marketing Fachmann/frau oder Webentwickler/in. Jede/r  Web-Professional ist herzlich willkommen.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -937,15 +554,10 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '17',
-            'series' => null,
+            'organizer_id' => '17',
+            'series_id' => null,
             'name' => 'Individuelle Vertriebsplattformen auf Magento-Basis',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-29 19:46:41',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 19:43:22',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -960,7 +572,6 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
 Seit einem Jahr entwickeln und betreuen wir nunmehr auch drei Marktplätze, bei denen Magento nicht als reines Onlineshop-System genutzt wird, sondern modular zu teils stark individuellen Vertriebsplattformen ausgebaut wird, mit gutem Erfolg. Die Entwicklungs-Geschwindigkeit ist aufgrund des gegebenen Systems hoch, und kritische Teile wie Zahlung und Bestellabwicklung wurden langjährig erprobt und verbessert. Diese Vorgehensweise ist gegenüber einer kompletten Eigenentwicklung höchst kosteneffizient und besser planbar, was sie insbesondere für Neugründungen interessant macht.
 Wir stellen zwei der Plattformen im Vortrag vor, und zeigen, welche Möglichkeiten in dem System Magento stecken, und wie diese interessant genutzt werden können.',
             'abstract' => 'Marktplätze mit Magento',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -968,15 +579,10 @@ Wir stellen zwei der Plattformen im Vortrag vor, und zeigen, welche Möglichkeit
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '18',
-            'series' => null,
+            'organizer_id' => '18',
+            'series_id' => null,
             'name' => 'Google: Mobile Boom',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-29 19:51:33',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 19:49:42',
             'email' => 'google_mobile@muellerverlag.de',
             'phone' => '',
             'fax' => '',
@@ -991,7 +597,6 @@ Wir stellen zwei der Plattformen im Vortrag vor, und zeigen, welche Möglichkeit
 
 Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veranstaltung vormerken zu lassen. Kontakt: google_mobile(at)muellerverlag.de',
             'abstract' => 'Sind Sie fit für die mobile Zukunft?',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -999,15 +604,10 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '18',
-            'series' => null,
+            'organizer_id' => '18',
+            'series_id' => null,
             'name' => 'Google AdWords – Mit Suchmaschinenwerbung zum Neukunden',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-29 19:54:37',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 19:53:28',
             'email' => 'google_adwords@muellerverlag.de',
             'phone' => '',
             'fax' => '',
@@ -1022,7 +622,6 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
 
 Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veranstaltung vormerken zu lassen. Kontakt: google_adwords(at)muellerverlag.de',
             'abstract' => 'Mit Suchmaschinenwerbung zum Neukunden',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1030,15 +629,10 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '18',
-            'series' => null,
+            'organizer_id' => '18',
+            'series_id' => null,
             'name' => 'Facebook: Social Media – Präsenzen, Werbung und Monitoring',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-30 10:43:59',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 19:55:33',
             'email' => 'facebook@muellerverlag.de',
             'phone' => '',
             'fax' => '',
@@ -1053,7 +647,6 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
 
 Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veranstaltung vormerken zu lassen. Kontakt: facebook(at)muellerverlag.de',
             'abstract' => 'Präsenzen, Werbung und Monitoring',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1061,15 +654,10 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '2',
-            'series' => null,
+            'organizer_id' => '2',
+            'series_id' => null,
             'name' => 'Ignite Nürnberg',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-30 11:55:50',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 20:06:10',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1082,7 +670,6 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'hashtag' => '',
             'description' => 'Bei der Ignite finden alle Geeks und Nerds der Region ein Zuhause. Neben Ignite Talks, die ein bisschen so ablaufen wie die Talks bei Pecha Kucha, gibt es auch immer einen Hands-On-Workshop. Dieses Mal geht es dabei um das feine Schuhwerk, das uns durch den Alltag trägt: Bei der Ignite basteln wir gemeinsam an solchem Schuhwerk und werden eigene Schuhe selbst herstellen.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1090,15 +677,10 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '2',
-            'series' => null,
+            'organizer_id' => '2',
+            'series_id' => null,
             'name' => 'Creative Monday',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-30 11:58:45',
-            'created_by' => '2',
-            'created_at' => '2014-08-29 20:12:34',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1120,7 +702,6 @@ Die Gäste des CreativeMonday dürfen sich freuen auf:
 * konstruktive Gespräche
 * Vernetzung und Kooperation',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1128,15 +709,10 @@ Die Gäste des CreativeMonday dürfen sich freuen auf:
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '19',
-            'series' => null,
+            'organizer_id' => '19',
+            'series_id' => null,
             'name' => 'Internet of Things-Hackathon',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-08-30 12:06:12',
-            'created_by' => '2',
-            'created_at' => '2014-08-30 12:06:12',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1166,7 +742,6 @@ Der Hackathon startet um 18:00 Uhr und geht bis in die Nacht hinein. Essen & Get
 18:30 - 04:00     Hackathon – im Team oder alleine
 05:00                 Abschlusspräsentation der entwickelten Apps',
             'abstract' => 'Microsoft Hackathon',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1174,15 +749,10 @@ Der Hackathon startet um 18:00 Uhr und geht bis in die Nacht hinein. Essen & Get
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '20',
-            'series' => null,
+            'organizer_id' => '20',
+            'series_id' => null,
             'name' => 'Gamification',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-01 16:07:56',
-            'created_by' => '4',
-            'created_at' => '2014-09-01 14:37:32',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1195,7 +765,6 @@ Der Hackathon startet um 18:00 Uhr und geht bis in die Nacht hinein. Essen & Get
             'hashtag' => '',
             'description' => 'Für Neulinge und Interessierte hält Markus Neubauer und das Team von Silbury IT einen Einführungsvortrag zum Thema Gamification. Weitere Vorträge vertiefen das Thema und sollen zu einem anschließenden Gedankenaustausch anregen. Zudem soll bei diesem ersten Treffen das Interesse an einer Usergroup und einem regelmäßigen Treffen ermittelt werden.',
             'abstract' => 'Am Mittwoch, den 15.10.2014, findet um 17 Uhr das erste Treffen der Gamification-Szene Frankens statt. Veranstaltungsort ist das „Josephs – Die Service-Manufaktur“, in der Karl-Grillenberger-Straße 3, 90402 Nürnberg.',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1203,15 +772,10 @@ Der Hackathon startet um 18:00 Uhr und geht bis in die Nacht hinein. Essen & Get
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '21',
-            'series' => null,
+            'organizer_id' => '21',
+            'series_id' => null,
             'name' => 'Recht so? Meine Website auf dem Prüfstand',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-01 16:03:32',
-            'created_by' => '2',
-            'created_at' => '2014-09-01 16:02:54',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1230,7 +794,6 @@ Datenschutz oder Datenschmutz? Ist ihre Seite konform? Wir klären, was bei der 
 Rechte und Pflichten habe ich? Wir zeigen Best-Practice und gesetzliche Grundlagen.
 Wir sehen uns echte Webseiten aus dem Publikum an und geben Verbesserungsvorschläge.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1238,15 +801,10 @@ Wir sehen uns echte Webseiten aus dem Publikum an und geben Verbesserungsvorschl
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '22',
-            'series' => null,
+            'organizer_id' => '22',
+            'series_id' => null,
             'name' => 'Crowdfunding: Kreativität gemeinsam finanzieren',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-04 13:49:13',
-            'created_by' => '2',
-            'created_at' => '2014-09-02 12:28:00',
             'email' => 'wirtschaft@stadt.nuernberg.de',
             'phone' => '',
             'fax' => '',
@@ -1286,7 +844,6 @@ Wenn Sie ein Crowdfunding-Projekt planen, sind Sie hier genau richtig. Eine vage
 Hinweis: Die Anmeldung zum Workshop ist verbindlich, da die Teilnehmeranzahl stark begrenzt ist. Bitte teilen Sie uns ggf. einen Rücktritt möglichst zeitnah mit, um anderen Interessierten die Möglichkeit zur Teilnahme zu gewährleisten.
 Ihre Anmeldung richten Sie bitte an wirtschaft@stadt.nuernberg.de',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1294,15 +851,10 @@ Ihre Anmeldung richten Sie bitte an wirtschaft@stadt.nuernberg.de',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '22',
-            'series' => null,
+            'organizer_id' => '22',
+            'series_id' => null,
             'name' => 'Erfolgreich Crowdfunden!',
             'image' => '',
-            'deleted' => '1',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-04 13:46:09',
-            'created_by' => '2',
-            'created_at' => '2014-09-02 12:31:32',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1315,7 +867,6 @@ Ihre Anmeldung richten Sie bitte an wirtschaft@stadt.nuernberg.de',
             'hashtag' => '',
             'description' => '',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1323,15 +874,10 @@ Ihre Anmeldung richten Sie bitte an wirtschaft@stadt.nuernberg.de',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '22',
-            'series' => null,
+            'organizer_id' => '22',
+            'series_id' => null,
             'name' => 'Erfolgreiches Crowdfunding',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-04 13:47:00',
-            'created_by' => '2',
-            'created_at' => '2014-09-02 12:31:32',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1350,7 +896,6 @@ Zielgruppe: Akteure, die eine Crowdfunding-Kampagne starten wollen, oder bereits
 
 Für das leibliche Wohl bei der Abendveranstaltung sorgt das HEIMATmobil – „Imbiss-Stand von Menschen mit geistiger Behinderung“. HEIMATmobil startete selbst mit Hilfe einer erfolgreichen Crowdfunding Kampagne.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1358,15 +903,10 @@ Für das leibliche Wohl bei der Abendveranstaltung sorgt das HEIMATmobil – „
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '23',
-            'series' => null,
+            'organizer_id' => '23',
+            'series_id' => null,
             'name' => 'UX Stammtisch Franken',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-09 19:23:07',
-            'created_by' => '2',
-            'created_at' => '2014-09-09 18:49:34',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1379,7 +919,6 @@ Für das leibliche Wohl bei der Abendveranstaltung sorgt das HEIMATmobil – „
             'hashtag' => '',
             'description' => 'Der UX Stammtisch ist Austauschplattform für alle Professionals und Interessierten aus dem User Experience und User Interface Bereich.',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1387,15 +926,10 @@ Für das leibliche Wohl bei der Abendveranstaltung sorgt das HEIMATmobil – „
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '24',
-            'series' => null,
+            'organizer_id' => '24',
+            'series_id' => null,
             'name' => 'Durchklicken war gestern, Mitmachen ist heute!',
             'image' => '',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-15 21:57:05',
-            'created_by' => '2',
-            'created_at' => '2014-09-15 21:57:05',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1415,7 +949,6 @@ Mit Fingerfood und Häppchen, Prinzenrolle und Äpfeln lassen wir den frühen Ab
 
 Start 17:00 Uhr mit Workshop, ab ca. 18:30 Uhr Vortrag',
             'abstract' => 'Mit Community-Prinz(-ipien) jede noch so verschlafene Website aus dem Dornröschenschlaf wachküssen!',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1423,15 +956,10 @@ Start 17:00 Uhr mit Workshop, ab ca. 18:30 Uhr Vortrag',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '25',
-            'series' => null,
+            'organizer_id' => '25',
+            'series_id' => null,
             'name' => 'E-Entrepreneurship Flying Circus',
             'image' => '/img/event/event-43.jpg',
-            'deleted' => '0',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-30 11:42:09',
-            'created_by' => '2',
-            'created_at' => '2014-09-30 11:42:09',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1459,7 +987,6 @@ Wie ist der Ablauf?
 16:00 Uhr - 17:00 Uhr Podium "Chancen für digitale Startups vor Ort" (Local Picture)
 Anschließend "Get Together“',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,
@@ -1467,15 +994,10 @@ Anschließend "Get Together“',
             'lanyrd' => null
         ]);
         Event::create([
-            'organizer' => '25',
-            'series' => null,
+            'organizer_id' => '25',
+            'series_id' => null,
             'name' => 'E-Entrepreneurship Flying Circus',
             'image' => '',
-            'deleted' => '1',
-            'updated_by' => '2',
-            'updated_at' => '2014-09-30 12:00:38',
-            'created_by' => '2',
-            'created_at' => '2014-09-30 11:58:44',
             'email' => '',
             'phone' => '',
             'fax' => '',
@@ -1503,7 +1025,6 @@ Wie ist der Ablauf?
 16:00 Uhr - 17:00 Uhr Podium "Chancen für digitale Startups vor Ort" (Local Picture)
 Anschließend "Get Together“',
             'abstract' => '',
-            'type' => 'single',
             'facebook_event' => null,
             'xing_event' => null,
             'gplus_event' => null,

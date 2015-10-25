@@ -35,15 +35,25 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use App\Traits\Contact;
+use App\Traits\Describable;
+use App\Traits\Image;
+use Illuminate\Database\Eloquent\Model;
+
+abstract class EventSeriesAbstract extends Model
 {
     /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * Use the describable, contact and image features
      */
-    public function series()
+    use Describable, Contact, Image;
+
+    /**
+     * Return this event's organizer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Organizer
+     */
+    public function organizer()
     {
-        return $this->belongsTo('Series');
+        return $this->belongsTo('App\Models\Organizer');
     }
 }

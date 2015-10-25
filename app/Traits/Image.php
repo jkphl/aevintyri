@@ -33,17 +33,14 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Traits;
 
-final class Event extends EventSeriesAbstract
+/**
+ * Image features
+ *
+ * @package App\Traits
+ */
+trait Image
 {
-    /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
-     */
-    public function series()
-    {
-        return $this->belongsTo('Series');
-    }
+
 }

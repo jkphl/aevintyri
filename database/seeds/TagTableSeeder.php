@@ -16,7 +16,7 @@
  *  Copyright © 2015 Joschi Kuphal <joschi@kuphal.net> / @jkphl
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of
- *  this software and associated documentation files (the "Software"), to deal in
+ *  this software and associated documentation files (the "Software"]); to deal in
  *  the Software without restriction, including without limitation the rights to
  *  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
  *  the Software, and to permit persons to whom the Software is furnished to do so,
@@ -33,17 +33,30 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+use App\Models\Tag;
+use Illuminate\Database\Seeder;
 
-final class Event extends EventSeriesAbstract
+class TagTableSeeder extends Seeder
 {
-    /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
-     */
-    public function series()
+    public function run()
     {
-        return $this->belongsTo('Series');
+        Tag::create(['name' => 'Online Marketing','color' => '#000000']);
+        Tag::create(['name' => 'Webentwicklung','color' => '#000000']);
+        Tag::create(['name' => 'Social Media','color' => '#000000']);
+        Tag::create(['name' => 'eCommerce','color' => '#000000']);
+        Tag::create(['name' => 'SEO','color' => '#000000']);
+        Tag::create(['name' => 'Mobile Apps','color' => '#000000']);
+        Tag::create(['name' => 'Networking','color' => '#000000']);
+        Tag::create(['name' => 'Kreativkultur','color' => '#000000']);
+        Tag::create(['name' => 'Vorträge, Workshops & Pitches','color' => '#000000']);
+        Tag::create(['name' => 'Code','color' => '#000000']);
+        Tag::create(['name' => 'Business','color' => '#000000']);
+        Tag::create(['name' => 'Startup','color' => '#000000']);
+        Tag::create(['name' => 'Wordpress','color' => '#000000']);
+        Tag::create(['name' => 'CMS','color' => '#000000']);
+        Tag::create(['name' => 'Scrum','color' => '#000000']);
+        Tag::create(['name' => 'Agile Projectmanagement','color' => '#000000']);
+        Tag::create(['name' => 'Kanban','color' => '#000000']);
+        Tag::create(['name' => 'Webdesign','color' => '#000000']);
     }
 }

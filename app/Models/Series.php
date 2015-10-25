@@ -35,15 +35,16 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+final class Series extends EventSeriesAbstract
 {
+
     /**
-     * Return this event's series
+     * Return this series' events
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function series()
+    public function events()
     {
-        return $this->belongsTo('Series');
+        return $this->hasMany('App\Models\Event');
     }
 }

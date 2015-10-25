@@ -35,15 +35,33 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use App\Traits\Contact;
+use app\Traits\Describable;
+use App\Traits\Image;
+use Illuminate\Database\Eloquent\Model;
+
+final class Presenter extends Model
 {
     /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * Use the describable, contact and image features
      */
-    public function series()
-    {
-        return $this->belongsTo('Series');
+    use Describable, Contact, Image;
+
+    /**
+     * Return the tags of this presenter
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Tags
+     */
+    public function tags() {
+        return $this->belongsToMany('App\Models\Tag');
+    }
+
+    /**
+     * Return the sessions of this presenter
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Sessions
+     */
+    public function sessions() {
+        return $this->belongsToMany('App\Models\Session');
     }
 }

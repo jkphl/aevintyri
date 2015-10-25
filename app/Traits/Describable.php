@@ -33,17 +33,15 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace app\Traits;
 
-final class Event extends EventSeriesAbstract
+
+/**
+ * Describable features
+ *
+ * @package app\Traits
+ */
+trait Describable
 {
-    /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
-     */
-    public function series()
-    {
-        return $this->belongsTo('Series');
-    }
+
 }

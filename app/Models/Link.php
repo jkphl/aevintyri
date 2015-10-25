@@ -35,15 +35,9 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use Illuminate\Database\Eloquent\Model;
+
+final class Link extends Model
 {
-    /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
-     */
-    public function series()
-    {
-        return $this->belongsTo('Series');
-    }
+
 }

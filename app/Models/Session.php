@@ -35,15 +35,32 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use app\Traits\Describable;
+use App\Traits\Image;
+use Illuminate\Database\Eloquent\Model;
+
+final class Session extends Model
 {
     /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * Use describable and image features
      */
-    public function series()
-    {
-        return $this->belongsTo('Series');
+    use Describable, Image;
+
+    /**
+     * Return this session's day
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Day
+     */
+    public function day() {
+        return $this->belongsTo('App\Models\Day');
+    }
+
+    /**
+     * Return this session's room
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Room
+     */
+    public function room() {
+        return $this->belongsTo('App\Models\Room');
     }
 }

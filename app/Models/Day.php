@@ -35,15 +35,17 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use Illuminate\Database\Eloquent\Model;
+
+final class Day extends Model
 {
     /**
-     * Return this event's series
+     * Return this day's sessions
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
      */
-    public function series()
+    public function sessions()
     {
-        return $this->belongsTo('Series');
+        return $this->hasMany('App\Models\Session');
     }
 }

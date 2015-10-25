@@ -33,17 +33,33 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-final class Event extends EventSeriesAbstract
+use App\Models\Country;
+
+class CountryController extends Controller
 {
     /**
-     * Return this event's series
+     * List all countries
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @return \Symfony\Component\HttpFoundation\Response Country list
      */
-    public function series()
+    public function listCountries()
     {
-        return $this->belongsTo('Series');
+        return response()->json(Country::all());
+    }
+
+    /**
+     * Get a single country
+     *
+     * @param int $id Country ID
+     * @return \Symfony\Component\HttpFoundation\Response Country
+     */
+    public function getCountry($id)
+    {
+
+        $Country = Country::find($id);
+
+        return response()->json($Country);
     }
 }

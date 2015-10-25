@@ -33,17 +33,23 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Traits;
 
-final class Event extends EventSeriesAbstract
+/**
+ * Address features
+ *
+ * @package App\Traits
+ */
+trait Address
 {
+
     /**
-     * Return this event's series
+     * Return the country of this record
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Country
      */
-    public function series()
+    public function country()
     {
-        return $this->belongsTo('Series');
+        return $this->belongsTo('Country');
     }
 }

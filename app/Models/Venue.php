@@ -35,15 +35,25 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use App\Traits\Address;
+use app\Traits\Describable;
+use App\Traits\Image;
+use Illuminate\Database\Eloquent\Model;
+
+final class Venue extends Model
 {
     /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * Use the describable, address and image features
      */
-    public function series()
+    use Address, Describable, Image;
+
+    /**
+     * Return all rooms of this venue
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Rooms
+     */
+    public function rooms()
     {
-        return $this->belongsTo('Series');
+        return $this->hasMany('App\Models\Room');
     }
 }

@@ -35,15 +35,31 @@
 
 namespace App\Models;
 
-final class Event extends EventSeriesAbstract
+use app\Traits\Describable;
+use Illuminate\Database\Eloquent\Model;
+
+final class Room extends Model
 {
     /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     * Use the describable features
      */
-    public function series()
-    {
-        return $this->belongsTo('Series');
+    use Describable;
+
+    /**
+     * Return this room's venue
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Venue
+     */
+    public function venue() {
+        return $this->belongsTo('App\Models\Venue');
+    }
+
+    /**
+     * Return this room's sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany          Sessions
+     */
+    public function sessions() {
+        return $this->hasMany('App\Models\Session');
     }
 }
