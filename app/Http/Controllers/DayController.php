@@ -46,7 +46,7 @@ class DayController extends Controller
      */
     public function listDays()
     {
-        return response()->json(Day::all());
+        return response()->jsonAPI((new Day)->newQuery());
     }
 
     /**
@@ -57,10 +57,7 @@ class DayController extends Controller
      */
     public function getDay($id)
     {
-
-        $Day = Day::find($id);
-
-        return response()->json($Day);
+        return response()->jsonAPI(Day::find($id));
     }
 
     /**

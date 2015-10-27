@@ -51,7 +51,7 @@ final class Venue extends AbstractModel
      *
      * @var array
      */
-    protected $hidden = array('country_id');
+    protected $hidden = array('country_id', 'country');
 
     /**
      * The accessors to append to the model's array form.
@@ -59,6 +59,13 @@ final class Venue extends AbstractModel
      * @var array
      */
     protected $appends = array('country');
+
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array('country' => '\\App\\Models\\Country');
 
     /**
      * Return all rooms of this venue

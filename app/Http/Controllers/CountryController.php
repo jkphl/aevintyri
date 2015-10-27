@@ -46,7 +46,7 @@ class CountryController extends Controller
      */
     public function listCountries()
     {
-        return response()->json(Country::all());
+        return response()->jsonAPI((new Country)->newQuery());
     }
 
     /**
@@ -57,9 +57,6 @@ class CountryController extends Controller
      */
     public function getCountry($id)
     {
-
-        $Country = Country::find($id);
-
-        return response()->json($Country);
+        return response()->jsonAPI(Country::find($id));
     }
 }

@@ -49,7 +49,7 @@ final class Room extends AbstractModel
      *
      * @var array
      */
-    protected $hidden = array('venue_id');
+    protected $hidden = array('venue_id', 'venue');
 
     /**
      * The accessors to append to the model's array form.
@@ -57,6 +57,13 @@ final class Room extends AbstractModel
      * @var array
      */
     protected $appends = array('venue');
+
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array('venue' => '\\App\\Models\\Venue');
 
     /**
      * Return this room's venue
@@ -74,7 +81,7 @@ final class Room extends AbstractModel
      */
     public function getVenueAttribute()
     {
-        return $this->expand('venue') ? $this->venue()->first() : $this->venue_id;
+        return $this->venue()->first();
     }
 
     /**

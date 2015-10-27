@@ -33,84 +33,19 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Http;
 
-use App\Traits\Describable;
-use App\Traits\Image;
 
-final class Session extends AbstractModel
+use App\Http\JsonApi\Response;
+
+interface JsonApiable
 {
     /**
-     * Use describable and image features
-     */
-    use Describable, Image;
-
-    /**
-     * The attributes that should be hidden for arrays.
+     * Return as a JSON API array
      *
-     * @var array
+     * @param Response $response JSON API response
+     * @param string $prefix Prefix
+     * @return array|string
      */
-    protected $hidden = array('day_id', 'room_id', 'room');
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = array('room');
-
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array('room' => '\\App\\Models\\Room');
-
-    /**
-     * Return this session's day
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Day
-     */
-    public function day() {
-        return $this->belongsTo('App\Models\Day');
-    }
-    
-    /**
-     * Return this sessions's day
-     *
-     * @return int|\App\Models\Day      Day
-     */
-    public function getDayAttribute()
-    {
-        return $this->day()->first();
-    }
-
-    /**
-     * Return this session's room
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Room
-     */
-    public function room() {
-        return $this->belongsTo('App\Models\Room');
-    }
-
-    /**
-     * Return this sessions's room
-     *
-     * @return int|\App\Models\Room      Room
-     */
-    public function getRoomAttribute()
-    {
-        return $this->room()->first();
-    }
-
-    /**
-     * Return all links of this venue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
-     */
-    public function links()
-    {
-        return $this->hasMany('App\Models\Link');
-    }
+    public function toJsonApi(Response $response, $prefix = '');
 }

@@ -33,84 +33,24 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
-
-use App\Traits\Describable;
-use App\Traits\Image;
-
-final class Session extends AbstractModel
-{
-    /**
-     * Use describable and image features
-     */
-    use Describable, Image;
+if (! function_exists('response')) {
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Return a new response from the application.
      *
-     * @var array
+     * @param  string  $content
+     * @param  int     $status
+     * @param  array   $headers
+     * @return \Symfony\Component\HttpFoundation\Response|\App\Http\ResponseFactory
      */
-    protected $hidden = array('day_id', 'room_id', 'room');
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = array('room');
-
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array('room' => '\\App\\Models\\Room');
-
-    /**
-     * Return this session's day
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Day
-     */
-    public function day() {
-        return $this->belongsTo('App\Models\Day');
-    }
-    
-    /**
-     * Return this sessions's day
-     *
-     * @return int|\App\Models\Day      Day
-     */
-    public function getDayAttribute()
+    function response($content = '', $status = 200, array $headers = [])
     {
-        return $this->day()->first();
-    }
+        $factory = new \App\Http\ResponseFactory();
 
-    /**
-     * Return this session's room
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Room
-     */
-    public function room() {
-        return $this->belongsTo('App\Models\Room');
-    }
+        if (func_num_args() === 0) {
+            return $factory;
+        }
 
-    /**
-     * Return this sessions's room
-     *
-     * @return int|\App\Models\Room      Room
-     */
-    public function getRoomAttribute()
-    {
-        return $this->room()->first();
-    }
-
-    /**
-     * Return all links of this venue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
-     */
-    public function links()
-    {
-        return $this->hasMany('App\Models\Link');
+        return $factory->make($content, $status, $headers);
     }
 }

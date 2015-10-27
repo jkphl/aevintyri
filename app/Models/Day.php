@@ -43,14 +43,21 @@ final class Day extends AbstractModel
      *
      * @var array
      */
-    protected $hidden = array('event_id');
+    protected $hidden = array('event_id', 'sessions');
 
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
-    protected $appends = array('event');
+    protected $appends = array('sessions');
+
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array('sessions' => '\\App\\Models\\Session');
 
     /**
      * Return this room's event
@@ -68,7 +75,7 @@ final class Day extends AbstractModel
      */
     public function getEventAttribute()
     {
-        return $this->expand('event') ? $this->event()->first() : $this->event_id;
+        return $this->event()->first();
     }
 
     /**
@@ -79,5 +86,18 @@ final class Day extends AbstractModel
     public function sessions()
     {
         return $this->hasMany('App\Models\Session');
+    }
+
+    /**
+     * Return this day's sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
+     */
+    public function getSessionsAttribute() {
+        $sessions = [];
+        foreach ($this->sessions()->getResults() as $session) {
+            $sessions[] = $session;
+        }
+        return $sessions;
     }
 }

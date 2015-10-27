@@ -35,6 +35,9 @@
 
 namespace App\Models;
 
+use App\Http\JsonApi\ResourceIdentifyable;
+use App\Http\JsonApi\Response;
+use App\Http\JsonApiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -43,7 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-abstract class AbstractModel extends Model
+abstract class AbstractModel extends Model implements JsonApiable, ResourceIdentifyable
 {
     /**
      * Use soft deletion
@@ -58,12 +61,20 @@ abstract class AbstractModel extends Model
     protected $dates = ['deleted_at'];
 
     /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array();
+
+    /**
      * Determine if a particular attribute should be expanded during conversion to an array (depending on the request parameters)
      *
-     * @param string $attribute         Attribute
+     * @param string $attribute Attribute
      * @return bool                     Attribute should be expanded
+     * @deprecated
      */
-    protected function expand($attribute)
+    protected function expand_deprecated($attribute)
     {
         $expand = app('request')->get('expand', '');
         if ($expand === '*') {
@@ -72,8 +83,6 @@ abstract class AbstractModel extends Model
             $expand = array_filter(array_map('trim', explode(',', $expand)));
         }
         if (count($expand)) {
-
-
             $mutators = [$attribute];
             $lastModel = null;
 
@@ -98,7 +107,101 @@ abstract class AbstractModel extends Model
      *
      * @return array            Append columns
      */
-    public function getAppends() {
+    public function getAppends()
+    {
         return $this->appends;
+    }
+
+    /**
+     * Return as a JSON API array
+     *
+     * @param Response $response JSON API response
+     * @param string $prefix Prefix
+     * @return array|string
+     */
+    public function toJsonApi(Response $response, $prefix = '')
+    {
+        // Prepare the object type
+        $modelReflectionClass = new \ReflectionClass($this);
+        $type = strtolower($modelReflectionClass->getShortName());
+
+        // Prepare the attributes
+        $attributes = $this->attributesToArray();
+        unset($attributes['id']);
+        if (!$response->isVerbose()) {
+            $attributes = array_filter($attributes);
+        }
+
+        // Prepare the relations
+        $relations = [];
+        foreach ($this->appends as $append) {
+            $includePath = ($prefix ? "$prefix." : '').$append;
+            $includeRelation = $response->includes($includePath);
+            $appendRelations = $this->mutateAttribute($append, null);
+
+//            echo (is_object($appendRelations) ? get_class($appendRelations) : gettype($appendRelations)).PHP_EOL;
+
+            if ($appendRelations instanceof ResourceIdentifyable) {
+                $relations[$append]['data'] = $appendRelations->toJsonApiResourceIdentifier();
+                if ($includeRelation) {
+                    $response->includeResource($appendRelations, $includePath);
+                }
+            } else {
+                $relations[$append] = ['data' => []];
+                foreach ($appendRelations as $appendRelation) {
+                    $relations[$append]['data'][] = $appendRelation->toJsonApiResourceIdentifier();
+                    if ($includeRelation) {
+                        $response->includeResource($appendRelation, $includePath);
+                    }
+                }
+            }
+            if (empty($relations[$append]['data']) || (is_array($relations[$append]['data'])) && !count($relations[$append]['data'])) {
+                unset($relations[$append]);
+            }
+        }
+
+        $jsonApiData = array_merge($this->toJsonApiResourceIdentifier(), [
+            'attributes' => $attributes,
+            'relations' => $relations,
+        ]);
+
+        return array_filter($jsonApiData);
+    }
+
+    /**
+     * Return a resource identifier object
+     *
+     * @return object Resource identifier object
+     */
+    public function toJsonApiResourceIdentifier()
+    {
+
+        // Prepare the object type
+        $modelReflectionClass = new \ReflectionClass($this);
+        $type = strtolower($modelReflectionClass->getShortName());
+
+        return [
+            'type' => $type,
+            'id' => $this->id
+        ];
+    }
+
+    /**
+     * Return the relation map for this model
+     *
+     * @param string $prefix            Prefix
+     * @param bool|false $recursive     Recursive
+     * @return array
+     */
+    public static function relationMap($prefix = '', $recursive = false) {
+        $relationMap = array();
+        foreach (static::$relmap as $relation => $relationModel) {
+            $relationPath = ($prefix ? "$prefix." : '').$relation;
+            $relationMap[$relationPath] = $relationModel;
+            if ($recursive) {
+                $relationMap = array_merge($relationMap, call_user_func(array($relationModel, 'relationMap'), $relationPath, true));
+            }
+        }
+        return $relationMap;
     }
 }

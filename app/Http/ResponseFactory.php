@@ -33,84 +33,24 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Http;
 
-use App\Traits\Describable;
-use App\Traits\Image;
+use App\Http\JsonApi\Response;
 
-final class Session extends AbstractModel
+class ResponseFactory extends \Laravel\Lumen\Http\ResponseFactory
 {
-    /**
-     * Use describable and image features
-     */
-    use Describable, Image;
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Return a new JSON response from the application.
      *
-     * @var array
+     * @param  string|array $data
+     * @param  int $status
+     * @param  array $headers
+     * @param  int $options
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    protected $hidden = array('day_id', 'room_id', 'room');
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = array('room');
-
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array('room' => '\\App\\Models\\Room');
-
-    /**
-     * Return this session's day
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Day
-     */
-    public function day() {
-        return $this->belongsTo('App\Models\Day');
-    }
-    
-    /**
-     * Return this sessions's day
-     *
-     * @return int|\App\Models\Day      Day
-     */
-    public function getDayAttribute()
+    public function jsonAPI($data = [], $status = 200, array $headers = [], $options = 0)
     {
-        return $this->day()->first();
-    }
-
-    /**
-     * Return this session's room
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Room
-     */
-    public function room() {
-        return $this->belongsTo('App\Models\Room');
-    }
-
-    /**
-     * Return this sessions's room
-     *
-     * @return int|\App\Models\Room      Room
-     */
-    public function getRoomAttribute()
-    {
-        return $this->room()->first();
-    }
-
-    /**
-     * Return all links of this venue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
-     */
-    public function links()
-    {
-        return $this->hasMany('App\Models\Link');
+        return new Response($data, $status, $headers, $options | JSON_PRETTY_PRINT);
     }
 }

@@ -22,12 +22,24 @@ $app->get('/', function () use ($app) {
 $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], function ($app) {
 
     // Country
-    $app->get('country', 'CountryController@listCountries');
-    $app->get('country/{id}', 'CountryController@getCountry');
+    $app->get('country', [
+        'as' => 'countries',
+        'uses' => 'CountryController@listCountries'
+    ]);
+    $app->get('country/{id}', [
+        'as' => 'country',
+        'uses' => 'CountryController@getCountry'
+    ]);
 
     // Day
-    $app->get('day', 'DayController@listDays');
-    $app->get('day/{id}', 'DayController@getDay');
+    $app->get('day', [
+        'as' => 'days',
+        'uses' => 'DayController@listDays'
+    ]);
+    $app->get('day/{id}', [
+        'as' => 'day',
+        'uses' => 'DayController@getDay'
+    ]);
     $app->post('day', 'DayController@createDay');
     $app->put('day/{id}', 'DayController@updateDay');
     $app->delete('day/{id}', 'DayController@deleteDay');
@@ -45,28 +57,28 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
     $app->post('link', 'LinkController@createLink');
     $app->put('link/{id}', 'LinkController@updateLink');
     $app->delete('link/{id}', 'LinkController@deleteLink');
-    
+
     // Organizer
     $app->get('organizer', 'OrganizerController@listOrganizers');
     $app->get('organizer/{id}', 'OrganizerController@getOrganizer');
     $app->post('organizer', 'OrganizerController@createOrganizer');
     $app->put('organizer/{id}', 'OrganizerController@updateOrganizer');
     $app->delete('organizer/{id}', 'OrganizerController@deleteOrganizer');
-    
+
     // Presenter
     $app->get('presenter', 'PresenterController@listPresenters');
     $app->get('presenter/{id}', 'PresenterController@getPresenter');
     $app->post('presenter', 'PresenterController@createPresenter');
     $app->put('presenter/{id}', 'PresenterController@updatePresenter');
     $app->delete('presenter/{id}', 'PresenterController@deletePresenter');
-    
+
     // Room
     $app->get('room', 'RoomController@listRooms');
     $app->get('room/{id}', 'RoomController@getRoom');
     $app->post('room', 'RoomController@createRoom');
     $app->put('room/{id}', 'RoomController@updateRoom');
     $app->delete('room/{id}', 'RoomController@deleteRoom');
-    
+
     // Session
     $app->get('session', 'SessionController@listSessions');
     $app->get('session/{id}', 'SessionController@getSession');
@@ -80,14 +92,14 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
     $app->post('series', 'SeriesController@createSeries');
     $app->put('series/{id}', 'SeriesController@updateSeries');
     $app->delete('series/{id}', 'SeriesController@deleteSeries');
-    
+
     // Tag
     $app->get('tag', 'TagController@listTags');
     $app->get('tag/{id}', 'TagController@getTag');
     $app->post('tag', 'TagController@createTag');
     $app->put('tag/{id}', 'TagController@updateTag');
     $app->delete('tag/{id}', 'TagController@deleteTag');
-    
+
     // Venue
     $app->get('venue', 'VenueController@listVenues');
     $app->get('venue/{id}', 'VenueController@getVenue');

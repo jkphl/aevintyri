@@ -33,84 +33,68 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Http\JsonApi;
 
-use App\Traits\Describable;
-use App\Traits\Image;
 
-final class Session extends AbstractModel
+use App\Http\JsonApiable;
+
+class Pagination implements JsonApiable
 {
     /**
-     * Use describable and image features
+     * First pagination link
+     *
+     * @var string
      */
-    use Describable, Image;
+    protected $first = null;
+    /**
+     * Last pagination link
+     *
+     * @var string
+     */
+    protected $last = null;
+    /**
+     * Previous pagination link
+     *
+     * @var string
+     */
+    protected $prev = null;
+    /**
+     * Next pagination link
+     *
+     * @var string
+     */
+    protected $next = null;
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Pagination constructor
      *
-     * @var array
+     * @param string $first First pagination link
+     * @param string $last Last pagination link
+     * @param string $prev Previous pagination link
+     * @param string $next Next pagination link
      */
-    protected $hidden = array('day_id', 'room_id', 'room');
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = array('room');
-
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array('room' => '\\App\\Models\\Room');
-
-    /**
-     * Return this session's day
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Day
-     */
-    public function day() {
-        return $this->belongsTo('App\Models\Day');
-    }
-    
-    /**
-     * Return this sessions's day
-     *
-     * @return int|\App\Models\Day      Day
-     */
-    public function getDayAttribute()
+    public function __construct($first = null, $last = null, $prev = null, $next = null)
     {
-        return $this->day()->first();
+        $this->first = $first;
+        $this->last = $last;
+        $this->prev = $prev;
+        $this->next = $next;
     }
 
     /**
-     * Return this session's room
+     * Return as a JSON API array
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Room
+     * @param Response $response JSON API response
+     * @param string $prefix Prefix
+     * @return array|string
      */
-    public function room() {
-        return $this->belongsTo('App\Models\Room');
-    }
-
-    /**
-     * Return this sessions's room
-     *
-     * @return int|\App\Models\Room      Room
-     */
-    public function getRoomAttribute()
+    public function toJsonApi(Response $response, $prefix = '')
     {
-        return $this->room()->first();
-    }
-
-    /**
-     * Return all links of this venue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
-     */
-    public function links()
-    {
-        return $this->hasMany('App\Models\Link');
+        return array_filter(array(
+            'first' => $this->first,
+            'last' => $this->last,
+            'prev' => $this->prev,
+            'next' => $this->next,
+        ));
     }
 }

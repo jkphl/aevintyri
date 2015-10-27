@@ -33,84 +33,50 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-namespace App\Models;
+namespace App\Http\JsonApi;
 
-use App\Traits\Describable;
-use App\Traits\Image;
 
-final class Session extends AbstractModel
+use App\Http\JsonApiable;
+
+class Link implements JsonApiable
 {
     /**
-     * Use describable and image features
+     * Meta
+     *
+     * @var string
      */
-    use Describable, Image;
+    protected $href = null;
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Meta data
      *
-     * @var array
+     * @var object
      */
-    protected $hidden = array('day_id', 'room_id', 'room');
+    protected $meta = null;
 
     /**
-     * The accessors to append to the model's array form.
+     * Link constructor
      *
-     * @var array
+     * @param string $href URL
+     * @param object $meta Meta data
      */
-    protected $appends = array('room');
-
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array('room' => '\\App\\Models\\Room');
-
-    /**
-     * Return this session's day
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Day
-     */
-    public function day() {
-        return $this->belongsTo('App\Models\Day');
-    }
-    
-    /**
-     * Return this sessions's day
-     *
-     * @return int|\App\Models\Day      Day
-     */
-    public function getDayAttribute()
+    public function __construct($href, $meta = null)
     {
-        return $this->day()->first();
+        $this->href = $href;
+        if (is_object($meta)) {
+            $this->meta = $meta;
+        }
     }
 
     /**
-     * Return this session's room
+     * Return as a JSON API array
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Room
+     * @param Response $response JSON API response
+     * @param string $prefix Prefix
+     * @return array|string
      */
-    public function room() {
-        return $this->belongsTo('App\Models\Room');
-    }
-
-    /**
-     * Return this sessions's room
-     *
-     * @return int|\App\Models\Room      Room
-     */
-    public function getRoomAttribute()
+    public function toJsonApi(Response $response, $prefix = '')
     {
-        return $this->room()->first();
-    }
-
-    /**
-     * Return all links of this venue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
-     */
-    public function links()
-    {
-        return $this->hasMany('App\Models\Link');
+        return is_object($this->meta) ? array('href' => $this->href, 'meta' => $this->meta) : $this->href;
     }
 }

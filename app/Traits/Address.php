@@ -56,10 +56,10 @@ trait Address
     /**
      * Return this records's country
      *
-     * @return int|\App\Models\Country     Organizer
+     * @return \App\Models\Country     Organizer
      */
     public function getCountryAttribute()
     {
-        return $this->expand('country') ? $this->country()->first() : $this->country_id;
+        return $this->country()->getResults();
     }
 }
