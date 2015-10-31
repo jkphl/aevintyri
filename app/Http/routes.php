@@ -45,64 +45,118 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
     $app->delete('day/{id}', 'DayController@deleteDay');
 
     // Event
-    $app->get('event', 'EventController@listEvents');
-    $app->get('event/{id}', 'EventController@getEvent');
+    $app->get('event', [
+        'as' => 'events',
+        'uses' => 'EventController@listEvents'
+    ]);
+    $app->get('event/{id}', [
+        'as' => 'event',
+        'uses' => 'EventController@getEvent'
+    ]);
     $app->post('event', 'EventController@createEvent');
     $app->put('event/{id}', 'EventController@updateEvent');
     $app->delete('event/{id}', 'EventController@deleteEvent');
 
     // Link
-    $app->get('link', 'LinkController@listLinks');
-    $app->get('link/{id}', 'LinkController@getLink');
+    $app->get('link', [
+        'as' => 'links',
+        'uses' => 'LinkController@listLinks'
+    ]);
+    $app->get('link/{id}', [
+        'as' => 'link',
+        'uses' => 'LinkController@getLink'
+    ]);
     $app->post('link', 'LinkController@createLink');
     $app->put('link/{id}', 'LinkController@updateLink');
     $app->delete('link/{id}', 'LinkController@deleteLink');
 
     // Organizer
-    $app->get('organizer', 'OrganizerController@listOrganizers');
-    $app->get('organizer/{id}', 'OrganizerController@getOrganizer');
+    $app->get('organizer', [
+        'as' => 'organizers',
+        'uses' => 'OrganizerController@listOrganizers'
+    ]);
+    $app->get('organizer/{id}', [
+        'as' => 'organizer',
+        'uses' => 'OrganizerController@getOrganizer'
+    ]);
     $app->post('organizer', 'OrganizerController@createOrganizer');
     $app->put('organizer/{id}', 'OrganizerController@updateOrganizer');
     $app->delete('organizer/{id}', 'OrganizerController@deleteOrganizer');
 
     // Presenter
-    $app->get('presenter', 'PresenterController@listPresenters');
-    $app->get('presenter/{id}', 'PresenterController@getPresenter');
+    $app->get('presenter', [
+        'as' => 'presenters',
+        'uses' => 'PresenterController@listPresenters'
+    ]);
+    $app->get('presenter/{id}', [
+        'as' => 'presenter',
+        'uses' => 'PresenterController@getPresenter'
+    ]);
     $app->post('presenter', 'PresenterController@createPresenter');
     $app->put('presenter/{id}', 'PresenterController@updatePresenter');
     $app->delete('presenter/{id}', 'PresenterController@deletePresenter');
 
     // Room
-    $app->get('room', 'RoomController@listRooms');
-    $app->get('room/{id}', 'RoomController@getRoom');
+    $app->get('room', [
+        'as' => 'rooms',
+        'uses' => 'RoomController@listRooms'
+    ]);
+    $app->get('room/{id}', [
+        'as' => 'room',
+        'uses' => 'RoomController@getRoom'
+    ]);
     $app->post('room', 'RoomController@createRoom');
     $app->put('room/{id}', 'RoomController@updateRoom');
     $app->delete('room/{id}', 'RoomController@deleteRoom');
 
     // Session
-    $app->get('session', 'SessionController@listSessions');
-    $app->get('session/{id}', 'SessionController@getSession');
+    $app->get('session', [
+        'as' => 'sessions',
+        'uses' => 'SessionController@listSessions'
+    ]);
+    $app->get('session/{id}', [
+        'as' => 'session',
+        'uses' => 'SessionController@getSession'
+    ]);
     $app->post('session', 'SessionController@createSession');
     $app->put('session/{id}', 'SessionController@updateSession');
     $app->delete('session/{id}', 'SessionController@deleteSession');
 
     // Series
-    $app->get('series', 'SeriesController@listSeriess');
-    $app->get('series/{id}', 'SeriesController@getSeries');
+    $app->get('series', [
+        'as' => 'seriess',
+        'uses' => 'DayController@listDays'
+    ]);
+    $app->get('series/{id}', [
+        'as' => 'series',
+        'uses' => 'DayController@getDay'
+    ]);
     $app->post('series', 'SeriesController@createSeries');
     $app->put('series/{id}', 'SeriesController@updateSeries');
     $app->delete('series/{id}', 'SeriesController@deleteSeries');
 
     // Tag
-    $app->get('tag', 'TagController@listTags');
-    $app->get('tag/{id}', 'TagController@getTag');
+    $app->get('tag', [
+        'as' => 'tags',
+        'uses' => 'TagController@listTags'
+    ]);
+    $app->get('tag/{id}', [
+        'as' => 'tag',
+        'uses' => 'TagController@getTag'
+    ]);
     $app->post('tag', 'TagController@createTag');
     $app->put('tag/{id}', 'TagController@updateTag');
     $app->delete('tag/{id}', 'TagController@deleteTag');
 
     // Venue
-    $app->get('venue', 'VenueController@listVenues');
-    $app->get('venue/{id}', 'VenueController@getVenue');
+    $app->get('venue', [
+        'as' => 'venues',
+        'uses' => 'VenueController@listVenues'
+    ]);
+    $app->get('venue/{id}', [
+        'as' => 'venue',
+        'uses' => 'VenueController@getVenue'
+    ]);
     $app->post('venue', 'VenueController@createVenue');
     $app->put('venue/{id}', 'VenueController@updateVenue');
     $app->delete('venue/{id}', 'VenueController@deleteVenue');
