@@ -35,6 +35,8 @@
 
 namespace App\Models;
 
+use App\Http\JsonApi\Link;
+use App\Http\JsonApi\Links;
 use App\Http\JsonApi\ResourceIdentifyable;
 use App\Http\JsonApi\Response;
 use App\Http\JsonApiable;
@@ -68,39 +70,11 @@ abstract class AbstractModel extends Model implements JsonApiable, ResourceIdent
     public static $relmap = array();
 
     /**
-     * Determine if a particular attribute should be expanded during conversion to an array (depending on the request parameters)
+     * JSON API short name
      *
-     * @param string $attribute Attribute
-     * @return bool                     Attribute should be expanded
-     * @deprecated
+     * @var string
      */
-    protected function expand_deprecated($attribute)
-    {
-        $expand = app('request')->get('expand', '');
-        if ($expand === '*') {
-            return true;
-        } else {
-            $expand = array_filter(array_map('trim', explode(',', $expand)));
-        }
-        if (count($expand)) {
-            $mutators = [$attribute];
-            $lastModel = null;
-
-            // Run through the stack trace
-            foreach (debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT | DEBUG_BACKTRACE_IGNORE_ARGS) as $frame) {
-                if (isset($frame['object']) && ($frame['object'] instanceof self) && (spl_object_hash($frame['object']) != $lastModel)) {
-                    $lastModel = spl_object_hash($frame['object']);
-                    $mutators[] = strtolower((new \ReflectionClass($frame['object']))->getShortName());
-                }
-            }
-
-            array_pop($mutators);
-            $expandKey = implode('.', array_reverse($mutators));
-            return in_array($expandKey, $expand);
-        }
-
-        return false;
-    }
+    protected $jsonApiShortname = null;
 
     /**
      * Return all append columns
@@ -121,10 +95,6 @@ abstract class AbstractModel extends Model implements JsonApiable, ResourceIdent
      */
     public function toJsonApi(Response $response, $prefix = '')
     {
-        // Prepare the object type
-        $modelReflectionClass = new \ReflectionClass($this);
-        $type = strtolower($modelReflectionClass->getShortName());
-
         // Prepare the attributes
         $attributes = $this->attributesToArray();
         unset($attributes['id']);
@@ -160,9 +130,11 @@ abstract class AbstractModel extends Model implements JsonApiable, ResourceIdent
             }
         }
 
+        $jsonApiLinks = new Links(new Link($this->getJsonApiLink()));
         $jsonApiData = array_merge($this->toJsonApiResourceIdentifier(), [
             'attributes' => $attributes,
             'relations' => $relations,
+            'links' => $jsonApiLinks->toJsonApi($response),
         ]);
 
         return array_filter($jsonApiData);
@@ -175,13 +147,8 @@ abstract class AbstractModel extends Model implements JsonApiable, ResourceIdent
      */
     public function toJsonApiResourceIdentifier()
     {
-
-        // Prepare the object type
-        $modelReflectionClass = new \ReflectionClass($this);
-        $type = strtolower($modelReflectionClass->getShortName());
-
         return [
-            'type' => $type,
+            'type' => $this->getJsonApiShortname(),
             'id' => $this->id
         ];
     }
@@ -189,19 +156,45 @@ abstract class AbstractModel extends Model implements JsonApiable, ResourceIdent
     /**
      * Return the relation map for this model
      *
-     * @param string $prefix            Prefix
-     * @param bool|false $recursive     Recursive
+     * @param string $prefix Prefix
+     * @param bool|false $recursive Recursive
      * @return array
      */
-    public static function relationMap($prefix = '', $recursive = false) {
+    public static function relationMap($prefix = '', $recursive = false)
+    {
         $relationMap = array();
         foreach (static::$relmap as $relation => $relationModel) {
             $relationPath = ($prefix ? "$prefix." : '').$relation;
             $relationMap[$relationPath] = $relationModel;
             if ($recursive) {
-                $relationMap = array_merge($relationMap, call_user_func(array($relationModel, 'relationMap'), $relationPath, true));
+                $relationMap = array_merge($relationMap,
+                    call_user_func(array($relationModel, 'relationMap'), $relationPath, true));
             }
         }
         return $relationMap;
+    }
+
+    /**
+     * Return the URL to request this object
+     *
+     * @return string
+     */
+    public function getJsonApiLink()
+    {
+        return route($this->getJsonApiShortname(), ['id' => $this->id]);
+    }
+
+    /**
+     * Return the classes short name (lower-cased)
+     *
+     * @return string
+     */
+    protected function getJsonApiShortname()
+    {
+        if ($this->jsonApiShortname === null) {
+            $modelReflectionClass = new \ReflectionClass($this);
+            $this->jsonApiShortname = strtolower($modelReflectionClass->getShortName());
+        }
+        return $this->jsonApiShortname;
     }
 }

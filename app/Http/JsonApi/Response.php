@@ -37,6 +37,7 @@ namespace App\Http\JsonApi;
 
 
 use App\Http\JsonApiable;
+use App\Models\AbstractModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -114,6 +115,13 @@ class Response extends JsonResponse
     protected $relmap = null;
 
     /**
+     * Primary resource object (if not a list of objects)
+     *
+     * @var JsonApiable
+     */
+    protected $primary = null;
+
+    /**
      * Constructor.
      *
      * @param  Builder|JsonApiable|array $data
@@ -130,7 +138,7 @@ class Response extends JsonResponse
         $data = $this->_buildJsonApiData($data);
 
         // Set the links object
-        $this->links = new Links(new Link($this->request->fullUrl()), null, $this->pagination);
+        $this->links = new Links(new Link(($this->primary instanceof JsonApiable) ? $this->primary->getJsonApiLink() : $this->request->fullUrl()), null, $this->pagination);
 
         // Build the final data
         $jsonData = array_filter(array(
@@ -190,7 +198,8 @@ class Response extends JsonResponse
             $data = $this->_resourceObjectList($data);
 
             // Else if it's a single resource object
-        } elseif ($data instanceof JsonApiable) {
+        } elseif ($data instanceof AbstractModel) {
+            $this->primary = $data;
             $this->relmap = call_user_func(array($data, 'relationMap'), '', true);
             $this->_buildIncludeMap();
             $data = $this->_resourceObjectData($data);
