@@ -45,12 +45,36 @@ final class Country extends AbstractModel
     protected $table = 'countries';
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('organizers');
+
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+//    public static $relmap = array('organizers' => '\\App\\Models\\Organizer');
+
+    /**
      * Return all organizers in this country
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany      Organizer
      */
     public function organizers()
     {
-        return $this->hasMany('Organizer');
+        return $this->hasMany('App\Models\Organizer');
+    }
+
+    /**
+     * Return this country's organizers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Organizers
+     */
+    public function getOrganizersAttribute()
+    {
+        return $this->organizers();
     }
 }

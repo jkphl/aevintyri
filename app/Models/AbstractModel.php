@@ -135,7 +135,7 @@ abstract class AbstractModel extends Model implements ResourceIdentifyable
 				if ($includeRelation) {
 					$response->includeResource($appendRelations, $includePath);
 				}
-			} elseif (is_array($appendRelations)) {
+			} elseif (is_array($appendRelations) || ($appendRelations instanceof \Illuminate\Database\Eloquent\Relations\Relation)) {
 				$relationships[$append] = ['data' => []];
 
 				/** @var ResourceIdentifyable $appendRelation */
