@@ -36,78 +36,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    /**
-     * List all tags
-     *
-     * @return \Symfony\Component\HttpFoundation\Response Tag list
-     */
-    public function listTags()
-    {
-        return response()->json(Tag::all());
-    }
+	/**
+	 * List all tags
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response Tag list
+	 */
+	public function listTags()
+	{
+		return response()->jsonAPI((new Tag)->newQuery());
+	}
 
-    /**
-     * Get a single tag
-     *
-     * @param int $id Tag ID
-     * @return \Symfony\Component\HttpFoundation\Response Tag
-     */
-    public function getTag($id)
-    {
+	/**
+	 * Get a single tag
+	 *
+	 * @param int $id Tag ID
+	 * @return \Symfony\Component\HttpFoundation\Response Tag
+	 */
+	public function getTag($id)
+	{
+		return response()->jsonAPI(Tag::find($id));
+	}
 
-        $Tag = Tag::find($id);
+	/**
+	 * Create a new tag
+	 *
+	 * @param Request $request Request
+	 * @return \Symfony\Component\HttpFoundation\Response Tag
+	 */
+	public function createTag(Request $request)
+	{
 
-        return response()->json($Tag);
-    }
+		$Tag = Tag::create($request->all());
 
-    /**
-     * Create a new tag
-     *
-     * @param Request $request Request
-     * @return \Symfony\Component\HttpFoundation\Response Tag
-     */
-    public function createTag(Request $request)
-    {
+		return response()->json($Tag);
 
-        $Tag = Tag::create($request->all());
+	}
 
-        return response()->json($Tag);
+	/**
+	 * Update an tag
+	 *
+	 * @param Request $request Request
+	 * @param int $id Tag ID
+	 * @return \Symfony\Component\HttpFoundation\Response Tag
+	 */
+	public function updateTag(Request $request, $id)
+	{
+		$Tag = Tag::find($id);
+		$Tag->title = $request->input('title');
+		$Tag->author = $request->input('author');
+		$Tag->isbn = $request->input('isbn');
+		$Tag->save();
 
-    }
+		return response()->json($Tag);
+	}
 
-    /**
-     * Update an tag
-     *
-     * @param Request $request Request
-     * @param int $id Tag ID
-     * @return \Symfony\Component\HttpFoundation\Response Tag
-     */
-    public function updateTag(Request $request, $id)
-    {
-        $Tag = Tag::find($id);
-        $Tag->title = $request->input('title');
-        $Tag->author = $request->input('author');
-        $Tag->isbn = $request->input('isbn');
-        $Tag->save();
+	/**
+	 * Delete an tag
+	 *
+	 * @param int $id Tag ID
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @todo Set the deleted property to 1 instead of really deleting the tag
+	 */
+	public function deleteTag($id)
+	{
+		$Tag = Tag::find($id);
+		$Tag->delete();
 
-        return response()->json($Tag);
-    }
-
-    /**
-     * Delete an tag
-     *
-     * @param int $id Tag ID
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @todo Set the deleted property to 1 instead of really deleting the tag
-     */
-    public function deleteTag($id)
-    {
-        $Tag = Tag::find($id);
-        $Tag->delete();
-
-        return response()->json('deleted');
-    }
+		return response()->json('deleted');
+	}
 }
