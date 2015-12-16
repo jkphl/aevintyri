@@ -1,6 +1,7 @@
 /.env
 /.idea
 /composer.lock
+/public/css
 /public/img
 /public/js
 /vendor
