@@ -42,7 +42,7 @@ final class Event extends AbstractEventSeries
      *
      * @var array
      */
-    protected $hidden = array('series_id', 'organizer_id');
+    protected $hidden = array('series_id', 'series', 'organizer_id', 'organizer');
 
     /**
      * The accessors to append to the model's array form.
@@ -68,7 +68,7 @@ final class Event extends AbstractEventSeries
      */
     public function getSeriesAttribute()
     {
-        return $this->expand('series') ? $this->series()->first() : $this->series_id;
+        return $this->series()->getQuery()->first();
     }
 
     /**

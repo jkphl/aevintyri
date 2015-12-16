@@ -36,7 +36,7 @@
 namespace App\Models;
 
 use App\Traits\Address;
-use app\Traits\Describable;
+use App\Traits\Describable;
 use App\Traits\Image;
 
 final class Venue extends AbstractModel

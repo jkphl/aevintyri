@@ -41,6 +41,11 @@ use App\Http\JsonApi\Response;
 interface JsonApiable
 {
     /**
+     * Date format for JSON API serialization
+     */
+    const JSON_DATE_FORMAT = 'c';
+
+    /**
      * Return as a JSON API array
      *
      * @param Response $response JSON API response

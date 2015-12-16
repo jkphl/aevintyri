@@ -36,124 +36,124 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    /**
-     * List all events
-     *
-     * @return \Symfony\Component\HttpFoundation\Response Event list
-     */
-    public function listEvents()
-    {
-        $event = new Event();
+	/**
+	 * List all events
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response Event list
+	 */
+	public function listEvents()
+	{
+		return response()->jsonAPI((new Event)->newQuery());
 
-        // Determine the columns to expand
-        $expand = trim($this->_request()->get('expand', ''));
-        $expand = ($expand === '*') ? $event->getAppends() : array_filter(array_map('trim', explode(',', $expand)));
-        $expand = array_intersect($expand, $event->getAppends());
+//        $event = new Event();
+//
+//        // Determine the columns to expand
+//        $expand = trim($this->_request()->get('expand', ''));
+//        $expand = ($expand === '*') ? $event->getAppends() : array_filter(array_map('trim', explode(',', $expand)));
+//        $expand = array_intersect($expand, $event->getAppends());
+//
+//        $from = trim($this->_request()->get('from', ''));
+//        try {
+//            $from = strlen($from) ? new \DateTimeImmutable($from) : null;
+//        } catch (\Exception $e) {
+//            return $this->error(400, 'Bad request (from constraint)');
+//        }
+//        $to = trim($this->_request()->get('to', ''));
+//        try {
+//            $to = strlen($to) ? new \DateTimeImmutable($to) : null;
+//        } catch (\Exception $e) {
+//            return $this->error(400, 'Bad request (from constraint)');
+//        }
+//
+//        // Build the event query
+//        $eventQuery = $event->newQuery();
+//
+//        // Add relations if requested
+//        if (count($expand)) {
+//            $eventQuery->with($expand);
+//        }
+//
+//        if ($from || $to) {
+//            $eventQuery->whereHas('days', function ($query) use ($from, $to) {
+//                if ($from) {
+//                    $query->where('date', '>=', $from);
+//                }
+//                if ($to) {
+//                    $query->where('date', '<=', $to);
+//                }
+//            })->whereHas('days.sessions', function ($query) use ($from, $to) {
+//                if ($from) {
+//                    $query->where('start_time', '>=', $from->format('H:i:s'));
+//                }
+//                if ($to) {
+//                    $query->where('end_time', '<=', $to->format('H:i:s'));
+//                }
+//            });
+//        }
+//
+//        return response()->json($eventQuery->get());
+	}
 
-        $from = trim($this->_request()->get('from', ''));
-        try {
-            $from = strlen($from) ? new \DateTimeImmutable($from) : null;
-        } catch (\Exception $e) {
-            return $this->error(400, 'Bad request (from constraint)');
-        }
-        $to = trim($this->_request()->get('to', ''));
-        try {
-            $to = strlen($to) ? new \DateTimeImmutable($to) : null;
-        } catch (\Exception $e) {
-            return $this->error(400, 'Bad request (from constraint)');
-        }
+	/**
+	 * Get a single event
+	 *
+	 * @param int $id Event ID
+	 * @return \Symfony\Component\HttpFoundation\Response Event
+	 */
+	public function getEvent($id)
+	{
+		return response()->jsonAPI(Event::find($id));
+	}
 
-        // Build the event query
-        $eventQuery = $event->newQuery();
+	/**
+	 * Create a new event
+	 *
+	 * @param Request $request Request
+	 * @return \Symfony\Component\HttpFoundation\Response Event
+	 */
+	public function createEvent(Request $request)
+	{
 
-        // Add relations if requested
-        if (count($expand)) {
-            $eventQuery->with($expand);
-        }
+		$Event = Event::create($request->all());
 
-        if ($from || $to) {
-            $eventQuery->whereHas('days', function ($query) use ($from, $to) {
-                if ($from) {
-                    $query->where('date', '>=', $from);
-                }
-                if ($to) {
-                    $query->where('date', '<=', $to);
-                }
-            })->whereHas('days.sessions', function ($query) use ($from, $to) {
-                if ($from) {
-                    $query->where('start_time', '>=', $from->format('H:i:s'));
-                }
-                if ($to) {
-                    $query->where('end_time', '<=', $to->format('H:i:s'));
-                }
-            });
-        }
+		return response()->json($Event);
 
-        return response()->json($eventQuery->get());
-    }
+	}
 
-    /**
-     * Get a single event
-     *
-     * @param int $id Event ID
-     * @return \Symfony\Component\HttpFoundation\Response Event
-     */
-    public function getEvent($id)
-    {
+	/**
+	 * Update an event
+	 *
+	 * @param Request $request Request
+	 * @param int $id Event ID
+	 * @return \Symfony\Component\HttpFoundation\Response Event
+	 */
+	public function updateEvent(Request $request, $id)
+	{
+		$Event = Event::find($id);
+		$Event->title = $request->input('title');
+		$Event->author = $request->input('author');
+		$Event->isbn = $request->input('isbn');
+//		$Event->save();
 
-        $Event = Event::find($id);
+		return response()->json($Event);
+	}
 
-        return response()->json($Event);
-    }
-
-    /**
-     * Create a new event
-     *
-     * @param Request $request Request
-     * @return \Symfony\Component\HttpFoundation\Response Event
-     */
-    public function createEvent(Request $request)
-    {
-
-        $Event = Event::create($request->all());
-
-        return response()->json($Event);
-
-    }
-
-    /**
-     * Update an event
-     *
-     * @param Request $request Request
-     * @param int $id Event ID
-     * @return \Symfony\Component\HttpFoundation\Response Event
-     */
-    public function updateEvent(Request $request, $id)
-    {
-        $Event = Event::find($id);
-        $Event->title = $request->input('title');
-        $Event->author = $request->input('author');
-        $Event->isbn = $request->input('isbn');
-        $Event->save();
-
-        return response()->json($Event);
-    }
-
-    /**
-     * Delete an event
-     *
-     * @param int $id Event ID
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @todo Set the deleted property to 1 instead of really deleting the event
-     */
-    public function deleteEvent($id)
-    {
-        $Event = Event::find($id);
-        $Event->delete();
-
-        return response()->json('deleted');
-    }
+	/**
+	 * Delete an event
+	 *
+	 * @param int $id Event ID
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @todo Set the deleted property to 1 instead of really deleting the event
+	 */
+//	public function deleteEvent($id)
+//	{
+//		$Event = Event::find($id);
+//		$Event->delete();
+//
+//		return response()->json('deleted');
+//	}
 }

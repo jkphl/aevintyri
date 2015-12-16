@@ -36,7 +36,7 @@
 namespace App\Models;
 
 use App\Traits\Contact;
-use app\Traits\Describable;
+use App\Traits\Describable;
 use App\Traits\Image;
 
 final class Presenter extends AbstractModel

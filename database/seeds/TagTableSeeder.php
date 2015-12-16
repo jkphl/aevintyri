@@ -38,25 +38,25 @@ use Illuminate\Database\Seeder;
 
 class TagTableSeeder extends Seeder
 {
-    public function run()
-    {
-        Tag::create(['name' => 'Online Marketing','color' => '#000000']);
-        Tag::create(['name' => 'Webentwicklung','color' => '#000000']);
-        Tag::create(['name' => 'Social Media','color' => '#000000']);
-        Tag::create(['name' => 'eCommerce','color' => '#000000']);
-        Tag::create(['name' => 'SEO','color' => '#000000']);
-        Tag::create(['name' => 'Mobile Apps','color' => '#000000']);
-        Tag::create(['name' => 'Networking','color' => '#000000']);
-        Tag::create(['name' => 'Kreativkultur','color' => '#000000']);
-        Tag::create(['name' => 'Vorträge, Workshops & Pitches','color' => '#000000']);
-        Tag::create(['name' => 'Code','color' => '#000000']);
-        Tag::create(['name' => 'Business','color' => '#000000']);
-        Tag::create(['name' => 'Startup','color' => '#000000']);
-        Tag::create(['name' => 'Wordpress','color' => '#000000']);
-        Tag::create(['name' => 'CMS','color' => '#000000']);
-        Tag::create(['name' => 'Scrum','color' => '#000000']);
-        Tag::create(['name' => 'Agile Projectmanagement','color' => '#000000']);
-        Tag::create(['name' => 'Kanban','color' => '#000000']);
-        Tag::create(['name' => 'Webdesign','color' => '#000000']);
-    }
+	public function run()
+	{
+		Tag::create(['name' => 'Online Marketing', 'color' => '#0b8394']);
+		Tag::create(['name' => 'Webentwicklung', 'color' => '#3d9ec7']);
+		Tag::create(['name' => 'Social Media', 'color' => '#86ff4a']);
+		Tag::create(['name' => 'eCommerce', 'color' => '#bd2857']);
+		Tag::create(['name' => 'SEO', 'color' => '#370ed5']);
+		Tag::create(['name' => 'Mobile Apps', 'color' => '#99e948']);
+		Tag::create(['name' => 'Networking', 'color' => '#1ac508']);
+		Tag::create(['name' => 'Kreativkultur', 'color' => '#e6960e']);
+		Tag::create(['name' => 'Vorträge, Workshops & Pitches', 'color' => '#c45a64']);
+		Tag::create(['name' => 'Code', 'color' => '#3a4f59']);
+		Tag::create(['name' => 'Business', 'color' => '#a61bd1']);
+		Tag::create(['name' => 'Startup', 'color' => '#75594c']);
+		Tag::create(['name' => 'Wordpress', 'color' => '#40dba3']);
+		Tag::create(['name' => 'CMS', 'color' => '#1d34fe']);
+		Tag::create(['name' => 'Scrum', 'color' => '#611f55']);
+		Tag::create(['name' => 'Agile Projectmanagement', 'color' => '#56c2c7']);
+		Tag::create(['name' => 'Kanban', 'color' => '#19670b']);
+		Tag::create(['name' => 'Webdesign', 'color' => '#220921']);
+	}
 }

@@ -11,6 +11,8 @@
 |
 */
 
+/** @var $get \Laravel\Lumen\Application */
+
 $app->get('/', function () use ($app) {
     return $app->welcome();
 });
@@ -19,7 +21,7 @@ $app->get('/', function () use ($app) {
     return "Ævintýri RESTful API by Joschi Kuphal / tollwerk GmbH (https://jkphl.is)";
 });
 
-$app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], function ($app) {
+$app->group(['prefix' => 'api/v2', 'namespace' => 'App\Http\Controllers'], function (\Laravel\Lumen\Application $app) {
 
     // Country
     $app->get('country', [
@@ -125,11 +127,11 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
     // Series
     $app->get('series', [
         'as' => 'seriess',
-        'uses' => 'DayController@listDays'
+        'uses' => 'SeriesController@listSeries'
     ]);
     $app->get('series/{id}', [
         'as' => 'series',
-        'uses' => 'DayController@getDay'
+        'uses' => 'SeriesController@getSeries'
     ]);
     $app->post('series', 'SeriesController@createSeries');
     $app->put('series/{id}', 'SeriesController@updateSeries');

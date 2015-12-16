@@ -36,78 +36,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    /**
-     * List all rooms
-     *
-     * @return \Symfony\Component\HttpFoundation\Response Room list
-     */
-    public function listRooms()
-    {
-        return response()->json(Room::all());
-    }
+	/**
+	 * List all rooms
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response Room list
+	 */
+	public function listRooms()
+	{
+		return response()->jsonAPI((new Room)->newQuery());
+	}
 
-    /**
-     * Get a single room
-     *
-     * @param int $id Room ID
-     * @return \Symfony\Component\HttpFoundation\Response Room
-     */
-    public function getRoom($id)
-    {
+	/**
+	 * Get a single room
+	 *
+	 * @param int $id Room ID
+	 * @return \Symfony\Component\HttpFoundation\Response Room
+	 */
+	public function getRoom($id)
+	{
+		return response()->jsonAPI(Room::find($id));
+	}
 
-        $Room = Room::find($id);
+	/**
+	 * Create a new room
+	 *
+	 * @param Request $request Request
+	 * @return \Symfony\Component\HttpFoundation\Response Room
+	 */
+	public function createRoom(Request $request)
+	{
 
-        return response()->json($Room);
-    }
+		$Room = Room::create($request->all());
 
-    /**
-     * Create a new room
-     *
-     * @param Request $request Request
-     * @return \Symfony\Component\HttpFoundation\Response Room
-     */
-    public function createRoom(Request $request)
-    {
+		return response()->json($Room);
 
-        $Room = Room::create($request->all());
+	}
 
-        return response()->json($Room);
+	/**
+	 * Update an room
+	 *
+	 * @param Request $request Request
+	 * @param int $id Room ID
+	 * @return \Symfony\Component\HttpFoundation\Response Room
+	 */
+	public function updateRoom(Request $request, $id)
+	{
+		$Room = Room::find($id);
+		$Room->title = $request->input('title');
+		$Room->author = $request->input('author');
+		$Room->isbn = $request->input('isbn');
+//		$Room->save();
 
-    }
+		return response()->json($Room);
+	}
 
-    /**
-     * Update an room
-     *
-     * @param Request $request Request
-     * @param int $id Room ID
-     * @return \Symfony\Component\HttpFoundation\Response Room
-     */
-    public function updateRoom(Request $request, $id)
-    {
-        $Room = Room::find($id);
-        $Room->title = $request->input('title');
-        $Room->author = $request->input('author');
-        $Room->isbn = $request->input('isbn');
-        $Room->save();
-
-        return response()->json($Room);
-    }
-
-    /**
-     * Delete an room
-     *
-     * @param int $id Room ID
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @todo Set the deleted property to 1 instead of really deleting the room
-     */
-    public function deleteRoom($id)
-    {
-        $Room = Room::find($id);
-        $Room->delete();
-
-        return response()->json('deleted');
-    }
+	/**
+	 * Delete an room
+	 *
+	 * @param int $id Room ID
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @todo Set the deleted property to 1 instead of really deleting the room
+	 */
+//	public function deleteRoom($id)
+//	{
+//		$Room = Room::find($id);
+//		$Room->delete();
+//
+//		return response()->json('deleted');
+//	}
 }

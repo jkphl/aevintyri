@@ -36,78 +36,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\Series;
+use Illuminate\Http\Request;
 
 class SeriesController extends Controller
 {
-    /**
-     * List all seriess
-     *
-     * @return \Symfony\Component\HttpFoundation\Response Series list
-     */
-    public function listSeriess()
-    {
-        return response()->json(Series::all());
-    }
+	/**
+	 * List all seriess
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response Series list
+	 */
+	public function listSeries()
+	{
+		return response()->jsonAPI((new Series)->newQuery());
+	}
 
-    /**
-     * Get a single series
-     *
-     * @param int $id Series ID
-     * @return \Symfony\Component\HttpFoundation\Response Series
-     */
-    public function getSeries($id)
-    {
+	/**
+	 * Get a single series
+	 *
+	 * @param int $id Series ID
+	 * @return \Symfony\Component\HttpFoundation\Response Series
+	 */
+	public function getSeries($id)
+	{
+		return response()->jsonAPI(Series::find($id));
+	}
 
-        $Series = Series::find($id);
+	/**
+	 * Create a new series
+	 *
+	 * @param Request $request Request
+	 * @return \Symfony\Component\HttpFoundation\Response Series
+	 */
+	public function createSeries(Request $request)
+	{
 
-        return response()->json($Series);
-    }
+		$Series = Series::create($request->all());
 
-    /**
-     * Create a new series
-     *
-     * @param Request $request Request
-     * @return \Symfony\Component\HttpFoundation\Response Series
-     */
-    public function createSeries(Request $request)
-    {
+		return response()->json($Series);
 
-        $Series = Series::create($request->all());
+	}
 
-        return response()->json($Series);
+	/**
+	 * Update an series
+	 *
+	 * @param Request $request Request
+	 * @param int $id Series ID
+	 * @return \Symfony\Component\HttpFoundation\Response Series
+	 */
+	public function updateSeries(Request $request, $id)
+	{
+		$Series = Series::find($id);
+		$Series->title = $request->input('title');
+		$Series->author = $request->input('author');
+		$Series->isbn = $request->input('isbn');
+//		$Series->save();
 
-    }
+		return response()->json($Series);
+	}
 
-    /**
-     * Update an series
-     *
-     * @param Request $request Request
-     * @param int $id Series ID
-     * @return \Symfony\Component\HttpFoundation\Response Series
-     */
-    public function updateSeries(Request $request, $id)
-    {
-        $Series = Series::find($id);
-        $Series->title = $request->input('title');
-        $Series->author = $request->input('author');
-        $Series->isbn = $request->input('isbn');
-        $Series->save();
-
-        return response()->json($Series);
-    }
-
-    /**
-     * Delete an series
-     *
-     * @param int $id Series ID
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @todo Set the deleted property to 1 instead of really deleting the series
-     */
-    public function deleteSeries($id)
-    {
-        $Series = Series::find($id);
-        $Series->delete();
-
-        return response()->json('deleted');
-    }
+	/**
+	 * Delete an series
+	 *
+	 * @param int $id Series ID
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @todo Set the deleted property to 1 instead of really deleting the series
+	 */
+//	public function deleteSeries($id)
+//	{
+//		$Series = Series::find($id);
+//		$Series->delete();
+//
+//		return response()->json('deleted');
+//	}
 }

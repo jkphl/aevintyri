@@ -36,78 +36,79 @@
 namespace App\Http\Controllers;
 
 use App\Models\Session;
+use Illuminate\Http\Request;
 
 class SessionController extends Controller
 {
-    /**
-     * List all sessions
-     *
-     * @return \Symfony\Component\HttpFoundation\Response Session list
-     */
-    public function listSessions()
-    {
-        return response()->json(Session::all());
-    }
+	/**
+	 * List all sessions
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response Session list
+	 */
+	public function listSessions()
+	{
+		return response()->json(Session::all());
+	}
 
-    /**
-     * Get a single session
-     *
-     * @param int $id Session ID
-     * @return \Symfony\Component\HttpFoundation\Response Session
-     */
-    public function getSession($id)
-    {
+	/**
+	 * Get a single session
+	 *
+	 * @param int $id Session ID
+	 * @return \Symfony\Component\HttpFoundation\Response Session
+	 */
+	public function getSession($id)
+	{
 
-        $Session = Session::find($id);
+		$Session = Session::find($id);
 
-        return response()->json($Session);
-    }
+		return response()->json($Session);
+	}
 
-    /**
-     * Create a new session
-     *
-     * @param Request $request Request
-     * @return \Symfony\Component\HttpFoundation\Response Session
-     */
-    public function createSession(Request $request)
-    {
+	/**
+	 * Create a new session
+	 *
+	 * @param Request $request Request
+	 * @return \Symfony\Component\HttpFoundation\Response Session
+	 */
+	public function createSession(Request $request)
+	{
 
-        $Session = Session::create($request->all());
+		$Session = Session::create($request->all());
 
-        return response()->json($Session);
+		return response()->json($Session);
 
-    }
+	}
 
-    /**
-     * Update an session
-     *
-     * @param Request $request Request
-     * @param int $id Session ID
-     * @return \Symfony\Component\HttpFoundation\Response Session
-     */
-    public function updateSession(Request $request, $id)
-    {
-        $Session = Session::find($id);
-        $Session->title = $request->input('title');
-        $Session->author = $request->input('author');
-        $Session->isbn = $request->input('isbn');
-        $Session->save();
+	/**
+	 * Update an session
+	 *
+	 * @param Request $request Request
+	 * @param int $id Session ID
+	 * @return \Symfony\Component\HttpFoundation\Response Session
+	 */
+	public function updateSession(Request $request, $id)
+	{
+		$Session = Session::find($id);
+		$Session->title = $request->input('title');
+		$Session->author = $request->input('author');
+		$Session->isbn = $request->input('isbn');
+//		$Session->save();
 
-        return response()->json($Session);
-    }
+		return response()->json($Session);
+	}
 
-    /**
-     * Delete an session
-     *
-     * @param int $id Session ID
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @todo Set the deleted property to 1 instead of really deleting the session
-     */
-    public function deleteSession($id)
-    {
-        $Session = Session::find($id);
-        $Session->delete();
-
-        return response()->json('deleted');
-    }
+	/**
+	 * Delete an session
+	 *
+	 * @param int $id Session ID
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @todo Set the deleted property to 1 instead of really deleting the session
+	 */
+//	public function deleteSession($id)
+//	{
+//		$Session = Session::find($id);
+//		$Session->delete();
+//
+//		return response()->json('deleted');
+//	}
 }

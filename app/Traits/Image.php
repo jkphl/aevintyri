@@ -39,8 +39,20 @@ namespace App\Traits;
  * Image features
  *
  * @package App\Traits
+ * @property array $attributes The model's attributes.
  */
 trait Image
 {
-
+	/**
+	 * Get the image URL
+	 *
+	 * @return string
+	 */
+	public function getImageAttribute() {
+		$image = trim($this->attributes['image']);
+		if (strlen($image)) {
+			$image = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$image;
+		}
+		return $image;
+	}
 }

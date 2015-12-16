@@ -51,7 +51,7 @@ abstract class AbstractEventSeries extends AbstractModel
      *
      * @var array
      */
-    protected $hidden = array('organizer_id');
+    protected $hidden = array('organizer_id', 'organizer');
 
     /**
      * The accessors to append to the model's array form.
@@ -59,6 +59,13 @@ abstract class AbstractEventSeries extends AbstractModel
      * @var array
      */
     protected $appends = array('organizer');
+
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array('organizer' => '\\App\\Models\\Organizer');
 
     /**
      * Return this event's organizer
@@ -77,6 +84,33 @@ abstract class AbstractEventSeries extends AbstractModel
      */
     public function getOrganizerAttribute()
     {
-        return $this->expand('organizer') ? $this->organizer()->first() : $this->organizer_id;
+        return $this->organizer()->getQuery()->first();
+    }
+
+    /**
+     * Get the Facebook URL
+     *
+     * @return string
+     */
+    public function getFacebookEventAttribute() {
+        return $this->_makeUrl($this->attributes['facebook_event']);
+    }
+
+    /**
+     * Get the XING URL
+     *
+     * @return string
+     */
+    public function getXingEventAttribute() {
+        return $this->_makeUrl($this->attributes['xing_event']);
+    }
+
+    /**
+     * Get the Google+ URL
+     *
+     * @return string
+     */
+    public function getGplusEventAttribute() {
+        return $this->_makeUrl($this->attributes['gplus_event']);
     }
 }

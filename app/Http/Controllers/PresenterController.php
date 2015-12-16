@@ -36,78 +36,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\Presenter;
+use Illuminate\Http\Request;
 
 class PresenterController extends Controller
 {
-    /**
-     * List all presenters
-     *
-     * @return \Symfony\Component\HttpFoundation\Response Presenter list
-     */
-    public function listPresenters()
-    {
-        return response()->json(Presenter::all());
-    }
+	/**
+	 * List all presenters
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response Presenter list
+	 */
+	public function listPresenters()
+	{
+		return response()->jsonAPI((new Presenter)->newQuery());
+	}
 
-    /**
-     * Get a single presenter
-     *
-     * @param int $id Presenter ID
-     * @return \Symfony\Component\HttpFoundation\Response Presenter
-     */
-    public function getPresenter($id)
-    {
+	/**
+	 * Get a single presenter
+	 *
+	 * @param int $id Presenter ID
+	 * @return \Symfony\Component\HttpFoundation\Response Presenter
+	 */
+	public function getPresenter($id)
+	{
+		return response()->jsonAPI(Presenter::find($id));
+	}
 
-        $Presenter = Presenter::find($id);
+	/**
+	 * Create a new presenter
+	 *
+	 * @param Request $request Request
+	 * @return \Symfony\Component\HttpFoundation\Response Presenter
+	 */
+	public function createPresenter(Request $request)
+	{
 
-        return response()->json($Presenter);
-    }
+		$Presenter = Presenter::create($request->all());
 
-    /**
-     * Create a new presenter
-     *
-     * @param Request $request Request
-     * @return \Symfony\Component\HttpFoundation\Response Presenter
-     */
-    public function createPresenter(Request $request)
-    {
+		return response()->json($Presenter);
 
-        $Presenter = Presenter::create($request->all());
+	}
 
-        return response()->json($Presenter);
+	/**
+	 * Update an presenter
+	 *
+	 * @param Request $request Request
+	 * @param int $id Presenter ID
+	 * @return \Symfony\Component\HttpFoundation\Response Presenter
+	 */
+	public function updatePresenter(Request $request, $id)
+	{
+		$Presenter = Presenter::find($id);
+		$Presenter->title = $request->input('title');
+		$Presenter->author = $request->input('author');
+		$Presenter->isbn = $request->input('isbn');
+//		$Presenter->save();
 
-    }
+		return response()->json($Presenter);
+	}
 
-    /**
-     * Update an presenter
-     *
-     * @param Request $request Request
-     * @param int $id Presenter ID
-     * @return \Symfony\Component\HttpFoundation\Response Presenter
-     */
-    public function updatePresenter(Request $request, $id)
-    {
-        $Presenter = Presenter::find($id);
-        $Presenter->title = $request->input('title');
-        $Presenter->author = $request->input('author');
-        $Presenter->isbn = $request->input('isbn');
-        $Presenter->save();
-
-        return response()->json($Presenter);
-    }
-
-    /**
-     * Delete an presenter
-     *
-     * @param int $id Presenter ID
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @todo Set the deleted property to 1 instead of really deleting the presenter
-     */
-    public function deletePresenter($id)
-    {
-        $Presenter = Presenter::find($id);
-        $Presenter->delete();
-
-        return response()->json('deleted');
-    }
+	/**
+	 * Delete an presenter
+	 *
+	 * @param int $id Presenter ID
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @todo Set the deleted property to 1 instead of really deleting the presenter
+	 */
+//	public function deletePresenter($id)
+//	{
+//		$Presenter = Presenter::find($id);
+//		$Presenter->delete();
+//
+//		return response()->json('deleted');
+//	}
 }

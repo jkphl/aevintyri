@@ -43,14 +43,25 @@ final class Link extends AbstractModel
      *
      * @var array
      */
-    protected $hidden = array('session_id', 'presenter_id');
+    protected $hidden = array('session_id', 'session', 'presenter_id', 'presenter');
 
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
-    protected $appends = array('session', 'presenter');
+    protected $appends = array('presenter');
+
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'session' => '\\App\\Models\\Session',
+        'presenter' => '\\App\\Models\\Presenter',
+    );
+
 
     /**
      * Return this link's session
@@ -64,11 +75,11 @@ final class Link extends AbstractModel
     /**
      * Return this link's session
      *
-     * @return int|\App\Models\Session     Session
+     * @return \App\Models\Session     Session
      */
     public function getSessionAttribute()
     {
-        return $this->expand('session') ? $this->session()->first() : $this->session_id;
+        return $this->session()->getQuery()->first();
     }
 
     /**
@@ -87,6 +98,6 @@ final class Link extends AbstractModel
      */
     public function getPresenterAttribute()
     {
-        return $this->expand('presenter') ? $this->presenter()->first() : $this->presenter_id;
+        return $this->presenter()->getQuery()->first();
     }
 }
