@@ -48,7 +48,7 @@ class EventController extends Controller
 	 */
 	public function listEvents()
 	{
-        $event = new Event();
+		$event = new Event();
 //		$expand = [];
 
 //        // Determine the columns to expand
@@ -56,47 +56,47 @@ class EventController extends Controller
 //        $expand = ($expand === '*') ? $event->getAppends() : array_filter(array_map('trim', explode(',', $expand)));
 //        $expand = array_intersect($expand, $event->getAppends());
 
-        $from = trim($this->_request()->get('from', ''));
-        try {
-            $from = strlen($from) ? new \DateTimeImmutable($from) : null;
-        } catch (\Exception $e) {
-            return $this->error(400, 'Bad request (from constraint)');
-        }
-        $to = trim($this->_request()->get('to', ''));
-        try {
-            $to = strlen($to) ? new \DateTimeImmutable($to) : null;
-        } catch (\Exception $e) {
-            return $this->error(400, 'Bad request (from constraint)');
-        }
+		$from = trim($this->_request()->get('from', ''));
+		try {
+			$from = strlen($from) ? new \DateTimeImmutable($from) : null;
+		} catch (\Exception $e) {
+			return $this->error(400, 'Bad request (from constraint)');
+		}
+		$to = trim($this->_request()->get('to', ''));
+		try {
+			$to = strlen($to) ? new \DateTimeImmutable($to) : null;
+		} catch (\Exception $e) {
+			return $this->error(400, 'Bad request (from constraint)');
+		}
 
-        // Build the event query
-        $eventQuery = $event->newQuery();
+		// Build the event query
+		$eventQuery = $event->newQuery();
 		$eventQuery->getQuery()->select(['events.*'])
-		->join('days', function(JoinClause $query) use ($from, $to) {
-			$query->on('days.event_id', '=', 'events.id');
-			$query->where('days.deleted_at', '<=>', null);
-			if ($from) {
-				$query->where('days.date', '>=', $from);
-			}
-			if ($to) {
-				$query->where('days.date', '<=', $to);
-			}
-		})
-			->join('sessions', function(JoinClause $query) use ($from, $to) {
-			$query->on('sessions.day_id', '=', 'days.id');
-			$query->where('sessions.deleted_at', '<=>', null);
-			if ($from) {
-				$query->where('sessions.start_time', '>=', $from->format('H:i:s'));
-			}
-			if ($to) {
-				$query->where('sessions.end_time', '<=', $to->format('H:i:s'));
-			}
-		})
-		->groupBy('events.id')
-		->orderBy('days.date', 'ASC')
-		->orderBy('sessions.start_time', 'ASC');
+			->join('days', function (JoinClause $query) use ($from, $to) {
+				$query->on('days.event_id', '=', 'events.id');
+				$query->where('days.deleted_at', '<=>', null);
+				if ($from) {
+					$query->where('days.date', '>=', $from);
+				}
+				if ($to) {
+					$query->where('days.date', '<=', $to);
+				}
+			})
+			->join('sessions', function (JoinClause $query) use ($from, $to) {
+				$query->on('sessions.day_id', '=', 'days.id');
+				$query->where('sessions.deleted_at', '<=>', null);
+				if ($from) {
+					$query->where('sessions.start_time', '>=', $from->format('H:i:s'));
+				}
+				if ($to) {
+					$query->where('sessions.end_time', '<=', $to->format('H:i:s'));
+				}
+			})
+			->groupBy('events.id')
+			->orderBy('days.date', 'ASC')
+			->orderBy('sessions.start_time', 'ASC');
 
-        // Add relations if requested
+		// Add relations if requested
 //        if (count($expand)) {
 //            $eventQuery->with($expand);
 //        }
