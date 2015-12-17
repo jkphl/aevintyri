@@ -1,0 +1,39 @@
+{
+  "name": "aevintyri",
+  "version": "2.0.0",
+  "description": "Ævintýri — a sophisticated event scheduling platform featuring organizers, venues, rooms, presenters, event series, events and sessions, featuring a JSON API compliant REST/CRUD interface",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node tests/aevintyri.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkphl/aevintyri.git"
+  },
+  "devDependencies": {
+    "async": "^1.5.0",
+    "chalk": "^1.1.1",
+    "jsonapi-validator": "~1.0.1"
+  },
+  "keywords": [
+    "event",
+    "organizer",
+    "venue",
+    "room",
+    "presenter",
+    "session",
+    "link",
+    "tag",
+    "json",
+    "api",
+    "calendar"
+  ],
+  "author": "Joschi Kuphal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jkphl/aevintyri/issues"
+  },
+  "homepage": "https://github.com/jkphl/aevintyri#readme"
+}
