@@ -69,7 +69,7 @@ Wie bereits 2013 werden sämtliche Vorträge in **englischer Sprache** gehalten,
         ]);
         Event::create([
             'organizer_id' => '1',
-            'series_id' => '3',
+            'series_id' => '2',
             'name' => 'Accessibility Club #2',
             'image' => '/img/event/event-4.png',
             'email' => 'hello@a11y-club.org',
@@ -148,7 +148,7 @@ Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert dara
         ]);
         Event::create([
             'organizer_id' => '4',
-            'series_id' => '7',
+            'series_id' => '3',
             'name' => 'Open Coffee Club',
             'image' => '',
             'email' => '',
@@ -171,7 +171,7 @@ Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert dara
         ]);
         Event::create([
             'organizer_id' => '4',
-            'series_id' => '9',
+            'series_id' => '4',
             'name' => '6. CMS Night Nürnberg',
             'image' => '/img/event/event-10.jpg',
             'email' => '',
@@ -198,7 +198,7 @@ Zielgruppe für die 6. CMS Night sind ALLE CMS Interessierten vom Anfänger bis 
         ]);
         Event::create([
             'organizer_id' => '5',
-            'series_id' => '11',
+            'series_id' => '5',
             'name' => 'Social Media Night',
             'image' => '',
             'email' => '',
@@ -246,7 +246,7 @@ Die weiteren Referenten und Speaker/innen werden in den kommenden Wochen an dies
         ]);
         Event::create([
             'organizer_id' => '6',
-            'series_id' => null,
+            'series_id' => '5',
             'name' => 'MobileFirst! Night',
             'image' => '/img/event/event-14.jpg',
             'email' => '',
@@ -301,7 +301,7 @@ Anmeldung erforderlich. Bitte bis 10.10.2014 eine kurze E-Mail an kontakt@machen
         ]);
         Event::create([
             'organizer_id' => '8',
-            'series_id' => '16',
+            'series_id' => '7',
             'name' => 'Wordpress Meetup',
             'image' => '/img/event/event-17.jpg',
             'email' => '',
@@ -324,7 +324,7 @@ Anmeldung erforderlich. Bitte bis 10.10.2014 eine kurze E-Mail an kontakt@machen
         ]);
         Event::create([
             'organizer_id' => '2',
-            'series_id' => '18',
+            'series_id' => '8',
             'name' => 'Pecha Kucha',
             'image' => '',
             'email' => '',
