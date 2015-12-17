@@ -42,21 +42,21 @@ final class Event extends AbstractEventSeries
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('series_id', 'series', 'organizer_id', 'organizer');
+	protected $hidden = array('series_id', 'series', 'organizer_id', 'organizer', 'days');
 
 	/**
 	 * The accessors to append to the model's array form.
 	 *
 	 * @var array
 	 */
-	protected $appends = array('series', 'organizer');
+	protected $appends = array('start_time', 'end_time', 'series', 'organizer', 'days');
 
 	/**
-	 * The extended accessors to append to the model's array form.
+	 * First and last
 	 *
 	 * @var array
 	 */
-	protected $extends = array('days');
+	protected $_sessions = array('first' => null, 'last' => null);
 
 	/**
 	 * Relation mapping
@@ -96,7 +96,8 @@ final class Event extends AbstractEventSeries
 	 */
 	public function days()
 	{
-		return $this->hasMany('App\Models\Day');
+		/** @noinspection PhpUndefinedMethodInspection */
+		return $this->hasMany('App\Models\Day')->ordered();
 	}
 
 	/**
@@ -111,5 +112,27 @@ final class Event extends AbstractEventSeries
 			$days[] = $day;
 		}
 		return $days;
+	}
+
+	/**
+	 * Return the event start time (day aggregate)
+	 *
+	 * @return string
+	 */
+	public function getStartTimeAttribute()
+	{
+		$firstDay = $this->days()->getResults()->first();
+		return ($firstDay instanceof Day) ? $firstDay->start_time : null;
+	}
+
+	/**
+	 * Return the event end time (day aggregate)
+	 *
+	 * @return string
+	 */
+	public function getEndTimeAttribute()
+	{
+		$lastDay = $this->days()->getResults()->last();
+		return ($lastDay instanceof Day) ? $lastDay->end_time : null;
 	}
 }

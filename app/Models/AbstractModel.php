@@ -82,6 +82,47 @@ abstract class AbstractModel extends Model implements ResourceIdentifyable
 	protected $jsonApiShortname = null;
 
 	/**
+	 * Default order property
+	 *
+	 * @var string
+	 */
+	protected $orderBy;
+
+	/**
+	 * Default order direction
+	 *
+	 * @var string
+	 */
+	protected $orderDirection = 'ASC';
+
+	/**
+	 * Apply default ordering to a query
+	 *
+	 * @param \Illuminate\Database\Eloquent\Builder $query Original query
+	 * @return \Illuminate\Database\Eloquent\Builder Ordered query
+	 */
+	public function scopeOrdered(\Illuminate\Database\Eloquent\Builder $query)
+	{
+		if ($this->orderBy) {
+			/** @noinspection PhpUndefinedMethodInspection */
+			return $query->orderBy($this->orderBy, $this->orderDirection);
+		}
+
+		return $query;
+	}
+
+	/**
+	 * Apply default ordering to a query
+	 *
+	 * @param \Illuminate\Database\Eloquent\Builder $query Original query
+	 * @return \Illuminate\Database\Eloquent\Builder Ordered query
+	 */
+	public function scopeGetOrdered(\Illuminate\Database\Eloquent\Builder $query)
+	{
+		return $this->scopeOrdered($query)->get();
+	}
+
+	/**
 	 * Return the relation map for this model
 	 *
 	 * @param string $prefix Prefix
@@ -171,6 +212,12 @@ abstract class AbstractModel extends Model implements ResourceIdentifyable
 				}
 			} elseif ($appendRelations === null) {
 				continue;
+
+				// Else if it's a date / time
+			} elseif ($appendRelations instanceof \Carbon\Carbon) {
+				$attributes[$append] = $this->serializeDate($appendRelations);
+
+				// Else: Invalid relationship
 			} else {
 				die('INVALID RELATIONSHIPS (' . __FILE__ . ':' . __LINE__ . '): ' . gettype($appendRelations));
 			}

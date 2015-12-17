@@ -60,6 +60,27 @@ final class Session extends AbstractModel
     protected $appends = array('day', 'room', 'links', 'tags');
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at', 'start_time', 'end_time'];
+
+    /**
+     * Default order property
+     *
+     * @var string
+     */
+    protected $orderBy = 'start_time';
+
+    /**
+     * Default order direction
+     *
+     * @var string
+     */
+    protected $orderDirection = 'ASC';
+
+    /**
      * Relation mapping
      *
      * @var array
@@ -152,5 +173,24 @@ final class Session extends AbstractModel
             $links[] = $link;
         }
         return $links;
+    }
+
+    /**
+     * Return a timestamp as DateTime object.
+     *
+     * @param  mixed  $value
+     * @return \Carbon\Carbon
+     */
+    protected function asDateTime($value)
+    {
+
+        // If it's a time string: Instantiate based on the associated day
+        if (is_string($value) && preg_match('/^(\d{2}):(\d{2}):(\d{2})$/', $value, $time)) {
+            /** @var \Carbon\Carbon $day */
+            $day = clone $this->getDayAttribute()->date;
+            return $day->addHours($time[1])->addMinutes($time[2])->addSeconds($time[3]);
+        }
+
+        return parent::asDateTime($value);
     }
 }

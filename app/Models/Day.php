@@ -50,7 +50,7 @@ final class Day extends AbstractModel
      *
      * @var array
      */
-    protected $appends = array('sessions');
+    protected $appends = array('start_time', 'end_time', 'sessions');
 
     /**
      * The extended accessors to append to the model's array form.
@@ -58,6 +58,20 @@ final class Day extends AbstractModel
      * @var array
      */
     protected $extends = array('event');
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at', 'date', 'start_time', 'end_time'];
+
+    /**
+     * Default order property
+     *
+     * @var string
+     */
+    protected $orderBy = 'date';
 
     /**
      * Relation mapping
@@ -95,7 +109,8 @@ final class Day extends AbstractModel
      */
     public function sessions()
     {
-        return $this->hasMany('App\Models\Session');
+        /** @noinspection PhpUndefinedMethodInspection */
+        return $this->hasMany('App\Models\Session')->ordered();
     }
 
     /**
@@ -109,5 +124,26 @@ final class Day extends AbstractModel
             $sessions[] = $session;
         }
         return $sessions;
+    }
+
+
+    /**
+     * Return the day start time (session aggregate)
+     *
+     * @return string
+     */
+    public function getStartTimeAttribute() {
+        $firstSession = $this->sessions()->getResults()->first();
+        return ($firstSession instanceof Session) ? $firstSession->start_time : null;
+    }
+
+    /**
+     * Return the day end time (session aggregate)
+     *
+     * @return string
+     */
+    public function getEndTimeAttribute() {
+        $lastSession = $this->sessions()->getResults()->last();
+        return ($lastSession instanceof Session) ? $lastSession->end_time : null;
     }
 }
