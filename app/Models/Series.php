@@ -37,6 +37,29 @@ namespace App\Models;
 
 final class Series extends AbstractEventSeries
 {
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('organizer_id', 'organizer', 'events');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('organizer', 'events');
+
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'organizer' => '\\App\\Models\\Organizer',
+        'events' => '\\App\\Models\\Event',
+    );
 
     /**
      * Return this series' events
@@ -46,5 +69,18 @@ final class Series extends AbstractEventSeries
     public function events()
     {
         return $this->hasMany('App\Models\Event');
+    }
+
+    /**
+     * Return this series' events
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Events
+     */
+    public function getEventsAttribute() {
+        $events = [];
+        foreach ($this->events()->getResults() as $event) {
+            $events[] = $event;
+        }
+        return $events;
     }
 }

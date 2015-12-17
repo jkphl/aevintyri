@@ -61,13 +61,6 @@ abstract class AbstractEventSeries extends AbstractModel
     protected $appends = array('organizer');
 
     /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array('organizer' => '\\App\\Models\\Organizer');
-
-    /**
      * Return this event's organizer
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Organizer
@@ -112,5 +105,23 @@ abstract class AbstractEventSeries extends AbstractModel
      */
     public function getGplusEventAttribute() {
         return $this->_makeUrl($this->attributes['gplus_event']);
+    }
+
+    /**
+     * Get the tickets URL
+     *
+     * @return string
+     */
+    public function getTicketsAttribute() {
+        return $this->_makeUrl($this->attributes['tickets']);
+    }
+
+    /**
+     * Get the Lanyrd URL
+     *
+     * @return string
+     */
+    public function getLanyrdAttribute() {
+        return $this->_makeUrl($this->attributes['lanyrd']);
     }
 }

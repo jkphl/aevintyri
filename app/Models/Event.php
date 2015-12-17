@@ -37,47 +37,79 @@ namespace App\Models;
 
 final class Event extends AbstractEventSeries
 {
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = array('series_id', 'series', 'organizer_id', 'organizer');
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = array('series_id', 'series', 'organizer_id', 'organizer');
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = array('series', 'organizer');
+	/**
+	 * The accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $appends = array('series', 'organizer');
 
-    /**
-     * Return this event's series
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
-     */
-    public function series()
-    {
-        return $this->belongsTo('App\Models\Series');
-    }
+	/**
+	 * The extended accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $extends = array('days');
 
-    /**
-     * Return this event's series
-     *
-     * @return int|\App\Models\Series     Series
-     */
-    public function getSeriesAttribute()
-    {
-        return $this->series()->getQuery()->first();
-    }
+	/**
+	 * Relation mapping
+	 *
+	 * @var array
+	 */
+	public static $relmap = array(
+		'organizer' => '\\App\\Models\\Organizer',
+		'series' => '\\App\\Models\\Series',
+		'days' => '\\App\\Models\\Day',
+	);
 
-    /**
-     * Return this events's days
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Days
-     */
-    public function days()
-    {
-        return $this->hasMany('App\Models\Day');
-    }
+	/**
+	 * Return this event's series
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+	 */
+	public function series()
+	{
+		return $this->belongsTo('App\Models\Series');
+	}
+
+	/**
+	 * Return this event's series
+	 *
+	 * @return int|\App\Models\Series     Series
+	 */
+	public function getSeriesAttribute()
+	{
+		return $this->series()->getQuery()->first();
+	}
+
+	/**
+	 * Return this events's days
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Days
+	 */
+	public function days()
+	{
+		return $this->hasMany('App\Models\Day');
+	}
+
+	/**
+	 * Return this tag's days
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Days
+	 */
+	public function getDaysAttribute()
+	{
+		$days = [];
+		foreach ($this->days()->getResults() as $day) {
+			$days[] = $day;
+		}
+		return $days;
+	}
 }

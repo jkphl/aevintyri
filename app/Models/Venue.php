@@ -41,39 +41,63 @@ use App\Traits\Image;
 
 final class Venue extends AbstractModel
 {
-    /**
-     * Use the describable, address and image features
-     */
-    use Address, Describable, Image;
+	/**
+	 * Use the describable, address and image features
+	 */
+	use Address, Describable, Image;
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = array('country_id', 'country');
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = array('country_id', 'country');
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = array('country');
+	/**
+	 * The accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $appends = array('country');
 
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array('country' => '\\App\\Models\\Country');
+	/**
+	 * The extended accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $extends = array('rooms');
 
-    /**
-     * Return all rooms of this venue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Rooms
-     */
-    public function rooms()
-    {
-        return $this->hasMany('App\Models\Room');
-    }
+	/**
+	 * Relation mapping
+	 *
+	 * @var array
+	 */
+	public static $relmap = array(
+		'country' => '\\App\\Models\\Country',
+		'rooms' => '\\App\\Models\\Room',
+	);
+
+	/**
+	 * Return all rooms of this venue
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Rooms
+	 */
+	public function rooms()
+	{
+		return $this->hasMany('App\Models\Room');
+	}
+
+	/**
+	 * Return this venue's rooms
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Rooms
+	 */
+	public function getRoomsAttribute()
+	{
+		$rooms = [];
+		foreach ($this->rooms()->getResults() as $room) {
+			$rooms[] = $room;
+		}
+		return $rooms;
+	}
 }

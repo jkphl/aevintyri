@@ -50,7 +50,7 @@ final class Link extends AbstractModel
      *
      * @var array
      */
-    protected $appends = array('presenter');
+    protected $extends = array('presenter');
 
     /**
      * Relation mapping

@@ -50,21 +50,26 @@ final class Session extends AbstractModel
      *
      * @var array
      */
-    protected $hidden = array('day_id', 'room_id', 'room');
+    protected $hidden = array('day_id', 'room_id', 'day', 'room', 'links', 'tags');
 
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
-    protected $appends = array('room');
+    protected $appends = array('day', 'room', 'links', 'tags');
 
     /**
      * Relation mapping
      *
      * @var array
      */
-    public static $relmap = array('room' => '\\App\\Models\\Room');
+    public static $relmap = array(
+        'day' => '\\App\\Models\\Day',
+        'room' => '\\App\\Models\\Room',
+        'tags' => '\\App\\Models\\Tag',
+        'links' => '\\App\\Models\\Link',
+    );
 
     /**
      * Return this session's day
@@ -82,7 +87,7 @@ final class Session extends AbstractModel
      */
     public function getDayAttribute()
     {
-        return $this->day()->first();
+        return $this->day()->getQuery()->first();
     }
 
     /**
@@ -101,7 +106,29 @@ final class Session extends AbstractModel
      */
     public function getRoomAttribute()
     {
-        return $this->room()->first();
+        return $this->room()->getQuery()->first();
+    }
+
+    /**
+     * Return the tags of this session
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Tags
+     */
+    public function tags() {
+        return $this->belongsToMany('App\Models\Tag', 'session_tags');
+    }
+
+    /**
+     * Return this session's tags
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Tags
+     */
+    public function getTagsAttribute() {
+        $tags = [];
+        foreach ($this->tags()->getResults() as $tag) {
+            $tags[] = $tag;
+        }
+        return $tags;
     }
 
     /**
@@ -112,5 +139,18 @@ final class Session extends AbstractModel
     public function links()
     {
         return $this->hasMany('App\Models\Link');
+    }
+
+    /**
+     * Return this session's links
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
+     */
+    public function getLinksAttribute() {
+        $links = [];
+        foreach ($this->links()->getResults() as $link) {
+            $links[] = $link;
+        }
+        return $links;
     }
 }

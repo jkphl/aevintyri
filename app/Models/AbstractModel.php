@@ -56,6 +56,13 @@ abstract class AbstractModel extends Model implements ResourceIdentifyable
 	use SoftDeletes;
 
 	/**
+	 * The extended accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $extends = array();
+
+	/**
 	 * Relation mapping
 	 *
 	 * @var array
@@ -79,17 +86,22 @@ abstract class AbstractModel extends Model implements ResourceIdentifyable
 	 *
 	 * @param string $prefix Prefix
 	 * @param bool|false $recursive Recursive
+	 * @param array $excludeTypes Exclude types (infinite loop prevention)
 	 * @return array
 	 */
-	public static function relationMap($prefix = '', $recursive = false)
+	public static function relationMap($prefix = '', $recursive = false, array &$excludeTypes = [])
 	{
 		$relationMap = array();
 		foreach (static::$relmap as $relation => $relationModel) {
 			$relationPath = ($prefix ? "$prefix." : '') . $relation;
 			$relationMap[$relationPath] = $relationModel;
-			if ($recursive) {
+			if ($recursive && empty($excludeTypes[$relation])) {
+				$excludeTypes[$relation] = true;
+				$relationMapArguments = [$relationPath, true, &$excludeTypes];
 				$relationMap = array_merge($relationMap,
-					call_user_func(array($relationModel, 'relationMap'), $relationPath, true));
+					call_user_func_array(array($relationModel, 'relationMap'), $relationMapArguments));
+			} else {
+				$excludeTypes[$relation] = true;
 			}
 		}
 		return $relationMap;
@@ -123,19 +135,31 @@ abstract class AbstractModel extends Model implements ResourceIdentifyable
 
 		// Prepare the relations
 		$relationships = [];
-		foreach ($this->appends as $append) {
+		$extend = $response->isExtended();
+		if ($extend === true) {
+			$appends = array_unique(array_merge($this->appends, $this->extends));
+		} elseif (is_array($extend) && count($extend)) {
+			$appends = array_unique(array_merge($this->appends, array_intersect($extend, $this->extends)));
+		} else {
+			$appends = $this->appends;
+		}
+		foreach ($appends as $append) {
 			$includePath = ($prefix ? "$prefix." : '') . $append;
 			$includeRelation = $response->includes($includePath);
 			$appendRelations = $this->mutateAttribute($append, null);
 
-//            echo (is_object($appendRelations) ? get_class($appendRelations) : gettype($appendRelations)).PHP_EOL;
+//			echo (is_object($appendRelations) ? get_class($appendRelations) : gettype($appendRelations)) . PHP_EOL;
 
 			if ($appendRelations instanceof ResourceIdentifyable) {
 				$relationships[$append]['data'] = $appendRelations->toJsonApiResourceIdentifier();
 				if ($includeRelation) {
 					$response->includeResource($appendRelations, $includePath);
 				}
-			} elseif (is_array($appendRelations) || ($appendRelations instanceof \Illuminate\Database\Eloquent\Relations\Relation)) {
+			} elseif (
+				is_array($appendRelations)
+				|| ($appendRelations instanceof \Illuminate\Database\Eloquent\Relations\Relation)
+//				|| ($appendRelations instanceof \Illuminate\Database\Eloquent\Collection)
+			) {
 				$relationships[$append] = ['data' => []];
 
 				/** @var ResourceIdentifyable $appendRelation */

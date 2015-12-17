@@ -47,12 +47,57 @@ final class Presenter extends AbstractModel
     use Describable, Contact, Image;
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('links', 'tags');
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('links', 'tags');
+
+    /**
+     * The extended accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $extends = array('sessions');
+
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'tags' => '\\App\\Models\\Tag',
+        'sessions' => '\\App\\Models\\Session',
+        'links' => '\\App\\Models\\Link',
+    );
+
+    /**
      * Return the tags of this presenter
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Tags
      */
     public function tags() {
-        return $this->belongsToMany('App\Models\Tag');
+        return $this->belongsToMany('App\Models\Tag', 'presenter_tags');
+    }
+
+    /**
+     * Return this presenter's tags
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Tags
+     */
+    public function getTagsAttribute() {
+        $tags = [];
+        foreach ($this->tags()->getResults() as $tag) {
+            $tags[] = $tag;
+        }
+        return $tags;
     }
 
     /**
@@ -61,7 +106,20 @@ final class Presenter extends AbstractModel
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Sessions
      */
     public function sessions() {
-        return $this->belongsToMany('App\Models\Session');
+        return $this->belongsToMany('App\Models\Session', 'presenter_sessions');
+    }
+
+    /**
+     * Return this presenter's sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
+     */
+    public function getSessionsAttribute() {
+        $sessions = [];
+        foreach ($this->sessions()->getResults() as $session) {
+            $sessions[] = $session;
+        }
+        return $sessions;
     }
 
     /**
@@ -72,5 +130,18 @@ final class Presenter extends AbstractModel
     public function links()
     {
         return $this->hasMany('App\Models\Link');
+    }
+
+    /**
+     * Return this presenter's links
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
+     */
+    public function getLinksAttribute() {
+        $links = [];
+        foreach ($this->links()->getResults() as $link) {
+            $links[] = $link;
+        }
+        return $links;
     }
 }

@@ -59,11 +59,21 @@ final class Room extends AbstractModel
     protected $appends = array('venue');
 
     /**
+     * The extended accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $extends = array('sessions');
+
+    /**
      * Relation mapping
      *
      * @var array
      */
-    public static $relmap = array('venue' => '\\App\\Models\\Venue');
+    public static $relmap = array(
+        'venue' => '\\App\\Models\\Venue',
+        'sessions' => '\\App\\Models\\Session',
+    );
 
     /**
      * Return this room's venue
@@ -81,7 +91,7 @@ final class Room extends AbstractModel
      */
     public function getVenueAttribute()
     {
-        return $this->venue()->first();
+        return $this->venue()->getQuery()->first();
     }
 
     /**
@@ -91,5 +101,18 @@ final class Room extends AbstractModel
      */
     public function sessions() {
         return $this->hasMany('App\Models\Session');
+    }
+
+    /**
+     * Return this room's sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
+     */
+    public function getSessionsAttribute() {
+        $sessions = [];
+        foreach ($this->sessions()->getResults() as $session) {
+            $sessions[] = $session;
+        }
+        return $sessions;
     }
 }

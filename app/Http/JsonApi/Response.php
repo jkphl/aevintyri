@@ -94,6 +94,13 @@ class Response extends JsonResponse
 	protected $verbose = false;
 
 	/**
+	 * Return extended relationships
+	 *
+	 * @var array|boolean
+	 */
+	protected $extend = false;
+
+	/**
 	 * Relationshop inclusions
 	 *
 	 * @var array
@@ -133,6 +140,14 @@ class Response extends JsonResponse
 	{
 		$this->request = app('request');
 		$this->verbose = (boolean)$this->request->get('verbose');
+
+		$extend = $this->request->get('extend');
+		if (!empty($extend) && strlen(trim($extend))) {
+			$extend = array_filter(array_map('trim', explode(',', trim($extend))));
+			if (count($extend)) {
+				$this->extend = in_array('*', $extend) ? true : $extend;
+			}
+		}
 
 		// Build the JSON API data
 		$data = $this->_buildJsonApiData($data);
@@ -310,6 +325,16 @@ class Response extends JsonResponse
 	public function isVerbose()
 	{
 		return $this->verbose;
+	}
+
+	/**
+	 * Return if the response should return extended relationships
+	 *
+	 * @return array|bool
+	 */
+	public function isExtended()
+	{
+		return $this->extend;
 	}
 
 	/**

@@ -47,7 +47,7 @@ class SessionController extends Controller
 	 */
 	public function listSessions()
 	{
-		return response()->json(Session::all());
+		return response()->jsonAPI((new Session)->newQuery());
 	}
 
 	/**
@@ -58,10 +58,7 @@ class SessionController extends Controller
 	 */
 	public function getSession($id)
 	{
-
-		$Session = Session::find($id);
-
-		return response()->json($Session);
+		return response()->jsonAPI(Session::find($id));
 	}
 
 	/**

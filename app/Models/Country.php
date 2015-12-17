@@ -37,44 +37,82 @@ namespace App\Models;
 
 final class Country extends AbstractModel
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'countries';
+	/**
+	 * The table associated with the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'countries';
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = array('organizers');
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = array('organizers', 'venues');
 
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-//    public static $relmap = array('organizers' => '\\App\\Models\\Organizer');
+	/**
+	 * The extended accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $extends = array('organizers', 'venues');
 
-    /**
-     * Return all organizers in this country
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Organizer
-     */
-    public function organizers()
-    {
-        return $this->hasMany('App\Models\Organizer');
-    }
+	/**
+	 * Relation mapping
+	 *
+	 * @var array
+	 */
+	public static $relmap = array(
+		'organizers' => '\\App\\Models\\Organizer',
+		'venues' => '\\App\\Models\\Venue',
+	);
 
-    /**
-     * Return this country's organizers
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Organizers
-     */
-    public function getOrganizersAttribute()
-    {
-        return $this->organizers();
-    }
+	/**
+	 * Return all organizers in this country
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Organizer
+	 */
+	public function organizers()
+	{
+		return $this->hasMany('App\Models\Organizer');
+	}
+
+	/**
+	 * Return this country's organizers
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Organizers
+	 */
+	public function getOrganizersAttribute()
+	{
+		$organizers = [];
+		foreach ($this->organizers()->getResults() as $organizer) {
+			$organizers[] = $organizer;
+		}
+		return $organizers;
+	}
+
+	/**
+	 * Return all venues in this country
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Venue
+	 */
+	public function venues()
+	{
+		return $this->hasMany('App\Models\Venue');
+	}
+
+	/**
+	 * Return this country's venues
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Venues
+	 */
+	public function getVenuesAttribute()
+	{
+		$venues = [];
+		foreach ($this->venues()->getResults() as $venue) {
+			$venues[] = $venue;
+		}
+		return $venues;
+	}
 }
