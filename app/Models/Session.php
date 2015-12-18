@@ -60,6 +60,13 @@ final class Session extends AbstractModel
     protected $appends = array('day', 'room', 'links', 'tags');
 
     /**
+     * The extended accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $extends = array('venue');
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
@@ -90,6 +97,7 @@ final class Session extends AbstractModel
         'room' => '\\App\\Models\\Room',
         'tags' => '\\App\\Models\\Tag',
         'links' => '\\App\\Models\\Link',
+        'venue' => '\\App\\Models\\Venue',
     );
 
     /**
@@ -192,5 +200,14 @@ final class Session extends AbstractModel
         }
 
         return parent::asDateTime($value);
+    }
+
+    /**
+     * Return the venue of this session
+     *
+     * @return \App\Models\Venue Venue
+     */
+    public function getVenueAttribute() {
+        return $this->room()->getQuery()->first()->venue;
     }
 }

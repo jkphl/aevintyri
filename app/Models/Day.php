@@ -57,7 +57,7 @@ final class Day extends AbstractModel
      *
      * @var array
      */
-    protected $extends = array('event');
+    protected $extends = array('event', 'venues');
 
     /**
      * The attributes that should be mutated to dates.
@@ -81,6 +81,7 @@ final class Day extends AbstractModel
     public static $relmap = array(
         'sessions' => '\\App\\Models\\Session',
         'event' => '\\App\\Models\\Event',
+        'venues' => '\\App\\Models\\Venue',
     );
 
     /**
@@ -145,5 +146,19 @@ final class Day extends AbstractModel
     public function getEndTimeAttribute() {
         $lastSession = $this->sessions()->getResults()->last();
         return ($lastSession instanceof Session) ? $lastSession->end_time : null;
+    }
+
+    /**
+     * Return a list of all venues of this day
+     *
+     * @return array List of venues
+     */
+    public function getVenuesAttribute() {
+        $venues = [];
+        foreach ($this->sessions()->getResults() as $session) {
+            $venue = $session->venue;
+            $venues[$venue->id] = $venue;
+        }
+        return array_values($venues);
     }
 }

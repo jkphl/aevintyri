@@ -52,6 +52,13 @@ final class Event extends AbstractEventSeries
 	protected $appends = array('start_time', 'end_time', 'series', 'organizer', 'days');
 
 	/**
+	 * The extended accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $extends = array('venues');
+
+	/**
 	 * First and last
 	 *
 	 * @var array
@@ -67,6 +74,7 @@ final class Event extends AbstractEventSeries
 		'organizer' => '\\App\\Models\\Organizer',
 		'series' => '\\App\\Models\\Series',
 		'days' => '\\App\\Models\\Day',
+		'venues' => '\\App\\Models\\Venue',
 	);
 
 	/**
@@ -134,5 +142,20 @@ final class Event extends AbstractEventSeries
 	{
 		$lastDay = $this->days()->getResults()->last();
 		return ($lastDay instanceof Day) ? $lastDay->end_time : null;
+	}
+
+	/**
+	 * Return a list of all venues of this event
+	 *
+	 * @return array List of venues
+	 */
+	public function getVenuesAttribute() {
+		$venues = [];
+		foreach ($this->days()->getResults() as $day) {
+			foreach ($day->venues as $venue) {
+				$venues[$venue->id] = $venue;
+			}
+		}
+		return array_values($venues);
 	}
 }
