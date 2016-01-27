@@ -381,4 +381,4 @@ The filters are applied to the event's first respectively last session.
 
 For a single-shot retrieval of **all events and related records within a particular date range**, you would use something like this:
  
-	/api/v2/event?from=2014-10-13T00:00:00&to2014-10-20T23:59:59&include=**&extend=*
+	/api/v2/event?from=2014-10-13T00:00:00&to=2014-10-20T23:59:59&include=**&extend=*
