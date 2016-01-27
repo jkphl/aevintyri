@@ -38,6 +38,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -86,10 +87,10 @@ class EventController extends Controller
 				$query->on('sessions.day_id', '=', 'days.id');
 				$query->where('sessions.deleted_at', '<=>', null);
 				if ($from) {
-					$query->where('sessions.start_time', '>=', $from->format('H:i:s'));
+					$query->where(DB::raw('days.date + INTERVAL sessions.start_time HOUR_SECOND'), '>=', $from);
 				}
 				if ($to) {
-					$query->where('sessions.end_time', '<=', $to->format('H:i:s'));
+					$query->where(DB::raw('days.date + INTERVAL sessions.end_time HOUR_SECOND'), '<=', $to);
 				}
 			})
 			->groupBy('events.id')
