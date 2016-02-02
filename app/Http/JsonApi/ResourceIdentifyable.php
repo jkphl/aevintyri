@@ -43,7 +43,7 @@ interface ResourceIdentifyable extends JsonApiable
     /**
      * Return a resource identifier object
      *
-     * @return object Resource identifier object
+     * @return array Resource identifier
      */
     public function toJsonApiResourceIdentifier();
 

@@ -119,7 +119,7 @@ class Response extends JsonResponse
 	 *
 	 * @var array
 	 */
-	protected $relmap = null;
+	protected $relmap = [];
 
 	/**
 	 * Primary resource object (if not a list of objects)
@@ -134,6 +134,27 @@ class Response extends JsonResponse
 	 * @var array
 	 */
 	protected $datamap = [];
+
+	/**
+	 * Base class name for relation paths
+	 *
+	 * @var string
+	 */
+	protected $baseClass = null;
+
+	/**
+	 * Map of included records
+	 *
+	 * @var array
+	 */
+	protected $inclusionMap = [];
+
+	/**
+	 * Debug output
+	 *
+	 * @var bool
+	 */
+	protected $debug = false;
 
 	/**
 	 * Constructor.
@@ -171,6 +192,10 @@ class Response extends JsonResponse
 			'included' => array_values($this->included),
 		));
 
+		if ($this->debug) {
+			print_r($this->inclusionMap);
+		}
+
 		// Create the JSON response
 		parent::__construct($jsonData, $status, $headers, $options);
 	}
@@ -194,16 +219,8 @@ class Response extends JsonResponse
 				$include[] = $includePattern;
 			}
 		}
-		$this->include = array_filter(array_keys($this->relmap), function ($relation) use ($include) {
-			foreach ($include as $includePattern) {
-				if (preg_match("%^$includePattern$%", $relation)) {
-					return true;
-				}
-			}
-			return false;
-		});
 
-		$this->include = array_combine($this->include, $this->include);
+		$this->include = $include;
 	}
 
 	/**
@@ -216,14 +233,14 @@ class Response extends JsonResponse
 	{
 		// If the response is a resource object collection
 		if ($data instanceof Builder) {
-			$this->relmap = call_user_func(array($data->getModel(), 'relationMap'), '', true);
+			call_user_func_array(array($data->getModel(), 'relationMap'), [&$this->relmap]);
 			$this->_buildIncludeMap();
 			$data = $this->_resourceObjectList($data);
 
 			// Else if it's a single resource object
 		} elseif ($data instanceof AbstractModel) {
 			$this->primary = $data;
-			$this->relmap = call_user_func(array($data, 'relationMap'), '', true);
+			call_user_func_array(array($data, 'relationMap'), [&$this->relmap]);
 			$this->_buildIncludeMap();
 			$data = $this->_resourceObjectData($data);
 
@@ -243,6 +260,7 @@ class Response extends JsonResponse
 	 */
 	protected function _resourceObjectData(JsonApiable $model)
 	{
+		$this->baseClass = '\\'.get_class($model);
 		return $model->toJsonApi($this);
 	}
 
@@ -358,11 +376,34 @@ class Response extends JsonResponse
 	 * Return if a particular relation should be included
 	 *
 	 * @param string $relation Relation
-	 * @return bool                                     Relation should be included
+	 * @return bool Relation should be included
 	 */
 	public function includes($relation)
 	{
-		return array_key_exists($relation, $this->include);
+		$hasIncludePattern = false;
+		foreach ($this->include as $includePattern) {
+			if (preg_match("%^$includePattern$%", $relation)) {
+				$hasIncludePattern = true;
+				break;
+			}
+		}
+
+		if ($hasIncludePattern) {
+			$classname = $this->baseClass;
+			$expanded = [];
+
+			foreach (explode('.', $relation) as $relationKey) {
+				if (array_key_exists("$classname:$relationKey", $this->relmap) && empty($expanded["$classname:$relationKey"])) {
+					$expanded["$classname:$relationKey"] = true;
+					$classname = $this->relmap["$classname:$relationKey"];
+					continue;
+				}
+				return false;
+			}
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -373,11 +414,16 @@ class Response extends JsonResponse
 	 */
 	public function includeResource(ResourceIdentifyable $identifyable, $prefix)
 	{
-		$resourceIdentifier = implode('.', $identifyable->toJsonApiResourceIdentifier());
-		if (!array_key_exists($resourceIdentifier, $this->datamap) && !array_key_exists($resourceIdentifier,
+		$resourceIdentifier = $identifyable->toJsonApiResourceIdentifier();
+		$resourceIdentifierPlain = implode('.', $resourceIdentifier);
+		if (!array_key_exists($resourceIdentifierPlain, $this->datamap) && !array_key_exists($resourceIdentifierPlain,
 				$this->included)
 		) {
-			$this->included[$resourceIdentifier] = $identifyable->toJsonApi($this, $prefix);
+			$this->included[$resourceIdentifierPlain] = $identifyable->toJsonApi($this, $prefix);
+
+			if ($this->debug) {
+				$this->inclusionMap[$resourceIdentifier['type']] = empty($this->inclusionMap[$resourceIdentifier['type']]) ? 1 : ($this->inclusionMap[$resourceIdentifier['type']] + 1);
+			}
 		}
 	}
 }

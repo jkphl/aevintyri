@@ -125,27 +125,33 @@ abstract class AbstractModel extends Model implements ResourceIdentifyable
 	/**
 	 * Return the relation map for this model
 	 *
-	 * @param string $prefix Prefix
-	 * @param bool|false $recursive Recursive
-	 * @param array $excludeTypes Exclude types (infinite loop prevention)
-	 * @return array
+	 * @param array $globalRelationMap Relation map
+	 * @return array Local relation map
 	 */
-	public static function relationMap($prefix = '', $recursive = false, array &$excludeTypes = [])
+	public static function relationMap(array &$globalRelationMap = [])
 	{
-		$relationMap = array();
-		foreach (static::$relmap as $relation => $relationModel) {
-			$relationPath = ($prefix ? "$prefix." : '') . $relation;
-			$relationMap[$relationPath] = $relationModel;
-			if ($recursive && empty($excludeTypes[$relation])) {
-				$excludeTypes[$relation] = true;
-				$relationMapArguments = [$relationPath, true, &$excludeTypes];
-				$relationMap = array_merge($relationMap,
-					call_user_func_array(array($relationModel, 'relationMap'), $relationMapArguments));
-			} else {
-				$excludeTypes[$relation] = true;
+		$localRelationMap = [];
+
+		if (empty($globalRelationMap['\\' . static::class])) {
+			$globalRelationMap['\\' . static::class] = '\\' . static::class;
+
+			foreach (static::$relmap as $relation => $relationModel) {
+				$localRelation = '\\' . static::class . ':' . $relation;
+				if (empty($globalRelationMap[$localRelation])) {
+					$globalRelationMap[$localRelation] = $localRelationMap[$relation] = $relationModel;
+				}
+			}
+
+			foreach ($localRelationMap as $relation => $relationModel) {
+				$localRelation = '\\' . static::class . ':' . $relation;
+				$subrelations = call_user_func_array(array($relationModel, 'relationMap'), [&$globalRelationMap]);
+				foreach ($subrelations as $subrelation => $subrelationModel) {
+					$globalRelationMap["$localRelation.$subrelation"] = $subrelationModel;
+				}
 			}
 		}
-		return $relationMap;
+
+		return $localRelationMap;
 	}
 
 	/**

@@ -75,7 +75,7 @@ final class Organizer extends AbstractModel
 	public static $relmap = array(
 		'country' => '\\App\\Models\\Country',
 		'events' => '\\App\\Models\\Event',
-		'series' => '\\App\\Models\\Session',
+		'series' => '\\App\\Models\\Series',
 	);
 
 	/**
