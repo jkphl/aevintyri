@@ -129,6 +129,13 @@ class Response extends JsonResponse
 	protected $primary = null;
 
 	/**
+	 * Map of all primary resource IDs
+	 *
+	 * @var array
+	 */
+	protected $datamap = [];
+
+	/**
 	 * Constructor.
 	 *
 	 * @param  Builder|JsonApiable|array $data
@@ -308,12 +315,22 @@ class Response extends JsonResponse
 			}
 		}
 
-		$jsonApiResourceObjects = [];
+		// Step 1: Build the data map first
 		foreach ($query->get() as $resourceObject) {
+			if ($resourceObject instanceof ResourceIdentifyable) {
+				$resourceIdentifier = implode('.', $resourceObject->toJsonApiResourceIdentifier());
+				$this->datamap[$resourceIdentifier] = $resourceObject;
+			}
+		}
+
+		// Step 2: Build the JSON API resource objects
+		$jsonApiResourceObjects = [];
+		foreach ($this->datamap as $resourceObject) {
 			if ($resourceObject instanceof JsonApiable) {
 				$jsonApiResourceObjects[] = $this->_resourceObjectData($resourceObject);
 			}
 		}
+
 		return $jsonApiResourceObjects;
 	}
 
@@ -357,7 +374,9 @@ class Response extends JsonResponse
 	public function includeResource(ResourceIdentifyable $identifyable, $prefix)
 	{
 		$resourceIdentifier = implode('.', $identifyable->toJsonApiResourceIdentifier());
-		if (!array_key_exists($resourceIdentifier, $this->included)) {
+		if (!array_key_exists($resourceIdentifier, $this->datamap) && !array_key_exists($resourceIdentifier,
+				$this->included)
+		) {
 			$this->included[$resourceIdentifier] = $identifyable->toJsonApi($this, $prefix);
 		}
 	}

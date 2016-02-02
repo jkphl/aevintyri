@@ -126,11 +126,8 @@ class EventController extends Controller
 	 */
 	public function createEvent(Request $request)
 	{
-
 		$Event = Event::create($request->all());
-
 		return response()->json($Event);
-
 	}
 
 	/**
