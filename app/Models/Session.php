@@ -50,14 +50,14 @@ final class Session extends AbstractModel
      *
      * @var array
      */
-    protected $hidden = array('day_id', 'room_id', 'day', 'room', 'links', 'tags');
+    protected $hidden = array('day_id', 'room_id', 'day', 'room', 'links', 'tags', 'presenters');
 
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
-    protected $appends = array('day', 'room', 'links', 'tags');
+    protected $appends = array('day', 'room', 'links', 'tags', 'presenters');
 
     /**
      * The extended accessors to append to the model's array form.
@@ -96,6 +96,7 @@ final class Session extends AbstractModel
         'day' => '\\App\\Models\\Day',
         'room' => '\\App\\Models\\Room',
         'tags' => '\\App\\Models\\Tag',
+        'presenters' => '\\App\\Models\\Presenter',
         'links' => '\\App\\Models\\Link',
         'venue' => '\\App\\Models\\Venue',
     );
@@ -209,5 +210,29 @@ final class Session extends AbstractModel
      */
     public function getVenueAttribute() {
         return $this->room()->getQuery()->first()->venue;
+    }
+
+
+    /**
+     * Return this sessions' presenters
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Presenters
+     */
+    public function presenters()
+    {
+        return $this->belongsToMany('App\Models\Presenter', 'presenter_sessions');
+    }
+
+    /**
+     * Return this sessions' presenters
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Presenters
+     */
+    public function getPresentersAttribute() {
+        $presenters = [];
+        foreach ($this->presenters()->getResults() as $presenter) {
+            $presenters[] = $presenter;
+        }
+        return $presenters;
     }
 }
