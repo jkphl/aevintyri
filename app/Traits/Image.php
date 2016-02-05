@@ -51,7 +51,7 @@ trait Image
 	public function getImageAttribute() {
 		$image = trim($this->attributes['image']);
 		if (strlen($image)) {
-			$image = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$image;
+			$image = (empty($_SERVER['HTTPS']) ? 'http' : 'https').'://'.$_SERVER['HTTP_HOST'].$image;
 		}
 		return $image;
 	}
