@@ -19,6 +19,8 @@ class CreatePresenterSessionsTable extends Migration
 
             $table->integer('presenter_id');
             $table->integer('session_id');
+
+            $table->unique(['presenter_id', 'session_id']);
         });
     }
 

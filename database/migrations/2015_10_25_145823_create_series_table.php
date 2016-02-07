@@ -35,11 +35,6 @@ class CreateSeriesTable extends Migration
             $table->string('hashtag', 255)->nullable();
             $table->longText('description')->nullable();
             $table->longText('abstract')->nullable();
-            $table->string('facebook_event', 255)->nullable();
-            $table->string('xing_event', 255)->nullable();
-            $table->string('gplus_event', 255)->nullable();
-            $table->string('tickets', 255)->nullable();
-            $table->string('lanyrd', 255)->nullable();
         });
     }
 

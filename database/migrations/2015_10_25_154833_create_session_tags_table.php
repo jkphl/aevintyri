@@ -19,6 +19,8 @@ class CreateSessionTagsTable extends Migration
 
             $table->integer('session_id');
             $table->integer('tag_id');
+
+            $table->unique(['session_id', 'tag_id']);
         });
     }
 

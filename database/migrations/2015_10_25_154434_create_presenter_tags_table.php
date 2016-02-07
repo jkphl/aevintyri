@@ -19,6 +19,8 @@ class CreatePresenterTagsTable extends Migration
 
             $table->integer('presenter_id');
             $table->integer('tag_id');
+
+            $table->unique(['presenter_id', 'tag_id']);
         });
     }
 

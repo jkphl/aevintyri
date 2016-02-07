@@ -56,11 +56,6 @@ class SeriesTableSeeder extends Seeder
             'hashtag' => '',
             'description' => '',
             'abstract' => '',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
         Series::create([
             'organizer_id' => '1',
@@ -78,11 +73,6 @@ class SeriesTableSeeder extends Seeder
             'hashtag' => 'a11yclub',
             'description' => '',
             'abstract' => 'Treffen für Webentwickler & -designer zur Förderung von Barrierefreiheit im Internet und zum Austausch über assistive Technologien',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
         Series::create([
             'organizer_id' => '4',
@@ -106,11 +96,6 @@ Was ist Open Coffee Club?
 In mittlerweile über 80 Städten weltweit treffen sich junge Unternehmer, Interessierte, Entwickler und Kapitalgeber regelmässig in OpenCoffee Clubs um miteinander zu diskutieren, sich auszutauschen und sich zu vernetzen.
 Zentraler Aspekt sind dabei der feste Termin und der feste Ort. Es spielt keine Rolle wer an einem bestimmten Termin teilnimmt oder wieviele Teilnehmer kommen. Wichtig ist einzig, dass es einen zuverlässigen Anlaufpunkt gibt, an dem sich die Gründerszene austauscht und an dem man Gleichgesinnte treffen kann.',
             'abstract' => 'Der Open Coffee Club ist ein eigentsändiger Treff bei leckerem Frühstück für Unternehmer, Startups und Freelancer aus der Metropolregion Nürnberg.',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
         Series::create([
             'organizer_id' => '4',
@@ -130,11 +115,6 @@ Zentraler Aspekt sind dabei der feste Termin und der feste Ort. Es spielt keine 
 
 Willkommen ist jeder Interessierte, Designer, Entwickler, Nutzer, Administrator oder Entscheider.',
             'abstract' => 'Es gibt inzwischen unzählige Open Source Content Management Systeme auf dem Markt. Die CMS Night ist eine gemeinsame Veranstaltung der Nutzer verschiedener CMS Systeme aus der Metropolregion Nürnberg.',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
         Series::create([
             'organizer_id' => '5',
@@ -152,11 +132,6 @@ Willkommen ist jeder Interessierte, Designer, Entwickler, Nutzer, Administrator 
             'hashtag' => '',
             'description' => '',
             'abstract' => 'Bei der Social Media Night treffen sich Social Media Worker aller Richtung zu Austausch und Networking in gemütlicher Runde. Ergänzt wird das Programm durch Vorträge, Panels und Interviews.',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
         Series::create([
             'organizer_id' => '6',
@@ -174,11 +149,6 @@ Willkommen ist jeder Interessierte, Designer, Entwickler, Nutzer, Administrator 
             'hashtag' => '',
             'description' => '',
             'abstract' => '',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
         Series::create([
             'organizer_id' => '8',
@@ -196,11 +166,6 @@ Willkommen ist jeder Interessierte, Designer, Entwickler, Nutzer, Administrator 
             'hashtag' => '',
             'description' => 'Das Wordpress Meetup Franken ist eine Usergroup, die sich mit dem Content Management System "Wordpress" beschäftigt. Einsteiger und Fortgeschrittene sind herzlich eingeladen, sich mit Gleichgesinnten über die aktuellsten Neuigkeiten auszutauschen und ihre Erfahrungen miteinander zu teilen.',
             'abstract' => '',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
         Series::create([
             'organizer_id' => '2',
@@ -218,11 +183,6 @@ Willkommen ist jeder Interessierte, Designer, Entwickler, Nutzer, Administrator 
             'hashtag' => '',
             'description' => 'Pecha Kucha (sprich: petscha-kutscha, jap. ペチャクチャ “wirres Geplauder, Stimmengewirr”) ist eine Vortragstechnik, bei der zu einem mündlichen Vortrag passende Bilder (Folien) an eine Wand projiziert werden. Die Anzahl der Bilder ist dabei mit 20 Stück ebenso vorgegeben wie die 20-sekündige Dauer der Projektionszeit je Bild. Die Gesamtdauer des Vortrags beträgt damit 6 Minuten 40 Sekunden. In Pecha Kucha Nights (PKN) folgen mehrere dieser Vorträge hintereinander. Die Themen liegen meist im Bereich Design, Kunst, Mode und Architektur. - See more at: http://www.nuernberg-startups.de/uebersicht-ueber-die-it-internetszene-in-der-metropolregion-nuernberg/#.U_8JWbx_tZw',
             'abstract' => '',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
         Series::create([
             'organizer_id' => '10',
@@ -240,11 +200,6 @@ Willkommen ist jeder Interessierte, Designer, Entwickler, Nutzer, Administrator 
             'hashtag' => '',
             'description' => 'Hier liegt der Schwerpunkt besonders auf der agilen Software-Entwicklung. Das Ziel ist, nicht an einem steifen Plan festzuhalten, sondern seine Vorgehensweisen der vorangeschrittenen Entwicklung anzupassen, um am Ende zu bekommen, was man auch braucht. Dies soll möglichst dynamisch und ohne oder nur mit wenig bürokratischem Aufwand vorangehen. Die Ideen hinter agiler Entwicklung sind klar umrissen: Menschen und gemeinsames Arbeiten kommen vor theoretischen Abläufen und Prozessen, funktionierende Software hat Vorrang vor umfassender Dokumentation, konstruktive Zusammenarbeit mit Kunden hat mehr Gewicht als Vertragsverhandlungen und flexibler Umgang mit veränderten Anforderungen ist wichtiger als Festhalten an einem Plan. Diese Gruppe soll dem Informationsaustausch rund um den Stammtisch über alle agilen Themen (Scrum, Extreme Programming, Crystal etc.) in der Region Nürnberg dienen.',
             'abstract' => '',
-            'facebook_event' => null,
-            'xing_event' => null,
-            'gplus_event' => null,
-            'tickets' => null,
-            'lanyrd' => null
         ]);
     }
 }
