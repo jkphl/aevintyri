@@ -1,0 +1,24 @@
+<?php
+
+$dateTimes		= $event->getDateTimes();
+$numDateTimes	= count($dateTimes);
+if ($numDateTimes) {
+	echo $dateTimes[0]->format($this->translate('entity.day.date.format.short'));
+	if (intval($dateTimes[0]->format('H')) + intval(ltrim($dateTimes[0]->format('i'), '0'))) {
+		echo ' · <span class="time">'.$dateTimes[0]->format($this->translate('entity.day.date.format.hours')).'</span>';
+	}
+
+	if ($numDateTimes > 1) {
+		if ($dateTimes[0]->format('Y-m-d') == $dateTimes[1]->format('Y-m-d')) {
+			echo '<span class="time"> - '.$dateTimes[1]->format($this->translate('entity.day.date.format.hours')).'</span>';
+		} else {
+			echo ' — '.$dateTimes[1]->format($this->translate('entity.day.date.format.short'));
+			if (intval($dateTimes[1]->format('H')) + intval(ltrim($dateTimes[1]->format('i'), '0'))) {
+				echo ' · <span class="time">'.$dateTimes[1]->format($this->translate('entity.day.date.format.hours')).'</span>';
+			}
+		}
+	}
+
+} else {
+	echo '---';
+}

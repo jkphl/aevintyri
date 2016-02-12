@@ -1,0 +1,53 @@
+<?php
+
+$thumbnailSize					= 200;
+
+if (!empty($image)) {
+	if (!@is_file($image)) {
+		$image					= strncmp('/img/', $image, 5) ? './data/tmp/'.$image : './public'.$image;
+	}
+	if (@is_file($image)) {
+		$imageSize				= @getimagesize($image);
+		$imageWidth				= $imageSize[0];
+		$imageHeight			= $imageSize[1];
+		$imageMime				= $imageSize['mime'];
+		
+		if (max($imageWidth, $imageHeight) > $thumbnailSize) {
+			$imageAspect		= $imageWidth / $imageHeight;
+			if ($imageAspect > 1) {
+				$thumbWidth		= $thumbnailSize;
+				$thumbHeight	= $thumbnailSize / $imageAspect;
+			} else {
+				$thumbHeight	= $thumbnailSize;
+				$thumbWidth		= $thumbnailSize * $imageAspect;
+			}
+			
+			$imageSource		= imagecreatefromstring(file_get_contents($image));
+			$imageTarget		= imagecreatetruecolor($thumbWidth, $thumbHeight);
+			imageSaveAlpha($imageTarget, true);
+			imageAlphaBlending($imageTarget, true);
+			imagefill($imageTarget, 0, 0, imagecolorallocatealpha($imageTarget, 0, 0, 0, 127));
+			imagecopyresampled($imageTarget, $imageSource, 0, 0, 0, 0, $thumbWidth, $thumbHeight, $imageWidth, $imageHeight);
+			ob_start();
+			imagepng($imageTarget);
+			$imageBin			= ob_get_clean();
+			$imageMime			= 'image/png';
+			imagedestroy($imageSource);
+			imagedestroy($imageTarget);
+			$imageWidth			= $thumbWidth;
+			$imageHeight		= $thumbHeight;
+
+			// Imagick not always available
+// 			$imageObj			= new Imagick($image);
+// 			$imageObj->thumbnailimage($thumbnailSize, $thumbnailSize, true);
+// 			$imageWidth			= $imageObj->getImageWidth();
+// 			$imageHeight		= $imageObj->getImageHeight();
+// 			$imageBin			= $imageObj->getImageBlob();
+
+		} else {
+			$imageBin			= file_get_contents($image);
+		}
+		
+		?><img src="data:<?php echo $imageMime; ?>;base64,<?php echo base64_encode($imageBin); ?>" width="<?php echo $imageWidth; ?>" height="<?php echo $imageHeight; ?>"/><?php
+	}
+}

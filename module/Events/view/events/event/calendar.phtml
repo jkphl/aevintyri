@@ -1,0 +1,42 @@
+<?php
+
+	// Header
+	echo $this->partial('partials/common/header.phtml', array('header' => $this->translate('events.section.label.event.calendar')));
+
+	if (count($events)):
+
+	?><table class="entity-list">
+		  <thead>
+		    <tr>
+		      <th width="50"><?php echo $this->translate('entity.common.id') ?></th>
+		      <th><?php echo $this->translate('entity.common.name') ?></th>
+		      <th><?php echo $this->translate('entity.event.date'); ?></th>
+		      <th><?php echo $this->translate('entity.event.session'); ?></th>
+		      <th><?php echo $this->translate('entity.event.tags'); ?></th>
+		    </tr>
+		  </thead>
+		<tbody><?php
+		
+			foreach ($events as $event):
+				$dataOnclick		= ($this->identity instanceof \Auth\Entity\User) ? ' data-onclick="'.$this->url('event', array('action' => 'show', 'type' => 'single', 'id' => $event->getId())).'"' : '';
+			
+			?><tr<?php echo $dataOnclick; ?>">
+				<td><?php echo $event->getId(); ?></td>
+				<td><?php echo $event->getName(); ?></td>
+				<td><?php echo $this->partial('partials/common/times.phtml', array('event' => $event)); ?></td>
+				<td><?php echo count($event->getSessions()); ?></td>
+				<td><?php echo $this->emptyvalue(implode(', ', array_map(function($tag) { return $tag->getName(); }, $event->getTags()))); ?></td>
+			</tr><?php
+			
+			endforeach;
+		
+		?></tbody>
+	</table><?php
+	
+	else:
+
+?><p class="empty-list"><?php echo $this->translate('events.list.none'); ?></p><?php
+	
+	endif;
+	
+?>

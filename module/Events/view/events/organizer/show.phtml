@@ -1,0 +1,85 @@
+<?php
+
+	// Header
+	echo $this->partial('partials/common/header.phtml', array('header' => $organizer->getName(), 'buttons' => array(
+		$this->url('organizer', array('action' => 'list')) => $this->translate('button.back'),
+		$this->url('organizer', array('action' => 'edit', 'id' => $organizer->getId())) => $this->translate('button.edit'),
+		$this->url('organizer', array('action' => 'delete', 'id' => $organizer->getId())) => array($this->translate('button.delete'), array('data-confirm' => $this->translate('entity.actions.delete.confirm'))),
+
+		
+	)));
+	
+	/* data-confirm="<?php echo htmlspecialchars(); ?>" */
+	
+	// Messages
+// 	echo $this->flashMessagesHelper($flashMessages);
+	
+?><table class="entity-show">
+	<tr>
+		<th><?php echo $this->translate('entity.common.name'); ?></th>
+		<td><?php echo $this->organizer->getName(); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.organizer.company'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getCompany()); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.common.image'); ?></th>
+		<td><?php echo $this->partial('partials/common/preview.phtml', array('image' => $this->organizer->getImage())); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.common.address'); ?></th>
+		<td><?php
+		
+		$address					= $this->organizer->getAddress();
+		if (array_key_exists('postbox', $address)) {
+			$address['postbox']		= sprintf($this->translate('entity.common.postbox'), $address['postbox']);
+		}
+		array_unshift($address, $this->organizer->getName());
+		array_unshift($address, $this->organizer->getCompany());
+		
+		echo $this->emptyvalue(implode("\n", $address), array('<address>', '</address>'));
+		
+		?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.address.geo'); ?></th>
+		<td><?php echo $this->gmaps($address, $this->organizer->getLatitude(), $this->organizer->getLongitude()); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.phone'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getPhone(), array('<a href="tel:'.preg_replace(array('%^[^\+\d]+%', '%[^\+\d]+%'), '', $this->organizer->getPhone()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.cell'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getCell(), array('<a href="tel:'.preg_replace(array('%^[^\+\d]+%', '%[^\+\d]+%'), '', $this->organizer->getCell()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.fax'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getFax()); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.email'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getEmail(), array('<a href="mailto:'.htmlspecialchars($this->organizer->getEmail()).'">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.web'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getWeb(), array('<a href="'.htmlspecialchars($this->organizer->getWeb()).'" target="_blank">', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.twitter'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getTwitter(), array('<a href="https://twitter.com/'.htmlspecialchars($this->organizer->getTwitter()).'" target="_blank">@', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.facebook'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getFacebook(), array('<a href="https://'.htmlspecialchars($this->organizer->getFacebook()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.gplus'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getGplus(), array('<a href="https://'.htmlspecialchars($this->organizer->getGplus()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+	<tr>
+		<th><?php echo $this->translate('entity.contact.xing'); ?></th>
+		<td><?php echo $this->emptyvalue($this->organizer->getXing(), array('<a href="https://'.htmlspecialchars($this->organizer->getXing()).'" target="_blank">https://', '</a>')); ?></td>
+	</tr>
+</table>

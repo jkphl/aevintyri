@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * Event management
+ *
+ * @category	Tollwerk
+ * @package		Tollwerk_Events
+ * @author		Joschi Kuphal <joschi@kuphal.net>
+ * @copyright	Copyright © 2014 tollwerk GmbH <info@tollwerk.de>
+ * @license		http://opensource.org/licenses/BSD-3-Clause	The BSD 3-Clause License
+ */
+
+if ($this->navMenu == true):
+
+	?><ul class="button-group right"><?php
+
+	if ($this->user):
+  
+  	?><li><a href="<?php echo $this->url('user-index');?>" class="button radius"><?php echo $this->translate('auth.button.home'); ?></a></li>
+	<li><a href="<?php echo $this->url('user-index', array('action' => 'logout'))?>" class="button radius"><?php echo $this->translate('auth.button.logout'); ?></a></li><?php
+	
+	else:
+  
+  	?><li><a href="<?php echo $this->url('user-index', array('action' => 'login'))?>" class="button radius"><?php echo $this->translate('auth.button.signin'); ?></a></li>
+	<li><a href="<?php echo $this->url('user-register', array('action' => 'reset-password'));?>" class="button radius"><?php echo $this->translate('auth.button.password.reset'); ?></a></li><?php
+
+	endif;
+	
+	?></ul><?php
+	
+endif;

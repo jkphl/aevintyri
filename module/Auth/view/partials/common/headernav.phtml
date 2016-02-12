@@ -1,0 +1,39 @@
+<h1 class="header"><?php
+
+	if ($identity instanceof \Auth\Entity\User) {
+		$buttons		= array(
+// 			$this->url('user-index')											=> $this->translate('auth.button.home'),
+// 			$this->url('user-register', array('action' => 'edit-profile'))		=> $this->translate('auth.button.profile.edit'),
+			$this->url('user-register', array('action' => 'logout'))			=> $this->translate('auth.button.logout'),
+		);
+	} else {
+		$buttons		= array(
+// 			$this->url('user-index', array('action' => 'login'))				=> $this->translate('auth.button.signin'),
+// 			$this->url('user-register')											=> $this->translate('auth.button.signup'),
+			$this->url('user-register', array('action' => 'reset-password'))	=> $this->translate('auth.button.password.reset'),
+		);
+	}
+
+	$group			= count($buttons) > 1;
+	
+	if ($group):
+		?><ul class="button-group right"><?php
+	endif;
+	
+	foreach ($buttons as $url => $label):
+		if (is_array($label)) {
+			$attributes		= (array)$label[1];
+			$label			= $label[0];
+		} else {
+			$attributes		= array();
+		}
+		if ($group): ?><li><?php endif; ?><a class="<?php if (!$group): ?>right <?php endif; ?>button radius" href="<?php echo htmlspecialchars($url); ?>" role="button"<?php foreach ($attributes as $name => $value) echo ' '.htmlspecialchars($name).'="'.htmlspecialchars($value).'"'; ?>><?php echo htmlspecialchars($label); ?></a><?php if ($group): ?></li><?php endif; 
+	endforeach;
+	
+	if ($group):
+		?></ul><?php
+	endif;
+	
+	echo $header;
+	
+?></h1>

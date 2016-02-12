@@ -1,0 +1,26 @@
+<fieldset id="texts">
+	<legend><?php echo $this->translate('form.legend.description'); ?></legend>
+	<div class="row">
+		<div class="large-12 columns">
+			<?php echo $this->formRow($subject->get('abstract')); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<?php echo $this->formRow($subject->get('description')); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="row collapse">
+				<?php echo $this->formLabel($subject->get('hashtag')); ?>
+				<div class="small-1 large-1 columns">
+					<span class="prefix text-right">#</span>
+				</div>
+				<div class="small-11 large-11 columns">
+			      <?php echo $this->formInput($subject->get('hashtag')); ?>
+			    </div>
+			</div>
+		</div>
+	</div>
+</fieldset>

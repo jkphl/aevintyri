@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * Event management
+ *
+ * @category	Tollwerk
+ * @package		Tollwerk_Events
+ * @author		Joschi Kuphal <joschi@kuphal.net>
+ * @copyright	Copyright © 2014 tollwerk GmbH <info@tollwerk.de>
+ * @license		http://opensource.org/licenses/BSD-3-Clause	The BSD 3-Clause License
+ */
+$flashMessenger = $this->flashMessenger()->setMessageOpenFormat('<div%s>
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         &times;
+     </button>
+     <ul><li>')->setMessageSeparatorString('</li><li>')->setMessageCloseString('</li></ul></div>');
+
+?>
+
+<div class="container wrapper"><?php
+	echo $flashMessenger->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+	echo $flashMessenger->render('info',    array('alert', 'alert-dismissable', 'alert-info'));
+	echo $flashMessenger->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+	echo $flashMessenger->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+?></div>
+<h1>
+	<?php echo $this->translate('auth.header.user.admin'); ?>dsfsdf
+</h1>
+<a class="btn btn-success" href="<?php echo $this->url('user-admin', array('action' => 'create-user')); ?>"><?php echo $this->translate('auth.button.user.create')?></a>
+<hr />
+<div class="table-responsive">
+	<table class="users-list table table-striped table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th><?php echo $this->translate('auth.label.name') ?></th>
+				<th><?php echo $this->translate('auth.label.email') ?></th>
+				<th><?php echo $this->translate('auth.label.role') ?></th>
+				<th><?php echo $this->translate('auth.label.active') ?></th>
+				<th><?php echo $this->translate('auth.label.actions') ?></th>
+			</tr>
+		</thead>
+		<tbody><?php
+		
+		/* @var $user \Auth\Entity\User */
+		foreach ($users as $user):
+		
+			?><tr>
+				<td>
+					<?php echo $user->getId(); ?>
+				</td>
+				<td>
+					<a class="name" href="<?php echo $this->url('user-admin', array('action' => 'edit-user', 'id' => $user->getId())); ?>"><?php echo $user->getName(); ?></a>
+					<span class="subtext">(<?php echo $user->getUsergroup()->getName(); ?>)</span>
+				</td>
+				<td>
+					<?php echo $user->getEmail(); ?>
+				</td>
+				<td>
+					<?php echo $this->translate('auth.label.role.'.(1 * $user->getRole())); ?>
+				</td>
+				<td>
+					<?php echo $this->translate('auth.label.activity.'.(1 * $user->getActive())); ?>
+				</td>
+				<td class="delete-cell">
+					<a href="<?php echo $this->url('user-admin', array('action'=>'set-user-state', 'id' => $user->getId(), 'state' => !$user->getActive() * 1)) ?>"><?php echo $this->translate($user->getActive() ? 'auth.button.user.disable' : 'auth.button.user.enable'); ?></a> |
+					<a href="<?php echo $this->url('user-admin', array('action'=>'edit-user', 'id' => $user->getId())); ?>"><?php echo $this->translate('auth.button.user.edit')?></a> |
+					<a href="<?php echo $this->url('user-admin', array('action'=>'delete-user', 'id' => $user->getId())); ?>" onclick="return confirm('<?php echo $this->translate('auth.button.user.delete.confirm'); ?>')"><?php echo $this->translate('auth.button.user.delete')?></a>
+				</td>
+			</tr><?php
+			
+			endforeach;
+			
+			$this->translate('auth.label.activity.1');
+			$this->translate('auth.label.activity.0');
+			$this->translate('auth.button.user.disable');
+			$this->translate('auth.button.user.enable');
+			
+		?></tbody>
+	</table>
+</div>

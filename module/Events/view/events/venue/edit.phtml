@@ -1,0 +1,96 @@
+<?php
+
+	// Header
+	echo $this->partial('partials/common/header.phtml', array('header' => sprintf($this->translate('events.section.label.venue.edit'), $this->venue->getName()), 'buttons' => array($this->url('venue', array('action' => 'show', 'id' => $this->venue->getId())) => $this->translate('button.back'))));
+	
+	// Messages
+// 	echo $this->flashMessagesHelper($flashMessages);
+	
+	$form 			= $this->form;
+	$venue			= $form->get('venue');
+	$form->setAttribute('action', $this->url('venue', array('action' => 'edit', 'id' => $this->venue->getId())));
+	$form->prepare();
+	
+	echo $this->form()->openTag($form);
+	
+?>
+
+<fieldset id="general">
+	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
+	<div class="row">
+		<div class="large-12 columns">
+			<?php echo $this->formRow($venue->get('name')); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="large-6 columns"><?php 
+			echo $this->formRow($venue->get('upload_image'));
+		?></div>
+		<div class="large-6 columns"><?php
+			echo $this->formHidden($venue->get('image'));
+			echo $this->partial('partials/common/preview.phtml', array('image' => $venue->get('image')->getValue()));
+			if (strlen($venue->get('image')->getValue())) {
+				echo $this->formRow($venue->get('delete_image'));
+			}
+		?></div>
+	</div>
+</fieldset>
+
+<?php 
+
+	echo $this->partial('partials/common/texts.phtml', array('subject' => $venue));
+	echo $this->partial('partials/common/address.phtml', array('subject' => $venue));
+	
+?>
+
+<fieldset id="rooms">
+	<legend><?php echo $this->translate('entity.venue.rooms'); ?></legend>
+	<div class="row"><?php
+	
+		$rooms			= $this->venue->getRooms();
+		if (count($rooms)):
+			?><table class="entity-list"><?php
+		
+			foreach ($rooms as $room):
+		
+				?><tr>
+				<td><?php $name = $room->getName(); echo strlen(trim($name)) ? htmlspecialchars($name) : $this->translate('entity.room.name.none'); ?></td>
+				<td><?php echo $this->emptyvalue($room->getNumber()); ?></td>
+				<td class="actions">
+					<ul class="button-group">
+						<li><a href="<?php echo $this->url('room', array('action' => 'edit', 'id' => $room->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.edit')); ?></a></li>
+						<li><a href="<?php echo $this->url('room', array('action' => 'delete', 'id' => $room->getId())); ?>" class="tiny button radius" data-confirm="<?php echo htmlspecialchars($this->translate('entity.actions.delete.confirm')); ?>"><?php echo htmlspecialchars($this->translate('button.delete')); ?></a></li>
+					</ul>
+				</td>
+			</tr><?php
+			
+			endforeach;
+			
+			?></table><?php
+		else:
+			?><p class="empty-list"><?php echo $this->translate('events.list.none'); ?></p><?php
+		
+		endif;
+		
+		?><a href="<?php echo $this->url('room', array('action' => 'add', 'venue' => $this->venue->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.add')); ?></a><?php
+	
+	?></div>
+</fieldset>
+
+<div class="row">
+	<div class="large-12 columns">
+		<ul class="button-group">
+		  <li><?php echo $this->formSubmit($form->get('save')); ?></li>
+		  <li><?php echo $this->formSubmit($form->get('saveclose')); ?></li>
+		</ul>
+	</div>
+</div>
+	
+<?php
+	
+	/** Hidden fields **/
+	echo $this->formHidden($venue->get('id'));
+	/** END - Hidden fields **/
+	
+	echo $this->form()->closeTag($form);
+?>

@@ -1,0 +1,52 @@
+<?php
+
+	// Header
+	if ($this->link->getPresenter()) {
+		$backlink	= $this->url('presenter', array('action' => 'edit', 'id' => $this->link->getPresenter()->getId()), array('fragment' => 'associations'));
+	} else {
+		$backlink	= $this->url('presenter', array('action' => 'edit', 'id' => $this->link->getSession()->getId()), array('fragment' => 'associations'));
+	}
+	echo $this->partial('partials/common/header.phtml', array('header' => sprintf($this->translate('events.section.label.link.edit'), $this->link->getUrl()), 'buttons' => array($backlink => $this->translate('button.back'))));
+	
+	// Messages
+// 	echo $this->flashMessagesHelper($flashMessages);
+	
+	$form 			= $this->form;
+	$link			= $form->get('link');
+	$form->setAttribute('action', $this->url('link', array_merge(array('action' => 'edit', 'id' => $this->link->getId()))));
+	$form->prepare();
+	
+	echo $this->form()->openTag($form);
+	
+?>
+
+<fieldset id="general">
+	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
+	<div class="row">
+		<div class="large-6 columns">
+			<?php echo $this->formRow($link->get('name')); ?>
+		</div>
+		<div class="large-6 columns">
+			<?php echo $this->formRow($link->get('url')); ?>
+		</div>
+	</div>
+</fieldset>
+<div class="row">
+	<div class="large-12 columns">
+		<ul class="button-group">
+		  <li><?php echo $this->formSubmit($form->get('save')); ?></li>
+		  <li><?php echo $this->formSubmit($form->get('saveclose')); ?></li>
+		</ul>
+	</div>
+</div>
+	
+<?php
+	
+	/** Hidden fields **/
+	echo $this->formHidden($link->get('id'));
+	echo $this->formHidden($link->get('presenter'));
+	echo $this->formHidden($link->get('session'));
+	/** END - Hidden fields **/
+	
+	echo $this->form()->closeTag($form);
+?>

@@ -1,8 +1,24 @@
-/.env
-/.idea
-/composer.lock
-/public/css
-/public/img
-/public/js
-/vendor
-/node_modules
+# Composer files
+composer.phar
+composer.lock
+vendor/
+
+# Local configs
+config/autoload/*.local.php
+
+# Binary gettext files
+*.mo
+
+# Data
+data/logs/
+data/cache/
+data/sessions/
+data/tmp/
+data/DoctrineORMModule/
+temp/
+
+.buildpath
+.project
+.settings
+.idea
+node_modules

@@ -1,0 +1,37 @@
+<fieldset id="associations">
+	<legend><?php echo $this->translate('form.legend.associations'); ?></legend>
+	<div class="row">
+		<?php echo $this->formRow($subject->get('tags')); ?>
+	</div>
+	<div class="row">
+		<label><?php echo $this->translate('entity.common.links'); ?></label><?php 
+	
+		$links			= $entity->getLinks();
+		if (count($links)):
+			?><table class="entity-list"><?php
+		
+			foreach ($links as $link):
+		
+				?><tr>
+				<td><?php echo $link->getName(); ?></td>
+				<td><a href="<?php echo htmlspecialchars($link->getUrl()); ?>" target="_blank"><?php echo htmlspecialchars($link->getUrl()); ?></a></td>
+				<td class="actions">
+					<ul class="button-group">
+						<li><a href="<?php echo $this->url('link', array('action' => 'edit', 'id' => $link->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.edit')); ?></a></li>
+						<li><a href="<?php echo $this->url('link', array('action' => 'delete', 'id' => $link->getId())); ?>" class="tiny button radius" data-confirm="<?php echo htmlspecialchars($this->translate('entity.actions.delete.confirm')); ?>"><?php echo htmlspecialchars($this->translate('button.delete')); ?></a></li>
+					</ul>
+				</td>
+			</tr><?php
+			
+			endforeach;
+			
+			?></table><?php
+		else:
+			?><p class="empty-list"><?php echo $this->translate('events.list.none'); ?></p><?php
+		
+		endif;
+		
+		?><a href="<?php echo $this->url('link', array('action' => 'add', $entityName => $entity->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.add')); ?></a><?php
+	
+	?></div>
+</fieldset>

@@ -1,0 +1,770 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ZendSkeletonApplication\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-03 16:27+0100\n"
+"PO-Revision-Date: 2014-10-03 16:28+0100\n"
+"Last-Translator: Joschi Kuphal <joschi@tollwerk.de>\n"
+"Language-Team: ZF Contibutors <zf-devteam@zend.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../src/Events/Form/Day/AddForm.php:26
+#: ../src/Events/Form/Event/AddForm.php:26
+#: ../src/Events/Form/Link/AddForm.php:26
+#: ../src/Events/Form/Organizer/AddForm.php:26
+#: ../src/Events/Form/Presenter/AddForm.php:26
+#: ../src/Events/Form/Room/AddForm.php:26
+#: ../src/Events/Form/Session/AddForm.php:26
+#: ../src/Events/Form/Tag/AddForm.php:26
+#: ../src/Events/Form/Venue/AddForm.php:26
+msgid "button.create"
+msgstr "Create"
+
+#: ../src/Events/Form/Day/AddForm.php:35
+#: ../src/Events/Form/Event/AddForm.php:35
+#: ../src/Events/Form/Link/AddForm.php:35
+#: ../src/Events/Form/Organizer/AddForm.php:35
+#: ../src/Events/Form/Presenter/AddForm.php:35
+#: ../src/Events/Form/Room/AddForm.php:35
+#: ../src/Events/Form/Session/AddForm.php:35
+#: ../src/Events/Form/Tag/AddForm.php:35
+#: ../src/Events/Form/Venue/AddForm.php:35
+msgid "button.createclose"
+msgstr "Create & close"
+
+#: ../src/Events/Form/Day/EditForm.php:26
+#: ../src/Events/Form/Event/EditForm.php:26
+#: ../src/Events/Form/Link/EditForm.php:26
+#: ../src/Events/Form/Organizer/EditForm.php:26
+#: ../src/Events/Form/Presenter/EditForm.php:26
+#: ../src/Events/Form/Room/EditForm.php:26
+#: ../src/Events/Form/Session/EditForm.php:26
+#: ../src/Events/Form/Tag/EditForm.php:26
+#: ../src/Events/Form/Venue/EditForm.php:26
+msgid "button.save"
+msgstr "Save changes"
+
+#: ../src/Events/Form/Day/EditForm.php:35
+#: ../src/Events/Form/Event/EditForm.php:35
+#: ../src/Events/Form/Link/EditForm.php:35
+#: ../src/Events/Form/Organizer/EditForm.php:35
+#: ../src/Events/Form/Presenter/EditForm.php:35
+#: ../src/Events/Form/Room/EditForm.php:35
+#: ../src/Events/Form/Session/EditForm.php:35
+#: ../src/Events/Form/Tag/EditForm.php:35
+#: ../src/Events/Form/Venue/EditForm.php:35
+msgid "button.saveclose"
+msgstr "Save changes & close"
+
+#: ../src/Events/Form/Day/Fieldset.php:25
+msgid "entity.day.date"
+msgstr "Date"
+
+#: ../src/Events/Form/Day/Fieldset.php:76
+msgid "entity.day.event.unique"
+msgstr "This day already exists for the given event"
+
+#: ../src/Events/Form/Event/Fieldset.php:26
+#: ../src/Events/Form/Link/Fieldset.php:24
+#: ../src/Events/Form/Organizer/Fieldset.php:31
+#: ../src/Events/Form/Presenter/Fieldset.php:26
+#: ../src/Events/Form/Room/Fieldset.php:24
+#: ../src/Events/Form/Session/Fieldset.php:25
+#: ../src/Events/Form/Tag/Fieldset.php:23
+#: ../src/Events/Form/Venue/Fieldset.php:26
+#: ../view/events/event/calendar.phtml:12 ../view/events/event/list.phtml:13
+#: ../view/events/event/show.phtml:17 ../view/events/event/show.phtml:109
+#: ../view/events/organizer/list.phtml:11
+#: ../view/events/organizer/show.phtml:19
+#: ../view/events/presenter/list.phtml:11
+#: ../view/events/presenter/show.phtml:19 ../view/events/tag/list.phtml:11
+#: ../view/events/tag/show.phtml:19 ../view/events/venue/list.phtml:11
+#: ../view/events/venue/show.phtml:19
+msgid "entity.common.name"
+msgstr "Name"
+
+#: ../src/Events/Form/Event/Fieldset.php:48 ../view/events/event/list.phtml:14
+#: ../view/events/event/show.phtml:21
+msgid "entity.event.organizer"
+msgstr "Organizer"
+
+#: ../src/Events/Form/Event/Fieldset.php:49
+#: ../src/Events/Form/Event/Fieldset.php:80
+#: ../src/Events/Form/Session/Fieldset.php:50
+#: ../src/Events/Traits/AddressFieldset.php:89
+msgid "form.dropdown.select"
+msgstr "--- Please select ---"
+
+#: ../src/Events/Form/Event/Fieldset.php:79 ../view/events/event/show.phtml:28
+msgid "entity.event.series"
+msgstr "Event series"
+
+#: ../src/Events/Form/Event/Fieldset.php:105
+msgid "entity.event.facebook"
+msgstr "Facebook event"
+
+#: ../src/Events/Form/Event/Fieldset.php:116
+msgid "entity.event.gplus"
+msgstr "Google+ event"
+
+#: ../src/Events/Form/Event/Fieldset.php:127
+msgid "entity.event.xing"
+msgstr "Xing-Event"
+
+#: ../src/Events/Form/Event/Fieldset.php:138
+msgid "entity.event.tickets"
+msgstr "Tickets / Registration"
+
+#: ../src/Events/Form/Event/Fieldset.php:149
+msgid "entity.event.lanyrd"
+msgstr "Lanyrd"
+
+#: ../src/Events/Form/Link/Fieldset.php:33
+msgid "entity.link.url"
+msgstr "URL"
+
+#: ../src/Events/Form/Link/Fieldset.php:113
+msgid "entity.link.unique"
+msgstr "This link already exists for the current presenter / session"
+
+#: ../src/Events/Form/Organizer/Fieldset.php:38
+#: ../view/events/organizer/show.phtml:23
+msgid "entity.organizer.company"
+msgstr "Company"
+
+#: ../src/Events/Form/Presenter/Fieldset.php:48
+#: ../src/Events/Form/Session/Fieldset.php:115
+#: ../view/events/presenter/show.phtml:75
+msgid "entity.presenter.tags"
+msgstr "Tags"
+
+#: ../src/Events/Form/Presenter/Fieldset.php:49
+#: ../src/Events/Form/Session/Fieldset.php:84
+#: ../src/Events/Form/Session/Fieldset.php:116
+msgid "form.dropdown.unselect"
+msgstr "---"
+
+#: ../src/Events/Form/Room/Fieldset.php:31
+msgid "entity.room.number"
+msgstr "Number"
+
+#: ../src/Events/Form/Session/Fieldset.php:36
+msgid "entity.session.day"
+msgstr "Day"
+
+#: ../src/Events/Form/Session/Fieldset.php:49
+msgid "entity.session.room"
+msgstr "Room"
+
+#: ../src/Events/Form/Session/Fieldset.php:83
+msgid "entity.session.presenters"
+msgstr "Presenters"
+
+#: ../src/Events/Form/Session/Fieldset.php:142
+msgid "entity.session.time.start"
+msgstr "Start time"
+
+#: ../src/Events/Form/Session/Fieldset.php:155
+msgid "entity.session.time.end"
+msgstr "End time"
+
+#: ../src/Events/Form/Session/Fieldset.php:169
+msgid "entity.session.level"
+msgstr "Level"
+
+#: ../src/Events/Form/Session/Fieldset.php:173
+msgid "entity.session.level.1"
+msgstr "Beginner"
+
+#: ../src/Events/Form/Session/Fieldset.php:174
+msgid "entity.session.level.2"
+msgstr "Intermediate"
+
+#: ../src/Events/Form/Session/Fieldset.php:175
+msgid "entity.session.level.3"
+msgstr "Expert"
+
+#: ../src/Events/Form/Session/Fieldset.php:184
+msgid "entity.session.requirements"
+msgstr "Requirements"
+
+#: ../src/Events/Form/Tag/Fieldset.php:30 ../view/events/tag/list.phtml:12
+#: ../view/events/tag/show.phtml:23
+msgid "entity.tag.color"
+msgstr "Color"
+
+#: ../src/Events/Traits/AddressFieldset.php:33
+msgid "entity.address.street_address_1"
+msgstr "Address line 1"
+
+#: ../src/Events/Traits/AddressFieldset.php:40
+msgid "entity.address.street_address_2"
+msgstr "Address line 2"
+
+#: ../src/Events/Traits/AddressFieldset.php:47
+msgid "entity.address.co"
+msgstr "c/o"
+
+#: ../src/Events/Traits/AddressFieldset.php:54
+msgid "entity.address.postbox"
+msgstr "Postbox"
+
+#: ../src/Events/Traits/AddressFieldset.php:61
+msgid "entity.address.postalcode"
+msgstr "Postal code"
+
+#: ../src/Events/Traits/AddressFieldset.php:68
+msgid "entity.address.locality"
+msgstr "Locality"
+
+#: ../src/Events/Traits/AddressFieldset.php:77
+msgid "entity.address.region"
+msgstr "Region"
+
+#: ../src/Events/Traits/AddressFieldset.php:88
+msgid "entity.address.country"
+msgstr "Country"
+
+#: ../src/Events/Traits/AddressFieldset.php:109
+msgid "entity.address.latitude"
+msgstr "Latitude"
+
+#: ../src/Events/Traits/AddressFieldset.php:116
+msgid "entity.address.longitude"
+msgstr "Longitude"
+
+#: ../src/Events/Traits/ContactFieldset.php:32
+#: ../view/events/event/show.phtml:63 ../view/events/organizer/show.phtml:62
+#: ../view/events/presenter/show.phtml:51
+msgid "entity.contact.email"
+msgstr "Email"
+
+#: ../src/Events/Traits/ContactFieldset.php:45
+#: ../view/events/event/show.phtml:51 ../view/events/organizer/show.phtml:50
+#: ../view/events/presenter/show.phtml:39
+msgid "entity.contact.phone"
+msgstr "Phone"
+
+#: ../src/Events/Traits/ContactFieldset.php:52
+#: ../view/events/event/show.phtml:59 ../view/events/organizer/show.phtml:58
+#: ../view/events/presenter/show.phtml:47
+msgid "entity.contact.fax"
+msgstr "Fax"
+
+#: ../src/Events/Traits/ContactFieldset.php:59
+#: ../view/events/event/show.phtml:55 ../view/events/organizer/show.phtml:54
+#: ../view/events/presenter/show.phtml:43
+msgid "entity.contact.cell"
+msgstr "Cell phone"
+
+#: ../src/Events/Traits/ContactFieldset.php:66
+#: ../view/events/event/show.phtml:75 ../view/events/organizer/show.phtml:74
+#: ../view/events/presenter/show.phtml:63
+msgid "entity.contact.facebook"
+msgstr "Facebook"
+
+#: ../src/Events/Traits/ContactFieldset.php:76
+#: ../view/events/event/show.phtml:71 ../view/events/organizer/show.phtml:70
+#: ../view/events/presenter/show.phtml:59
+msgid "entity.contact.twitter"
+msgstr "Twitter"
+
+#: ../src/Events/Traits/ContactFieldset.php:86
+#: ../view/events/event/show.phtml:83 ../view/events/organizer/show.phtml:82
+#: ../view/events/presenter/show.phtml:71
+msgid "entity.contact.xing"
+msgstr "Xing"
+
+#: ../src/Events/Traits/ContactFieldset.php:96
+#: ../view/events/event/show.phtml:79 ../view/events/organizer/show.phtml:78
+#: ../view/events/presenter/show.phtml:67
+msgid "entity.contact.gplus"
+msgstr "Google+"
+
+#: ../src/Events/Traits/ContactFieldset.php:106
+#: ../view/events/event/show.phtml:67 ../view/events/organizer/list.phtml:12
+#: ../view/events/organizer/show.phtml:66
+#: ../view/events/presenter/show.phtml:55
+msgid "entity.contact.web"
+msgstr "Web"
+
+#: ../src/Events/Traits/ImageField.php:32 ../view/events/event/show.phtml:35
+#: ../view/events/organizer/show.phtml:27
+#: ../view/events/presenter/show.phtml:23 ../view/events/venue/show.phtml:23
+msgid "entity.common.image"
+msgstr "Image / logo"
+
+#: ../src/Events/Traits/ImageField.php:39
+msgid "entity.common.image.delete"
+msgstr "Delete image / logo"
+
+#: ../src/Events/Traits/TextsFieldset.php:32
+#: ../view/events/event/show.phtml:47 ../view/events/presenter/show.phtml:35
+#: ../view/events/venue/show.phtml:35
+msgid "entity.description.hashtag"
+msgstr "Hashtag"
+
+#: ../src/Events/Traits/TextsFieldset.php:39
+#: ../view/events/event/show.phtml:39 ../view/events/presenter/list.phtml:12
+#: ../view/events/presenter/show.phtml:27 ../view/events/venue/show.phtml:27
+msgid "entity.description.abstract"
+msgstr "Abstract"
+
+#: ../src/Events/Traits/TextsFieldset.php:46
+#: ../view/events/event/show.phtml:43 ../view/events/presenter/show.phtml:31
+#: ../view/events/venue/show.phtml:31
+msgid "entity.description.description"
+msgstr "Description"
+
+#: ../view/error/404.phtml:1
+msgid "error.404"
+msgstr "A 404 error occurred"
+
+#: ../view/error/404.phtml:10
+msgid "error.404.cannot-dispatch"
+msgstr "The requested controller was unable to dispatch the request."
+
+#: ../view/error/404.phtml:13
+msgid "error.404.not-found"
+msgstr ""
+"The requested controller could not be mapped to an existing controller class."
+
+#: ../view/error/404.phtml:16
+msgid "error.404.invalid"
+msgstr "The requested controller was not dispatchable."
+
+#: ../view/error/404.phtml:19
+msgid "error.404.no-match"
+msgstr "The requested URL could not be matched by routing."
+
+#: ../view/error/404.phtml:22
+msgid "error.404.unknown"
+msgstr "We cannot determine at this time why a 404 was generated."
+
+#: ../view/error/404.phtml:34
+msgid "error.404.controller"
+msgstr "Controller"
+
+#: ../view/error/404.phtml:41
+msgid "error.404.resolves-to"
+msgstr "resolves to %s"
+
+#: ../view/error/404.phtml:53 ../view/error/index.phtml:8
+msgid "error.additional"
+msgstr "Additional information"
+
+#: ../view/error/404.phtml:56 ../view/error/404.phtml:80
+#: ../view/error/index.phtml:11 ../view/error/index.phtml:35
+msgid "error.file"
+msgstr "File"
+
+#: ../view/error/404.phtml:60 ../view/error/404.phtml:84
+#: ../view/error/index.phtml:15 ../view/error/index.phtml:39
+msgid "error.message"
+msgstr "Message"
+
+#: ../view/error/404.phtml:64 ../view/error/404.phtml:88
+#: ../view/error/index.phtml:19
+msgid "error.stack-trace"
+msgstr "Stack trace"
+
+#: ../view/error/404.phtml:74 ../view/error/index.phtml:29
+msgid "error.previous"
+msgstr "Previous exceptions"
+
+#: ../view/error/404.phtml:103 ../view/error/index.phtml:57
+msgid "error.no-exception"
+msgstr "No Exception available"
+
+#: ../view/error/index.phtml:1
+msgid "error"
+msgstr "An error occurred"
+
+#: ../view/events/day/add.phtml:4
+msgid "events.section.label.day.new"
+msgstr "New day"
+
+#: ../view/events/day/add.phtml:4 ../view/events/day/edit.phtml:4
+#: ../view/events/event/add.phtml:5 ../view/events/event/edit.phtml:5
+#: ../view/events/event/show.phtml:5 ../view/events/link/add.phtml:13
+#: ../view/events/link/edit.phtml:9 ../view/events/organizer/add.phtml:4
+#: ../view/events/organizer/edit.phtml:4 ../view/events/organizer/show.phtml:5
+#: ../view/events/presenter/add.phtml:4 ../view/events/presenter/edit.phtml:4
+#: ../view/events/presenter/show.phtml:5 ../view/events/room/add.phtml:4
+#: ../view/events/room/edit.phtml:4 ../view/events/session/add.phtml:4
+#: ../view/events/session/edit.phtml:4 ../view/events/tag/add.phtml:4
+#: ../view/events/tag/edit.phtml:4 ../view/events/tag/show.phtml:5
+#: ../view/events/venue/add.phtml:4 ../view/events/venue/edit.phtml:4
+#: ../view/events/venue/show.phtml:5
+msgid "button.back"
+msgstr "Back"
+
+#: ../view/events/day/add.phtml:19 ../view/events/day/edit.phtml:19
+#: ../view/events/event/add.phtml:20 ../view/events/event/edit.phtml:20
+#: ../view/events/link/add.phtml:28 ../view/events/link/edit.phtml:24
+#: ../view/events/organizer/add.phtml:19
+#: ../view/events/organizer/edit.phtml:19
+#: ../view/events/presenter/add.phtml:19
+#: ../view/events/presenter/edit.phtml:19 ../view/events/room/add.phtml:19
+#: ../view/events/room/edit.phtml:19 ../view/events/session/add.phtml:19
+#: ../view/events/session/edit.phtml:19 ../view/events/tag/add.phtml:19
+#: ../view/events/tag/edit.phtml:19 ../view/events/venue/add.phtml:19
+#: ../view/events/venue/edit.phtml:19
+msgid "form.legend.general"
+msgstr "General"
+
+#: ../view/events/day/edit.phtml:4
+msgid "events.section.label.day.edit"
+msgstr "Edit day: %s"
+
+#: ../view/events/day/edit.phtml:4 ../view/events/event/edit.phtml:71
+#: ../view/events/event/show.phtml:100 ../view/events/session/add.phtml:31
+#: ../view/events/session/edit.phtml:31
+msgid "entity.day.date.format"
+msgstr "l, Y-m-d"
+
+#: ../view/events/event/add.phtml:5
+msgid "events.section.label.event.new.series"
+msgstr "New event series"
+
+#: ../view/events/event/add.phtml:5
+msgid "events.section.label.event.new.single"
+msgstr "New event"
+
+#: ../view/events/event/add.phtml:57
+msgid "form.legend.event"
+msgstr "Event sites"
+
+#: ../view/events/event/calendar.phtml:4 ../view/layout/layout.phtml:28
+msgid "events.section.label.event.calendar"
+msgstr "Calendar"
+
+#: ../view/events/event/calendar.phtml:11 ../view/events/event/list.phtml:12
+#: ../view/events/organizer/list.phtml:10
+#: ../view/events/presenter/list.phtml:10 ../view/events/tag/list.phtml:10
+#: ../view/events/venue/list.phtml:10
+msgid "entity.common.id"
+msgstr "ID"
+
+#: ../view/events/event/calendar.phtml:13 ../view/events/event/list.phtml:14
+msgid "entity.event.date"
+msgstr "Date"
+
+#: ../view/events/event/calendar.phtml:14 ../view/events/event/list.phtml:15
+msgid "entity.event.session"
+msgstr "Session"
+
+#: ../view/events/event/calendar.phtml:15 ../view/events/event/list.phtml:16
+msgid "entity.event.tags"
+msgstr "Tags"
+
+#: ../view/events/event/calendar.phtml:38 ../view/events/event/edit.phtml:108
+#: ../view/events/event/list.phtml:67 ../view/events/organizer/list.phtml:39
+#: ../view/events/presenter/list.phtml:39 ../view/events/tag/list.phtml:39
+#: ../view/events/venue/edit.phtml:71 ../view/events/venue/list.phtml:39
+#: ../view/partials/common/associations.phtml:30
+msgid "events.list.none"
+msgstr "There are no items available."
+
+#: ../view/events/event/edit.phtml:5
+msgid "events.section.label.event.edit.series"
+msgstr "Edit event series: %s"
+
+#: ../view/events/event/edit.phtml:5
+msgid "events.section.label.event.edit.single"
+msgstr "Edit event: %s"
+
+#: ../view/events/event/edit.phtml:61 ../view/events/event/show.phtml:92
+msgid "entity.event.days"
+msgstr "Schedule"
+
+#: ../view/events/event/edit.phtml:74
+msgid "button.add.session"
+msgstr "Add session"
+
+#: ../view/events/event/edit.phtml:75 ../view/events/event/edit.phtml:91
+#: ../view/events/event/list.phtml:54 ../view/events/event/show.phtml:6
+#: ../view/events/organizer/list.phtml:26
+#: ../view/events/organizer/show.phtml:6
+#: ../view/events/presenter/list.phtml:26
+#: ../view/events/presenter/show.phtml:6 ../view/events/tag/list.phtml:26
+#: ../view/events/tag/show.phtml:6 ../view/events/venue/edit.phtml:61
+#: ../view/events/venue/list.phtml:26 ../view/events/venue/show.phtml:6
+#: ../view/partials/common/associations.phtml:20
+msgid "button.edit"
+msgstr "Edit"
+
+#: ../view/events/event/edit.phtml:76 ../view/events/event/edit.phtml:92
+#: ../view/events/event/list.phtml:55 ../view/events/event/show.phtml:7
+#: ../view/events/organizer/list.phtml:27
+#: ../view/events/organizer/show.phtml:7
+#: ../view/events/presenter/list.phtml:27
+#: ../view/events/presenter/show.phtml:7 ../view/events/tag/list.phtml:27
+#: ../view/events/tag/show.phtml:7 ../view/events/venue/edit.phtml:62
+#: ../view/events/venue/list.phtml:27 ../view/events/venue/show.phtml:7
+#: ../view/partials/common/associations.phtml:21
+msgid "entity.actions.delete.confirm"
+msgstr "Are you sure you want to delete this item?"
+
+#: ../view/events/event/edit.phtml:76 ../view/events/event/edit.phtml:92
+#: ../view/events/event/list.phtml:55 ../view/events/event/show.phtml:7
+#: ../view/events/organizer/list.phtml:27
+#: ../view/events/organizer/show.phtml:7
+#: ../view/events/presenter/list.phtml:27
+#: ../view/events/presenter/show.phtml:7 ../view/events/tag/list.phtml:27
+#: ../view/events/tag/show.phtml:7 ../view/events/venue/edit.phtml:62
+#: ../view/events/venue/list.phtml:27 ../view/events/venue/show.phtml:7
+#: ../view/partials/common/associations.phtml:21
+msgid "button.delete"
+msgstr "Delete"
+
+#: ../view/events/event/edit.phtml:100 ../view/events/event/show.phtml:125
+msgid "events.list.sessions.none"
+msgstr "There are no sessions scheduled for this day"
+
+#: ../view/events/event/edit.phtml:112
+msgid "button.add.day"
+msgstr "Add day"
+
+#: ../view/events/event/list.phtml:5
+msgid "events.section.label.event.list.series"
+msgstr "Event series"
+
+#: ../view/events/event/list.phtml:5
+msgid "events.section.label.event.list.single"
+msgstr "Events"
+
+#: ../view/events/event/list.phtml:5 ../view/events/organizer/list.phtml:3
+#: ../view/events/presenter/list.phtml:3 ../view/events/tag/list.phtml:3
+#: ../view/events/venue/edit.phtml:75 ../view/events/venue/list.phtml:3
+#: ../view/partials/common/associations.phtml:34
+msgid "button.add"
+msgstr "Add"
+
+#: ../view/events/event/list.phtml:15
+msgid "entity.event.events"
+msgstr "Events"
+
+#: ../view/events/event/list.phtml:17 ../view/events/organizer/list.phtml:13
+#: ../view/events/presenter/list.phtml:13 ../view/events/tag/list.phtml:13
+#: ../view/events/venue/list.phtml:13
+msgid "entity.actions"
+msgstr "Actions"
+
+#: ../view/events/event/list.phtml:50
+msgid "button.add.event"
+msgstr "Add event"
+
+#: ../view/events/event/show.phtml:108
+msgid "entity.session.time"
+msgstr "Times"
+
+#: ../view/events/event/show.phtml:110
+msgid "entity.session.venue"
+msgstr "Venue"
+
+#: ../view/events/link/add.phtml:13
+msgid "events.section.label.link.new"
+msgstr "New link"
+
+#: ../view/events/link/edit.phtml:9
+msgid "events.section.label.link.edit"
+msgstr "Edit link: %s"
+
+#: ../view/events/organizer/add.phtml:4
+msgid "events.section.label.organizer.new"
+msgstr "New organizer"
+
+#: ../view/events/organizer/edit.phtml:4
+msgid "events.section.label.organizer.edit"
+msgstr "Edit organizer: %s"
+
+#: ../view/events/organizer/list.phtml:3
+msgid "events.section.label.organizer.list"
+msgstr "Organizers"
+
+#: ../view/events/organizer/show.phtml:31 ../view/events/venue/list.phtml:12
+#: ../view/events/venue/show.phtml:39
+msgid "entity.common.address"
+msgstr "Address"
+
+#: ../view/events/organizer/show.phtml:36 ../view/events/venue/show.phtml:44
+msgid "entity.common.postbox"
+msgstr "Postbox"
+
+#: ../view/events/organizer/show.phtml:46 ../view/events/venue/show.phtml:53
+msgid "entity.address.geo"
+msgstr "Geolocation"
+
+#: ../view/events/presenter/add.phtml:4
+msgid "events.section.label.presenter.new"
+msgstr "New presenter"
+
+#: ../view/events/presenter/edit.phtml:4
+msgid "events.section.label.presenter.edit"
+msgstr "Edit presenter: %s"
+
+#: ../view/events/presenter/list.phtml:3
+msgid "events.section.label.presenter.list"
+msgstr "Presenters"
+
+#: ../view/events/presenter/show.phtml:88
+#: ../view/partials/common/associations.phtml:7
+msgid "entity.common.links"
+msgstr "Links"
+
+#: ../view/events/room/add.phtml:4
+msgid "events.section.label.room.new"
+msgstr "New room"
+
+#: ../view/events/room/edit.phtml:4
+msgid "events.section.label.room.edit"
+msgstr "Edit room: %s"
+
+#: ../view/events/session/add.phtml:4
+msgid "events.section.label.session.new"
+msgstr "New session"
+
+#: ../view/events/session/edit.phtml:4
+msgid "events.section.label.session.edit"
+msgstr "Edit session: %s"
+
+#: ../view/events/tag/add.phtml:4
+msgid "events.section.label.tag.new"
+msgstr "New tag"
+
+#: ../view/events/tag/edit.phtml:4
+msgid "events.section.label.tag.edit"
+msgstr "Edit tag: %s"
+
+#: ../view/events/tag/list.phtml:3
+msgid "events.section.label.tag.list"
+msgstr "Tags"
+
+#: ../view/events/venue/add.phtml:4
+msgid "events.section.label.venue.new"
+msgstr "New venue"
+
+#: ../view/events/venue/edit.phtml:4
+msgid "events.section.label.venue.edit"
+msgstr "Edit venue: %s"
+
+#: ../view/events/venue/edit.phtml:47 ../view/events/venue/show.phtml:57
+msgid "entity.venue.rooms"
+msgstr "Rooms"
+
+#: ../view/events/venue/edit.phtml:57 ../view/events/venue/show.phtml:63
+msgid "entity.room.name.none"
+msgstr "[No particular name]"
+
+#: ../view/events/venue/list.phtml:3
+msgid "events.section.label.venue.list"
+msgstr "Venues"
+
+#: ../view/layout/layout.phtml:6
+msgid "application"
+msgstr "NUEWW Events"
+
+#: ../view/layout/layout.phtml:47
+msgid "footer.legal"
+msgstr "tollwerk<sup>®</sup> GmbH · All rights reserved"
+
+#: ../view/partials/common/address.phtml:2
+msgid "form.legend.address"
+msgstr "Address"
+
+#: ../view/partials/common/associations.phtml:2
+msgid "form.legend.associations"
+msgstr "Associations"
+
+#: ../view/partials/common/contact.phtml:2
+msgid "form.legend.contact"
+msgstr "Contact"
+
+#: ../view/partials/common/texts.phtml:2
+msgid "form.legend.description"
+msgstr "Description"
+
+#: ../view/partials/common/times.phtml:6
+#: ../view/partials/common/times.phtml:15
+msgid "entity.day.date.format.short"
+msgstr "Y-m-d"
+
+#: ../view/partials/common/times.phtml:8
+#: ../view/partials/common/times.phtml:13
+#: ../view/partials/common/times.phtml:17
+msgid "entity.day.date.format.hours"
+msgstr "H:i"
+
+#~ msgid "entity.day.date.format.long"
+#~ msgstr "Y-m-d H:i"
+
+#~ msgid "events.section.label.dashboard"
+#~ msgstr "Dashboard"
+
+#, fuzzy
+#~ msgid "entity.session.rooms"
+#~ msgstr "Rooms"
+
+#~ msgid "events.section.label.day.list"
+#~ msgstr "Days"
+
+#, fuzzy
+#~ msgid "entity.day.color"
+#~ msgstr "Color"
+
+#~ msgid "events.section.label.event"
+#~ msgstr "Events"
+
+#~ msgid "events.section.label.organizer"
+#~ msgstr "Organizer: %s"
+
+#~ msgid "events.section.label.presenter"
+#~ msgstr "Presenter"
+
+#~ msgid "events.section.label.tag"
+#~ msgstr "Tag"
+
+#~ msgid "events.section.label.venue"
+#~ msgstr "Venue"
+
+#~ msgid "events.section.label.event.new"
+#~ msgstr "New event"
+
+#~ msgid "events.entity.create"
+#~ msgstr "Add"
+
+#~ msgid "events.event.property.organizer"
+#~ msgstr "Organizer"
+
+#~ msgid "events.entity.property.name"
+#~ msgstr "Name"
+
+#~ msgid "events.entity.property.hashtag"
+#~ msgstr "Hashtag"
+
+#~ msgid "form.legend.rooms"
+#~ msgstr "Rooms"
+
+#~ msgid "entity.contact.tags"
+#~ msgstr "Tags"
+
+#, fuzzy
+#~ msgid "entity.contact.abstract"
+#~ msgstr "Fax"
+
+#~ msgid "entity.actions.edit"
+#~ msgstr "Edit"
+
+#~ msgid "entity.actions.delete"
+#~ msgstr "Delete"
+
+#~ msgid "Additional information"
+#~ msgstr "An error occurred"

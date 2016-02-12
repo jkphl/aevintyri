@@ -1,28 +1,31 @@
 <?php
+/**
+ * This makes our life easier when dealing with paths. Everything is relative
+ * to the application root now.
+ */
+chdir(dirname(__DIR__));
 
-/*
-|--------------------------------------------------------------------------
-| Create The Application
-|--------------------------------------------------------------------------
-|
-| First we need to get an application instance. This creates an instance
-| of the application / container and bootstraps the application so it
-| is ready to receive HTTP / Console requests from the environment.
-|
-*/
+// Decline static file requests back to the PHP built-in webserver
+if (php_sapi_name() === 'cli-server' && is_file(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))) {
+    return false;
+}
 
-$app = require __DIR__.'/../bootstrap/app.php';
+// Setup autoloading
+require 'init_autoloader.php';
 
-/*
-|--------------------------------------------------------------------------
-| Run The Application
-|--------------------------------------------------------------------------
-|
-| Once we have the application, we can handle the incoming request
-| through the kernel, and send the associated response back to
-| the client's browser allowing them to enjoy the creative
-| and wonderful application we have prepared for them.
-|
-*/
+// Run the application!
+// Zend\Mvc\Application::init(require 'config/application.config.php')->run();
 
-$app->run();
+// Apigility
+if (!defined('APPLICATION_PATH')) {
+	define('APPLICATION_PATH', realpath(__DIR__ . '/../'));
+}
+
+$appConfig = include APPLICATION_PATH . '/config/application.config.php';
+
+if (file_exists(APPLICATION_PATH . '/config/development.config.php')) {
+	$appConfig = Zend\Stdlib\ArrayUtils::merge($appConfig, include APPLICATION_PATH . '/config/development.config.php');
+}
+
+// Run the application!
+Zend\Mvc\Application::init($appConfig)->run();
