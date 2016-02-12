@@ -123,6 +123,14 @@ msgid "entity.event.tickets"
 msgstr "Tickets / Registration"
 
 #: ../src/Events/Form/Event/Fieldset.php:149
+msgid "entity.event.tickets.available"
+msgstr "Tickets available online"
+
+#: ../src/Events/Form/Event/Fieldset.php:164
+msgid "entity.event.tickets.email"
+msgstr "Ticket reservation email"
+
+#: ../src/Events/Form/Event/Fieldset.php:181
 msgid "entity.event.lanyrd"
 msgstr "Lanyrd"
 
@@ -441,6 +449,10 @@ msgstr "New event"
 #: ../view/events/event/add.phtml:57
 msgid "form.legend.event"
 msgstr "Event sites"
+
+#: ../view/events/event/add.phtml:57
+msgid "form.legend.tickets"
+msgstr "Ticket reservation"
 
 #: ../view/events/event/calendar.phtml:4 ../view/layout/layout.phtml:28
 msgid "events.section.label.event.calendar"

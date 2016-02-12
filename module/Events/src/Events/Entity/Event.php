@@ -15,21 +15,21 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Event entity
- * 
- * @ORM\Entity(repositoryClass="Events\Repository\EventRepository") 
+ *
+ * @ORM\Entity(repositoryClass="Events\Repository\EventRepository")
  * @author		Joschi Kuphal <joschi@kuphal.net>
  */
 class Event extends AbstractEventEntity {
-	
+
 	/**
 	 * Event series
-	 * 
+	 *
 	 * @var \Events\Entity\Series
 	 * @ORM\OneToOne(targetEntity="Series")
 	 * @ORM\JoinColumn(name="series", referencedColumnName="id", nullable=true)
 	 **/
 	protected $series;
-	
+
 	/**
 	 * Days
 	 *
@@ -38,56 +38,70 @@ class Event extends AbstractEventEntity {
 	 * @ORM\OrderBy({"date" = "ASC"})
 	 */
 	protected $days;
-	
+
 	/**
 	 * Start time & date
 	 *
 	 * @var \DateTime
 	 */
 	protected $startDate;
-	
+
 	/**
 	 * End time & date
 	 *
 	 * @var \DateTime
 	 */
 	protected $endDate;
-	
+
 	/**
 	 * Facebook event
 	 *
 	 * @ORM\Column(type="string", nullable=true)
 	 */
 	protected $facebook_event;
-	
+
 	/**
 	 * XING event
 	 *
 	 * @ORM\Column(type="string", nullable=true)
 	 */
 	protected $xing_event;
-	
+
 	/**
 	 * Google+ event
 	 *
 	 * @ORM\Column(type="string", nullable=true)
 	 */
 	protected $gplus_event;
-	
+
 	/**
 	 * Tickets page
 	 *
 	 * @ORM\Column(type="string", nullable=true)
 	 */
 	protected $tickets;
-	
+
+	/**
+	 * Available tickets
+	 *
+	 * @ORM\Column(type="integer", nullable=false)
+	 */
+	protected $ticketsAvailable;
+
+	/**
+	 * Tickets email
+	 *
+	 * @ORM\Column(type="string", nullable=true)
+	 */
+	protected $ticketsEmail;
+
 	/**
 	 * Lanyrd page
 	 *
 	 * @ORM\Column(type="string", nullable=true)
 	 */
 	protected $lanyrd;
-	
+
 	/**
 	 * Constructor
 	 */
@@ -95,7 +109,7 @@ class Event extends AbstractEventEntity {
 		parent::__construct();
 		$this->days		= new \Doctrine\Common\Collections\ArrayCollection();
 	}
-	
+
 	/**
 	 * @return the $series
 	 */
@@ -109,7 +123,7 @@ class Event extends AbstractEventEntity {
 	public function setSeries($series) {
 		$this->series = $series;
 	}
-	
+
 	/**
 	 * @return the $startDate
 	 */
@@ -119,14 +133,14 @@ class Event extends AbstractEventEntity {
 		}
 		return $this->startDate;
 	}
-	
+
 	/**
 	 * @param DateTime $startDate
 	 */
 	public function setStartDate($startDate) {
 		$this->startDate = $startDate;
 	}
-	
+
 	/**
 	 * @return the $endDate
 	 */
@@ -136,17 +150,17 @@ class Event extends AbstractEventEntity {
 		}
 		return $this->endDate;
 	}
-	
+
 	/**
 	 * @param DateTime $endDate
 	 */
 	public function setEndDate($endDate) {
 		$this->endDate = $endDate;
 	}
-	
+
 	/**
 	 * Get the extreme dates of this event
-	 * 
+	 *
 	 * @return \array
 	 */
 	public function getDates() {
@@ -154,10 +168,10 @@ class Event extends AbstractEventEntity {
 		$endDate		= $this->getEndDate();
 		return (($startDate instanceof \Events\Entity\Day) && ($endDate instanceof \Events\Entity\Day)) ? (($startDate->getDate()->format('Y-m-d') == $endDate->getDate()->format('Y-m-d')) ? array($startDate->getDate()) : array($startDate->getDate(), $endDate->getDate())) : array();
 	}
-	
+
 	/**
 	 * Get the extreme dates and times of this event
-	 * 
+	 *
 	 * @return \array
 	 */
 	public function getDateTimes() {
@@ -168,7 +182,7 @@ class Event extends AbstractEventEntity {
 			$startSession		= $startDate->getSessions()->first();
 			if ($startSession instanceof \Events\Entity\Session) {
 				$minutes		= intval($startSession->getStart_time()->format('G')) * 60 + intval(ltrim($startSession->getStart_time()->format('i'), '0'));
-				$startDateTime->add(new \DateInterval('PT'.$minutes.'M'));				
+				$startDateTime->add(new \DateInterval('PT'.$minutes.'M'));
 			}
 		}
 		$endDate				= $this->getEndDate();
@@ -178,12 +192,12 @@ class Event extends AbstractEventEntity {
 			$endSession			= $endDate->getSessions()->last();
 			if ($endSession instanceof \Events\Entity\Session) {
 				$minutes		= intval($endSession->getEnd_time()->format('G')) * 60 + intval(ltrim($endSession->getEnd_time()->format('i'), '0'));
-				$endDateTime->add(new \DateInterval('PT'.$minutes.'M'));				
+				$endDateTime->add(new \DateInterval('PT'.$minutes.'M'));
 			}
 		}
 		return (($startDateTime instanceof \DateTime) && ($endDateTime instanceof \DateTime)) ? (($startDateTime->format('r') == $endDateTime->format('r')) ? array($startDateTime) : array($startDateTime, $endDateTime)) : array();
 	}
-	
+
 	/**
 	 * @return \Doctrine\Common\Collections\ArrayCollection $days
 	 */
@@ -197,15 +211,15 @@ class Event extends AbstractEventEntity {
 	public function setDays($days) {
 		$this->days = $days;
 	}
-	
+
 	/**
 	 * Return all sessions of this event
-	 * 
+	 *
 	 * @return \array
 	 */
 	public function getSessions() {
 		$sessions				= array();
-		
+
 		/* @var $day \Events\Entity\Day */
 		foreach ($this->getDays() as $day) {
 			foreach ($day->getSessions() as $session) {
@@ -214,18 +228,18 @@ class Event extends AbstractEventEntity {
 		}
 		return $sessions;
 	}
-	
+
 	/**
 	 * Return the cumulated tags of all sessions
-	 * 
+	 *
 	 * @return \array				Tags
 	 */
 	public function getTags() {
 		$tags					= array();
-		
+
 		/* @var $day \Events\Entity\Day */
 		foreach ($this->getDays() as $day) {
-			
+
 			/* @var $session \Events\Entity\Session */
 			foreach ($day->getSessions() as $session) {
 
@@ -235,7 +249,7 @@ class Event extends AbstractEventEntity {
 				}
 			}
 		}
-		
+
 		usort($tags, function($tag1, $tag2) {
 			if ($tag1->getName() == $tag2->getName()) {
 				return 0;
@@ -245,7 +259,7 @@ class Event extends AbstractEventEntity {
 		});
 		return array_values($tags);
 	}
-	
+
 	/**
 	 * Actions before record creation
 	 *
@@ -254,7 +268,7 @@ class Event extends AbstractEventEntity {
 	public function onAfterCreate() {
 		return $this->_persistImage('event');
 	}
-	
+
 	/**
 	 * Actions before record update
 	 *
@@ -263,7 +277,7 @@ class Event extends AbstractEventEntity {
 	public function onBeforeUpdate() {
 		return $this->_persistImage('event');
 	}
-	
+
 	/**
 	 * @return the $facebook_event
 	 */
@@ -318,6 +332,42 @@ class Event extends AbstractEventEntity {
 	 */
 	public function setTickets($tickets) {
 		$this->tickets = $tickets;
+	}
+
+	/**
+	 * Return the number of available tickets
+	 *
+	 * @return int $ticketsAvailable Number of available tickets
+	 */
+	public function getTicketsAvailable() {
+		return $this->ticketsAvailable;
+	}
+
+	/**
+	 * Set the number of available tickets
+	 *
+	 * @param int $ticketsAvailable Number of available tickets
+	 */
+	public function setTicketsAvailable($ticketsAvailable) {
+		$this->ticketsAvailable = $ticketsAvailable;
+	}
+
+	/**
+	 * Return ticket sales email
+	 *
+	 * @return int $ticketsAvailable Ticket sales email
+	 */
+	public function getTicketsEmail() {
+		return $this->ticketsEmail;
+	}
+
+	/**
+	 * Set ticket sales email
+	 *
+	 * @param int $ticketsAvailable Ticket sales email
+	 */
+	public function setTicketsEmail($ticketsEmail) {
+		$this->ticketsEmail = $ticketsEmail;
 	}
 
 	/**

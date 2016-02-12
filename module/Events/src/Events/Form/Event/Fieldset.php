@@ -9,16 +9,16 @@ class Fieldset extends \Events\Form\Fieldset {
 	use \Events\Traits\ContactFieldset;
 	use \Events\Traits\TextsFieldset;
 	use \Events\Traits\ImageField;
-	
+
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param ObjectManager $objectManager		Object manager
 	 * @return void
 	 */
 	public function __construct(ObjectManager $objectManager, \Zend\ServiceManager\ServiceManager $serviceLocator) {
 		parent::__construct($objectManager, $serviceLocator, new Event(), 'event');
-		
+
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Text',
 			'name' => 'name',
@@ -26,16 +26,16 @@ class Fieldset extends \Events\Form\Fieldset {
 				'label' => _('entity.common.name')
 			)
 		));
-		
+
 		// Add all contact fields
 		$this->_addContactFields();
-		
+
 		// Add description fields
 		$this->_addTextsFields();
-		
+
 		// Add image field
 		$this->_addImageField();
-		
+
 		// Add organizer field
 		$this->add(array(
 			'type'							=> 'DoctrineModule\Form\Element\ObjectSelect',
@@ -66,7 +66,7 @@ class Fieldset extends \Events\Form\Fieldset {
 				'multiple'					=> false,
 			)
 		));
-		
+
 		// Add series field
 		$this->add(array(
 			'type'							=> 'DoctrineModule\Form\Element\ObjectSelect',
@@ -97,7 +97,7 @@ class Fieldset extends \Events\Form\Fieldset {
 				'multiple'					=> false,
 			)
 		));
-		
+
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Text',
 			'name' => 'facebook_event',
@@ -108,7 +108,7 @@ class Fieldset extends \Events\Form\Fieldset {
 				'id' => 'facebook_event',
 			)
 		));
-		
+
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Text',
 			'name' => 'gplus_event',
@@ -119,7 +119,7 @@ class Fieldset extends \Events\Form\Fieldset {
 				'id' => 'gplus_event',
 			)
 		));
-		
+
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Text',
 			'name' => 'xing_event',
@@ -130,7 +130,7 @@ class Fieldset extends \Events\Form\Fieldset {
 				'id' => 'xing_event',
 			)
 		));
-		
+
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Text',
 			'name' => 'tickets',
@@ -141,7 +141,39 @@ class Fieldset extends \Events\Form\Fieldset {
 				'id' => 'tickets',
 			)
 		));
-		
+
+		$this->add(array(
+			'type' => 'Zend\Form\Element\Number',
+			'name' => 'tickets_available',
+			'options' => array(
+				'label' => _('entity.event.tickets.available'),
+			),
+			'attributes' => array(
+				'id' => 'tickets_available',
+				'min' => 0,
+			),
+			'filters'  => array(
+				array('name' => 'Int'),
+			)
+		));
+
+		$this->add(array(
+			'type' => 'Zend\Form\Element\Text',
+			'name' => 'tickets_email',
+			'options' => array(
+				'label' => _('entity.event.tickets.email'),
+			),
+			'attributes' => array(
+				'id' => 'tickets_email',
+			),
+			'filters' => array(
+				array('name' => 'StringTrim')
+			),
+			'validators' => array(
+				array('name' => 'EmailAddress')
+			),
+		));
+
 		$this->add(array(
 			'type' => 'Zend\Form\Element\Text',
 			'name' => 'lanyrd',
@@ -153,7 +185,7 @@ class Fieldset extends \Events\Form\Fieldset {
 			)
 		));
 	}
-	
+
 	/**
 	 * Return the input filter specification
 	 *
@@ -290,6 +322,41 @@ class Fieldset extends \Events\Form\Fieldset {
 							'name' => 'Uri',
 							'options' => array(
 								'allowRelative' => false,
+								'messages' => array()
+							)
+						)
+					)
+				),
+				'tickets_available' => array(
+					'required' => false,
+					'filters' => array(
+						array(
+							'name' => 'StripTags'
+						),
+						array(
+							'name' => 'StringTrim'
+						)
+					),
+					'validators' => array(
+						array(
+							'name' => 'Int',
+						)
+					)
+				),
+				'tickets_email' => array(
+					'required' => false,
+					'filters' => array(
+						array(
+							'name' => 'StripTags'
+						),
+						array(
+							'name' => 'StringTrim'
+						)
+					),
+					'validators' => array(
+						array(
+							'name' => 'EmailAddress',
+							'options' => array(
 								'messages' => array()
 							)
 						)

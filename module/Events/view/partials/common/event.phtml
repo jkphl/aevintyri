@@ -45,4 +45,16 @@
 			<?php echo $this->formRow($subject->get('tickets')); ?>
 		</div>
 	</div>
+</fieldet>
+
+<fieldset id="tickets">
+	<legend><?php echo $this->translate('form.legend.tickets'); ?></legend>
+	<div class="row">
+		<div class="large-6 columns">
+			<?php echo $this->formRow($subject->get('tickets_available')); ?>
+		</div>
+		<div class="large-6 columns">
+			<?php echo $this->formRow($subject->get('tickets_email')); ?>
+		</div>
+	</div>
 </fieldset>
