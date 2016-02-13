@@ -108,11 +108,11 @@ if ($this->type == 'single'):
 	</tr>
 	<tr>
 		<th><?php echo $this->translate('entity.event.tickets.available'); ?></th>
-		<td><?php echo $this->emptyvalue($this->event->getTicketsAvailable()); ?></td>
+		<td><?php echo $this->emptyvalue($this->event->getTickets_available()); ?></td>
 	</tr>
 	<tr>
 	<th><?php echo $this->translate('entity.event.tickets'); ?></th>
-	<td><?php echo $this->emptyvalue($this->event->getTicketsEmail()); ?></td>
+	<td><?php echo $this->emptyvalue($this->event->getTickets_email()); ?></td>
 	</tr><?php
 
 endif;

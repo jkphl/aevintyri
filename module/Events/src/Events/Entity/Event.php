@@ -86,14 +86,14 @@ class Event extends AbstractEventEntity {
 	 *
 	 * @ORM\Column(type="integer", nullable=false)
 	 */
-	protected $ticketsAvailable;
+	protected $tickets_available;
 
 	/**
 	 * Tickets email
 	 *
 	 * @ORM\Column(type="string", nullable=true)
 	 */
-	protected $ticketsEmail;
+	protected $tickets_email;
 
 	/**
 	 * Lanyrd page
@@ -339,17 +339,17 @@ class Event extends AbstractEventEntity {
 	 *
 	 * @return int $ticketsAvailable Number of available tickets
 	 */
-	public function getTicketsAvailable() {
-		return $this->ticketsAvailable;
+	public function getTickets_available() {
+		return $this->tickets_available;
 	}
 
 	/**
 	 * Set the number of available tickets
 	 *
-	 * @param int $ticketsAvailable Number of available tickets
+	 * @param int $tickets_available Number of available tickets
 	 */
-	public function setTicketsAvailable($ticketsAvailable) {
-		$this->ticketsAvailable = $ticketsAvailable;
+	public function setTickets_available($tickets_available) {
+		$this->tickets_available = $tickets_available;
 	}
 
 	/**
@@ -357,17 +357,17 @@ class Event extends AbstractEventEntity {
 	 *
 	 * @return int $ticketsAvailable Ticket sales email
 	 */
-	public function getTicketsEmail() {
-		return $this->ticketsEmail;
+	public function getTickets_email() {
+		return $this->tickets_email;
 	}
 
 	/**
 	 * Set ticket sales email
 	 *
-	 * @param int $ticketsAvailable Ticket sales email
+	 * @param int $tickets_email Ticket sales email
 	 */
-	public function setTicketsEmail($ticketsEmail) {
-		$this->ticketsEmail = $ticketsEmail;
+	public function setTickets_email($tickets_email) {
+		$this->tickets_email = $tickets_email;
 	}
 
 	/**
