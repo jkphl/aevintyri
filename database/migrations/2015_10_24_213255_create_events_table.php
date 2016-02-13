@@ -40,6 +40,8 @@ class CreateEventsTable extends Migration
             $table->string('xing_event', 255)->nullable();
             $table->string('gplus_event', 255)->nullable();
             $table->string('tickets', 255)->nullable();
+            $table->integer('tickets_available')->nullable();
+            $table->string('tickets_email', 255)->nullable();
             $table->string('lanyrd', 255)->nullable();
         });
     }

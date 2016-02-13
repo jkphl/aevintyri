@@ -65,7 +65,7 @@ Wie bereits 2013 werden sämtliche Vorträge in **englischer Sprache** gehalten,
             'xing_event' => 'www.xing.com/events/border-none-2014-1436023',
             'gplus_event' => 'plus.google.com/b/103389319737184133956/events/chekl9vf564ebora0d4jaul5r5s',
             'tickets' => '',
-            'lanyrd' => ''
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => ''
         ]);
         Event::create([
             'organizer_id' => '1',
@@ -92,7 +92,7 @@ Im Anschluss besteht die Möglichkeit, einzelne Themenaspekte in kleineren Gespr
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '2',
@@ -121,7 +121,7 @@ Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert dara
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '3',
@@ -144,7 +144,7 @@ Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert dara
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '4',
@@ -167,7 +167,7 @@ Alle, die mit Web 2.0 und benachbarten Themen zu tun haben und interessiert dara
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '4',
@@ -194,7 +194,7 @@ Zielgruppe für die 6. CMS Night sind ALLE CMS Interessierten vom Anfänger bis 
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '5',
@@ -242,7 +242,7 @@ Die weiteren Referenten und Speaker/innen werden in den kommenden Wochen an dies
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '6',
@@ -271,7 +271,7 @@ Die MobileFirst! Night wird von insertEFFECT veranstaltet.',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '7',
@@ -297,7 +297,7 @@ Anmeldung erforderlich. Bitte bis 10.10.2014 eine kurze E-Mail an kontakt@machen
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '8',
@@ -320,7 +320,7 @@ Anmeldung erforderlich. Bitte bis 10.10.2014 eine kurze E-Mail an kontakt@machen
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '2',
@@ -355,7 +355,7 @@ wir suchen noch Presenter, bitte bei uns melden',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '9',
@@ -378,7 +378,7 @@ wir suchen noch Presenter, bitte bei uns melden',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '10',
@@ -403,7 +403,7 @@ Am Anfang jedes Meetings wird Teilnehmern die Chance geboten, einen fachspezifis
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '11',
@@ -434,7 +434,7 @@ http://www.ecommerce-night.de',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '12',
@@ -457,7 +457,7 @@ http://www.ecommerce-night.de',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '13',
@@ -480,7 +480,7 @@ http://www.ecommerce-night.de',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '14',
@@ -505,7 +505,7 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '15',
@@ -528,7 +528,7 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '16',
@@ -551,7 +551,7 @@ Bring bitte ein Notebook mit lauffähiger Programmierumgebung und Testframework 
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '17',
@@ -576,7 +576,7 @@ Wir stellen zwei der Plattformen im Vortrag vor, und zeigen, welche Möglichkeit
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '18',
@@ -601,7 +601,7 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '18',
@@ -626,7 +626,7 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '18',
@@ -651,7 +651,7 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '2',
@@ -674,7 +674,7 @@ Aufgrund der begrenzten Anzahl an Plätzen bitten wir darum, sich für die Veran
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '2',
@@ -706,7 +706,7 @@ Die Gäste des CreativeMonday dürfen sich freuen auf:
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '19',
@@ -746,7 +746,7 @@ Der Hackathon startet um 18:00 Uhr und geht bis in die Nacht hinein. Essen & Get
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '20',
@@ -769,7 +769,7 @@ Der Hackathon startet um 18:00 Uhr und geht bis in die Nacht hinein. Essen & Get
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '21',
@@ -798,7 +798,7 @@ Wir sehen uns echte Webseiten aus dem Publikum an und geben Verbesserungsvorschl
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '22',
@@ -848,7 +848,7 @@ Ihre Anmeldung richten Sie bitte an wirtschaft@stadt.nuernberg.de',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '22',
@@ -871,7 +871,7 @@ Ihre Anmeldung richten Sie bitte an wirtschaft@stadt.nuernberg.de',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '22',
@@ -900,7 +900,7 @@ Für das leibliche Wohl bei der Abendveranstaltung sorgt das HEIMATmobil – „
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '23',
@@ -923,7 +923,7 @@ Für das leibliche Wohl bei der Abendveranstaltung sorgt das HEIMATmobil – „
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '24',
@@ -953,7 +953,7 @@ Start 17:00 Uhr mit Workshop, ab ca. 18:30 Uhr Vortrag',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '25',
@@ -991,7 +991,7 @@ Anschließend "Get Together“',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
         Event::create([
             'organizer_id' => '25',
@@ -1029,7 +1029,7 @@ Anschließend "Get Together“',
             'xing_event' => null,
             'gplus_event' => null,
             'tickets' => null,
-            'lanyrd' => null
+            'tickets_available' => 0, 'tickets_email' => null, 'lanyrd' => null
         ]);
     }
 }

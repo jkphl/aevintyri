@@ -65,6 +65,8 @@ return array(
         'xing_event' => '`xing_event`',
         'gplus_event' => '`gplus_event`',
         'tickets' => '`tickets`',
+        'tickets_available' => '`tickets_available`',
+        'tickets_email' => '`tickets_email`',
         'lanyrd' => '`lanyrd`',
     ]
 );
