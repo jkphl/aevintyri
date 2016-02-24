@@ -55,6 +55,10 @@ foreach (glob('*.map.php') as $mapping) {
     $keys = array_filter(array_intersect_key($mappingConfig, $mandatoryKeys));
     if ((count($keys) == count($mandatoryKeys)) && is_array($mappingConfig['columns']) && count($mappingConfig['columns'])) {
 
+        // Set all records to deleted
+        $targetDelete = 'UPDATE `'.getenv('DB_DATABASE').'`.`'.$mappingConfig['target'].'` SET `deleted_at` = NOW()';
+        mysqli_query($targetDB, $targetDelete);
+
         // Build a SELECT statement for the source table
         $sourceSelect = 'SELECT ';
         $selectColumns = [];
