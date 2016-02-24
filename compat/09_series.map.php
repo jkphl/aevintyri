@@ -41,7 +41,7 @@ return array(
         'id' => '`id`',
         'created_at' => '`sys_created`',
         'updated_at' => '`sys_modified`',
-        'deleted_at' => 'IF(`sys_deleted`, NOW(), NULL)',
+        'deleted_at' => 'NULL',
         'created_by' => '`sys_creator`',
         'updated_by' => '`sys_author`',
 
