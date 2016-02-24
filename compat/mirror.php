@@ -87,5 +87,9 @@ foreach (glob('*.map.php') as $mapping) {
                 echo 'SUCCESS!' . PHP_EOL;
             }
         }
+
+        // Remove all deleted records
+        $targetDelete = 'DELETE FROM `'.getenv('DB_DATABASE').'`.`'.$mappingConfig['target'].'` WHERE NOT ISNULL(`deleted_at`)';
+        mysqli_query($targetDB, $targetDelete);
     }
 }
