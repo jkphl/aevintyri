@@ -64,10 +64,10 @@ class Event extends \Events\Entity\Event implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'series', 'days', 'startDate', 'endDate', 'facebook_event', 'xing_event', 'gplus_event', 'tickets', 'lanyrd', 'name', 'organizer', 'id', 'sys_deleted', 'sys_author', 'sys_modified', 'sys_creator', 'sys_created', 'email', 'phone', 'fax', 'cell', 'web', 'facebook', 'twitter', 'xing', 'gplus', 'hashtag', 'description', 'abstract', 'image');
+            return array('__isInitialized__', 'series', 'days', 'startDate', 'endDate', 'facebook_event', 'xing_event', 'gplus_event', 'tickets', 'tickets_available', 'tickets_email', 'lanyrd', 'name', 'organizer', 'id', 'sys_deleted', 'sys_author', 'sys_modified', 'sys_creator', 'sys_created', 'email', 'phone', 'fax', 'cell', 'web', 'facebook', 'twitter', 'xing', 'gplus', 'hashtag', 'description', 'abstract', 'image');
         }
 
-        return array('__isInitialized__', 'series', 'days', 'startDate', 'endDate', 'facebook_event', 'xing_event', 'gplus_event', 'tickets', 'lanyrd', 'name', 'organizer', 'id', 'sys_deleted', 'sys_author', 'sys_modified', 'sys_creator', 'sys_created', 'email', 'phone', 'fax', 'cell', 'web', 'facebook', 'twitter', 'xing', 'gplus', 'hashtag', 'description', 'abstract', 'image');
+        return array('__isInitialized__', 'series', 'days', 'startDate', 'endDate', 'facebook_event', 'xing_event', 'gplus_event', 'tickets', 'tickets_available', 'tickets_email', 'lanyrd', 'name', 'organizer', 'id', 'sys_deleted', 'sys_author', 'sys_modified', 'sys_creator', 'sys_created', 'email', 'phone', 'fax', 'cell', 'web', 'facebook', 'twitter', 'xing', 'gplus', 'hashtag', 'description', 'abstract', 'image');
     }
 
     /**
@@ -413,6 +413,50 @@ class Event extends \Events\Entity\Event implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTickets', array($tickets));
 
         return parent::setTickets($tickets);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTickets_available()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTickets_available', array());
+
+        return parent::getTickets_available();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTickets_available($tickets_available)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTickets_available', array($tickets_available));
+
+        return parent::setTickets_available($tickets_available);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTickets_email()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTickets_email', array());
+
+        return parent::getTickets_email();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTickets_email($tickets_email)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTickets_email', array($tickets_email));
+
+        return parent::setTickets_email($tickets_email);
     }
 
     /**
