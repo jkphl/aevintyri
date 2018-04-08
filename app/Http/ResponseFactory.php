@@ -47,6 +47,7 @@ class ResponseFactory extends \Laravel\Lumen\Http\ResponseFactory
      * @param  int $status
      * @param  array $headers
      * @param  int $options
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function jsonAPI($data = [], $status = 200, array $headers = [], $options = 0)

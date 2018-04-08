@@ -34,11 +34,11 @@
  ***********************************************************************************/
 
 return array(
-    'source' => 'country',
-    'target' => 'countries',
-    'where' => '`sys_deleted` = 0',
+    'source'  => 'country',
+    'target'  => 'countries',
+    'where'   => '`sys_deleted` = 0',
     'columns' => [
-        'id' => 'IF (`id` = -1, 999, `id`)',
+        'id'         => 'IF (`id` = -1, 999, `id`)',
         'created_at' => '`sys_created`',
         'updated_at' => '`sys_modified`',
         'deleted_at' => 'NULL',

@@ -42,14 +42,14 @@ use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
-	/**
-	 * List all events
-	 *
-	 * @return \Symfony\Component\HttpFoundation\Response Event list
-	 */
-	public function listEvents()
-	{
-		$event = new Event();
+    /**
+     * List all events
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Event list
+     */
+    public function listEvents()
+    {
+        $event = new Event();
 //		$expand = [];
 
 //        // Determine the columns to expand
@@ -57,104 +57,110 @@ class EventController extends Controller
 //        $expand = ($expand === '*') ? $event->getAppends() : array_filter(array_map('trim', explode(',', $expand)));
 //        $expand = array_intersect($expand, $event->getAppends());
 
-		$from = trim($this->_request()->get('from', ''));
-		try {
-			$from = strlen($from) ? new \DateTimeImmutable($from) : null;
-		} catch (\Exception $e) {
-			return $this->error(400, 'Bad request (from constraint)');
-		}
-		$to = trim($this->_request()->get('to', ''));
-		try {
-			$to = strlen($to) ? new \DateTimeImmutable($to) : null;
-		} catch (\Exception $e) {
-			return $this->error(400, 'Bad request (from constraint)');
-		}
+        $from = trim($this->_request()->get('from', ''));
+        try {
+            $from = strlen($from) ? new \DateTimeImmutable($from) : null;
+        } catch (\Exception $e) {
+            return $this->error(400, 'Bad request (from constraint)');
+        }
+        $to = trim($this->_request()->get('to', ''));
+        try {
+            $to = strlen($to) ? new \DateTimeImmutable($to) : null;
+        } catch (\Exception $e) {
+            return $this->error(400, 'Bad request (from constraint)');
+        }
 
-		// Build the event query
-		$eventQuery = $event->newQuery();
-		$eventQuery->getQuery()->select(['events.*'])
-			->join('days', function (JoinClause $query) use ($from, $to) {
-				$query->on('days.event_id', '=', 'events.id');
-				$query->where('days.deleted_at', '<=>', null);
-				if ($from) {
-					$query->where('days.date', '>=', $from);
-				}
-				if ($to) {
-					$query->where('days.date', '<=', $to);
-				}
-			})
-			->join('sessions', function (JoinClause $query) use ($from, $to) {
-				$query->on('sessions.day_id', '=', 'days.id');
-				$query->where('sessions.deleted_at', '<=>', null);
-				if ($from) {
-					$query->where(DB::raw('days.date + INTERVAL sessions.start_time HOUR_SECOND'), '>=', $from);
-				}
-				if ($to) {
-					$query->where(DB::raw('days.date + INTERVAL sessions.end_time HOUR_SECOND'), '<=', $to);
-				}
-			})
-			->groupBy('events.id')
-			->orderBy('days.date', 'ASC')
-			->orderBy('sessions.start_time', 'ASC');
+        // Build the event query
+        $eventQuery = $event->newQuery();
+        $eventQuery->getQuery()->select(['events.*'])
+                   ->join('days', function (JoinClause $query) use ($from, $to) {
+                       $query->on('days.event_id', '=', 'events.id');
+                       $query->where('days.deleted_at', '<=>', null);
+                       if ($from) {
+                           $query->where('days.date', '>=', $from);
+                       }
+                       if ($to) {
+                           $query->where('days.date', '<=', $to);
+                       }
+                   })
+                   ->join('sessions', function (JoinClause $query) use ($from, $to) {
+                       $query->on('sessions.day_id', '=', 'days.id');
+                       $query->where('sessions.deleted_at', '<=>', null);
+                       if ($from) {
+                           $query->where(DB::raw('days.date + INTERVAL sessions.start_time HOUR_SECOND'), '>=', $from);
+                       }
+                       if ($to) {
+                           $query->where(DB::raw('days.date + INTERVAL sessions.end_time HOUR_SECOND'), '<=', $to);
+                       }
+                   })
+                   ->groupBy('events.id')
+                   ->orderBy('days.date', 'ASC')
+                   ->orderBy('sessions.start_time', 'ASC');
 
-		// Add relations if requested
+        // Add relations if requested
 //        if (count($expand)) {
 //            $eventQuery->with($expand);
 //        }
 
 //		echo $eventQuery->toSql();
 
-		return response()->jsonAPI($eventQuery);
-	}
+        return response()->jsonAPI($eventQuery);
+    }
 
-	/**
-	 * Get a single event
-	 *
-	 * @param int $id Event ID
-	 * @return \Symfony\Component\HttpFoundation\Response Event
-	 */
-	public function getEvent($id)
-	{
-		return response()->jsonAPI(Event::find($id));
-	}
+    /**
+     * Get a single event
+     *
+     * @param int $id Event ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Event
+     */
+    public function getEvent($id)
+    {
+        return response()->jsonAPI(Event::find($id));
+    }
 
-	/**
-	 * Create a new event
-	 *
-	 * @param Request $request Request
-	 * @return \Symfony\Component\HttpFoundation\Response Event
-	 */
-	public function createEvent(Request $request)
-	{
-		$Event = Event::create($request->all());
-		return response()->json($Event);
-	}
+    /**
+     * Create a new event
+     *
+     * @param Request $request Request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Event
+     */
+    public function createEvent(Request $request)
+    {
+        $Event = Event::create($request->all());
 
-	/**
-	 * Update an event
-	 *
-	 * @param Request $request Request
-	 * @param int $id Event ID
-	 * @return \Symfony\Component\HttpFoundation\Response Event
-	 */
-	public function updateEvent(Request $request, $id)
-	{
-		$Event = Event::find($id);
-		$Event->title = $request->input('title');
-		$Event->author = $request->input('author');
-		$Event->isbn = $request->input('isbn');
+        return response()->json($Event);
+    }
+
+    /**
+     * Update an event
+     *
+     * @param Request $request Request
+     * @param int $id          Event ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Event
+     */
+    public function updateEvent(Request $request, $id)
+    {
+        $Event         = Event::find($id);
+        $Event->title  = $request->input('title');
+        $Event->author = $request->input('author');
+        $Event->isbn   = $request->input('isbn');
+
 //		$Event->save();
 
-		return response()->json($Event);
-	}
+        return response()->json($Event);
+    }
 
-	/**
-	 * Delete an event
-	 *
-	 * @param int $id Event ID
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 * @todo Set the deleted property to 1 instead of really deleting the event
-	 */
+    /**
+     * Delete an event
+     *
+     * @param int $id Event ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo Set the deleted property to 1 instead of really deleting the event
+     */
 //	public function deleteEvent($id)
 //	{
 //		$Event = Event::find($id);

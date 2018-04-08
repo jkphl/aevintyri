@@ -34,18 +34,18 @@
  ***********************************************************************************/
 
 return array(
-    'source' => 'day',
-    'target' => 'days',
-    'where' => '`sys_deleted` = 0',
+    'source'  => 'day',
+    'target'  => 'days',
+    'where'   => '`sys_deleted` = 0',
     'columns' => [
-        'id' => '`id`',
+        'id'         => '`id`',
         'created_at' => '`sys_created`',
         'updated_at' => '`sys_modified`',
         'deleted_at' => 'NULL',
         'created_by' => '`sys_creator`',
         'updated_by' => '`sys_author`',
 
-        'date' => '`date`',
+        'date'     => '`date`',
         'event_id' => '`event`',
     ]
 );

@@ -43,8 +43,10 @@ require_once dirname(__DIR__).DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'
 Dotenv::load(dirname(__DIR__));
 
 // Instantiate the database connections
-$sourceDB = mysqli_connect(getenv('DB_HOST'), getenv('DB_COMPAT_USERNAME'), getenv('DB_COMPAT_PASSWORD'), getenv('DB_COMPAT_DATABASE'), getenv('DB_PORT'));
-$targetDB = mysqli_connect(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'), getenv('DB_PORT'));
+$sourceDB = mysqli_connect(getenv('DB_HOST'), getenv('DB_COMPAT_USERNAME'), getenv('DB_COMPAT_PASSWORD'),
+    getenv('DB_COMPAT_DATABASE'), getenv('DB_PORT'));
+$targetDB = mysqli_connect(getenv('DB_HOST'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'),
+    getenv('DB_PORT'));
 
 // Mandatory mapping config keys
 $mandatoryKeys = ['source' => true, 'target' => true, 'columns' => true];
@@ -52,7 +54,7 @@ $mandatoryKeys = ['source' => true, 'target' => true, 'columns' => true];
 // Run through all table mapping definitions
 foreach (glob('*.map.php') as $mapping) {
     $mappingConfig = include __DIR__.DIRECTORY_SEPARATOR.$mapping;
-    $keys = array_filter(array_intersect_key($mappingConfig, $mandatoryKeys));
+    $keys          = array_filter(array_intersect_key($mappingConfig, $mandatoryKeys));
     if ((count($keys) == count($mandatoryKeys)) && is_array($mappingConfig['columns']) && count($mappingConfig['columns'])) {
 
         // Set all records to deleted
@@ -64,7 +66,7 @@ foreach (glob('*.map.php') as $mapping) {
         mysqli_query($targetDB, $targetDelete);
 
         // Build a SELECT statement for the source table
-        $sourceSelect = 'SELECT ';
+        $sourceSelect  = 'SELECT ';
         $selectColumns = [];
         foreach ($mappingConfig['columns'] as $columnTarget => $columnSource) {
             $selectColumns[] = $columnSource.' AS `'.$columnTarget.'`';
@@ -79,16 +81,16 @@ foreach (glob('*.map.php') as $mapping) {
         $replaceQuery .= ' (`'.implode('`, `', array_keys($mappingConfig['columns'])).'`) '.$sourceSelect;
 
         if (!$quiet) {
-            echo 'Migrating table `' . $mappingConfig['target'] . '` ... ';
+            echo 'Migrating table `'.$mappingConfig['target'].'` ... ';
         }
         $success = mysqli_query($targetDB, $replaceQuery);
         if (!$success) {
             if (!$quiet) {
-                echo 'ERROR!\n\t' . mysqli_error($targetDB);
+                echo 'ERROR!\n\t'.mysqli_error($targetDB);
             }
         } else {
             if (!$quiet) {
-                echo 'SUCCESS!' . PHP_EOL;
+                echo 'SUCCESS!'.PHP_EOL;
             }
         }
 

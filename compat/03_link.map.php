@@ -34,20 +34,20 @@
  ***********************************************************************************/
 
 return array(
-    'source' => 'link',
-    'target' => 'links',
-    'where' => '`sys_deleted` = 0',
+    'source'  => 'link',
+    'target'  => 'links',
+    'where'   => '`sys_deleted` = 0',
     'columns' => [
-        'id' => '`id`',
+        'id'         => '`id`',
         'created_at' => '`sys_created`',
         'updated_at' => '`sys_modified`',
         'deleted_at' => 'NULL',
         'created_by' => '`sys_creator`',
         'updated_by' => '`sys_author`',
 
-        'name' => '`name`',
-        'url' => '`url`',
-        'session_id' => '`session`',
+        'name'         => '`name`',
+        'url'          => '`url`',
+        'session_id'   => '`session`',
         'presenter_id' => '`presenter`',
     ]
 );

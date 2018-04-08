@@ -63,16 +63,6 @@ abstract class AbstractEventSeries extends AbstractModel
     /**
      * Return this event's organizer
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Organizer
-     */
-    public function organizer()
-    {
-        return $this->belongsTo('App\Models\Organizer');
-    }
-
-    /**
-     * Return this event's organizer
-     *
      * @return int|\App\Models\Organizer     Organizer
      */
     public function getOrganizerAttribute()
@@ -81,11 +71,22 @@ abstract class AbstractEventSeries extends AbstractModel
     }
 
     /**
+     * Return this event's organizer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Organizer
+     */
+    public function organizer()
+    {
+        return $this->belongsTo('App\Models\Organizer');
+    }
+
+    /**
      * Get the Facebook URL
      *
      * @return string
      */
-    public function getFacebookEventAttribute() {
+    public function getFacebookEventAttribute()
+    {
         return $this->_makeUrl($this->attributes['facebook_event']);
     }
 
@@ -94,7 +95,8 @@ abstract class AbstractEventSeries extends AbstractModel
      *
      * @return string
      */
-    public function getXingEventAttribute() {
+    public function getXingEventAttribute()
+    {
         return $this->_makeUrl($this->attributes['xing_event']);
     }
 
@@ -103,7 +105,8 @@ abstract class AbstractEventSeries extends AbstractModel
      *
      * @return string
      */
-    public function getGplusEventAttribute() {
+    public function getGplusEventAttribute()
+    {
         return $this->_makeUrl($this->attributes['gplus_event']);
     }
 
@@ -112,7 +115,8 @@ abstract class AbstractEventSeries extends AbstractModel
      *
      * @return string
      */
-    public function getTicketsAttribute() {
+    public function getTicketsAttribute()
+    {
         return $this->_makeUrl($this->attributes['tickets']);
     }
 
@@ -121,7 +125,8 @@ abstract class AbstractEventSeries extends AbstractModel
      *
      * @return string
      */
-    public function getLanyrdAttribute() {
+    public function getLanyrdAttribute()
+    {
         return $this->_makeUrl($this->attributes['lanyrd']);
     }
 }

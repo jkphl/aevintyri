@@ -38,13 +38,13 @@ use Illuminate\Database\Seeder;
 
 class LinkTableSeeder extends Seeder
 {
-	public function run()
-	{
-		Link::create([
-			'session_id' => null,
-			'presenter_id' => 1,
-			'name' => 'Jeremy Keith\'s website',
-			'url' => 'https//adactio.com'
-		]);
-	}
+    public function run()
+    {
+        Link::create([
+            'session_id'   => null,
+            'presenter_id' => 1,
+            'name'         => 'Jeremy Keith\'s website',
+            'url'          => 'https//adactio.com'
+        ]);
+    }
 }

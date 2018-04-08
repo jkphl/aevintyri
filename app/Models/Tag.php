@@ -37,73 +37,75 @@ namespace App\Models;
 
 final class Tag extends AbstractModel
 {
-	/**
-	 * The attributes that should be hidden for arrays.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('presenters', 'sessions');
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'presenters' => '\\App\\Models\\Presenter',
+        'sessions'   => '\\App\\Models\\Session',
+    );
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('presenters', 'sessions');
+    /**
+     * The extended accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $extends = array('presenters', 'sessions');
 
-	/**
-	 * The extended accessors to append to the model's array form.
-	 *
-	 * @var array
-	 */
-	protected $extends = array('presenters', 'sessions');
+    /**
+     * Return this tag's presenters
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Presenters
+     */
+    public function getPresentersAttribute()
+    {
+        $presenters = [];
+        foreach ($this->presenters()->getResults() as $presenter) {
+            $presenters[] = $presenter;
+        }
 
-	/**
-	 * Relation mapping
-	 *
-	 * @var array
-	 */
-	public static $relmap = array(
-		'presenters' => '\\App\\Models\\Presenter',
-		'sessions' => '\\App\\Models\\Session',
-	);
+        return $presenters;
+    }
 
-	/**
-	 * Return this tag's presenters
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Presenters
-	 */
-	public function presenters()
-	{
-		return $this->belongsToMany('App\Models\Presenter', 'presenter_tags');
-	}
+    /**
+     * Return this tag's presenters
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Presenters
+     */
+    public function presenters()
+    {
+        return $this->belongsToMany('App\Models\Presenter', 'presenter_tags');
+    }
 
-	/**
-	 * Return this tag's presenters
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Presenters
-	 */
-	public function getPresentersAttribute() {
-		$presenters = [];
-		foreach ($this->presenters()->getResults() as $presenter) {
-			$presenters[] = $presenter;
-		}
-		return $presenters;
-	}
+    /**
+     * Return this tag's sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
+     */
+    public function getSessionsAttribute()
+    {
+        $sessions = [];
+        foreach ($this->sessions()->getResults() as $session) {
+            $sessions[] = $session;
+        }
 
-	/**
-	 * Return this tag's sessions
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Sessions
-	 */
-	public function sessions()
-	{
-		return $this->belongsToMany('App\Models\Session', 'session_tags');
-	}
+        return $sessions;
+    }
 
-	/**
-	 * Return this tag's sessions
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
-	 */
-	public function getSessionsAttribute() {
-		$sessions = [];
-		foreach ($this->sessions()->getResults() as $session) {
-			$sessions[] = $session;
-		}
-		return $sessions;
-	}
+    /**
+     * Return this tag's sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Sessions
+     */
+    public function sessions()
+    {
+        return $this->belongsToMany('App\Models\Session', 'session_tags');
+    }
 }

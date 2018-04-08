@@ -40,67 +40,72 @@ use Illuminate\Http\Request;
 
 class LinkController extends Controller
 {
-	/**
-	 * List all links
-	 *
-	 * @return \Symfony\Component\HttpFoundation\Response Link list
-	 */
-	public function listLinks()
-	{
-		return response()->jsonAPI((new Link)->newQuery());
-	}
+    /**
+     * List all links
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Link list
+     */
+    public function listLinks()
+    {
+        return response()->jsonAPI((new Link)->newQuery());
+    }
 
-	/**
-	 * Get a single link
-	 *
-	 * @param int $id Link ID
-	 * @return \Symfony\Component\HttpFoundation\Response Link
-	 */
-	public function getLink($id)
-	{
-		return response()->jsonAPI(Link::find($id));
-	}
+    /**
+     * Get a single link
+     *
+     * @param int $id Link ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Link
+     */
+    public function getLink($id)
+    {
+        return response()->jsonAPI(Link::find($id));
+    }
 
-	/**
-	 * Create a new link
-	 *
-	 * @param Request $request Request
-	 * @return \Symfony\Component\HttpFoundation\Response Link
-	 */
-	public function createLink(Request $request)
-	{
+    /**
+     * Create a new link
+     *
+     * @param Request $request Request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Link
+     */
+    public function createLink(Request $request)
+    {
 
-		$Link = Link::create($request->all());
+        $Link = Link::create($request->all());
 
-		return response()->json($Link);
+        return response()->json($Link);
 
-	}
+    }
 
-	/**
-	 * Update an link
-	 *
-	 * @param Request $request Request
-	 * @param int $id Link ID
-	 * @return \Symfony\Component\HttpFoundation\Response Link
-	 */
-	public function updateLink(Request $request, $id)
-	{
-		$Link = Link::find($id);
-		$Link->title = $request->input('title');
-		$Link->author = $request->input('author');
-		$Link->isbn = $request->input('isbn');
+    /**
+     * Update an link
+     *
+     * @param Request $request Request
+     * @param int $id          Link ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Link
+     */
+    public function updateLink(Request $request, $id)
+    {
+        $Link         = Link::find($id);
+        $Link->title  = $request->input('title');
+        $Link->author = $request->input('author');
+        $Link->isbn   = $request->input('isbn');
+
 //		$Link->save();
 
-		return response()->json($Link);
-	}
+        return response()->json($Link);
+    }
 
-	/**
-	 * Delete an link
-	 *
-	 * @param int $id Link ID
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 * @todo Set the deleted property to 1 instead of really deleting the link
-	 */
+    /**
+     * Delete an link
+     *
+     * @param int $id Link ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo Set the deleted property to 1 instead of really deleting the link
+     */
 //	public function deleteLink($id)
 //	{
 //		$Link = Link::find($id);

@@ -41,88 +41,87 @@ use App\Traits\Image;
 
 final class Organizer extends AbstractModel
 {
-	/**
-	 * Use the address, contact and image features
-	 */
-	use Address, Contact, Image;
+    /**
+     * Use the address, contact and image features
+     */
+    use Address, Contact, Image;
 
-	/**
-	 * The attributes that should be hidden for arrays.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('country_id', 'country', 'usergroup_id');
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'country' => '\\App\\Models\\Country',
+        'events'  => '\\App\\Models\\Event',
+        'series'  => '\\App\\Models\\Series',
+    );
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('country_id', 'country', 'usergroup_id');
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('country');
+    /**
+     * The extended accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $extends = array('events', 'series');
 
-	/**
-	 * The accessors to append to the model's array form.
-	 *
-	 * @var array
-	 */
-	protected $appends = array('country');
+    /**
+     * Return this tag's events
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Events
+     */
+    public function getEventsAttribute()
+    {
+        $events = [];
+        foreach ($this->events()->getResults() as $event) {
+            $events[] = $event;
+        }
 
-	/**
-	 * The extended accessors to append to the model's array form.
-	 *
-	 * @var array
-	 */
-	protected $extends = array('events', 'series');
+        return $events;
+    }
 
-	/**
-	 * Relation mapping
-	 *
-	 * @var array
-	 */
-	public static $relmap = array(
-		'country' => '\\App\\Models\\Country',
-		'events' => '\\App\\Models\\Event',
-		'series' => '\\App\\Models\\Series',
-	);
+    /**
+     * Return all events of this organizer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Events
+     */
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event');
+    }
 
-	/**
-	 * Return all events of this organizer
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Events
-	 */
-	public function events()
-	{
-		return $this->hasMany('App\Models\Event');
-	}
+    /**
+     * Return this tag's series
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Seriess
+     */
+    public function getSeriesAttribute()
+    {
+        $seriess = [];
+        foreach ($this->series()->getResults() as $series) {
+            $seriess[] = $series;
+        }
 
-	/**
-	 * Return this tag's events
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Events
-	 */
-	public function getEventsAttribute()
-	{
-		$events = [];
-		foreach ($this->events()->getResults() as $event) {
-			$events[] = $event;
-		}
-		return $events;
-	}
+        return $seriess;
+    }
 
-	/**
-	 * Return all series of this organizer
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Series
-	 */
-	public function series()
-	{
-		return $this->hasMany('App\Models\Series');
-	}
-
-	/**
-	 * Return this tag's series
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Seriess
-	 */
-	public function getSeriesAttribute()
-	{
-		$seriess = [];
-		foreach ($this->series()->getResults() as $series) {
-			$seriess[] = $series;
-		}
-		return $seriess;
-	}
+    /**
+     * Return all series of this organizer
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Series
+     */
+    public function series()
+    {
+        return $this->hasMany('App\Models\Series');
+    }
 }

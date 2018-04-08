@@ -69,32 +69,33 @@ class Pagination implements JsonApiable
      * Pagination constructor
      *
      * @param string $first First pagination link
-     * @param string $last Last pagination link
-     * @param string $prev Previous pagination link
-     * @param string $next Next pagination link
+     * @param string $last  Last pagination link
+     * @param string $prev  Previous pagination link
+     * @param string $next  Next pagination link
      */
     public function __construct($first = null, $last = null, $prev = null, $next = null)
     {
         $this->first = $first;
-        $this->last = $last;
-        $this->prev = $prev;
-        $this->next = $next;
+        $this->last  = $last;
+        $this->prev  = $prev;
+        $this->next  = $next;
     }
 
     /**
      * Return as a JSON API array
      *
      * @param Response $response JSON API response
-     * @param string $prefix Prefix
+     * @param string $prefix     Prefix
+     *
      * @return array|string
      */
     public function toJsonApi(Response $response, $prefix = '')
     {
         return array_filter(array(
             'first' => $this->first,
-            'last' => $this->last,
-            'prev' => $this->prev,
-            'next' => $this->next,
+            'last'  => $this->last,
+            'prev'  => $this->prev,
+            'next'  => $this->next,
         ));
     }
 }

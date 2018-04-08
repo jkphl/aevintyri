@@ -44,16 +44,6 @@ trait Address
 {
 
     /**
-     * Return the country of this record
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Country
-     */
-    public function country()
-    {
-        return $this->belongsTo('App\Models\Country');
-    }
-
-    /**
      * Return this records's country
      *
      * @return \App\Models\Country     Organizer
@@ -61,5 +51,15 @@ trait Address
     public function getCountryAttribute()
     {
         return $this->country()->getResults();
+    }
+
+    /**
+     * Return the country of this record
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Country
+     */
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country');
     }
 }

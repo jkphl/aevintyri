@@ -34,22 +34,22 @@
  ***********************************************************************************/
 
 return array(
-    'source' => 'room',
-    'target' => 'rooms',
-    'where' => '`sys_deleted` = 0',
+    'source'  => 'room',
+    'target'  => 'rooms',
+    'where'   => '`sys_deleted` = 0',
     'columns' => [
-        'id' => '`id`',
+        'id'         => '`id`',
         'created_at' => '`sys_created`',
         'updated_at' => '`sys_modified`',
         'deleted_at' => 'NULL',
         'created_by' => '`sys_creator`',
         'updated_by' => '`sys_author`',
 
-        'name' => '`name`',
-        'number' => '`number`',
-        'venue_id' => '`venue`',
-        'hashtag' => '`hashtag`',
+        'name'        => '`name`',
+        'number'      => '`number`',
+        'venue_id'    => '`venue`',
+        'hashtag'     => '`hashtag`',
         'description' => '`description`',
-        'abstract' => '`abstract`',
+        'abstract'    => '`abstract`',
     ]
 );

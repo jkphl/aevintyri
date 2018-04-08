@@ -34,10 +34,10 @@
  ***********************************************************************************/
 
 return array(
-    'source' => 'presenter_tag',
-    'target' => 'presenter_tags',
+    'source'  => 'presenter_tag',
+    'target'  => 'presenter_tags',
     'columns' => [
         'presenter_id' => '`presenter_id`',
-        'tag_id' => '`tag_id`',
+        'tag_id'       => '`tag_id`',
     ]
 );

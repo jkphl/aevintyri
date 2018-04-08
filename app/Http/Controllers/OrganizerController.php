@@ -40,67 +40,72 @@ use Illuminate\Http\Request;
 
 class OrganizerController extends Controller
 {
-	/**
-	 * List all organizers
-	 *
-	 * @return \Symfony\Component\HttpFoundation\Response Organizer list
-	 */
-	public function listOrganizers()
-	{
-		return response()->jsonAPI((new Organizer)->newQuery());
-	}
+    /**
+     * List all organizers
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Organizer list
+     */
+    public function listOrganizers()
+    {
+        return response()->jsonAPI((new Organizer)->newQuery());
+    }
 
-	/**
-	 * Get a single organizer
-	 *
-	 * @param int $id Organizer ID
-	 * @return \Symfony\Component\HttpFoundation\Response Organizer
-	 */
-	public function getOrganizer($id)
-	{
-		return response()->jsonAPI(Organizer::find($id));
-	}
+    /**
+     * Get a single organizer
+     *
+     * @param int $id Organizer ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Organizer
+     */
+    public function getOrganizer($id)
+    {
+        return response()->jsonAPI(Organizer::find($id));
+    }
 
-	/**
-	 * Create a new organizer
-	 *
-	 * @param Request $request Request
-	 * @return \Symfony\Component\HttpFoundation\Response Organizer
-	 */
-	public function createOrganizer(Request $request)
-	{
+    /**
+     * Create a new organizer
+     *
+     * @param Request $request Request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Organizer
+     */
+    public function createOrganizer(Request $request)
+    {
 
-		$Organizer = Organizer::create($request->all());
+        $Organizer = Organizer::create($request->all());
 
-		return response()->json($Organizer);
+        return response()->json($Organizer);
 
-	}
+    }
 
-	/**
-	 * Update an organizer
-	 *
-	 * @param Request $request Request
-	 * @param int $id Organizer ID
-	 * @return \Symfony\Component\HttpFoundation\Response Organizer
-	 */
-	public function updateOrganizer(Request $request, $id)
-	{
-		$Organizer = Organizer::find($id);
-		$Organizer->title = $request->input('title');
-		$Organizer->author = $request->input('author');
-		$Organizer->isbn = $request->input('isbn');
+    /**
+     * Update an organizer
+     *
+     * @param Request $request Request
+     * @param int $id          Organizer ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Organizer
+     */
+    public function updateOrganizer(Request $request, $id)
+    {
+        $Organizer         = Organizer::find($id);
+        $Organizer->title  = $request->input('title');
+        $Organizer->author = $request->input('author');
+        $Organizer->isbn   = $request->input('isbn');
+
 //		$Organizer->save();
 
-		return response()->json($Organizer);
-	}
+        return response()->json($Organizer);
+    }
 
-	/**
-	 * Delete an organizer
-	 *
-	 * @param int $id Organizer ID
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 * @todo Set the deleted property to 1 instead of really deleting the organizer
-	 */
+    /**
+     * Delete an organizer
+     *
+     * @param int $id Organizer ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo Set the deleted property to 1 instead of really deleting the organizer
+     */
 //	public function deleteOrganizer($id)
 //	{
 //		$Organizer = Organizer::find($id);

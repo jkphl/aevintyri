@@ -45,12 +45,13 @@ use Michelf\Markdown;
  */
 trait Describable
 {
-	/**
-	 * Get the image URL
-	 *
-	 * @return string
-	 */
-	public function getDescriptionAttribute() {
-		return Markdown::defaultTransform(trim($this->attributes['description']));
-	}
+    /**
+     * Get the image URL
+     *
+     * @return string
+     */
+    public function getDescriptionAttribute()
+    {
+        return Markdown::defaultTransform(trim($this->attributes['description']));
+    }
 }

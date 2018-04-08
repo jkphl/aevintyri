@@ -33,14 +33,15 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  ***********************************************************************************/
 
-if (! function_exists('response')) {
+if (!function_exists('response')) {
 
     /**
      * Return a new response from the application.
      *
-     * @param  string  $content
-     * @param  int     $status
-     * @param  array   $headers
+     * @param  string $content
+     * @param  int $status
+     * @param  array $headers
+     *
      * @return \Symfony\Component\HttpFoundation\Response|\App\Http\ResponseFactory
      */
     function response($content = '', $status = 200, array $headers = [])

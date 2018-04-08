@@ -34,10 +34,10 @@
  ***********************************************************************************/
 
 return array(
-    'source' => 'session_presenter',
-    'target' => 'presenter_sessions',
+    'source'  => 'session_presenter',
+    'target'  => 'presenter_sessions',
     'columns' => [
         'presenter_id' => '`presenter_id`',
-        'session_id' => '`session_id`',
+        'session_id'   => '`session_id`',
     ]
 );

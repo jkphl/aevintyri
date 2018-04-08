@@ -45,44 +45,32 @@ final class Room extends AbstractModel
     use Describable;
 
     /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'venue'    => '\\App\\Models\\Venue',
+        'sessions' => '\\App\\Models\\Session',
+    );
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = array('venue_id', 'venue');
-
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
     protected $appends = array('venue');
-
     /**
      * The extended accessors to append to the model's array form.
      *
      * @var array
      */
     protected $extends = array('sessions');
-
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array(
-        'venue' => '\\App\\Models\\Venue',
-        'sessions' => '\\App\\Models\\Session',
-    );
-
-    /**
-     * Return this room's venue
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Venue
-     */
-    public function venue() {
-        return $this->belongsTo('App\Models\Venue');
-    }
 
     /**
      * Return this room's venue
@@ -95,12 +83,13 @@ final class Room extends AbstractModel
     }
 
     /**
-     * Return this room's sessions
+     * Return this room's venue
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany          Sessions
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Venue
      */
-    public function sessions() {
-        return $this->hasMany('App\Models\Session');
+    public function venue()
+    {
+        return $this->belongsTo('App\Models\Venue');
     }
 
     /**
@@ -108,11 +97,23 @@ final class Room extends AbstractModel
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
      */
-    public function getSessionsAttribute() {
+    public function getSessionsAttribute()
+    {
         $sessions = [];
         foreach ($this->sessions()->getResults() as $session) {
             $sessions[] = $session;
         }
+
         return $sessions;
+    }
+
+    /**
+     * Return this room's sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany          Sessions
+     */
+    public function sessions()
+    {
+        return $this->hasMany('App\Models\Session');
     }
 }

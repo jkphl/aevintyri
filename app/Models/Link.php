@@ -39,38 +39,26 @@ final class Link extends AbstractModel
 {
 
     /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'session'   => '\\App\\Models\\Session',
+        'presenter' => '\\App\\Models\\Presenter',
+    );
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = array('session_id', 'session', 'presenter_id', 'presenter');
-
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
     protected $extends = array('presenter');
-
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array(
-        'session' => '\\App\\Models\\Session',
-        'presenter' => '\\App\\Models\\Presenter',
-    );
-
-
-    /**
-     * Return this link's session
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Session
-     */
-    public function session() {
-        return $this->belongsTo('App\Models\Session');
-    }
 
     /**
      * Return this link's session
@@ -83,12 +71,13 @@ final class Link extends AbstractModel
     }
 
     /**
-     * Return this link's presenter
+     * Return this link's session
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Presenter
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Session
      */
-    public function presenter() {
-        return $this->belongsTo('App\Models\Presenter');
+    public function session()
+    {
+        return $this->belongsTo('App\Models\Session');
     }
 
     /**
@@ -99,5 +88,15 @@ final class Link extends AbstractModel
     public function getPresenterAttribute()
     {
         return $this->presenter()->getQuery()->first();
+    }
+
+    /**
+     * Return this link's presenter
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Presenter
+     */
+    public function presenter()
+    {
+        return $this->belongsTo('App\Models\Presenter');
     }
 }

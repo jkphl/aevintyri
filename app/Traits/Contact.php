@@ -44,48 +44,53 @@ namespace App\Traits;
  */
 trait Contact
 {
-	/**
-	 * Get the Web URL
-	 *
-	 * @return string
-	 */
-	public function getWebAttribute() {
-		return $this->_makeUrl($this->attributes['web'], null, 'http');
-	}
+    /**
+     * Get the Web URL
+     *
+     * @return string
+     */
+    public function getWebAttribute()
+    {
+        return $this->_makeUrl($this->attributes['web'], null, 'http');
+    }
 
-	/**
-	 * Get the Facebook URL
-	 *
-	 * @return string
-	 */
-	public function getFacebookAttribute() {
-		return $this->_makeUrl($this->attributes['facebook']);
-	}
+    /**
+     * Get the Facebook URL
+     *
+     * @return string
+     */
+    public function getFacebookAttribute()
+    {
+        return $this->_makeUrl($this->attributes['facebook']);
+    }
 
-	/**
-	 * Get the Twitter URL
-	 *
-	 * @return string
-	 */
-	public function getTwitterAttribute() {
-		return $this->_makeUrl($this->attributes['twitter'], 'twitter.com/@%s');
-	}
+    /**
+     * Get the Twitter URL
+     *
+     * @return string
+     */
+    public function getTwitterAttribute()
+    {
+        return $this->_makeUrl($this->attributes['twitter'], 'twitter.com/@%s');
+    }
 
-	/**
-	 * Get the XING URL
-	 *
-	 * @return string
-	 */
-	public function getXingAttribute() {
-		return $this->_makeUrl($this->attributes['xing']);
-	}
+    /**
+     * Get the XING URL
+     *
+     * @return string
+     */
+    public function getXingAttribute()
+    {
+        return $this->_makeUrl($this->attributes['xing']);
+    }
 
-	/**
-	 * Get the Google+ URL
-	 *
-	 * @return string
-	 */
-	public function getGplusAttribute() {
-		return $this->_makeUrl($this->attributes['gplus']);
-	}
+    /**
+     * Get the Google+ URL
+     *
+     * @return string
+     */
+    public function getGplusAttribute()
+    {
+        return $this->_makeUrl($this->attributes['gplus']);
+    }
 }

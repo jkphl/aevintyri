@@ -49,7 +49,8 @@ interface JsonApiable
      * Return as a JSON API array
      *
      * @param Response $response JSON API response
-     * @param string $prefix Prefix
+     * @param string $prefix     Prefix
+     *
      * @return array|string
      */
     public function toJsonApi(Response $response, $prefix = '');

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,9 +14,12 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-            $this->call('CountryTableSeeder');
-         $this->call('DayTableSeeder');
-          $this->call('EventTableSeeder');
+        $this->call('CountryTableSeeder');
+
+        // If this is a development environment: Create sample records
+        if (App::environment('local')) {
+            $this->call('DayTableSeeder');
+            $this->call('EventTableSeeder');
             $this->call('LinkTableSeeder');
             $this->call('OrganizerTableSeeder');
             $this->call('PresenterSessionTableSeeder');
@@ -24,10 +27,11 @@ class DatabaseSeeder extends Seeder
             $this->call('PresenterTagTableSeeder');
             $this->call('RoomTableSeeder');
             $this->call('SeriesTableSeeder');
-        $this->call('SessionTableSeeder');
-        $this->call('SessionTagTableSeeder');
-        $this->call('TagTableSeeder');
-        $this->call('VenueTableSeeder');
+            $this->call('SessionTableSeeder');
+            $this->call('SessionTagTableSeeder');
+            $this->call('TagTableSeeder');
+            $this->call('VenueTableSeeder');
+        }
 
         Model::reguard();
     }

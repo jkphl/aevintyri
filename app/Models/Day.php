@@ -39,59 +39,45 @@ final class Day extends AbstractModel
 {
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = array('event_id', 'event', 'sessions');
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = array('start_time', 'end_time', 'sessions');
-
-    /**
-     * The extended accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $extends = array('event', 'venues');
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at', 'date', 'start_time', 'end_time'];
-
-    /**
-     * Default order property
-     *
-     * @var string
-     */
-    protected $orderBy = 'date';
-
-    /**
      * Relation mapping
      *
      * @var array
      */
     public static $relmap = array(
         'sessions' => '\\App\\Models\\Session',
-        'event' => '\\App\\Models\\Event',
-        'venues' => '\\App\\Models\\Venue',
+        'event'    => '\\App\\Models\\Event',
+        'venues'   => '\\App\\Models\\Venue',
     );
-
     /**
-     * Return this room's event
+     * The attributes that should be hidden for arrays.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Event
+     * @var array
      */
-    public function event() {
-        return $this->belongsTo('App\Models\Event');
-    }
+    protected $hidden = array('event_id', 'event', 'sessions');
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('start_time', 'end_time', 'sessions');
+    /**
+     * The extended accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $extends = array('event', 'venues');
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at', 'date', 'start_time', 'end_time'];
+    /**
+     * Default order property
+     *
+     * @var string
+     */
+    protected $orderBy = 'date';
 
     /**
      * Return this room's event
@@ -101,6 +87,31 @@ final class Day extends AbstractModel
     public function getEventAttribute()
     {
         return $this->event()->getQuery()->first();
+    }
+
+    /**
+     * Return this room's event
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo        Event
+     */
+    public function event()
+    {
+        return $this->belongsTo('App\Models\Event');
+    }
+
+    /**
+     * Return this day's sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
+     */
+    public function getSessionsAttribute()
+    {
+        $sessions = [];
+        foreach ($this->sessions()->getResults() as $session) {
+            $sessions[] = $session;
+        }
+
+        return $sessions;
     }
 
     /**
@@ -115,26 +126,14 @@ final class Day extends AbstractModel
     }
 
     /**
-     * Return this day's sessions
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Sessions
-     */
-    public function getSessionsAttribute() {
-        $sessions = [];
-        foreach ($this->sessions()->getResults() as $session) {
-            $sessions[] = $session;
-        }
-        return $sessions;
-    }
-
-
-    /**
      * Return the day start time (session aggregate)
      *
      * @return string
      */
-    public function getStartTimeAttribute() {
+    public function getStartTimeAttribute()
+    {
         $firstSession = $this->sessions()->getResults()->first();
+
         return ($firstSession instanceof Session) ? $firstSession->start_time : null;
     }
 
@@ -143,8 +142,10 @@ final class Day extends AbstractModel
      *
      * @return string
      */
-    public function getEndTimeAttribute() {
+    public function getEndTimeAttribute()
+    {
         $lastSession = $this->sessions()->getResults()->last();
+
         return ($lastSession instanceof Session) ? $lastSession->end_time : null;
     }
 
@@ -153,12 +154,14 @@ final class Day extends AbstractModel
      *
      * @return array List of venues
      */
-    public function getVenuesAttribute() {
+    public function getVenuesAttribute()
+    {
         $venues = [];
         foreach ($this->sessions()->getResults() as $session) {
-            $venue = $session->venue;
+            $venue              = $session->venue;
             $venues[$venue->id] = $venue;
         }
+
         return array_values($venues);
     }
 }

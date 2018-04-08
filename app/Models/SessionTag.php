@@ -51,7 +51,8 @@ final class SessionTag extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Presenters
      */
-    public function presenters() {
+    public function presenters()
+    {
         return $this->belongsToMany('App\Models\Presenter');
     }
 
@@ -60,7 +61,8 @@ final class SessionTag extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Tags
      */
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany('App\Models\Tag');
     }
 }

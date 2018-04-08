@@ -39,24 +39,25 @@ use App\Models\Country;
 
 class CountryController extends Controller
 {
-	/**
-	 * List all countries
-	 *
-	 * @return \Symfony\Component\HttpFoundation\Response Country list
-	 */
-	public function listCountries()
-	{
-		return response()->jsonAPI((new Country)->newQuery());
-	}
+    /**
+     * List all countries
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Country list
+     */
+    public function listCountries()
+    {
+        return response()->jsonAPI((new Country)->newQuery());
+    }
 
-	/**
-	 * Get a single country
-	 *
-	 * @param int $id Country ID
-	 * @return \Symfony\Component\HttpFoundation\Response Country
-	 */
-	public function getCountry($id)
-	{
-		return response()->jsonAPI(Country::find($id));
-	}
+    /**
+     * Get a single country
+     *
+     * @param int $id Country ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Country
+     */
+    public function getCountry($id)
+    {
+        return response()->jsonAPI(Country::find($id));
+    }
 }

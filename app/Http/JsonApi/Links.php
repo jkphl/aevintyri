@@ -62,14 +62,15 @@ class Links implements JsonApiable
     /**
      * Links constructor
      *
-     * @param Link $self Link that generated the resource
-     * @param Link|null $related A related resource link when the primary data represents a resource relationship
+     * @param Link $self                  Link that generated the resource
+     * @param Link|null $related          A related resource link when the primary data represents a resource
+     *                                    relationship
      * @param Pagination|null $pagination Pagination links for the primary data
      */
     public function __construct(Link $self, Link $related = null, Pagination $pagination = null)
     {
-        $this->self = $self;
-        $this->related = $related;
+        $this->self      = $self;
+        $this->related   = $related;
         $this->paginaton = $pagination;
     }
 
@@ -77,15 +78,17 @@ class Links implements JsonApiable
      * Return as a JSON API array
      *
      * @param Response $response JSON API response
-     * @param string $prefix Prefix
+     * @param string $prefix     Prefix
+     *
      * @return array|string
      */
     public function toJsonApi(Response $response, $prefix = '')
     {
         return array_filter(array(
-            'self' => $this->self->toJsonApi($response, $prefix),
-            'related' => ($this->related instanceof Link) ? $this->related->toJsonApi($response, $prefix) : null,
-            'pagination' => ($this->paginaton instanceof Pagination) ? $this->paginaton->toJsonApi($response, $prefix) : null
+            'self'       => $this->self->toJsonApi($response, $prefix),
+            'related'    => ($this->related instanceof Link) ? $this->related->toJsonApi($response, $prefix) : null,
+            'pagination' => ($this->paginaton instanceof Pagination) ? $this->paginaton->toJsonApi($response,
+                $prefix) : null
         ));
     }
 }

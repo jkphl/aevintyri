@@ -40,67 +40,72 @@ use Illuminate\Http\Request;
 
 class VenueController extends Controller
 {
-	/**
-	 * List all venues
-	 *
-	 * @return \Symfony\Component\HttpFoundation\Response Venue list
-	 */
-	public function listVenues()
-	{
-		return response()->jsonAPI((new Venue)->newQuery());
-	}
+    /**
+     * List all venues
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Venue list
+     */
+    public function listVenues()
+    {
+        return response()->jsonAPI((new Venue)->newQuery());
+    }
 
-	/**
-	 * Get a single venue
-	 *
-	 * @param int $id Venue ID
-	 * @return \Symfony\Component\HttpFoundation\Response Venue
-	 */
-	public function getVenue($id)
-	{
-		return response()->jsonAPI(Venue::find($id));
-	}
+    /**
+     * Get a single venue
+     *
+     * @param int $id Venue ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Venue
+     */
+    public function getVenue($id)
+    {
+        return response()->jsonAPI(Venue::find($id));
+    }
 
-	/**
-	 * Create a new venue
-	 *
-	 * @param Request $request Request
-	 * @return \Symfony\Component\HttpFoundation\Response Venue
-	 */
-	public function createVenue(Request $request)
-	{
+    /**
+     * Create a new venue
+     *
+     * @param Request $request Request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Venue
+     */
+    public function createVenue(Request $request)
+    {
 
-		$Venue = Venue::create($request->all());
+        $Venue = Venue::create($request->all());
 
-		return response()->json($Venue);
+        return response()->json($Venue);
 
-	}
+    }
 
-	/**
-	 * Update an venue
-	 *
-	 * @param Request $request Request
-	 * @param int $id Venue ID
-	 * @return \Symfony\Component\HttpFoundation\Response Venue
-	 */
-	public function updateVenue(Request $request, $id)
-	{
-		$Venue = Venue::find($id);
-		$Venue->title = $request->input('title');
-		$Venue->author = $request->input('author');
-		$Venue->isbn = $request->input('isbn');
+    /**
+     * Update an venue
+     *
+     * @param Request $request Request
+     * @param int $id          Venue ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Venue
+     */
+    public function updateVenue(Request $request, $id)
+    {
+        $Venue         = Venue::find($id);
+        $Venue->title  = $request->input('title');
+        $Venue->author = $request->input('author');
+        $Venue->isbn   = $request->input('isbn');
+
 //		$Venue->save();
 
-		return response()->json($Venue);
-	}
+        return response()->json($Venue);
+    }
 
-	/**
-	 * Delete an venue
-	 *
-	 * @param int $id Venue ID
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 * @todo Set the deleted property to 1 instead of really deleting the venue
-	 */
+    /**
+     * Delete an venue
+     *
+     * @param int $id Venue ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo Set the deleted property to 1 instead of really deleting the venue
+     */
 //	public function deleteVenue($id)
 //	{
 //		$Venue = Venue::find($id);

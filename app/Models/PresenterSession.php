@@ -35,8 +35,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 final class PresenterSession extends AbstractModel
 {
     /**

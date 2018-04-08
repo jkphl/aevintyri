@@ -37,125 +37,126 @@ namespace App\Models;
 
 final class Event extends AbstractEventSeries
 {
-	/**
-	 * The attributes that should be hidden for arrays.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('series_id', 'series', 'organizer_id', 'organizer', 'days');
+    /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'organizer' => '\\App\\Models\\Organizer',
+        'series'    => '\\App\\Models\\Series',
+        'days'      => '\\App\\Models\\Day',
+        'venues'    => '\\App\\Models\\Venue',
+    );
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = array('series_id', 'series', 'organizer_id', 'organizer', 'days');
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = array('start_time', 'end_time', 'series', 'organizer', 'days');
+    /**
+     * The extended accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $extends = array('venues');
+    /**
+     * First and last
+     *
+     * @var array
+     */
+    protected $_sessions = array('first' => null, 'last' => null);
 
-	/**
-	 * The accessors to append to the model's array form.
-	 *
-	 * @var array
-	 */
-	protected $appends = array('start_time', 'end_time', 'series', 'organizer', 'days');
+    /**
+     * Return this event's series
+     *
+     * @return int|\App\Models\Series     Series
+     */
+    public function getSeriesAttribute()
+    {
+        return $this->series()->getQuery()->first();
+    }
 
-	/**
-	 * The extended accessors to append to the model's array form.
-	 *
-	 * @var array
-	 */
-	protected $extends = array('venues');
+    /**
+     * Return this event's series
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
+     */
+    public function series()
+    {
+        return $this->belongsTo('App\Models\Series');
+    }
 
-	/**
-	 * First and last
-	 *
-	 * @var array
-	 */
-	protected $_sessions = array('first' => null, 'last' => null);
+    /**
+     * Return this tag's days
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Days
+     */
+    public function getDaysAttribute()
+    {
+        $days = [];
+        foreach ($this->days()->getResults() as $day) {
+            $days[] = $day;
+        }
 
-	/**
-	 * Relation mapping
-	 *
-	 * @var array
-	 */
-	public static $relmap = array(
-		'organizer' => '\\App\\Models\\Organizer',
-		'series' => '\\App\\Models\\Series',
-		'days' => '\\App\\Models\\Day',
-		'venues' => '\\App\\Models\\Venue',
-	);
+        return $days;
+    }
 
-	/**
-	 * Return this event's series
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Series
-	 */
-	public function series()
-	{
-		return $this->belongsTo('App\Models\Series');
-	}
+    /**
+     * Return this events's days
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Days
+     */
+    public function days()
+    {
+        /** @noinspection PhpUndefinedMethodInspection */
+        return $this->hasMany('App\Models\Day')->ordered();
+    }
 
-	/**
-	 * Return this event's series
-	 *
-	 * @return int|\App\Models\Series     Series
-	 */
-	public function getSeriesAttribute()
-	{
-		return $this->series()->getQuery()->first();
-	}
+    /**
+     * Return the event start time (day aggregate)
+     *
+     * @return string
+     */
+    public function getStartTimeAttribute()
+    {
+        $firstDay = $this->days()->getResults()->first();
 
-	/**
-	 * Return this events's days
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Days
-	 */
-	public function days()
-	{
-		/** @noinspection PhpUndefinedMethodInspection */
-		return $this->hasMany('App\Models\Day')->ordered();
-	}
+        return ($firstDay instanceof Day) ? $firstDay->start_time : null;
+    }
 
-	/**
-	 * Return this tag's days
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany      Days
-	 */
-	public function getDaysAttribute()
-	{
-		$days = [];
-		foreach ($this->days()->getResults() as $day) {
-			$days[] = $day;
-		}
-		return $days;
-	}
+    /**
+     * Return the event end time (day aggregate)
+     *
+     * @return string
+     */
+    public function getEndTimeAttribute()
+    {
+        $lastDay = $this->days()->getResults()->last();
 
-	/**
-	 * Return the event start time (day aggregate)
-	 *
-	 * @return string
-	 */
-	public function getStartTimeAttribute()
-	{
-		$firstDay = $this->days()->getResults()->first();
-		return ($firstDay instanceof Day) ? $firstDay->start_time : null;
-	}
+        return ($lastDay instanceof Day) ? $lastDay->end_time : null;
+    }
 
-	/**
-	 * Return the event end time (day aggregate)
-	 *
-	 * @return string
-	 */
-	public function getEndTimeAttribute()
-	{
-		$lastDay = $this->days()->getResults()->last();
-		return ($lastDay instanceof Day) ? $lastDay->end_time : null;
-	}
+    /**
+     * Return a list of all venues of this event
+     *
+     * @return array List of venues
+     */
+    public function getVenuesAttribute()
+    {
+        $venues = [];
+        foreach ($this->days()->getResults() as $day) {
+            foreach ($day->venues as $venue) {
+                $venues[$venue->id] = $venue;
+            }
+        }
 
-	/**
-	 * Return a list of all venues of this event
-	 *
-	 * @return array List of venues
-	 */
-	public function getVenuesAttribute() {
-		$venues = [];
-		foreach ($this->days()->getResults() as $day) {
-			foreach ($day->venues as $venue) {
-				$venues[$venue->id] = $venue;
-			}
-		}
-		return array_values($venues);
-	}
+        return array_values($venues);
+    }
 }

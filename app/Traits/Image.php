@@ -43,16 +43,18 @@ namespace App\Traits;
  */
 trait Image
 {
-	/**
-	 * Get the image URL
-	 *
-	 * @return string
-	 */
-	public function getImageAttribute() {
-		$image = trim($this->attributes['image']);
-		if (strlen($image)) {
-			$image = (empty($_SERVER['HTTPS']) ? 'http' : 'https').'://'.$_SERVER['HTTP_HOST'].$image;
-		}
-		return $image;
-	}
+    /**
+     * Get the image URL
+     *
+     * @return string
+     */
+    public function getImageAttribute()
+    {
+        $image = trim($this->attributes['image']);
+        if (strlen($image)) {
+            $image = (empty($_SERVER['HTTPS']) ? 'http' : 'https').'://'.$_SERVER['HTTP_HOST'].$image;
+        }
+
+        return $image;
+    }
 }

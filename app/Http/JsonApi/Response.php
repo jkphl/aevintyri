@@ -44,386 +44,394 @@ use Illuminate\Http\Request;
 
 class Response extends JsonResponse
 {
-	/**
-	 * Request
-	 *
-	 * @var Request
-	 */
-	protected $request;
+    /**
+     * Request
+     *
+     * @var Request
+     */
+    protected $request;
 
-	/**
-	 * Meta data
-	 *
-	 * @var object
-	 */
-	protected $meta = null;
+    /**
+     * Meta data
+     *
+     * @var object
+     */
+    protected $meta = null;
 
-	/**
-	 * Errors
-	 *
-	 * @var array
-	 */
-	protected $errors = [];
+    /**
+     * Errors
+     *
+     * @var array
+     */
+    protected $errors = [];
 
-	/**
-	 * JSON API implementation
-	 *
-	 * @var string
-	 */
-	protected $jsonapi = array('version' => '1.0');
+    /**
+     * JSON API implementation
+     *
+     * @var string
+     */
+    protected $jsonapi = array('version' => '1.0');
 
-	/**
-	 * Related resource objects
-	 *
-	 * @var array
-	 */
-	protected $included = [];
+    /**
+     * Related resource objects
+     *
+     * @var array
+     */
+    protected $included = [];
 
-	/**
-	 * Links
-	 *
-	 * @var Links
-	 */
-	protected $links = null;
+    /**
+     * Links
+     *
+     * @var Links
+     */
+    protected $links = null;
 
-	/**
-	 * Return verbose objects
-	 *
-	 * @var bool
-	 */
-	protected $verbose = false;
+    /**
+     * Return verbose objects
+     *
+     * @var bool
+     */
+    protected $verbose = false;
 
-	/**
-	 * Return extended relationships
-	 *
-	 * @var array|boolean
-	 */
-	protected $extend = false;
+    /**
+     * Return extended relationships
+     *
+     * @var array|boolean
+     */
+    protected $extend = false;
 
-	/**
-	 * Relationshop inclusions
-	 *
-	 * @var array
-	 */
-	protected $include = [];
+    /**
+     * Relationshop inclusions
+     *
+     * @var array
+     */
+    protected $include = [];
 
-	/**
-	 * Pagination parameters
-	 *
-	 * @var array
-	 */
-	protected $pagination = null;
+    /**
+     * Pagination parameters
+     *
+     * @var array
+     */
+    protected $pagination = null;
 
-	/**
-	 * Relation map of the current primary model
-	 *
-	 * @var array
-	 */
-	protected $relmap = [];
+    /**
+     * Relation map of the current primary model
+     *
+     * @var array
+     */
+    protected $relmap = [];
 
-	/**
-	 * Primary resource object (if not a list of objects)
-	 *
-	 * @var JsonApiable
-	 */
-	protected $primary = null;
+    /**
+     * Primary resource object (if not a list of objects)
+     *
+     * @var JsonApiable
+     */
+    protected $primary = null;
 
-	/**
-	 * Map of all primary resource IDs
-	 *
-	 * @var array
-	 */
-	protected $datamap = [];
+    /**
+     * Map of all primary resource IDs
+     *
+     * @var array
+     */
+    protected $datamap = [];
 
-	/**
-	 * Base class name for relation paths
-	 *
-	 * @var string
-	 */
-	protected $baseClass = null;
+    /**
+     * Base class name for relation paths
+     *
+     * @var string
+     */
+    protected $baseClass = null;
 
-	/**
-	 * Map of included records
-	 *
-	 * @var array
-	 */
-	protected $inclusionMap = [];
+    /**
+     * Map of included records
+     *
+     * @var array
+     */
+    protected $inclusionMap = [];
 
-	/**
-	 * Debug output
-	 *
-	 * @var bool
-	 */
-	protected $debug = false;
+    /**
+     * Debug output
+     *
+     * @var bool
+     */
+    protected $debug = false;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param  Builder|JsonApiable|array $data
-	 * @param  int $status
-	 * @param  array $headers
-	 * @param  int $options
-	 */
-	public function __construct($data, $status = 200, $headers = [], $options = 0)
-	{
-		$this->request = app('request');
-		$this->verbose = (boolean)$this->request->get('verbose');
+    /**
+     * Constructor.
+     *
+     * @param  Builder|JsonApiable|array $data
+     * @param  int $status
+     * @param  array $headers
+     * @param  int $options
+     */
+    public function __construct($data, $status = 200, $headers = [], $options = 0)
+    {
+        $this->request = app('request');
+        $this->verbose = (boolean)$this->request->get('verbose');
 
-		$extend = $this->request->get('extend');
-		if (!empty($extend) && strlen(trim($extend))) {
-			$extend = array_filter(array_map('trim', explode(',', trim($extend))));
-			if (count($extend)) {
-				$this->extend = in_array('*', $extend) ? true : $extend;
-			}
-		}
+        $extend = $this->request->get('extend');
+        if (!empty($extend) && strlen(trim($extend))) {
+            $extend = array_filter(array_map('trim', explode(',', trim($extend))));
+            if (count($extend)) {
+                $this->extend = in_array('*', $extend) ? true : $extend;
+            }
+        }
 
-		// Build the JSON API data
-		$data = $this->_buildJsonApiData($data);
+        // Build the JSON API data
+        $data = $this->_buildJsonApiData($data);
 
-		// Set the links object
-		$this->links = new Links(new Link(($this->primary instanceof ResourceIdentifyable) ? $this->primary->getJsonApiLink() : $this->request->fullUrl()),
-			null, $this->pagination);
+        // Set the links object
+        $this->links = new Links(new Link(($this->primary instanceof ResourceIdentifyable) ? $this->primary->getJsonApiLink() : $this->request->fullUrl()),
+            null, $this->pagination);
 
-		// Build the final data
-		$jsonData = array_filter(array(
-			'jsonapi' => $this->jsonapi,
-			'links' => $this->links->toJsonApi($this),
-			'data' => $data,
-			'included' => array_values($this->included),
-		));
+        // Build the final data
+        $jsonData = array_filter(array(
+            'jsonapi'  => $this->jsonapi,
+            'links'    => $this->links->toJsonApi($this),
+            'data'     => $data,
+            'included' => array_values($this->included),
+        ));
 
-		if ($this->debug) {
-			print_r($this->inclusionMap);
-		}
+        if ($this->debug) {
+            print_r($this->inclusionMap);
+        }
 
-		// Create the JSON response
-		parent::__construct($jsonData, $status, $headers, $options);
-	}
+        // Create the JSON response
+        parent::__construct($jsonData, $status, $headers, $options);
+    }
 
-	/**
-	 * Build the map of includable relationships
-	 */
-	protected function _buildIncludeMap()
-	{
-		// Build the include list
-		$include = array();
-		foreach (array_filter(array_map('trim', explode(',', $this->request->get('include', '')))) as $includePattern) {
-			if ($includePattern === '*') {
-				$include[] = '[a-z]+';
-			} elseif ($includePattern === '**') {
-				$include = ['[a-z]+(\.[a-z]+)*'];
-				break;
-			} elseif (preg_match("%^[a-z\*]+(\.[a-z\*]+)*$%", $includePattern)) {
-				$includePattern = str_replace('.', '\\.', $includePattern);
-				$includePattern = str_replace('*', '[a-z]+', $includePattern);
-				$include[] = $includePattern;
-			}
-		}
+    /**
+     * Build the JSON API data
+     *
+     * @param Builder|JsonApiable|array $data Data
+     *
+     * @return array|void JSON API data
+     */
+    protected function _buildJsonApiData($data)
+    {
+        // If the response is a resource object collection
+        if ($data instanceof Builder) {
+            call_user_func_array(array($data->getModel(), 'relationMap'), [&$this->relmap]);
+            $this->_buildIncludeMap();
+            $data = $this->_resourceObjectList($data);
 
-		$this->include = $include;
-	}
+            // Else if it's a single resource object
+        } elseif ($data instanceof AbstractModel) {
+            $this->primary = $data;
+            call_user_func_array(array($data, 'relationMap'), [&$this->relmap]);
+            $this->_buildIncludeMap();
+            $data = $this->_resourceObjectData($data);
 
-	/**
-	 * Build the JSON API data
-	 *
-	 * @param Builder|JsonApiable|array $data Data
-	 * @return array|void JSON API data
-	 */
-	protected function _buildJsonApiData($data)
-	{
-		// If the response is a resource object collection
-		if ($data instanceof Builder) {
-			call_user_func_array(array($data->getModel(), 'relationMap'), [&$this->relmap]);
-			$this->_buildIncludeMap();
-			$data = $this->_resourceObjectList($data);
+            // Empty result
+        } else {
+            $data = [];
+        }
 
-			// Else if it's a single resource object
-		} elseif ($data instanceof AbstractModel) {
-			$this->primary = $data;
-			call_user_func_array(array($data, 'relationMap'), [&$this->relmap]);
-			$this->_buildIncludeMap();
-			$data = $this->_resourceObjectData($data);
+        return $data;
+    }
 
-			// Empty result
-		} else {
-			$data = [];
-		}
+    /**
+     * Build the map of includable relationships
+     */
+    protected function _buildIncludeMap()
+    {
+        // Build the include list
+        $include = array();
+        foreach (array_filter(array_map('trim', explode(',', $this->request->get('include', '')))) as $includePattern) {
+            if ($includePattern === '*') {
+                $include[] = '[a-z]+';
+            } elseif ($includePattern === '**') {
+                $include = ['[a-z]+(\.[a-z]+)*'];
+                break;
+            } elseif (preg_match("%^[a-z\*]+(\.[a-z\*]+)*$%", $includePattern)) {
+                $includePattern = str_replace('.', '\\.', $includePattern);
+                $includePattern = str_replace('*', '[a-z]+', $includePattern);
+                $include[]      = $includePattern;
+            }
+        }
 
-		return $data;
-	}
+        $this->include = $include;
+    }
 
-	/**
-	 * Serialize a single resource object
-	 *
-	 * @param JsonApiable $model Resource object
-	 * @return array Serialized resource object
-	 */
-	protected function _resourceObjectData(JsonApiable $model)
-	{
-		$this->baseClass = '\\'.get_class($model);
-		return $model->toJsonApi($this);
-	}
+    /**
+     * Serialize a resource object collection
+     *
+     * @param Builder $query Resource objects
+     *
+     * @return array                            Resource object list
+     */
+    protected function _resourceObjectList(Builder $query)
+    {
+        // Build the pagination object
+        $route     = $this->request->route();
+        $routeName = (is_array($route) && (count($route) > 1) && is_array($route[1]) && array_key_exists('as',
+                $route[1])) ? $route[1]['as'] : null;
 
-	/**
-	 * Serialize a resource object collection
-	 *
-	 * @param Builder $query Resource objects
-	 * @return array                            Resource object list
-	 */
-	protected function _resourceObjectList(Builder $query)
-	{
-		// Build the pagination object
-		$route = $this->request->route();
-		$routeName = (is_array($route) && (count($route) > 1) && is_array($route[1]) && array_key_exists('as',
-				$route[1])) ? $route[1]['as'] : null;
+        // If there's a name for the current route
+        if ($routeName) {
+            $number = $size = 0;
 
-		// If there's a name for the current route
-		if ($routeName) {
-			$number = $size = 0;
+            // If pagination parameters are present
+            $pageParam = $this->request->get('page');
+            if (is_array($pageParam)) {
+                if (array_key_exists('number', $pageParam)) {
+                    $number = intval($pageParam['number']);
+                }
+                if (array_key_exists('size', $pageParam)) {
+                    $size = intval($pageParam['size']);
+                }
+            }
 
-			// If pagination parameters are present
-			$pageParam = $this->request->get('page');
-			if (is_array($pageParam)) {
-				if (array_key_exists('number', $pageParam)) {
-					$number = intval($pageParam['number']);
-				}
-				if (array_key_exists('size', $pageParam)) {
-					$size = intval($pageParam['size']);
-				}
-			}
+            // If the returned data should be paginated
+            if ($size) {
+                $count = $query->getQuery()->getCountForPagination();
+                if ($count) {
+                    $query->getQuery()->forPage($number + 1, $size);
+                    $pagination = array('first' => null, 'last' => null, 'prev' => null, 'next' => null);
 
-			// If the returned data should be paginated
-			if ($size) {
-				$count = $query->getQuery()->getCountForPagination();
-				if ($count) {
-					$query->getQuery()->forPage($number + 1, $size);
-					$pagination = array('first' => null, 'last' => null, 'prev' => null, 'next' => null);
+                    $pagination['first'] = route($routeName).'?'.http_build_query(array('page' => ['size' => $size]));
+                    $pagination['last']  = route($routeName).'?'.http_build_query(array(
+                            'page' => [
+                                'size'   => $size,
+                                'number' => floor($count / $size)
+                            ]
+                        ));
+                    if ($number) {
+                        $pagination['prev'] = route($routeName).'?'.http_build_query(array(
+                                'page' => [
+                                    'size'   => $size,
+                                    'number' => ($number - 1)
+                                ]
+                            ));
+                    }
+                    if ($number < floor($count / $size)) {
+                        $pagination['next'] = route($routeName).'?'.http_build_query(array(
+                                'page' => [
+                                    'size'   => $size,
+                                    'number' => ($number + 1)
+                                ]
+                            ));
+                    }
 
-					$pagination['first'] = route($routeName) . '?' . http_build_query(array('page' => ['size' => $size]));
-					$pagination['last'] = route($routeName) . '?' . http_build_query(array(
-							'page' => [
-								'size' => $size,
-								'number' => floor($count / $size)
-							]
-						));
-					if ($number) {
-						$pagination['prev'] = route($routeName) . '?' . http_build_query(array(
-								'page' => [
-									'size' => $size,
-									'number' => ($number - 1)
-								]
-							));
-					}
-					if ($number < floor($count / $size)) {
-						$pagination['next'] = route($routeName) . '?' . http_build_query(array(
-								'page' => [
-									'size' => $size,
-									'number' => ($number + 1)
-								]
-							));
-					}
+                    $this->pagination = new Pagination($pagination['first'], $pagination['last'], $pagination['prev'],
+                        $pagination['next']);
 
-					$this->pagination = new Pagination($pagination['first'], $pagination['last'], $pagination['prev'],
-						$pagination['next']);
+                    // Short circuit: no results available
+                } else {
+                    return [];
+                }
+            }
+        }
 
-					// Short circuit: no results available
-				} else {
-					return [];
-				}
-			}
-		}
+        // Step 1: Build the data map first
+        foreach ($query->get() as $resourceObject) {
+            if ($resourceObject instanceof ResourceIdentifyable) {
+                $resourceIdentifier                 = implode('.', $resourceObject->toJsonApiResourceIdentifier());
+                $this->datamap[$resourceIdentifier] = $resourceObject;
+            }
+        }
 
-		// Step 1: Build the data map first
-		foreach ($query->get() as $resourceObject) {
-			if ($resourceObject instanceof ResourceIdentifyable) {
-				$resourceIdentifier = implode('.', $resourceObject->toJsonApiResourceIdentifier());
-				$this->datamap[$resourceIdentifier] = $resourceObject;
-			}
-		}
+        // Step 2: Build the JSON API resource objects
+        $jsonApiResourceObjects = [];
+        foreach ($this->datamap as $resourceObject) {
+            if ($resourceObject instanceof JsonApiable) {
+                $jsonApiResourceObjects[] = $this->_resourceObjectData($resourceObject);
+            }
+        }
 
-		// Step 2: Build the JSON API resource objects
-		$jsonApiResourceObjects = [];
-		foreach ($this->datamap as $resourceObject) {
-			if ($resourceObject instanceof JsonApiable) {
-				$jsonApiResourceObjects[] = $this->_resourceObjectData($resourceObject);
-			}
-		}
+        return $jsonApiResourceObjects;
+    }
 
-		return $jsonApiResourceObjects;
-	}
+    /**
+     * Serialize a single resource object
+     *
+     * @param JsonApiable $model Resource object
+     *
+     * @return array Serialized resource object
+     */
+    protected function _resourceObjectData(JsonApiable $model)
+    {
+        $this->baseClass = '\\'.get_class($model);
 
-	/**
-	 * Return if the response should return verbose objects
-	 *
-	 * @return bool
-	 */
-	public function isVerbose()
-	{
-		return $this->verbose;
-	}
+        return $model->toJsonApi($this);
+    }
 
-	/**
-	 * Return if the response should return extended relationships
-	 *
-	 * @return array|bool
-	 */
-	public function isExtended()
-	{
-		return $this->extend;
-	}
+    /**
+     * Return if the response should return verbose objects
+     *
+     * @return bool
+     */
+    public function isVerbose()
+    {
+        return $this->verbose;
+    }
 
-	/**
-	 * Return if a particular relation should be included
-	 *
-	 * @param string $relation Relation
-	 * @return bool Relation should be included
-	 */
-	public function includes($relation)
-	{
-		$hasIncludePattern = false;
-		foreach ($this->include as $includePattern) {
-			if (preg_match("%^$includePattern$%", $relation)) {
-				$hasIncludePattern = true;
-				break;
-			}
-		}
+    /**
+     * Return if the response should return extended relationships
+     *
+     * @return array|bool
+     */
+    public function isExtended()
+    {
+        return $this->extend;
+    }
 
-		if ($hasIncludePattern) {
-			$classname = $this->baseClass;
-			$expanded = [];
+    /**
+     * Return if a particular relation should be included
+     *
+     * @param string $relation Relation
+     *
+     * @return bool Relation should be included
+     */
+    public function includes($relation)
+    {
+        $hasIncludePattern = false;
+        foreach ($this->include as $includePattern) {
+            if (preg_match("%^$includePattern$%", $relation)) {
+                $hasIncludePattern = true;
+                break;
+            }
+        }
 
-			foreach (explode('.', $relation) as $relationKey) {
-				if (array_key_exists("$classname:$relationKey", $this->relmap) && empty($expanded["$classname:$relationKey"])) {
-					$expanded["$classname:$relationKey"] = true;
-					$classname = $this->relmap["$classname:$relationKey"];
-					continue;
-				}
-				return false;
-			}
-			return true;
-		}
+        if ($hasIncludePattern) {
+            $classname = $this->baseClass;
+            $expanded  = [];
 
-		return false;
-	}
+            foreach (explode('.', $relation) as $relationKey) {
+                if (array_key_exists("$classname:$relationKey",
+                        $this->relmap) && empty($expanded["$classname:$relationKey"])) {
+                    $expanded["$classname:$relationKey"] = true;
+                    $classname                           = $this->relmap["$classname:$relationKey"];
+                    continue;
+                }
 
-	/**
-	 * Include a related resource object
-	 *
-	 * @param ResourceIdentifyable $identifyable Related resource object
-	 * @param string $prefix Prefix
-	 */
-	public function includeResource(ResourceIdentifyable $identifyable, $prefix)
-	{
-		$resourceIdentifier = $identifyable->toJsonApiResourceIdentifier();
-		$resourceIdentifierPlain = implode('.', $resourceIdentifier);
-		if (!array_key_exists($resourceIdentifierPlain, $this->datamap) && !array_key_exists($resourceIdentifierPlain,
-				$this->included)
-		) {
-			$this->included[$resourceIdentifierPlain] = $identifyable->toJsonApi($this, $prefix);
+                return false;
+            }
 
-			if ($this->debug) {
-				$this->inclusionMap[$resourceIdentifier['type']] = empty($this->inclusionMap[$resourceIdentifier['type']]) ? 1 : ($this->inclusionMap[$resourceIdentifier['type']] + 1);
-			}
-		}
-	}
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Include a related resource object
+     *
+     * @param ResourceIdentifyable $identifyable Related resource object
+     * @param string $prefix                     Prefix
+     */
+    public function includeResource(ResourceIdentifyable $identifyable, $prefix)
+    {
+        $resourceIdentifier      = $identifyable->toJsonApiResourceIdentifier();
+        $resourceIdentifierPlain = implode('.', $resourceIdentifier);
+        if (!array_key_exists($resourceIdentifierPlain, $this->datamap) && !array_key_exists($resourceIdentifierPlain,
+                $this->included)
+        ) {
+            $this->included[$resourceIdentifierPlain] = $identifyable->toJsonApi($this, $prefix);
+
+            if ($this->debug) {
+                $this->inclusionMap[$resourceIdentifier['type']] = empty($this->inclusionMap[$resourceIdentifier['type']]) ? 1 : ($this->inclusionMap[$resourceIdentifier['type']] + 1);
+            }
+        }
+    }
 }

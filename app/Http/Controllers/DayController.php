@@ -40,67 +40,72 @@ use Illuminate\Http\Request;
 
 class DayController extends Controller
 {
-	/**
-	 * List all days
-	 *
-	 * @return \Symfony\Component\HttpFoundation\Response Day list
-	 */
-	public function listDays()
-	{
-		return response()->jsonAPI((new Day)->newQuery());
-	}
+    /**
+     * List all days
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Day list
+     */
+    public function listDays()
+    {
+        return response()->jsonAPI((new Day)->newQuery());
+    }
 
-	/**
-	 * Get a single day
-	 *
-	 * @param int $id Day ID
-	 * @return \Symfony\Component\HttpFoundation\Response Day
-	 */
-	public function getDay($id)
-	{
-		return response()->jsonAPI(Day::find($id));
-	}
+    /**
+     * Get a single day
+     *
+     * @param int $id Day ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Day
+     */
+    public function getDay($id)
+    {
+        return response()->jsonAPI(Day::find($id));
+    }
 
-	/**
-	 * Create a new event
-	 *
-	 * @param Request $request Request
-	 * @return \Symfony\Component\HttpFoundation\Response Day
-	 */
-	public function createDay(Request $request)
-	{
+    /**
+     * Create a new event
+     *
+     * @param Request $request Request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Day
+     */
+    public function createDay(Request $request)
+    {
 
-		$Day = Day::create($request->all());
+        $Day = Day::create($request->all());
 
-		return response()->json($Day);
+        return response()->json($Day);
 
-	}
+    }
 
-	/**
-	 * Update an event
-	 *
-	 * @param Request $request Request
-	 * @param int $id Day ID
-	 * @return \Symfony\Component\HttpFoundation\Response Day
-	 */
-	public function updateDay(Request $request, $id)
-	{
-		$Day = Day::find($id);
-		$Day->title = $request->input('title');
-		$Day->author = $request->input('author');
-		$Day->isbn = $request->input('isbn');
+    /**
+     * Update an event
+     *
+     * @param Request $request Request
+     * @param int $id          Day ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response Day
+     */
+    public function updateDay(Request $request, $id)
+    {
+        $Day         = Day::find($id);
+        $Day->title  = $request->input('title');
+        $Day->author = $request->input('author');
+        $Day->isbn   = $request->input('isbn');
+
 //		$Day->save();
 
-		return response()->json($Day);
-	}
+        return response()->json($Day);
+    }
 
-	/**
-	 * Delete an event
-	 *
-	 * @param int $id Day ID
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 * @todo Set the deleted property to 1 instead of really deleting the event
-	 */
+    /**
+     * Delete an event
+     *
+     * @param int $id Day ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @todo Set the deleted property to 1 instead of really deleting the event
+     */
 //	public function deleteDay($id)
 //	{
 //		$Day = Day::find($id);

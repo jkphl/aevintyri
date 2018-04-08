@@ -34,10 +34,10 @@
  ***********************************************************************************/
 
 return array(
-    'source' => 'session_tag',
-    'target' => 'session_tags',
+    'source'  => 'session_tag',
+    'target'  => 'session_tags',
     'columns' => [
         'session_id' => '`session_id`',
-        'tag_id' => '`tag_id`',
+        'tag_id'     => '`tag_id`',
     ]
 );

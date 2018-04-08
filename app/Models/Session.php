@@ -46,88 +46,54 @@ final class Session extends AbstractModel
     use Describable, Image;
 
     /**
+     * Relation mapping
+     *
+     * @var array
+     */
+    public static $relmap = array(
+        'day'        => '\\App\\Models\\Day',
+        'room'       => '\\App\\Models\\Room',
+        'tags'       => '\\App\\Models\\Tag',
+        'presenters' => '\\App\\Models\\Presenter',
+        'links'      => '\\App\\Models\\Link',
+        'venue'      => '\\App\\Models\\Venue',
+    );
+    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = array('day_id', 'room_id', 'day', 'room', 'links', 'tags', 'presenters');
-
     /**
      * The accessors to append to the model's array form.
      *
      * @var array
      */
     protected $appends = array('day', 'room', 'links', 'tags', 'presenters');
-
     /**
      * The extended accessors to append to the model's array form.
      *
      * @var array
      */
     protected $extends = array('venue');
-
     /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
     protected $dates = ['deleted_at', 'start_time', 'end_time'];
-
     /**
      * Default order property
      *
      * @var string
      */
     protected $orderBy = 'start_time';
-
     /**
      * Default order direction
      *
      * @var string
      */
     protected $orderDirection = 'ASC';
-
-    /**
-     * Relation mapping
-     *
-     * @var array
-     */
-    public static $relmap = array(
-        'day' => '\\App\\Models\\Day',
-        'room' => '\\App\\Models\\Room',
-        'tags' => '\\App\\Models\\Tag',
-        'presenters' => '\\App\\Models\\Presenter',
-        'links' => '\\App\\Models\\Link',
-        'venue' => '\\App\\Models\\Venue',
-    );
-
-    /**
-     * Return this session's day
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Day
-     */
-    public function day() {
-        return $this->belongsTo('App\Models\Day');
-    }
-    
-    /**
-     * Return this sessions's day
-     *
-     * @return int|\App\Models\Day      Day
-     */
-    public function getDayAttribute()
-    {
-        return $this->day()->getQuery()->first();
-    }
-
-    /**
-     * Return this session's room
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Room
-     */
-    public function room() {
-        return $this->belongsTo('App\Models\Room');
-    }
 
     /**
      * Return this sessions's room
@@ -140,12 +106,13 @@ final class Session extends AbstractModel
     }
 
     /**
-     * Return the tags of this session
+     * Return this session's room
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Tags
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Room
      */
-    public function tags() {
-        return $this->belongsToMany('App\Models\Tag', 'session_tags');
+    public function room()
+    {
+        return $this->belongsTo('App\Models\Room');
     }
 
     /**
@@ -153,12 +120,39 @@ final class Session extends AbstractModel
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany      Tags
      */
-    public function getTagsAttribute() {
+    public function getTagsAttribute()
+    {
         $tags = [];
         foreach ($this->tags()->getResults() as $tag) {
             $tags[] = $tag;
         }
+
         return $tags;
+    }
+
+    /**
+     * Return the tags of this session
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany        Tags
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'session_tags');
+    }
+
+    /**
+     * Return this session's links
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
+     */
+    public function getLinksAttribute()
+    {
+        $links = [];
+        foreach ($this->links()->getResults() as $link) {
+            $links[] = $link;
+        }
+
+        return $links;
     }
 
     /**
@@ -172,46 +166,29 @@ final class Session extends AbstractModel
     }
 
     /**
-     * Return this session's links
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Links
-     */
-    public function getLinksAttribute() {
-        $links = [];
-        foreach ($this->links()->getResults() as $link) {
-            $links[] = $link;
-        }
-        return $links;
-    }
-
-    /**
-     * Return a timestamp as DateTime object.
-     *
-     * @param  mixed  $value
-     * @return \Carbon\Carbon
-     */
-    protected function asDateTime($value)
-    {
-
-        // If it's a time string: Instantiate based on the associated day
-        if (is_string($value) && preg_match('/^(\d{2}):(\d{2}):(\d{2})$/', $value, $time)) {
-            /** @var \Carbon\Carbon $day */
-            $day = clone $this->getDayAttribute()->date;
-            return $day->addHours($time[1])->addMinutes($time[2])->addSeconds($time[3]);
-        }
-
-        return parent::asDateTime($value);
-    }
-
-    /**
      * Return the venue of this session
      *
      * @return \App\Models\Venue Venue
      */
-    public function getVenueAttribute() {
+    public function getVenueAttribute()
+    {
         return $this->room()->getQuery()->first()->venue;
     }
 
+    /**
+     * Return this sessions' presenters
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Presenters
+     */
+    public function getPresentersAttribute()
+    {
+        $presenters = [];
+        foreach ($this->presenters()->getResults() as $presenter) {
+            $presenters[] = $presenter;
+        }
+
+        return $presenters;
+    }
 
     /**
      * Return this sessions' presenters
@@ -224,15 +201,43 @@ final class Session extends AbstractModel
     }
 
     /**
-     * Return this sessions' presenters
+     * Return a timestamp as DateTime object.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany      Presenters
+     * @param  mixed $value
+     *
+     * @return \Carbon\Carbon
      */
-    public function getPresentersAttribute() {
-        $presenters = [];
-        foreach ($this->presenters()->getResults() as $presenter) {
-            $presenters[] = $presenter;
+    protected function asDateTime($value)
+    {
+
+        // If it's a time string: Instantiate based on the associated day
+        if (is_string($value) && preg_match('/^(\d{2}):(\d{2}):(\d{2})$/', $value, $time)) {
+            /** @var \Carbon\Carbon $day */
+            $day = clone $this->getDayAttribute()->date;
+
+            return $day->addHours($time[1])->addMinutes($time[2])->addSeconds($time[3]);
         }
-        return $presenters;
+
+        return parent::asDateTime($value);
+    }
+
+    /**
+     * Return this sessions's day
+     *
+     * @return int|\App\Models\Day      Day
+     */
+    public function getDayAttribute()
+    {
+        return $this->day()->getQuery()->first();
+    }
+
+    /**
+     * Return this session's day
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo    Day
+     */
+    public function day()
+    {
+        return $this->belongsTo('App\Models\Day');
     }
 }
