@@ -1,59 +1,63 @@
 <?php
 
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => $this->translate('events.section.label.venue.new'), 'buttons' => array($this->url('venue', array('action' => 'list')) => $this->translate('button.back'))));
-	
-	// Messages
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header'  => $this->translate('events.section.label.venue.new'),
+    'buttons' => array($this->url('venue', array('action' => 'list')) => $this->translate('button.back'))
+));
+
+// Messages
 // 	echo $this->flashMessagesHelper($flashMessages);
-	
-	$form 			= $this->form;
-	$venue			= $form->get('venue');
-	$form->setAttribute('action', $this->url('venue', array('action' => 'add')));
-	$form->prepare();
-	
-	echo $this->form()->openTag($form);
-	
+
+$form  = $this->form;
+$venue = $form->get('venue');
+$form->setAttribute('action', $this->url('venue', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
 ?>
 
-<fieldset id="general">
-	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
-	<div class="row">
-		<div class="large-12 columns">
-			<?php echo $this->formRow($venue->get('name')); ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns"><?php 
-			echo $this->formRow($venue->get('upload_image'));
-		?></div>
-		<div class="large-6 columns"><?php
-			echo $this->formHidden($venue->get('image'));
-			echo $this->partial('partials/common/preview.phtml', array('image' => $venue->get('image')->getValue()));
-		?></div>
-	</div>
-</fieldset>
+    <fieldset id="general">
+        <legend><?php echo $this->translate('form.legend.general'); ?></legend>
+        <div class="row">
+            <div class="large-12 columns">
+                <?php echo $this->formRow($venue->get('name')); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns"><?php
+                echo $this->formRow($venue->get('upload_image'));
+                ?></div>
+            <div class="large-6 columns"><?php
+                echo $this->formHidden($venue->get('image'));
+                echo $this->partial('partials/common/preview.phtml',
+                    array('image' => $venue->get('image')->getValue()));
+                ?></div>
+        </div>
+    </fieldset>
 
-<?php 
-
-	echo $this->partial('partials/common/texts.phtml', array('subject' => $venue));
-	echo $this->partial('partials/common/address.phtml', array('subject' => $venue));
-	
-?>
-
-<div class="row">
-	<div class="large-12 columns">
-		<ul class="button-group">
-		  <li><?php echo $this->formSubmit($form->get('create')); ?></li>
-		  <li><?php echo $this->formSubmit($form->get('createclose')); ?></li>
-		</ul>
-	</div>
-</div>
-	
 <?php
-	
-	/** Hidden fields **/
-	echo $this->formHidden($venue->get('id'));
-	/** END - Hidden fields **/
-	
-	echo $this->form()->closeTag($form);
+
+echo $this->partial('partials/common/texts.phtml', array('subject' => $venue));
+echo $this->partial('partials/common/address.phtml', array('subject' => $venue));
+
+?>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <ul class="button-group">
+                <li><?php echo $this->formSubmit($form->get('create')); ?></li>
+                <li><?php echo $this->formSubmit($form->get('createclose')); ?></li>
+            </ul>
+        </div>
+    </div>
+
+<?php
+
+/** Hidden fields **/
+echo $this->formHidden($venue->get('id'));
+/** END - Hidden fields **/
+
+echo $this->form()->closeTag($form);
 ?>

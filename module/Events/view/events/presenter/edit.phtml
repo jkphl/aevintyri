@@ -1,63 +1,68 @@
 <?php
 
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => sprintf($this->translate('events.section.label.presenter.edit'), $this->presenter->getName()), 'buttons' => array($this->url('presenter', array('action' => 'list')) => $this->translate('button.back'))));
-	
-	// Messages
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header'  => sprintf($this->translate('events.section.label.presenter.edit'), $this->presenter->getName()),
+    'buttons' => array($this->url('presenter', array('action' => 'list')) => $this->translate('button.back'))
+));
+
+// Messages
 // 	echo $this->flashMessagesHelper($flashMessages);
-	
-	$form 			= $this->form;
-	$presenter		= $form->get('presenter');
-	$form->setAttribute('action', $this->url('presenter', array('action' => 'edit', 'id' => $this->presenter->getId())));
-	$form->prepare();
-	
-	echo $this->form()->openTag($form);
-	
+
+$form      = $this->form;
+$presenter = $form->get('presenter');
+$form->setAttribute('action', $this->url('presenter', array('action' => 'edit', 'id' => $this->presenter->getId())));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
 ?>
 
-<fieldset id="general">
-	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
-	<div class="row">
-		<div class="large-12 columns">
-			<?php echo $this->formRow($presenter->get('name')); ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns"><?php 
-			echo $this->formRow($presenter->get('upload_image'));
-		?></div>
-		<div class="large-6 columns"><?php
-			echo $this->formHidden($presenter->get('image'));
-			echo $this->partial('partials/common/preview.phtml', array('image' => $presenter->get('image')->getValue()));
-			if (strlen($presenter->get('image')->getValue())) {
-				echo $this->formRow($presenter->get('delete_image'));
-			}
-		?></div>
-	</div>
-</fieldset>
+    <fieldset id="general">
+        <legend><?php echo $this->translate('form.legend.general'); ?></legend>
+        <div class="row">
+            <div class="large-12 columns">
+                <?php echo $this->formRow($presenter->get('name')); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns"><?php
+                echo $this->formRow($presenter->get('upload_image'));
+                ?></div>
+            <div class="large-6 columns"><?php
+                echo $this->formHidden($presenter->get('image'));
+                echo $this->partial('partials/common/preview.phtml',
+                    array('image' => $presenter->get('image')->getValue()));
+                if (strlen($presenter->get('image')->getValue())) {
+                    echo $this->formRow($presenter->get('delete_image'));
+                }
+                ?></div>
+        </div>
+    </fieldset>
 
-<?php 
-
-	echo $this->partial('partials/common/texts.phtml', array('subject' => $presenter));
-	echo $this->partial('partials/common/contact.phtml', array('subject' => $presenter));
-	echo $this->partial('partials/common/associations.phtml', array('subject' => $presenter, 'entity' => $this->presenter, 'entityName' => 'presenter'));
-	
-?>
-
-<div class="row">
-	<div class="large-12 columns">
-		<ul class="button-group">
-		  <li><?php echo $this->formSubmit($form->get('save')); ?></li>
-		  <li><?php echo $this->formSubmit($form->get('saveclose')); ?></li>
-		</ul>
-	</div>
-</div>
-	
 <?php
-	
-	/** Hidden fields **/
-	echo $this->formHidden($presenter->get('id'));
-	/** END - Hidden fields **/
-	
-	echo $this->form()->closeTag($form);
+
+echo $this->partial('partials/common/texts.phtml', array('subject' => $presenter));
+echo $this->partial('partials/common/contact.phtml', array('subject' => $presenter));
+echo $this->partial('partials/common/associations.phtml',
+    array('subject' => $presenter, 'entity' => $this->presenter, 'entityName' => 'presenter'));
+
+?>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <ul class="button-group">
+                <li><?php echo $this->formSubmit($form->get('save')); ?></li>
+                <li><?php echo $this->formSubmit($form->get('saveclose')); ?></li>
+            </ul>
+        </div>
+    </div>
+
+<?php
+
+/** Hidden fields **/
+echo $this->formHidden($presenter->get('id'));
+/** END - Hidden fields **/
+
+echo $this->form()->closeTag($form);
 ?>

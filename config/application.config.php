@@ -5,7 +5,7 @@
  * The previous config file has been stored in application.config.old
  */
 return array(
-    'modules' => array(
+    'modules'                 => array(
         'Application',
         'ZF\\DevelopmentMode',
         'ZF\\Apigility',
@@ -31,7 +31,7 @@ return array(
         'API'
     ),
     'module_listener_options' => array(
-        'module_paths' => array(
+        'module_paths'      => array(
             './module',
             './vendor'
         ),

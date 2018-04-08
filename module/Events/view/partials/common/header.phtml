@@ -1,26 +1,30 @@
 <h1 class="header"><?php
 
-	if (!empty($buttons) && is_array($buttons)) {
-		$group			= count($buttons) > 1;
-		
-		if ($group):
-			?><ul class="button-group right"><?php
-		endif;
-		
-		foreach ($buttons as $url => $label):
-			if (is_array($label)) {
-				$attributes		= (array)$label[1];
-				$label			= $label[0];
-			} else {
-				$attributes		= array();
-			}
-			if ($group): ?><li><?php endif; ?><a class="<?php if (!$group): ?>right <?php endif; ?>button radius" href="<?php echo htmlspecialchars($url); ?>" role="button"<?php foreach ($attributes as $name => $value) echo ' '.htmlspecialchars($name).'="'.htmlspecialchars($value).'"'; ?>><?php echo htmlspecialchars($label); ?></a><?php if ($group): ?></li><?php endif; 
-		endforeach;
-		
-		if ($group):
-			?></ul><?php
-		endif;
-	}
-	echo $header;
-	
-?></h1>
+    if (!empty($buttons) && is_array($buttons)) {
+        $group = count($buttons) > 1;
+
+        if ($group):
+            ?><ul class="button-group right"><?php
+        endif;
+
+        foreach ($buttons as $url => $label):
+            if (is_array($label)) {
+                $attributes = (array)$label[1];
+                $label      = $label[0];
+            } else {
+                $attributes = array();
+            }
+            if ($group): ?><li><?php endif; ?><a class="<?php if (!$group): ?>right <?php endif; ?>button radius"
+                                                 href="<?php echo htmlspecialchars($url); ?>"
+                                                 role="button"<?php foreach ($attributes as $name => $value) {
+            echo ' '.htmlspecialchars($name).'="'.htmlspecialchars($value).'"';
+        } ?>><?php echo htmlspecialchars($label); ?></a><?php if ($group): ?></li><?php endif;
+        endforeach;
+
+        if ($group):
+            ?></ul><?php
+        endif;
+    }
+    echo $header;
+
+    ?></h1>

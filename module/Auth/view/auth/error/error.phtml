@@ -2,4 +2,8 @@
 
 echo $this->partial('partials/common/header.phtml', array('header' => $this->translate('auth.header.error')));
 
-?><p><?php echo $this->partial('error/index', array('display_exceptions' =>  $this->display_exceptions, 'exception' => $this->exception, 'message' => $this->exception->getMessage())); ?></p>
+?><p><?php echo $this->partial('error/index', array(
+        'display_exceptions' => $this->display_exceptions,
+        'exception'          => $this->exception,
+        'message'            => $this->exception->getMessage()
+    )); ?></p>

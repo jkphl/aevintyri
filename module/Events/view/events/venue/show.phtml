@@ -1,71 +1,85 @@
 <?php
 
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => $venue->getName(), 'buttons' => array(
-		$this->url('venue', array('action' => 'list')) => $this->translate('button.back'),
-		$this->url('venue', array('action' => 'edit', 'id' => $venue->getId())) => $this->translate('button.edit'),
-		$this->url('venue', array('action' => 'delete', 'id' => $venue->getId())) => array($this->translate('button.delete'), array('data-confirm' => $this->translate('entity.actions.delete.confirm'))),
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header'  => $venue->getName(),
+    'buttons' => array(
+        $this->url('venue', array('action' => 'list'))                          => $this->translate('button.back'),
+        $this->url('venue', array('action' => 'edit', 'id' => $venue->getId())) => $this->translate('button.edit'),
+        $this->url('venue', array(
+            'action' => 'delete',
+            'id'     => $venue->getId()
+        ))                                                                      => array(
+            $this->translate('button.delete'),
+            array('data-confirm' => $this->translate('entity.actions.delete.confirm'))
+        ),
 
-		
-	)));
-	
-	/* data-confirm="<?php echo htmlspecialchars(); ?>" */
-	
-	// Messages
+
+    )
+));
+
+/* data-confirm="<?php echo htmlspecialchars(); ?>" */
+
+// Messages
 // 	echo $this->flashMessagesHelper($flashMessages);
-	
-?><table class="entity-show">
-	<tr>
-		<th><?php echo $this->translate('entity.common.name'); ?></th>
-		<td><?php echo $this->venue->getName(); ?></td>
-	</tr>
-	<tr>
-		<th><?php echo $this->translate('entity.common.image'); ?></th>
-		<td><?php echo $this->partial('partials/common/preview.phtml', array('image' => $this->venue->getImage())); ?></td>
-	</tr>
-	<tr>
-		<th><?php echo $this->translate('entity.description.abstract'); ?></th>
-		<td><?php echo $this->emptyvalue($this->venue->getAbstract()); ?></td>
-	</tr>
-	<tr>
-		<th><?php echo $this->translate('entity.description.description'); ?></th>
-		<td class="markdown"><?php echo $this->emptyvalue($this->markdown($this->venue->getDescription())); ?></td>
-	</tr>
-	<tr>
-		<th><?php echo $this->translate('entity.description.hashtag'); ?></th>
-		<td><?php echo $this->emptyvalue($this->venue->getHashtag(), array('#', '')); ?></td>
-	</tr>
-	<tr>
-		<th><?php echo $this->translate('entity.common.address'); ?></th>
-		<td><?php
-		
-		$address					= $this->venue->getAddress();
-		if (array_key_exists('postbox', $address)) {
-			$address['postbox']		= sprintf($this->translate('entity.common.postbox'), $address['postbox']);
-		}
-		array_unshift($address, $this->venue->getName());
-		
-		echo $this->emptyvalue(implode("\n", $address), array('<address>', '</address>'));
-		
-		?></td>
-	</tr>
-	<tr>
-		<th><?php echo $this->translate('entity.address.geo'); ?></th>
-		<td><?php echo $this->gmaps($address, $this->venue->getLatitude(), $this->venue->getLongitude()); ?></td>
-	</tr>
-	<tr>
-		<th><?php echo $this->translate('entity.venue.rooms'); ?></th>
-		<td><?php
-		
-			$rooms		= $this->venue->getRooms();
-			if (count($rooms)):
-				?><ul class="multiple">
-					<?php foreach ($rooms as $room): ?><li><?php $name = $room->getName(); echo strlen(trim($name)) ? htmlspecialchars($name) : $this->translate('entity.room.name.none'); ?></li><?php endforeach; ?>
-				</ul><?php
-			else:
-				?>---<?php
-			endif;
-			
-		?></td>
-	</tr>
+
+?>
+<table class="entity-show">
+    <tr>
+        <th><?php echo $this->translate('entity.common.name'); ?></th>
+        <td><?php echo $this->venue->getName(); ?></td>
+    </tr>
+    <tr>
+        <th><?php echo $this->translate('entity.common.image'); ?></th>
+        <td><?php echo $this->partial('partials/common/preview.phtml',
+                array('image' => $this->venue->getImage())); ?></td>
+    </tr>
+    <tr>
+        <th><?php echo $this->translate('entity.description.abstract'); ?></th>
+        <td><?php echo $this->emptyvalue($this->venue->getAbstract()); ?></td>
+    </tr>
+    <tr>
+        <th><?php echo $this->translate('entity.description.description'); ?></th>
+        <td class="markdown"><?php echo $this->emptyvalue($this->markdown($this->venue->getDescription())); ?></td>
+    </tr>
+    <tr>
+        <th><?php echo $this->translate('entity.description.hashtag'); ?></th>
+        <td><?php echo $this->emptyvalue($this->venue->getHashtag(), array('#', '')); ?></td>
+    </tr>
+    <tr>
+        <th><?php echo $this->translate('entity.common.address'); ?></th>
+        <td><?php
+
+            $address = $this->venue->getAddress();
+            if (array_key_exists('postbox', $address)) {
+                $address['postbox'] = sprintf($this->translate('entity.common.postbox'), $address['postbox']);
+            }
+            array_unshift($address, $this->venue->getName());
+
+            echo $this->emptyvalue(implode("\n", $address), array('<address>', '</address>'));
+
+            ?></td>
+    </tr>
+    <tr>
+        <th><?php echo $this->translate('entity.address.geo'); ?></th>
+        <td><?php echo $this->gmaps($address, $this->venue->getLatitude(), $this->venue->getLongitude()); ?></td>
+    </tr>
+    <tr>
+        <th><?php echo $this->translate('entity.venue.rooms'); ?></th>
+        <td><?php
+
+            $rooms = $this->venue->getRooms();
+            if (count($rooms)):
+                ?>
+                <ul class="multiple">
+                <?php foreach ($rooms as $room): ?>
+                <li><?php $name = $room->getName();
+                echo strlen(trim($name)) ? htmlspecialchars($name) : $this->translate('entity.room.name.none'); ?></li><?php endforeach; ?>
+                </ul><?php
+            else:
+                ?>---<?php
+            endif;
+
+            ?></td>
+    </tr>
 </table>

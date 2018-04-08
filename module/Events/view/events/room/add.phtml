@@ -1,53 +1,59 @@
 <?php
 
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => $this->translate('events.section.label.room.new'), 'buttons' => array($this->url('venue', array('action' => 'edit', 'id' => $this->room->getVenue()->getId()), array('fragment' => 'rooms')) => $this->translate('button.back'))));
-	
-	// Messages
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header' => $this->translate('events.section.label.room.new'),
+    'buttons' => array(
+        $this->url('venue', array('action' => 'edit', 'id' => $this->room->getVenue()->getId()),
+            array('fragment' => 'rooms')) => $this->translate('button.back')
+    )
+));
+
+// Messages
 // 	echo $this->flashMessagesHelper($flashMessages);
-	
-	$form 			= $this->form;
-	$room			= $form->get('room');
-	$form->setAttribute('action', $this->url('room', array('action' => 'add', 'id' => $this->room->getId())));
-	$form->prepare();
-	
-	echo $this->form()->openTag($form);
-	
+
+$form = $this->form;
+$room = $form->get('room');
+$form->setAttribute('action', $this->url('room', array('action' => 'add', 'id' => $this->room->getId())));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
 ?>
 
-<fieldset id="general">
-	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
-	<div class="row">
-		<div class="large-6 columns">
-			<?php echo $this->formRow($room->get('name')); ?>
-		</div>
-		<div class="large-6 columns">
-			<?php echo $this->formRow($room->get('number')); ?>
-		</div>
-	</div>
-</fieldset>
+    <fieldset id="general">
+        <legend><?php echo $this->translate('form.legend.general'); ?></legend>
+        <div class="row">
+            <div class="large-6 columns">
+                <?php echo $this->formRow($room->get('name')); ?>
+            </div>
+            <div class="large-6 columns">
+                <?php echo $this->formRow($room->get('number')); ?>
+            </div>
+        </div>
+    </fieldset>
 
-<?php 
-
-	echo $this->partial('partials/common/texts.phtml', array('subject' => $room));
-	
-?>
-
-<div class="row">
-	<div class="large-12 columns">
-		<ul class="button-group">
-		  <li><?php echo $this->formSubmit($form->get('create')); ?></li>
-		  <li><?php echo $this->formSubmit($form->get('createclose')); ?></li>
-		</ul>
-	</div>
-</div>
-	
 <?php
-	
-	/** Hidden fields **/
-	echo $this->formHidden($room->get('id'));
-	echo $this->formHidden($room->get('venue'));
-	/** END - Hidden fields **/
-	
-	echo $this->form()->closeTag($form);
+
+echo $this->partial('partials/common/texts.phtml', array('subject' => $room));
+
+?>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <ul class="button-group">
+                <li><?php echo $this->formSubmit($form->get('create')); ?></li>
+                <li><?php echo $this->formSubmit($form->get('createclose')); ?></li>
+            </ul>
+        </div>
+    </div>
+
+<?php
+
+/** Hidden fields **/
+echo $this->formHidden($room->get('id'));
+echo $this->formHidden($room->get('venue'));
+/** END - Hidden fields **/
+
+echo $this->form()->closeTag($form);
 ?>

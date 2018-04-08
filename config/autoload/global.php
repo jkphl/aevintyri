@@ -12,22 +12,22 @@
  */
 
 return array(
-	'defaults' => array(
-		'country' => 276,
-	),
-	
+    'defaults' => array(
+        'country' => 276,
+    ),
+
     'required' => array(
-    	'venue' => array(
-    		'street_address_1'	=> true,
-    		'postal_code'		=> true,
-    		'locality'			=> true,
-    	)		
-	),
-	
-	// Apigility
-	'db' => array(
-		'adapters' => array(
-			'DB\\Events' => array(),
-		),
-	),
+        'venue' => array(
+            'street_address_1' => true,
+            'postal_code'      => true,
+            'locality'         => true,
+        )
+    ),
+
+    // Apigility
+    'db'       => array(
+        'adapters' => array(
+            'DB\\Events' => array(),
+        ),
+    ),
 );

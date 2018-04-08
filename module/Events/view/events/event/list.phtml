@@ -1,71 +1,93 @@
 <?php
-	$series			= ($this->type == 'series');
-	
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => $series ? $this->translate('events.section.label.event.list.series') : $this->translate('events.section.label.event.list.single'), 'buttons' => array($this->url('event', array('action' => 'add', 'type' => $this->type)) => $this->translate('button.add'))));
+$series = ($this->type == 'series');
 
-	if (count($events)):
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header' => $series ? $this->translate('events.section.label.event.list.series') : $this->translate('events.section.label.event.list.single'),
+    'buttons' => array(
+        $this->url('event', array('action' => 'add', 'type' => $this->type)) => $this->translate('button.add')
+    )
+));
 
-	?><table class="entity-list">
-		  <thead>
-		    <tr>
-		      <th width="50"><?php echo $this->translate('entity.common.id') ?></th>
-		      <th><?php echo $this->translate('entity.common.name') ?></th>
-		      <th><?php echo $series ? $this->translate('entity.event.organizer') : $this->translate('entity.event.date'); ?></th>
-		      <th><?php echo $series ? $this->translate('entity.event.events') : $this->translate('entity.event.session'); ?></th>
-		      <th><?php echo $series ? $this->translate('entity.event.tags') : $this->translate('entity.event.tags'); ?></th>
-		      <th class="actions"><?php echo $this->translate('entity.actions') ?></th>
-		    </tr>
-		  </thead>
-		<tbody><?php
-		
-			foreach ($events as $event):
-			
-			?><tr data-onclick="<?php echo $this->url('event', array('action' => 'show', 'id' => $event->getId(), 'type' => $this->type)); ?>">
-				<td><?php echo $event->getId(); ?></td>
-				<td><?php echo $event->getName(); ?></td>
-				<td><?php echo $series ? $event->getOrganizer()->getName() : $this->partial('partials/common/times.phtml', array('event' => $event)); ?></td>
-				<td><?php echo count($series ? $event->getEvents() : $event->getSessions()); ?></td>
-				<td><?php
+if (count($events)):
 
-					if ($series):
-						
-						?>---<?php
-					
-					else:
+    ?>
+    <table class="entity-list">
+    <thead>
+        <tr>
+            <th width="50"><?php echo $this->translate('entity.common.id') ?></th>
+            <th><?php echo $this->translate('entity.common.name') ?></th>
+            <th><?php echo $series ? $this->translate('entity.event.organizer') : $this->translate('entity.event.date'); ?></th>
+            <th><?php echo $series ? $this->translate('entity.event.events') : $this->translate('entity.event.session'); ?></th>
+            <th><?php echo $series ? $this->translate('entity.event.tags') : $this->translate('entity.event.tags'); ?></th>
+            <th class="actions"><?php echo $this->translate('entity.actions') ?></th>
+        </tr>
+    </thead>
+    <tbody><?php
 
-						$tags		= $event->getTags();
-						echo $this->emptyvalue(implode(', ', array_map(function($tag) { return $tag->getName(); }, $tags)));
-					
-					endif;
+        foreach ($events as $event):
 
-				
-				?></td>
-				<td>
-					<ul class="button-group">
-						<?php 
-						
-							if ($series):
-						
-						?><li><a href="<?php echo $this->url('event', array('action' => 'add', 'type' => 'single', 'series' => $event->getId())); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.add.event')); ?></a><?php
-							
-							endif;
-							
-						?><li><a href="<?php echo $this->url('event', array('action' => 'edit', 'id' => $event->getId(), 'type' => $this->type)); ?>" class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.edit')); ?></a></li>
-						<li><a href="<?php echo $this->url('event', array('action' => 'delete', 'id' => $event->getId(), 'type' => $this->type)); ?>" class="tiny button radius" data-confirm="<?php echo htmlspecialchars($this->translate('entity.actions.delete.confirm')); ?>"><?php echo htmlspecialchars($this->translate('button.delete')); ?></a></li>
-					</ul>
-				</td>
-			</tr><?php
-			
-			endforeach;
-		
-		?></tbody>
-	</table><?php
-	
-	else:
+            ?>
+            <trdata-onclick="<?php echo $this->url('event',
+            array('action' => 'show', 'id' => $event->getId(), 'type' => $this->type)); ?>">
+            <td><?php echo $event->getId(); ?></td>
+            <td><?php echo $event->getName(); ?></td>
+            <td><?php echo $series ? $event->getOrganizer()->getName() : $this->partial('partials/common/times.phtml',
+                    array('event' => $event)); ?></td>
+            <td><?php echo count($series ? $event->getEvents() : $event->getSessions()); ?></td>
+            <td><?php
 
-?><p class="empty-list"><?php echo $this->translate('events.list.none'); ?></p><?php
-	
-	endif;
-	
+                if ($series):
+
+                    ?>---<?php
+
+                else:
+
+                    $tags = $event->getTags();
+                    echo $this->emptyvalue(implode(', ', array_map(function ($tag) {
+                        return $tag->getName();
+                    }, $tags)));
+
+                endif;
+
+
+                ?></td>
+            <td>
+                <ul class="button-group">
+                    <?php
+
+                    if ($series):
+
+                        ?>
+                        <li><ahref="<?php echo $this->url('event',
+                        array('action' => 'add', 'type' => 'single', 'series' => $event->getId())); ?>"
+                              class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.add.event')); ?></a><?php
+
+                    endif;
+
+                    ?>
+                    <li><a href="<?php echo $this->url('event',
+                            array('action' => 'edit', 'id' => $event->getId(), 'type' => $this->type)); ?>"
+                           class="tiny button radius"><?php echo htmlspecialchars($this->translate('button.edit')); ?></a>
+                    </li>
+                    <li><a href="<?php echo $this->url('event',
+                            array('action' => 'delete', 'id' => $event->getId(), 'type' => $this->type)); ?>"
+                           class="tiny button radius"
+                           data-confirm="<?php echo htmlspecialchars($this->translate('entity.actions.delete.confirm')); ?>"><?php echo htmlspecialchars($this->translate('button.delete')); ?></a>
+                    </li>
+                </ul>
+            </td>
+            </tr><?php
+
+        endforeach;
+
+        ?></tbody>
+    </table><?php
+
+else:
+
+    ?><p class="empty-list"><?php echo $this->translate('events.list.none'); ?></p><?php
+
+endif;
+
 ?>

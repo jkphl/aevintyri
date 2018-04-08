@@ -3,11 +3,11 @@
 /**
  * Event management
  *
- * @category	Tollwerk
- * @package		Tollwerk_Events
- * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2014 tollwerk GmbH <info@tollwerk.de>
- * @license		http://opensource.org/licenses/BSD-3-Clause	The BSD 3-Clause License
+ * @category       Tollwerk
+ * @package        Tollwerk_Events
+ * @author         Joschi Kuphal <joschi@kuphal.net>
+ * @copyright      Copyright © 2014 tollwerk GmbH <info@tollwerk.de>
+ * @license        http://opensource.org/licenses/BSD-3-Clause	The BSD 3-Clause License
  */
 
 namespace Events\Traits;
@@ -15,187 +15,207 @@ namespace Events\Traits;
 /**
  * Contact trait
  *
- * @author		Joschi Kuphal <joschi@kuphal.net>
+ * @author        Joschi Kuphal <joschi@kuphal.net>
  */
-trait Contact {
-	/**
-	 * Email address
-	 *
+trait Contact
+{
+    /**
+     * Email address
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $email;
-	/**
-	 * Phone number
-	 *
+     */
+    protected $email;
+    /**
+     * Phone number
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $phone;
-	/**
-	 * Fax number
-	 *
+     */
+    protected $phone;
+    /**
+     * Fax number
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $fax;
-	/**
-	 * Cell phone number
-	 *
+     */
+    protected $fax;
+    /**
+     * Cell phone number
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $cell;
-	/**
-	 * Website
-	 *
+     */
+    protected $cell;
+    /**
+     * Website
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $web;
-	/**
-	 * Facebook profile
-	 *
+     */
+    protected $web;
+    /**
+     * Facebook profile
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $facebook;
-	/**
-	 * Twitter profile
-	 *
+     */
+    protected $facebook;
+    /**
+     * Twitter profile
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $twitter;
-	/**
-	 * XING profile
-	 *
+     */
+    protected $twitter;
+    /**
+     * XING profile
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $xing;
-	/**
-	 * Google+ profile
-	 *
+     */
+    protected $xing;
+    /**
+     * Google+ profile
+     *
      * @ORM\Column(type="string", nullable=true)
-	 */
-	protected $gplus;
-	
-	/**
-	 * @return the $email
-	 */
-	public function getEmail() {
-		return $this->email;
-	}
+     */
+    protected $gplus;
 
-	/**
-	 * @param field_type $email
-	 */
-	public function setEmail($email) {
-		$this->email = $email;
-	}
+    /**
+     * @return the $email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
-	/**
-	 * @return the $phone
-	 */
-	public function getPhone() {
-		return $this->phone;
-	}
+    /**
+     * @param field_type $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
 
-	/**
-	 * @param field_type $phone
-	 */
-	public function setPhone($phone) {
-		$this->phone = $phone;
-	}
+    /**
+     * @return the $phone
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
 
-	/**
-	 * @return the $fax
-	 */
-	public function getFax() {
-		return $this->fax;
-	}
+    /**
+     * @param field_type $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
 
-	/**
-	 * @param field_type $fax
-	 */
-	public function setFax($fax) {
-		$this->fax = $fax;
-	}
+    /**
+     * @return the $fax
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
 
-	/**
-	 * @return the $cell
-	 */
-	public function getCell() {
-		return $this->cell;
-	}
+    /**
+     * @param field_type $fax
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+    }
 
-	/**
-	 * @param field_type $cell
-	 */
-	public function setCell($cell) {
-		$this->cell = $cell;
-	}
+    /**
+     * @return the $cell
+     */
+    public function getCell()
+    {
+        return $this->cell;
+    }
 
-	/**
-	 * @return the $facebook
-	 */
-	public function getFacebook() {
-		return $this->facebook;
-	}
+    /**
+     * @param field_type $cell
+     */
+    public function setCell($cell)
+    {
+        $this->cell = $cell;
+    }
 
-	/**
-	 * @param field_type $facebook
-	 */
-	public function setFacebook($facebook) {
-		$this->facebook = $facebook;
-	}
+    /**
+     * @return the $facebook
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
 
-	/**
-	 * @return the $twitter
-	 */
-	public function getTwitter() {
-		return $this->twitter;
-	}
+    /**
+     * @param field_type $facebook
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    }
 
-	/**
-	 * @param field_type $twitter
-	 */
-	public function setTwitter($twitter) {
-		$this->twitter = $twitter;
-	}
+    /**
+     * @return the $twitter
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
 
-	/**
-	 * @return the $xing
-	 */
-	public function getXing() {
-		return $this->xing;
-	}
+    /**
+     * @param field_type $twitter
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+    }
 
-	/**
-	 * @param field_type $xing
-	 */
-	public function setXing($xing) {
-		$this->xing = $xing;
-	}
+    /**
+     * @return the $xing
+     */
+    public function getXing()
+    {
+        return $this->xing;
+    }
 
-	/**
-	 * @return the $gplus
-	 */
-	public function getGplus() {
-		return $this->gplus;
-	}
+    /**
+     * @param field_type $xing
+     */
+    public function setXing($xing)
+    {
+        $this->xing = $xing;
+    }
 
-	/**
-	 * @param field_type $gplus
-	 */
-	public function setGplus($gplus) {
-		$this->gplus = $gplus;
-	}
-	/**
-	 * @return the $web
-	 */
-	public function getWeb() {
-		return $this->web;
-	}
+    /**
+     * @return the $gplus
+     */
+    public function getGplus()
+    {
+        return $this->gplus;
+    }
 
-	/**
-	 * @param field_type $web
-	 */
-	public function setWeb($web) {
-		$this->web = $web;
-	}
+    /**
+     * @param field_type $gplus
+     */
+    public function setGplus($gplus)
+    {
+        $this->gplus = $gplus;
+    }
+
+    /**
+     * @return the $web
+     */
+    public function getWeb()
+    {
+        return $this->web;
+    }
+
+    /**
+     * @param field_type $web
+     */
+    public function setWeb($web)
+    {
+        $this->web = $web;
+    }
 
 }

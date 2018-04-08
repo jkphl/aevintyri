@@ -1,60 +1,60 @@
 <fieldset id="event">
-	<legend><?php echo $this->translate('form.legend.event'); ?></legend>
-	<div class="row">
-		<div class="large-6 columns">
-			<div class="row collapse">
-			<?php echo $this->formLabel($subject->get('facebook_event')); ?>
-				<div class="small-3 large-2 columns">
-					<span class="prefix text-right">https://</span>
-				</div>
-				<div class="small-9 large-10 columns">
-			      <?php echo $this->formInput($subject->get('facebook_event')); ?>
-			    </div>
-			</div>
-		</div>
-		<div class="large-6 columns">
-			<div class="row collapse">
-			<?php echo $this->formLabel($subject->get('gplus_event')); ?>
-				<div class="small-3 large-2 columns">
-					<span class="prefix text-right">https://</span>
-				</div>
-				<div class="small-9 large-10 columns">
-			      <?php echo $this->formInput($subject->get('gplus_event')); ?>
-			    </div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns">
-			<div class="row collapse">
-			<?php echo $this->formLabel($subject->get('xing_event')); ?>
-				<div class="small-3 large-2 columns">
-					<span class="prefix text-right">https://</span>
-				</div>
-				<div class="small-9 large-10 columns">
-			      <?php echo $this->formInput($subject->get('xing_event')); ?>
-			    </div>
-			</div>
-		</div>
-		<div class="large-6 columns">
-			<?php echo $this->formRow($subject->get('lanyrd')); ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns">
-			<?php echo $this->formRow($subject->get('tickets')); ?>
-		</div>
-	</div>
-</fieldet>
+    <legend><?php echo $this->translate('form.legend.event'); ?></legend>
+    <div class="row">
+        <div class="large-6 columns">
+            <div class="row collapse">
+                <?php echo $this->formLabel($subject->get('facebook_event')); ?>
+                <div class="small-3 large-2 columns">
+                    <span class="prefix text-right">https://</span>
+                </div>
+                <div class="small-9 large-10 columns">
+                    <?php echo $this->formInput($subject->get('facebook_event')); ?>
+                </div>
+            </div>
+        </div>
+        <div class="large-6 columns">
+            <div class="row collapse">
+                <?php echo $this->formLabel($subject->get('gplus_event')); ?>
+                <div class="small-3 large-2 columns">
+                    <span class="prefix text-right">https://</span>
+                </div>
+                <div class="small-9 large-10 columns">
+                    <?php echo $this->formInput($subject->get('gplus_event')); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <div class="row collapse">
+                <?php echo $this->formLabel($subject->get('xing_event')); ?>
+                <div class="small-3 large-2 columns">
+                    <span class="prefix text-right">https://</span>
+                </div>
+                <div class="small-9 large-10 columns">
+                    <?php echo $this->formInput($subject->get('xing_event')); ?>
+                </div>
+            </div>
+        </div>
+        <div class="large-6 columns">
+            <?php echo $this->formRow($subject->get('lanyrd')); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <?php echo $this->formRow($subject->get('tickets')); ?>
+        </div>
+    </div>
+    </fieldet>
 
-<fieldset id="tickets">
-	<legend><?php echo $this->translate('form.legend.tickets'); ?></legend>
-	<div class="row">
-		<div class="large-6 columns">
-			<?php echo $this->formRow($subject->get('tickets_available')); ?>
-		</div>
-		<div class="large-6 columns">
-			<?php echo $this->formRow($subject->get('tickets_email')); ?>
-		</div>
-	</div>
-</fieldset>
+    <fieldset id="tickets">
+        <legend><?php echo $this->translate('form.legend.tickets'); ?></legend>
+        <div class="row">
+            <div class="large-6 columns">
+                <?php echo $this->formRow($subject->get('tickets_available')); ?>
+            </div>
+            <div class="large-6 columns">
+                <?php echo $this->formRow($subject->get('tickets_email')); ?>
+            </div>
+        </div>
+    </fieldset>

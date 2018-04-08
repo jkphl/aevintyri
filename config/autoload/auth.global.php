@@ -3,11 +3,11 @@
 /**
  * Event management
  *
- * @category	Tollwerk
- * @package		Tollwerk_Events
- * @author		Joschi Kuphal <joschi@kuphal.net>
- * @copyright	Copyright © 2014 tollwerk GmbH <info@tollwerk.de>
- * @license		http://opensource.org/licenses/BSD-3-Clause	The BSD 3-Clause License
+ * @category       Tollwerk
+ * @package        Tollwerk_Events
+ * @author         Joschi Kuphal <joschi@kuphal.net>
+ * @copyright      Copyright © 2014 tollwerk GmbH <info@tollwerk.de>
+ * @license        http://opensource.org/licenses/BSD-3-Clause	The BSD 3-Clause License
  */
 return array(
     'auth' => array(
@@ -20,8 +20,8 @@ return array(
          * Accepted values: A valid route name within your application
          *
          */
-        'login_redirect_route' => 'home',
-    
+        'login_redirect_route'  => 'home',
+
         /**
          * Logout Redirect Route
          *
@@ -31,7 +31,7 @@ return array(
          * Accepted values: A valid route name within your application
          */
         'logout_redirect_route' => 'home',
-        
+
         /**
          * Sender email dadress
          *
@@ -41,8 +41,8 @@ return array(
          * Default value: 'no-reply@example.com'
          * Accepted values:  A valid email address
          */
-        'sender_email_adress' => 'no-reply@example.com',
-        
+        'sender_email_adress'   => 'no-reply@example.com',
+
         /**
          * Visibility of navigation menu
          *
@@ -51,16 +51,16 @@ return array(
          * Default value: true
          * Accepted values: true/false
          */
-        'nav_menu' => true,
-        
+        'nav_menu'              => true,
+
         /**
          * Set captcha number of characters
          *
          * Default value: 3
          * Accepted values: int
          */
-         'captcha_char_num' => 3,
-        
+        'captcha_char_num'      => 3,
+
         /**
          * Visibility of exception details
          *
@@ -70,11 +70,11 @@ return array(
          * Accepted values: true/false
          * Production reccommended value: false
          */
-        'display_exceptions' => true,
+        'display_exceptions'    => true,
     ),
     'mail' => array(
-    	'transport' => array(
-    		'options' => array()
-    	)
-    )	
+        'transport' => array(
+            'options' => array()
+        )
+    )
 );

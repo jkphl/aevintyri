@@ -1,82 +1,92 @@
 <?php
 
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => $this->translate('events.section.label.session.new'), 'buttons' => array($this->url('event', array('action' => 'edit', 'type' => 'single', 'id' => $this->session->getDay()->getEvent()->getId()), array('fragment' => 'sessions-'.$this->session->getDay()->getId())) => $this->translate('button.back'))));
-	
-	// Messages
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header'  => $this->translate('events.section.label.session.new'),
+    'buttons' => array(
+        $this->url('event',
+            array('action' => 'edit', 'type' => 'single', 'id' => $this->session->getDay()->getEvent()->getId()),
+            array('fragment' => 'sessions-'.$this->session->getDay()->getId())) => $this->translate('button.back')
+    )
+));
+
+// Messages
 // 	echo $this->flashMessagesHelper($flashMessages);
-	
-	$form 			= $this->form;
-	$session		= $form->get('session');
-	$form->setAttribute('action', $this->url('session', array('action' => 'add', 'day' => $this->session->getDay()->getId())));
-	$form->prepare();
-	
-	echo $this->form()->openTag($form);
-	
+
+$form    = $this->form;
+$session = $form->get('session');
+$form->setAttribute('action',
+    $this->url('session', array('action' => 'add', 'day' => $this->session->getDay()->getId())));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
 ?>
 
-<fieldset id="general">
-	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
-	<div class="row">
-		<div class="large-6 columns">
-			<?php echo $this->formRow($session->get('name')); ?>
-		</div>
-		<div class="large-6 columns">
-			<?php echo $this->formRow($session->get('room')); ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-4 columns"><?php
-			echo $this->formLabel($session->get('day'));
-			?><span class="prefix display"><?php echo $this->session->getDay()->getDate()->format($this->translate('entity.day.date.format')); ?></span><?php
-		?></div>
-		<div class="large-4 columns">
-			<?php echo $this->formRow($session->get('start_time')); ?>
-		</div>
-		<div class="large-4 columns">
-			<?php echo $this->formRow($session->get('end_time')); ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns">
-			<?php echo $this->formRow($session->get('level')); ?>
-		</div>
-		<div class="large-6 columns">
-			<?php echo $this->formRow($session->get('requirements')); ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="large-6 columns"><?php 
-			echo $this->formRow($session->get('upload_image'));
-		?></div>
-		<div class="large-6 columns"><?php
-			echo $this->formHidden($session->get('image'));
-			echo $this->partial('partials/common/preview.phtml', array('image' => $session->get('image')->getValue()));
-		?></div>
-	</div>
-</fieldset>
+    <fieldset id="general">
+        <legend><?php echo $this->translate('form.legend.general'); ?></legend>
+        <div class="row">
+            <div class="large-6 columns">
+                <?php echo $this->formRow($session->get('name')); ?>
+            </div>
+            <div class="large-6 columns">
+                <?php echo $this->formRow($session->get('room')); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 columns"><?php
+                echo $this->formLabel($session->get('day'));
+                ?><span class="prefix display"><?php echo $this->session->getDay()->getDate()
+                                                                        ->format($this->translate('entity.day.date.format')); ?></span><?php
+                ?></div>
+            <div class="large-4 columns">
+                <?php echo $this->formRow($session->get('start_time')); ?>
+            </div>
+            <div class="large-4 columns">
+                <?php echo $this->formRow($session->get('end_time')); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <?php echo $this->formRow($session->get('level')); ?>
+            </div>
+            <div class="large-6 columns">
+                <?php echo $this->formRow($session->get('requirements')); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns"><?php
+                echo $this->formRow($session->get('upload_image'));
+                ?></div>
+            <div class="large-6 columns"><?php
+                echo $this->formHidden($session->get('image'));
+                echo $this->partial('partials/common/preview.phtml',
+                    array('image' => $session->get('image')->getValue()));
+                ?></div>
+        </div>
+    </fieldset>
 
-<?php 
-
-	echo $this->partial('partials/common/texts.phtml', array('subject' => $session));
-	
-?>
-
-<div class="row">
-	<div class="large-12 columns">
-		<ul class="button-group">
-		  <li><?php echo $this->formSubmit($form->get('create')); ?></li>
-		  <li><?php echo $this->formSubmit($form->get('createclose')); ?></li>
-		</ul>
-	</div>
-</div>
-	
 <?php
-	
-	/** Hidden fields **/
-	echo $this->formHidden($session->get('id'));
-	echo $this->formHidden($session->get('day'));
-	/** END - Hidden fields **/
-	
-	echo $this->form()->closeTag($form);
+
+echo $this->partial('partials/common/texts.phtml', array('subject' => $session));
+
+?>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <ul class="button-group">
+                <li><?php echo $this->formSubmit($form->get('create')); ?></li>
+                <li><?php echo $this->formSubmit($form->get('createclose')); ?></li>
+            </ul>
+        </div>
+    </div>
+
+<?php
+
+/** Hidden fields **/
+echo $this->formHidden($session->get('id'));
+echo $this->formHidden($session->get('day'));
+/** END - Hidden fields **/
+
+echo $this->form()->closeTag($form);
 ?>

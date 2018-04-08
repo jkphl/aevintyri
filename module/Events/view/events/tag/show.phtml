@@ -1,26 +1,37 @@
 <?php
 
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => $tag->getName(), 'buttons' => array(
-		$this->url('tag', array('action' => 'list')) => $this->translate('button.back'),
-		$this->url('tag', array('action' => 'edit', 'id' => $tag->getId())) => $this->translate('button.edit'),
-		$this->url('tag', array('action' => 'delete', 'id' => $tag->getId())) => array($this->translate('button.delete'), array('data-confirm' => $this->translate('entity.actions.delete.confirm'))),
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header'  => $tag->getName(),
+    'buttons' => array(
+        $this->url('tag', array('action' => 'list'))                        => $this->translate('button.back'),
+        $this->url('tag', array('action' => 'edit', 'id' => $tag->getId())) => $this->translate('button.edit'),
+        $this->url('tag', array(
+            'action' => 'delete',
+            'id'     => $tag->getId()
+        ))                                                                  => array(
+            $this->translate('button.delete'),
+            array('data-confirm' => $this->translate('entity.actions.delete.confirm'))
+        ),
 
-		
-	)));
-	
-	/* data-confirm="<?php echo htmlspecialchars(); ?>" */
-	
-	// Messages
+
+    )
+));
+
+/* data-confirm="<?php echo htmlspecialchars(); ?>" */
+
+// Messages
 // 	echo $this->flashMessagesHelper($flashMessages);
-	
-?><table class="entity-show">
-	<tr>
-		<th><?php echo $this->translate('entity.common.name'); ?></th>
-		<td><?php echo $this->tag->getName(); ?></td>
-	</tr>
-	<tr>
-		<th><?php echo $this->translate('entity.tag.color'); ?></th>
-		<td class="color" style="background-color:<?php echo $this->tag->getColor(); ?>"><?php echo $this->emptyvalue($this->tag->getColor()); ?></td>
-	</tr>
+
+?>
+<table class="entity-show">
+    <tr>
+        <th><?php echo $this->translate('entity.common.name'); ?></th>
+        <td><?php echo $this->tag->getName(); ?></td>
+    </tr>
+    <tr>
+        <th><?php echo $this->translate('entity.tag.color'); ?></th>
+        <td class="color"
+            style="background-color:<?php echo $this->tag->getColor(); ?>"><?php echo $this->emptyvalue($this->tag->getColor()); ?></td>
+    </tr>
 </table>

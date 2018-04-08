@@ -12,19 +12,19 @@
  */
 
 return array(
-	'mail' => array(
-		'transport' => array(
-			'options' => array()
-		)
-	),
-	'db' => array(
-		'adapters' => array(
-			'DB\\Events' => array(
-				'driver' => 'Pdo_Mysql',
-				'database' => 'events_01',
-				'username' => 'events_01',
-				'password' => 'a,6k*EK4',
-			),
-		),
-	),
+    'mail' => array(
+        'transport' => array(
+            'options' => array()
+        )
+    ),
+    'db'   => array(
+        'adapters' => array(
+            'DB\\Events' => array(
+                'driver'   => 'Pdo_Mysql',
+                'database' => 'events_01',
+                'username' => 'events_01',
+                'password' => 'a,6k*EK4',
+            ),
+        ),
+    ),
 );

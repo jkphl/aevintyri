@@ -1,43 +1,50 @@
 <?php
 
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => sprintf($this->translate('events.section.label.day.edit'), $this->day->getDate()->format($this->translate('entity.day.date.format'))), 'buttons' => array($this->url('event', array('action' => 'edit', 'type' => 'single', 'id' => $this->day->getEvent()->getId()), array('fragment' => 'days')) => $this->translate('button.back'))));
-	
-	// Messages
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header' => sprintf($this->translate('events.section.label.day.edit'),
+        $this->day->getDate()->format($this->translate('entity.day.date.format'))),
+    'buttons' => array(
+        $this->url('event', array('action' => 'edit', 'type' => 'single', 'id' => $this->day->getEvent()->getId()),
+            array('fragment' => 'days')) => $this->translate('button.back')
+    )
+));
+
+// Messages
 // 	echo $this->flashMessagesHelper($flashMessages);
-	
-	$form 			= $this->form;
-	$day		= $form->get('day');
-	$form->setAttribute('action', $this->url('day', array('action' => 'edit', 'id' => $this->day->getId())));
-	$form->prepare();
-	
-	echo $this->form()->openTag($form);
-	
+
+$form = $this->form;
+$day  = $form->get('day');
+$form->setAttribute('action', $this->url('day', array('action' => 'edit', 'id' => $this->day->getId())));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
 ?>
 
-<fieldset id="general">
-	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
-	<div class="row">
-		<div class="large-12 columns">
-			<?php echo $this->formRow($day->get('date')); ?>
-		</div>
-	</div>
-</fieldset>
-<div class="row">
-	<div class="large-12 columns">
-		<ul class="button-group">
-		  <li><?php echo $this->formSubmit($form->get('save')); ?></li>
-		  <li><?php echo $this->formSubmit($form->get('saveclose')); ?></li>
-		</ul>
-	</div>
-</div>
-	
+    <fieldset id="general">
+        <legend><?php echo $this->translate('form.legend.general'); ?></legend>
+        <div class="row">
+            <div class="large-12 columns">
+                <?php echo $this->formRow($day->get('date')); ?>
+            </div>
+        </div>
+    </fieldset>
+    <div class="row">
+        <div class="large-12 columns">
+            <ul class="button-group">
+                <li><?php echo $this->formSubmit($form->get('save')); ?></li>
+                <li><?php echo $this->formSubmit($form->get('saveclose')); ?></li>
+            </ul>
+        </div>
+    </div>
+
 <?php
-	
-	/** Hidden fields **/
-	echo $this->formHidden($day->get('id'));
-	echo $this->formHidden($day->get('event'));
-	/** END - Hidden fields **/
-	
-	echo $this->form()->closeTag($form);
+
+/** Hidden fields **/
+echo $this->formHidden($day->get('id'));
+echo $this->formHidden($day->get('event'));
+/** END - Hidden fields **/
+
+echo $this->form()->closeTag($form);
 ?>

@@ -1,76 +1,83 @@
 <?php
-	$series			= ($this->type == 'series');
+$series = ($this->type == 'series');
 
-	// Header
-	echo $this->partial('partials/common/header.phtml', array('header' => $series ? $this->translate('events.section.label.event.new.series') : $this->translate('events.section.label.event.new.single'), 'buttons' => array($this->url('event', array('action' => 'list', 'type' => $this->type)) => $this->translate('button.back'))));
-	
-	// Messages
+// Header
+echo $this->partial('partials/common/header.phtml', array(
+    'header'  => $series ? $this->translate('events.section.label.event.new.series') : $this->translate('events.section.label.event.new.single'),
+    'buttons' => array(
+        $this->url('event', array('action' => 'list', 'type' => $this->type)) => $this->translate('button.back')
+    )
+));
+
+// Messages
 // 	echo $this->flashMessagesHelper($flashMessages);
-	
-	$form 			= $this->form;
-	$event			= $form->get('event');
-	$form->setAttribute('action', $this->url('event', array('action' => 'add', 'type' => $this->type)));
-	$form->prepare();
-	
-	echo $this->form()->openTag($form);
-	
+
+$form  = $this->form;
+$event = $form->get('event');
+$form->setAttribute('action', $this->url('event', array('action' => 'add', 'type' => $this->type)));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
 ?>
 
-<fieldset id="general">
-	<legend><?php echo $this->translate('form.legend.general'); ?></legend>
-	<div class="row">
-		<div class="large-6 columns">
-			<?php echo $this->formRow($event->get('name')); ?>
-		</div>
-		<div class="large-6 columns">
-			<?php echo $this->formRow($event->get('organizer')); ?>
-		</div>
-	</div>
-	<?php
-		if ($this->type == 'single'):
-	?><div class="row">
-		<div class="large-12 columns">
-			<?php echo $this->formRow($event->get('series')); ?>
-		</div>
-	</div><?php
-		endif;
-	?>
-	<div class="row">
-		<div class="large-6 columns"><?php 
-			echo $this->formRow($event->get('upload_image'));
-		?></div>
-		<div class="large-6 columns"><?php
-			echo $this->formHidden($event->get('image'));
-			echo $this->partial('partials/common/preview.phtml', array('image' => $event->get('image')->getValue()));
-		?></div>
-	</div>
-</fieldset>
+    <fieldset id="general">
+        <legend><?php echo $this->translate('form.legend.general'); ?></legend>
+        <div class="row">
+            <div class="large-6 columns">
+                <?php echo $this->formRow($event->get('name')); ?>
+            </div>
+            <div class="large-6 columns">
+                <?php echo $this->formRow($event->get('organizer')); ?>
+            </div>
+        </div>
+        <?php
+        if ($this->type == 'single'):
+            ?>
+            <div class="row">
+            <div class="large-12 columns">
+                <?php echo $this->formRow($event->get('series')); ?>
+            </div>
+            </div><?php
+        endif;
+        ?>
+        <div class="row">
+            <div class="large-6 columns"><?php
+                echo $this->formRow($event->get('upload_image'));
+                ?></div>
+            <div class="large-6 columns"><?php
+                echo $this->formHidden($event->get('image'));
+                echo $this->partial('partials/common/preview.phtml',
+                    array('image' => $event->get('image')->getValue()));
+                ?></div>
+        </div>
+    </fieldset>
 
-<?php 
-
-	echo $this->partial('partials/common/texts.phtml', array('subject' => $event));
-	echo $this->partial('partials/common/contact.phtml', array('subject' => $event));
-	if (!$series) {
-		echo $this->partial('partials/common/event.phtml', array('subject' => $event));
-	}
-	
-?>
-
-<div class="row">
-	<div class="large-12 columns">
-		<ul class="button-group">
-		  <li><?php echo $this->formSubmit($form->get('create')); ?></li>
-		  <li><?php echo $this->formSubmit($form->get('createclose')); ?></li>
-		</ul>
-	</div>
-</div>
-	
 <?php
-	
-	/** Hidden fields **/
-	echo $this->formHidden($event->get('id'));
-	echo $this->formHidden($event->get('series'));
-	/** END - Hidden fields **/
-	
-	echo $this->form()->closeTag($form);
+
+echo $this->partial('partials/common/texts.phtml', array('subject' => $event));
+echo $this->partial('partials/common/contact.phtml', array('subject' => $event));
+if (!$series) {
+    echo $this->partial('partials/common/event.phtml', array('subject' => $event));
+}
+
+?>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <ul class="button-group">
+                <li><?php echo $this->formSubmit($form->get('create')); ?></li>
+                <li><?php echo $this->formSubmit($form->get('createclose')); ?></li>
+            </ul>
+        </div>
+    </div>
+
+<?php
+
+/** Hidden fields **/
+echo $this->formHidden($event->get('id'));
+echo $this->formHidden($event->get('series'));
+/** END - Hidden fields **/
+
+echo $this->form()->closeTag($form);
 ?>

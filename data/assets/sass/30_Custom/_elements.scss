@@ -31,7 +31,7 @@ table {
 
 td.color {
 	color: #fff;
-	text-shadow: 0 0 3px #000;	
+	text-shadow: 0 0 3px #000;
 }
 
 td, th {
@@ -44,7 +44,7 @@ td, th {
 	tr[data-onclick] {
 		cursor: pointer;
 	}
-	
+
 	tr:hover td {
 		background-color: #fff203;
 	}
@@ -92,7 +92,7 @@ span.display {
 	&, & p {
 		font-size: .875rem;
 	}
-	
+
 	p:last-child {
 		margin-bottom: 0;
 	}
@@ -100,7 +100,7 @@ span.display {
 
 label[for="rememberme"] {
 	vertical-align: middle;
-	
+
 	input[type="checkbox"] {
 		margin: 0 .5em 0 0;
 	}

@@ -1,11 +1,11 @@
 <?php
 return array(
-    'API\\V1\\Rest\\Events\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+    'API\\V1\\Rest\\Events\\Controller'     => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of events',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/events"
@@ -41,11 +41,11 @@ return array(
             ),
             'description' => 'Interact with event collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single event',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/events[/:event_id]"
@@ -60,12 +60,12 @@ return array(
         ),
         'description' => 'Event API',
     ),
-    'API\\V1\\Rest\\Tags\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+    'API\\V1\\Rest\\Tags\\Controller'       => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of tags',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/tags"
@@ -98,11 +98,11 @@ return array(
             ),
             'description' => 'Interact with tag collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single tag',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/tags[/:tags_id]"
@@ -115,11 +115,11 @@ return array(
         'description' => 'Tags API',
     ),
     'API\\V1\\Rest\\Organizers\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of organizers',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/organizers"
@@ -153,11 +153,11 @@ return array(
             ),
             'description' => 'Interact with organizer collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single organizer',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/organizers[/:organizers_id]"
@@ -170,12 +170,12 @@ return array(
         ),
         'description' => 'Organizers API',
     ),
-    'API\\V1\\Rest\\Countries\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+    'API\\V1\\Rest\\Countries\\Controller'  => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of countries',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/countries"
@@ -208,11 +208,11 @@ return array(
             ),
             'description' => 'Interact with country collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single country',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/countries[/:countries_id]"
@@ -224,12 +224,12 @@ return array(
         ),
         'description' => 'Countries API',
     ),
-    'API\\V1\\Rest\\Venues\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+    'API\\V1\\Rest\\Venues\\Controller'     => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of venues',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/venues"
@@ -263,11 +263,11 @@ return array(
             ),
             'description' => 'Interact with venue collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single venue',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/venues[/:venues_id]"
@@ -280,12 +280,12 @@ return array(
         ),
         'description' => 'Venues API',
     ),
-    'API\\V1\\Rest\\Days\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+    'API\\V1\\Rest\\Days\\Controller'       => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of days',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/days"
@@ -319,11 +319,11 @@ return array(
             ),
             'description' => 'Interact with day collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single day',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/days[/:days_id]"
@@ -336,12 +336,12 @@ return array(
         ),
         'description' => 'Days API',
     ),
-    'API\\V1\\Rest\\Links\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+    'API\\V1\\Rest\\Links\\Controller'      => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of links',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/links"
@@ -374,11 +374,11 @@ return array(
             ),
             'description' => 'Interact with link collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single link',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/links[/:links_id]"
@@ -391,11 +391,11 @@ return array(
         'description' => 'Links API',
     ),
     'API\\V1\\Rest\\Presenters\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of presenters',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/presenters"
@@ -429,11 +429,11 @@ return array(
             ),
             'description' => 'Interact with presenter collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single presenter',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/presenters[/:presenters_id]"
@@ -446,12 +446,12 @@ return array(
         ),
         'description' => 'Presenters API',
     ),
-    'API\\V1\\Rest\\Rooms\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+    'API\\V1\\Rest\\Rooms\\Controller'      => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of rooms',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/rooms"
@@ -485,11 +485,11 @@ return array(
             ),
             'description' => 'Interact with room collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single room',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/rooms[/:rooms_id]"
@@ -502,12 +502,12 @@ return array(
         ),
         'description' => 'Rooms API',
     ),
-    'API\\V1\\Rest\\Sessions\\Controller' => array(
-        'collection' => array(
-            'GET' => array(
+    'API\\V1\\Rest\\Sessions\\Controller'   => array(
+        'collection'  => array(
+            'GET'         => array(
                 'description' => 'Retrieve a paginated list of sessions',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/sessions"
@@ -541,11 +541,11 @@ return array(
             ),
             'description' => 'Interact with session collections',
         ),
-        'entity' => array(
-            'GET' => array(
+        'entity'      => array(
+            'GET'         => array(
                 'description' => 'Retrieve a single session',
-                'request' => null,
-                'response' => '{
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/sessions[/:sessions_id]"
@@ -558,12 +558,12 @@ return array(
         ),
         'description' => 'Sessions API',
     ),
-    'API\\V1\\Rest\\Series\\Controller' => array(
-    		'collection' => array(
-    				'GET' => array(
-    						'description' => 'Retrieve a paginated list of series',
-    						'request' => null,
-    						'response' => '{
+    'API\\V1\\Rest\\Series\\Controller'     => array(
+        'collection'  => array(
+            'GET'         => array(
+                'description' => 'Retrieve a paginated list of series',
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/series"
@@ -594,14 +594,14 @@ return array(
        ]
    }
 }',
-    				),
-    				'description' => 'Interact with series collections',
-    		),
-    		'entity' => array(
-    				'GET' => array(
-    						'description' => 'Retrieve a single series',
-    						'request' => null,
-    						'response' => '{
+            ),
+            'description' => 'Interact with series collections',
+        ),
+        'entity'      => array(
+            'GET'         => array(
+                'description' => 'Retrieve a single series',
+                'request'     => null,
+                'response'    => '{
    "_links": {
        "self": {
            "href": "/api/series[/:series_id]"
@@ -609,9 +609,9 @@ return array(
    }
    "flat": "Whether to dereference all embedded entities"
 }',
-    				),
-    				'description' => 'Interact with a single series',
-    		),
+            ),
+            'description' => 'Interact with a single series',
+        ),
         'description' => 'Series API',
     ),
 );
